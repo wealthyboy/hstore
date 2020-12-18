@@ -7,7 +7,7 @@ use App\Http\Helper;
 use App\Voucher;
 use App\SystemSetting;
 
-class order extends Model
+class Order extends Model
 {
     
 	
@@ -74,9 +74,6 @@ class order extends Model
 
 	
 	public function get_total(){
-		if($this->coupon){
-		    return number_format($this->getCouponDiscount($this->total) );  
-		}
 		return number_format($this->total);
 	}
 
