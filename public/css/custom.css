@@ -857,8 +857,10 @@ background: white;
 }
 
 
-.custom-control{
-  
+span .social-icon {
+  width: 3rem;
+  background-color: #fff;
+  color: #000;
 }
 
 .footer .widget-newsletter .btn {
