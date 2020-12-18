@@ -326,7 +326,8 @@ export default {
     },
     data(){
         return {
-           coupon: '',
+            coupon: '',
+            coupon_code: '',
            locations: [],
            shipping_id: null,
            shipping_price:'',
@@ -365,12 +366,14 @@ export default {
 
     },
     watch: {
-        // whenever question changes, this function will run
+        // whenever delivery_option changes, this function will run
         delivery_option: function (val) {
-            if (this.voucher.length  && !this.shipping_price){
+            if (this.voucher.length && this.shipping_price){
+                this.shipping_price = 0
+                this.amount = this.voucher[0].sub_total
+            } else if(this.shipping_price && this.voucher.length == 0){
                 this.amount = this.meta.sub_total
-            } else if(this.voucher.length  && this.shipping_price){
-                this.amount = this.amount - this.shipping_price
+                this.shipping_id = null
             }
             this.delivery_error = false
         }
@@ -424,7 +427,7 @@ export default {
                 this.error = "Please select your shipping method"
                 return false;
             } else if(this.delivery_option != 'shipping'){
-               this.amount =  this.meta.sub_total
+               //this.amount =  this.meta.sub_total
             }
 
             let form = document.getElementById('checkout-form-2')
@@ -442,7 +445,7 @@ export default {
                         {
                            display_name: context.meta.user.name,
                            customer_id: context.meta.user.id,
-                           coupon: context.coupon,
+                           coupon: context.coupon_code,
                            shipping_id: context.shipping_id,
                            shipping_price: context.shipping_price,
                            cart: cartIds,
@@ -522,6 +525,7 @@ export default {
                 }, 2000);
                 return;
             }
+            this.coupon_code = this.coupon
             this.coupon_error = null;
             this.submiting =true
             axios.post('/checkout/coupon',{

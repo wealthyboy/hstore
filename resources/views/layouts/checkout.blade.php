@@ -35,12 +35,12 @@
     <meta property="og:url" content="https://hautesignatures.com/">
     <meta property="og:title" content=" hautesignatures">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="Online sales of your best brands,buy gucci,versace. etc">
+    <meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
     <meta property="og:image:alt" content="">
     <meta name="twitter:site" content="@hautesignatures">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="hautesignatures - Online sales of your best brands,buy gucci,versace. ">
-    <meta name="twitter:description" content="Online sales of your best brands,buy gucci,versace. ">
+    <meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
+    <meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }} ">
     <script>
 		Window.user = {
 			user: {!! auth()->check() ? auth()->user() : 0000 !!},

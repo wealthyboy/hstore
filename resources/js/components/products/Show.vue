@@ -345,16 +345,31 @@ export default {
                 }
                 //console.log(other_attribute[0].dataset.value)
                 active_attribute = document.querySelector('.active-attribute')
-                active_other_attribute = document.querySelector('.active-other-attribute') 
-                if(active_attribute  && this.attributesData.length != 0 && active_other_attribute == null){
+                active_other_attribute = document.querySelector('.active-other-attribute')
+                if(active_attribute  && this.attributesData.length != 0 ){
                     variation = active_attribute.dataset.value+'_'+this.attributesData[0]
-                }else if(active_attribute  && this.attributesData.length == 0){
-                    variation = active_attribute.dataset.value
-                }else if(active_attribute  && active_other_attribute !== null){
-                    variation = active_attribute.dataset.value+'_'+active_other_attribute.dataset.value
-                }else if(!active_attribute  && active_other_attribute !== null){
-                    variation = active_other_attribute.dataset.value
+                    console.log(1)
                 }
+                if(active_attribute  && this.attributesData.length == 0){
+                    variation = active_attribute.dataset.value
+                    console.log(2)
+                }
+                // if(active_attribute  && active_other_attribute !== null){
+                //     variation = active_attribute.dataset.value+'_'+active_other_attribute.dataset.value
+                //     console.log(3)
+                // }
+                if(!active_attribute  && active_other_attribute !== null){
+                    variation = active_other_attribute.dataset.value
+                    console.log(4)
+                }
+
+                if(active_attribute  && other_attribute.length !== 0  && key != 'Colors' ){
+                    variation = active_attribute.dataset.value+'_'+evt.target.dataset.value
+                    console.log(5)
+
+                }
+
+                console.log(variation,this.attributesData,evt.target.dataset.value)
 
 
                 let vTs = stock[0][variation]
