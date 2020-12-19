@@ -221,7 +221,7 @@ class ProductController extends Controller
         $product_variation->length = $request->length;
         $product_variation->weight = $request->weight;
         $product_variation->quantity  = $request->quantity;
-        $product_variation->extra_percent_off  = $request->type == 'simple' ? $request->extra_percent_off : null;
+        //$product_variation->extra_percent_off  = $request->type == 'simple' ? $request->extra_percent_off : null;
 
         
         $product_variation->sku = str_random(6);
@@ -679,7 +679,7 @@ class ProductController extends Controller
                                 'weight' => $request->edit_variation_weight[$variant_id],
                                 'quantity'  => $request->edit_variation_quantity[$variant_id] ? $request->edit_variation_quantity[$variant_id] : $request->quantity,
                                 'product_id' => $product->id,
-                                'extra_percent_off'  => $request->extra_percent_off[$variant_id],
+                                //'extra_percent_off'  => $request->extra_percent_off[$variant_id],
                                 'name' => $request->edit_variation_name[$variant_id],
                                 'slug' =>str_slug($request->edit_variation_name[$variant_id]),
                                 
