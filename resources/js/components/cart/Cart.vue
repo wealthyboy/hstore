@@ -3,7 +3,7 @@
         
 
         <div v-if="!loading && carts.length" class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 bg--light">
                 <article>
                     <form action="/update/cart" method="" class="cart-form">
                         <input type="hidden" value="" name="_token" />
@@ -68,7 +68,7 @@
                 </article>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 bg--light">
                 <div class="cart-collateralse  border pb-3 pt-3 pl-3 pt-3 pr-3 raised">
                     <div class="cart_totalse">
                         <h3> Summary </h3>

@@ -5,31 +5,38 @@
 @extends('layouts.app')
  
 @section('content')
-    <!--Content-->
-    <div class="top-notice text-white bg--gray">
+ 
+<div class="top-notice text-white bg--primary cart-page">
     <div class="container-fluid text-center">
         <div class="row">
             
             <div class="col-12">
-                <h5 class="d-inline-block color--primary text-uppercase  mb-0"><b><i class="fas fa-money-check"></i>
+                <h5 class="d-inline-block color--light text-uppercase  mb-0"><b><i class="fas fa-money-check"></i>
                     LAUCH WEEK  GET 5% OFF  USE  HSLNCH </b>
                 </h5>
             </div>
+            
 
         </div>
         
     </div><!-- End .container -->
 </div>
+
+<section class="breadcrumb no-banner cart-page justify-content-center">
+    <div class="breadcrumb-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12  text-center border-bottom">
+                    >
+                    <h1 class="breadcrumb-title">Your Cart</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
   
    <!--Content-->
-   <nav aria-label="breadcrumb" class="breadcrumb-nav">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page"><small>WishList</small></li>
-            </ol>
-        </div>
-    </nav> 
+   
     <section class="bg--gray">          
         <div class="container-fluid">
             <div id="js-loading"  class="full-bg">
