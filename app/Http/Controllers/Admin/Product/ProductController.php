@@ -322,7 +322,7 @@ class ProductController extends Controller
                     $product_variation->sale_price_expires = Helper::getFormatedDate($request->variation_sale_price_expires[$key]);
                     $product_variation->length = $request->variation_length[$key];
                     $product_variation->weight = $request->variation_weight[$key];
-                    $product_variation->extra_percent_off  = $request->extra_percent_off[$key];
+                   // $product_variation->extra_percent_off  = $request->extra_percent_off[$key];
 
                     $product_variation->quantity  = null !== $request->variation_quantity[$key] ?$request->variation_quantity[$key] : $request->quantity;
                     $product_variation->sku = str_random(6);
@@ -801,7 +801,7 @@ class ProductController extends Controller
                 $product_variation->image = $request->variation_image[$key];
                 $product_variation->width = $request->variation_width[$key];
                 $product_variation->sale_price_expires = Helper::getFormatedDate($request->variation_sale_price_expires[$key]);
-                $product_variation->extra_percent_off  = $request->extra_percent_off[$key];
+                //$product_variation->extra_percent_off  = $request->extra_percent_off[$key];
 
                 $product_variation->length = $request->variation_length[$key];
                 $product_variation->weight = $request->variation_weight[$key];
