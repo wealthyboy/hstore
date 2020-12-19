@@ -331,7 +331,8 @@ export default {
                     evt.target.classList.add('active-other-attribute')
                 }
                                            
-               
+                                console.log(stock)
+
 
             try { 
                 
