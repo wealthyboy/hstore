@@ -77,7 +77,11 @@ export  const errors = (state) => {
 }
 
 export  const loading = (state) => {
-   return state.loading
+   return state.loadn
+}
+
+export  const showForm = (state) => {
+   return state.showForm
 }
 
 

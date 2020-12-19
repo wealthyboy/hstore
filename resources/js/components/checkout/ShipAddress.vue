@@ -1,9 +1,5 @@
 <template>
     <div class="">
-        <div v-if="loading" class="" style="height: 400px">  
-            <span   class="spinner-border  spinner-border-sm address-loading" role="status" aria-hidden="true"></span>
-        </div>  
-        <template  v-if="!loading">
             <div v-if="showForm"  id="stored_address"  class="billing-fields__field-wrapper ">
                 <form  @submit.prevent="submit" method="POST" class=""> 
                     <div class="row reduce-gutters" id="add-new-address-form" data-action="/address/create">
@@ -97,28 +93,28 @@
                             </span>
                         </p>
 
-                        <div style="clear:right;" class=""></div>
-                        <p class="form-group reduce-gutters col-lg-12">
+                        <p class="form-group reduce-gutters text-right col-lg-12 ">
                             <button v-if="!addresses.length" type="submit" class="btn bold  btn--lg btn--primary btn--full" name="checkout_place_order" id="place_order" value="Place order" data-value="Place Order">
                                 <span  v-if="submiting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Save & Continue
                             </button>
-                            <p v-if="addresses.length" class="form-group col-6 col-md-6">
+                            <p v-if="addresses.length" class="form-group col-6 col-md-6 text-left">
                                 <button type="submit" class="btn btn--lg btn--white bold color--primary"  value="Submit">
                                     <span  v-if="submiting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     Save 
                                 </button>
                             </p>
-                            <p v-if="addresses.length" class="form-group col-6  col-md-6 lost_password">
-                            <a @click.prevent="cancelForm"  class="cancel-form bold color--primary pull-right" href="#">Cancel</a>
-                        </p>
+                            <p v-if="addresses.length" class="form-group col-6  col-md-6 text-right">
+                                <a @click.prevent="cancelForm"  class="cancel-form bold color--primary pull-right" href="#">Cancel</a>
+                            </p>
 
                         </p>
                     </div>
                 </form>
             </div>
-            <div v-if="!loading && !showForm"  class="address_details mt-2">
-                <a href="#" class="btn btn--lg btn--primary btn--full mb-3 bold"  @click.prevent="addNewAddress" id="enter-new-address"> + Add Address  </a>
+
+            <div v-if="addresses.length && !showForm"  class="address_details mt-2">
+                <a href="#" class="btn btn--primary btn-round btn-lg btn-block mb-3 bold"  @click.prevent="addNewAddress" id="enter-new-address"> + Add Address  </a>
                 <ul class="">
                     <li class="mb-3" v-for="(location, index) in addresses" :key="location.id">
                         <div class="shipping-info border border-gray pr-3 pt-3 pl-3">
@@ -151,7 +147,7 @@
                     </li>
                 </ul>
             </div>
-        </template>
+        
     </div>
 </template>
 <script>
@@ -179,10 +175,8 @@ export default{
             id:null,
             delete_id:null,
             errorsBag:[],
-            loading:false,
             submiting:false,
             address_id: '',
-            showForm:false,
             error:null,
             form: {
                 first_name: '',
@@ -202,13 +196,12 @@ export default{
             shipping:  "shipping",
             addresses: "addresses",
             default_shipping:"default_shipping",
-            errors: 'errors'
+            errors: 'errors',
+            showForm: 'showForm'
         })
     },
-    mounted(){
+    created(){
         this.state = document.getElementById('state_id');
-        this.loading = true
-        this.getAddresses({ context: this  }).then(() => { this.loading = false })
     },
     methods:{
         ...mapActions({
@@ -240,7 +233,6 @@ export default{
             this.$store.commit('setDefaultShipping',shipping)
             let input = document.querySelectorAll('.required');
             this.clearErrors({  context:this, input:input })
-
         },
         formatError(error){
             return Array.isArray(error) ? error[0] : error
@@ -286,10 +278,10 @@ export default{
         },
         addNewAddress: function(){
             this.edit =false
-            this.showForm = !this.showForm
+            this.$store.commit('setShowForm' , this.showForm = !this.showForm)
         },
         cancelForm: function(){
-            this.showForm = !this.showForm
+            this.$store.commit('setShowForm' , this.showForm = !this.showForm)
             this.edit = false
         },
         editAddress: function(index){
@@ -306,7 +298,7 @@ export default{
             this.form.state_id = address.state_id
             this.edit = true
             this.address_id = address.id
-            this.showForm = true
+            this.$store.commit('setShowForm' , true)
         },
         removeAddress: function(e,id){
             this.submiting = true  

@@ -1,8 +1,6 @@
 <template>
    <div>
-   <div v-if="wishlist.length" class="row">
-        
-        
+      <div v-if="!wishlist.length" class="row">
         <div class="col-9 col-md-12 mt-3">
             <article>
                 <form action="#" method="" class="cart-form">
@@ -41,14 +39,13 @@
         <!--End Paragraph-->
         
     </div>
-    <div class="row" v-else>
+    <div class="row" v-if="!wishlist.length">
         <section class="sec-padding-b">
             <div class="container">
                 <p class="lead">You don't have any wishlist </p>
                 <p class=""><a href="/">Continue shopping >>></a> </p>
             </div>
         </section>
-          
     </div>
 
 

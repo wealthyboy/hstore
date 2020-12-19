@@ -68,10 +68,10 @@ class WebHookController extends Controller
                     'created_at'=>\Carbon\Carbon::now()
                 ];
                 OrderedProduct::Insert($insert);
-                // $product_variation = ProductVariation::find($cart->product_variation_id);
-                // $qty  = $product_variation->quantity - $cart->quantity;
-                // $product_variation->quantity =  $qty < 1 ? 0 : $qty;
-                // $product_variation->save();
+                $product_variation = ProductVariation::find($cart->product_variation_id);
+                $qty  = $product_variation->quantity - $cart->quantity;
+                $product_variation->quantity =  $qty < 1 ? 0 : $qty;
+                $product_variation->save();
                 //Delete all the cart
                 $cart->remember_token = null;
                 $cart->save();

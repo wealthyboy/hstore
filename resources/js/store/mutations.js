@@ -26,14 +26,19 @@ export const setComments= (state , comments) =>{
    state.comments =comments;
 }
 
-export const setLoading= (state , trueOrFalse) =>{
-   state.loading =trueOrFalse;
+export const Loading= (state , trueOrFalse) =>{
+   state.loadn =trueOrFalse;
 }
 
 
 
 export const setReviewsMeta= (state , meta) =>{
    state.reviewsMeta =meta;
+}
+
+
+export const setShowForm= (state , trueOrFalse) =>{
+   state.showForm =trueOrFalse;
 }
 
 

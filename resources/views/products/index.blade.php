@@ -7,7 +7,7 @@
             
             <div class="col-12">
                 <h5 class="d-inline-block color--primary text-uppercase  mb-0"><b><i class="fas fa-money-check"></i>
-                    LAUCH WEEK  GET 10% OFF  USE  HSLNCH </b>
+                    LAUCH WEEK  GET 5% OFF  USE  HSLNCH </b>
                 </h5>
             </div>
             

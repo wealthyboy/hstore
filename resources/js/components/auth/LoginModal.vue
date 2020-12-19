@@ -4,27 +4,24 @@
    <div class="modal-dialog" style="">        <!-- Modal content-->
         <div class="modal-content ">
             <div class="modal-header">
-                <div class="modal-title"><img width="100" height="100" src="http://shop.test/images/logo/1599578211TLS%20Logo(2).png" /></div>
+                <div class="modal-title"><img width="100" height="100" :src="$root.settings.store_logo" /></div>
                  <span class="bold text-large "><button type="button" class="close" id="login_modal" data-dismiss="modal"><i class="fas fa-times"></i></button></span>
             </div>
             <div class="modal-body">
-                    <div class="login-box-body">
-                        <form method="POST" @submit.prevent="authenticate" class="login_form" action="#">
-                            <div class="text-center"> 
-                                <h2>Login</h2>
-                                <p class="">Please login to perform that operation!</p>
-
-                                <!-- <a href="/login/facebook" class="btn btn-facebook btn-round">
-                                    <i class="fab fa-facebook-f"></i> Sign in with Facebook 
-                                </a> -->
-                            </div> 
+                    <div class="">
+                        <div class="text-center"> 
+                            <h2>Login</h2>
+                            <p class="">Please login to perform that operation!</p>
+                        </div> 
+                        <form method="POST" @submit.prevent="authenticate" class="" action="#">
+                            
                             <!--<p class="large">Great to have you back!</p>-->
-                            <p class="form-field-wrapper">
+                            <p class="">
                                 <label for="username">Email address</label>
                                 <input v-model="email"  id="email" type="email" class="form-control" name="email" value="" required autofocus>
                                 <p class="text-danger bold" v-if="errors.length"> Email/Password not found</p>
                             </p>
-                            <p class="form-field-wrapper">
+                            <p class="">
                                 <label for="password">Password</label>
                                 <input v-model="password"  id="password" type="password" class="form-control" name="password" required>
                             </p>

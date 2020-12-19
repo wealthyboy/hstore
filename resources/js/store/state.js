@@ -16,6 +16,7 @@ export default {
     reviews: [],
     reviewsMeta:null,
     comments:[],
-    loading: false,
-    images:[]
+    loadn: false,
+    images:[],
+    showForm: false
 } 

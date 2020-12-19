@@ -5,18 +5,19 @@
         <!-- Modal content-->
         <div class="modal-content ">
                 <div class="modal-header">
-                <h4 class="modal-title">OHRAM</h4>
-                    <span @click="removeError" class="bold text-large"><button type="button"  class="close" data-dismiss="modal"><i class="ti-close fa-2x"></i></button></span>
+               <div class="modal-title"><img width="100" height="100" :src="$root.settings.store_logo"  /></div>
+                 <span class="bold text-large "><button type="button" class="close" id="login_modal" data-dismiss="modal"><i class="fas fa-times"></i></button></span>
                 </div>
                 <div class="modal-body">
                     <div class="login-box-body">
+                        <div class="text-center"> 
+                            <h2>Register</h2>
+                            <!-- <a href="/login/facebook" class="btn btn-facebook btn-round">
+                                <i class="fab fa-facebook-f"></i> Sign in with Facebook 
+                            </a> -->
+                        </div>
                         <form method="POST" @submit.prevent="submit" class="login_form" action="#">
-                            <div class="text-center"> 
-                                <h2>Register</h2>
-                                <!-- <a href="/login/facebook" class="btn btn-facebook btn-round">
-                                    <i class="fab fa-facebook-f"></i> Sign in with Facebook 
-                                </a> -->
-                            </div> 
+                             
                             <!--<p class="large">Great to have you back!</p>-->
                             <div class="row  billing-fields__field-wrapper">
                                 <span  v-if="errors.general">
@@ -123,16 +124,16 @@
                                 </p>
 
                                 <div class="clearfix"></div>
-                            
-                                <p class="form-field-wrapper p-2 col-6">
+                                <p class="form-field-wrapper col-6 lost_password">
+                                    Already have an account? <a data-toggle="modal" data-dismiss="modal"  class="color--primary bold" data-target="#login-modal" href="#"> Login </a>      
+                                </p>
+                                <p class="form-field-wrapper p-2 col-6 text-right">
                                     <button type="submit"  id="login_form_button" data-loading="Loading" class="btn bold btn--lg btn--primary" name="login" value="Log in">
                                         <span  v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         Sign up
                                     </button>
                                 </p>
-                                 <p class="form-field-wrapper col-6 lost_password">
-                                    Already have an account? <a data-toggle="modal" data-dismiss="modal"  class="color--primary bold" data-target="#login-modal" href="#"> Login </a>      
-                                </p>
+                               
                             </div>
                         </form>
                     </div>         
