@@ -12,7 +12,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mt-3 product-single-details  text-xs-center  ">
-                                    <h6><a href="#">{{ item.production_variation.name ? item.production_variation.name :  item.product_name }}</a></h6>
+                                    <h6><a href="#">{{ item.product_variation.name ? item.product_variation.name :  item.product_name }}</a></h6>
                                     <div class="product-item-prices d-flex text-center text-md-left"  v-if="item.product_variation.discounted_price">
                                         <div class="product--price--amount mr-5">
                                             <span class="retail--title text-gold">SALE PRICE</span>
