@@ -374,6 +374,8 @@ export default {
             } else if(this.shipping_price && this.voucher.length == 0){
                 this.amount = this.meta.sub_total
                 this.shipping_id = null
+            } else {
+                this.amount = this.meta.sub_total
             }
             this.delivery_error = false
         }
@@ -426,9 +428,7 @@ export default {
             if (this.delivery_option == 'shipping' && this.$root.settings.shipping_is_free == 0   && !this.shipping_price ){
                 this.error = "Please select your shipping method"
                 return false;
-            } else if(this.delivery_option != 'shipping'){
-               //this.amount =  this.meta.sub_total
-            }
+            } 
 
             let form = document.getElementById('checkout-form-2')
             this.order_text =  'Please wait. We are almost done......'
