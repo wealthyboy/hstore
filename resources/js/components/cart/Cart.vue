@@ -90,7 +90,7 @@
             <!--End Paragraph-->
         </div>
         
-        <div class="row justify-content-center" v-if="!loading && !cart.length">
+        <div class="row justify-content-center" v-if="!loading && !carts.length">
             <div class="col-md-10">
                 <div class="error-page text-center">
                     <h1>Your Cart Is Empty</h1>
