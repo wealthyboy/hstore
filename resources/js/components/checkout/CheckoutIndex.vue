@@ -175,6 +175,9 @@
                                                     </optgroup>
                                                 </select>
                                             </div>
+                                            <span  v-if="error" class="" role="" >
+                                                <strong  class="text-danger">{{ error }}</strong>
+                                            </span>
 
                                             <div class="form-group required-field">
                                                 <label for="contact-message">Delivery Notes</label>
@@ -184,9 +187,7 @@
                                             <input type="hidden" :value="csrf.csrf" name="_token" />
                                             <input type="hidden" :value="shipping_id" name="ship_id" />
                                             <input type="hidden" :value="payment_method" name="payment_method" />
-                                            <span  v-if="error" class="" role="" >
-                                                <strong  class="text-capitalize text-danger">{{ error }}</strong>
-                                            </span>
+                                            
                                         </form>
                                         
                                     </p>
@@ -368,16 +369,25 @@ export default {
     watch: {
         // whenever delivery_option changes, this function will run
         delivery_option: function (val) {
-            if (this.voucher.length && this.shipping_price){
+            this.delivery_error = false
+            /**
+             * If the delivery option changes wnd we have a voucher
+             */
+            
+            if (this.voucher.length && !this.shipping_price){
                 this.shipping_price = 0
                 this.amount = this.voucher[0].sub_total
-            } else if(this.shipping_price && this.voucher.length == 0){
-                this.amount = this.meta.sub_total
-                this.shipping_id = null
+                this.shipping_id =null;
+
+                return
+            } else if(this.voucher.length && this.shipping_price){
+                this.amount =  parseInt(this.shipping_price) + parseInt(this.voucher[0].sub_total);
+                return;
             } else {
                 this.amount = this.meta.sub_total
+                this.shipping_id =null;
+                return
             }
-            this.delivery_error = false
         }
     },
     created() {
