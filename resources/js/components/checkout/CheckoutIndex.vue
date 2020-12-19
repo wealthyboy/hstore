@@ -374,13 +374,12 @@ export default {
              * If the delivery option changes wnd we have a voucher
              */
             
-            if (this.voucher.length && !this.shipping_price){
+            if (this.voucher.length && val != 'shipping' && !this.shipping_price){
                 this.shipping_price = 0
                 this.amount = this.voucher[0].sub_total
                 this.shipping_id =null;
-
                 return
-            } else if(this.voucher.length && this.shipping_price){
+            } else if(this.voucher.length && this.shipping_price ){
                 this.amount =  parseInt(this.shipping_price) + parseInt(this.voucher[0].sub_total);
                 return;
             } else {
