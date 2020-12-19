@@ -34,7 +34,7 @@
                                         </div>
                                     </div>
 
-                                    <a   :href="link(item.product_variation.link)" name="add-to-cart" value="add_to_cart" class="bold pt-4 pb-4 mt-3 btn btn--primary  ">
+                                    <a   :href="'/product/'+item.product_variation.link" name="add-to-cart" value="add_to_cart" class="bold pt-4 pb-4 mt-3 btn btn--primary  ">
                                         <i   class="icon-shopping-cart mr-3"></i>  BUY
                                     </a>
                                 </div>
@@ -75,9 +75,7 @@ export default {
             wishlist: 'wishlist',
             loading: 'loading'
         }),
-        link(link){
-           return '/product/'+link;
-        }
+        
     },
    
     methods: {
