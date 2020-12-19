@@ -4,11 +4,11 @@
         
         <div v-if="!loading && carts.length" class="row">
             
-            <div class="col-md-8 bg--light">
+            <div class="col-md-8">
                 <article>
                     <form action="/update/cart" method="" class="cart-form">
                         <input type="hidden" value="" name="_token" />
-                        <div class="cart-product-table-wrap">
+                        <div class="cart-product-table-wrap  bg--light">
                             <div v-for="cart in carts"  :key="cart.id" class="row cart-rows raised mb-3 pt-4 pb-4 border border-gray">
                                 <div class="col-md-2 col-6">
                                     <div class="cart-image">
@@ -69,8 +69,8 @@
                 </article>
             </div>
 
-            <div class="col-md-4 bg--light">
-                <div class="cart-collateralse  border pb-3 pt-3 pl-3 pt-3 pr-3 raised">
+            <div class="col-md-4 ">
+                <div class="cart-collateralse  bg--light  border pb-3 pt-3 pl-3 pt-3 pr-3 raised">
                     <div class="cart_totalse">
                         <h3> Summary </h3>
                         <div class="p-3 border-bottom">
