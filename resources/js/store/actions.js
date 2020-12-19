@@ -38,6 +38,7 @@ export const getCart = ({ commit }) => {
 
 export const deleteCart = ({ commit },{cart_id}) => {
     return axios.delete('/api/cart/delete/'+ cart_id +'').then((response)=>{
+        console.log(response.data.length)
         if(response.data.length == 0){
             $(".cart-page").remove();
         }
