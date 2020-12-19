@@ -36,7 +36,6 @@ export const getCart = ({ commit }) => {
 
 export const deleteCart = ({ commit },{cart_id}) => {
     return axios.delete('/api/cart/delete/'+ cart_id +'').then((response)=>{
-        
         commit('setCart',response.data)
         commit('setCartMeta',response.data.meta)
         return Promise.resolve()
@@ -77,8 +76,12 @@ export const addProductToWishList = ({ commit,dispatch },{ product_variation_id 
  }
 
  export const getWislist= ({ commit }) => {
+        commit('Loading',true)
     return axios.get('/api/wishlist').then((response)=>{
+        document.getElementById('js-loading').style.display='none';
         commit('appendToWishlist',response.data.data)
+        commit('Loading',false)
+
         return Promise.resolve()
     }).catch((error) =>{
         console.log("could not get wishlist");
