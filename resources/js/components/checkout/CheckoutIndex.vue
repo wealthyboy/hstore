@@ -371,7 +371,7 @@ export default {
         delivery_option: function (val) {
             this.delivery_error = false
             /**
-             * If the delivery option changes wnd we have a voucher
+             * If the delivery option changes 
              */
 
             if (val != 'shipping'){
