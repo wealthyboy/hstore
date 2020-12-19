@@ -1,8 +1,14 @@
 @extends('layouts.app')
  
 @section('content')  
-   <!--Content-->
-   <div class="top-notice text-white bg--gray">
+  
+
+
+@extends('layouts.app')
+ 
+@section('content')
+    <!--Content-->
+    <div class="top-notice text-white bg--gray">
     <div class="container-fluid text-center">
         <div class="row">
             
@@ -16,46 +22,39 @@
         
     </div><!-- End .container -->
 </div>
-<section class="pb-4  vh-100"> 
-       
-
-    <section class="breadcrumb no-banner  justify-content-center">
-        <div class="breadcrumb-content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12  text-center border-bottom">
-                        <nav aria-label="breadcrumb" class="breadcrumb-nav breadcrumb-link">
-                            <div class="container d-flex justify-content-center">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
-                                </ol>
-                            </div>
-                        </nav>
-                        <h1 class="breadcrumb-title">Your Cart</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>               
+  
+   <!--Content-->
+   <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <div class="container">
-            
-            @if ($carts->count())
-               <cart-summary :sub_total="{{ $sub_total }}" :crts="{{ $carts }}" />
-            @else
-                <div class="row">
-                    <section class="sec-padding-b">
-                        <div class="container">
-                            <p class="lead">Your cart is empty </p>
-                            <p class=""><a href="/">Continue shopping >>></a> </p>
-                        </div>
-                    </section>
-                </div>
-            @endif
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page"><small>WishList</small></li>
+            </ol>
+        </div>
+    </nav> 
+    <section class="bg--gray">          
+        <div class="container-fluid">
+            <div id="js-loading"  class="full-bg">
+                <div class="signup--middle">
+                    <div class="loading">
+                        <div class="loader"></div>
+                    </div>
+                    <img src="{{ $system_settings->logo_path() }}" height="110" width="80" alt="The Luxury sale Logo">
+                </div>        
+            </div>
+            <cart-summary :sub_total="{{ $sub_total }}" :crts="{{ $carts }}" />
+
         </div>
     </section>
     <!--End Content-->
 @endsection
+
+
+
+
+
+
+
 
 
 

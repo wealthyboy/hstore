@@ -83,11 +83,9 @@ export default {
             loading:'loading'
         })
     },
-    mounted(){
-    },
+   
     methods: {
         ...mapActions({
-            getCart:'getCart',
             deleteCart: 'deleteCart',
             updateCart: 'updateCart'
         }),

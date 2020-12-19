@@ -29,6 +29,8 @@ export const getCart = ({ commit }) => {
     return axios.get('/api/cart').then((response)=>{
         commit('setCart',response.data)
         commit('setCartMeta',response.data.meta)
+        document.getElementById('js-loading').style.display='none';
+
         return Promise.resolve()
     }).catch(() =>{
     })
