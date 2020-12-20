@@ -149,7 +149,7 @@
                            </div>
                         </td>
                         <td class="td-name">
-                           <a href="">{{  optional($order_product->product_variation)->name  ??  optional($order_product->product_variation)->product_name }}</a>
+                           <a href="">{{  optional($order_product->product_variation)->name  ??  optional($order_product->product_variation)->product->product_name }}</a>
                            <br><small></small>
                         </td>
                         <td>
