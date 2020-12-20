@@ -3070,6 +3070,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -43621,6 +43622,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm._v("\n    " + _vm._s(_vm.loading) + "\n     "),
     _vm.carts.length
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-8" }, [
