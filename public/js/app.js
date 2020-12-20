@@ -3071,6 +3071,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -43623,7 +43624,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm._v("\n    " + _vm._s(_vm.loading) + "\n     "),
-    _vm.carts.length
+    !_vm.loading && _vm.carts.length
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-8" }, [
             _c("article", [
@@ -72582,11 +72583,12 @@ var updateCart = function updateCart(_ref3, _ref4) {
 };
 var getCart = function getCart(_ref5) {
   var commit = _ref5.commit;
+  commit('Loading', true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/cart').then(function (response) {
-    console.log(response.data);
     commit('setCart', response.data);
     commit('setCartMeta', response.data.meta);
     document.getElementById('js-loading').style.display = 'none';
+    commit('Loading', false);
     return Promise.resolve();
   })["catch"](function () {});
 };

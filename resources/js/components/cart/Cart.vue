@@ -1,7 +1,8 @@
 <template>
    <div>
-       {{ loading}}
-        <div v-if="carts.length" class="row">
+       {{loading }}
+        <div v-if="!loading && carts.length" class="row">
+            
             <div class="col-md-8">
                 <article>
                     <form action="/update/cart" method="" class="cart-form">

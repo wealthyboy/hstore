@@ -26,12 +26,14 @@ export const updateCart = ({ commit },{ product_variation_id, quantity }) => {
  }
 
 export const getCart = ({ commit }) => {
-    return axios.get('/api/cart').then((response)=>{
-        console.log(response.data)
+    commit('Loading',true)
 
+    return axios.get('/api/cart').then((response)=>{
         commit('setCart',response.data)
         commit('setCartMeta',response.data.meta)
         document.getElementById('js-loading').style.display='none';
+        commit('Loading',false)
+
 
         return Promise.resolve()
     }).catch(() =>{

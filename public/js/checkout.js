@@ -37617,11 +37617,12 @@ var updateCart = function updateCart(_ref3, _ref4) {
 };
 var getCart = function getCart(_ref5) {
   var commit = _ref5.commit;
+  commit('Loading', true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/cart').then(function (response) {
-    console.log(response.data);
     commit('setCart', response.data);
     commit('setCartMeta', response.data.meta);
     document.getElementById('js-loading').style.display = 'none';
+    commit('Loading', false);
     return Promise.resolve();
   })["catch"](function () {});
 };
