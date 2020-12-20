@@ -105,13 +105,13 @@ class ProductsController extends Controller
     }
 
 
-    public function product_inventory($product)
+    public function product_inventory($product_variation)
 	{
 		$inventory  = [];
 		$attributes  = [];
 		$stock = [];
 		$a = [];
-        foreach ($product->product_variations as  $variant) {
+        foreach ($product_variation->product->product_variations as  $variant) {
 			$first = ProductVariationValue::where("product_variation_id", $variant->id)->orderBy('attribute_parent_id','asc')->first();
 			foreach ($variant->product_variation_values->slice(1) as  $variation_value) {
 				$stock[$first->name][optional($variation_value->parent_attribute)->name][ $variation_value->name ] = $variation_value->name;
@@ -154,11 +154,11 @@ class ProductsController extends Controller
     }
     
 
-    public function product_stock($product)
+    public function product_stock($product_variation)
 	{
 		$inventory  = [];
 		$attribute  = [];
-        foreach ($product->product_variations as  $variant) {
+        foreach ($product_variation->product->product_variations as  $variant) {
 		    $inventory[
 			   implode('_',$variant->product_variation_values->pluck('name')->toArray())
 		    ] =  array_merge(
