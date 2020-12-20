@@ -83,7 +83,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,Category $category,ProductVariation $product_variation)  { 
+    public function show(Request $request,Category $category,Product $product,ProductVariation $product_variation)  { 
         $page_title = "{$product_variation->name}";
         $favorites ='';
         $data= [];
@@ -95,8 +95,8 @@ class ProductsController extends Controller
                 }
             }
         }
-        $inventory = $this->product_inventory($product_variation); 
-        $stock = $this->product_stock($product_variation); 
+        $inventory = $this->product_inventory($product); 
+        $stock = $this->product_stock($product); 
         $attributes =  collect($data);
         $attributes = $attributes->count() && $product_variation->product->product_type == 'variable' ? $attributes : '{}';
         $related_products = RelatedProduct::where(['product_id' => $product_variation->product->id])->get();
@@ -105,13 +105,13 @@ class ProductsController extends Controller
     }
 
 
-    public function product_inventory($product_variation)
+    public function product_inventory($product)
 	{
 		$inventory  = [];
 		$attributes  = [];
 		$stock = [];
 		$a = [];
-        foreach ($product_variation->product->product_variations as  $variant) {
+        foreach ($product->product_variations as  $variant) {
 			$first = ProductVariationValue::where("product_variation_id", $variant->id)->orderBy('attribute_parent_id','asc')->first();
 			foreach ($variant->product_variation_values->slice(1) as  $variation_value) {
 				$stock[$first->name][optional($variation_value->parent_attribute)->name][ $variation_value->name ] = $variation_value->name;
@@ -154,11 +154,11 @@ class ProductsController extends Controller
     }
     
 
-    public function product_stock($product_variation)
+    public function product_stock($product)
 	{
 		$inventory  = [];
 		$attribute  = [];
-        foreach ($product_variation->product->product_variations as  $variant) {
+        foreach ($product->product_variations as  $variant) {
 		    $inventory[
 			   implode('_',$variant->product_variation_values->pluck('name')->toArray())
 		    ] =  array_merge(
