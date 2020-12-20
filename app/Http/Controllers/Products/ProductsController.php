@@ -83,7 +83,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,Category $category,Product $product,ProductVariation $product_variation)  { 
+    public function show(Request $request,Category $category,ProductVariation $product_variation)  { 
         $page_title = "{$product_variation->name}";
         $favorites ='';
         $data= [];
@@ -95,8 +95,8 @@ class ProductsController extends Controller
                 }
             }
         }
-        $inventory = $this->product_inventory($product); 
-        $stock = $this->product_stock($product); 
+        $inventory = $this->product_inventory($product_variation); 
+        $stock = $this->product_stock($product_variation); 
         $attributes =  collect($data);
         $attributes = $attributes->count() && $product_variation->product->product_type == 'variable' ? $attributes : '{}';
         $related_products = RelatedProduct::where(['product_id' => $product_variation->product->id])->get();
