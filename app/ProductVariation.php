@@ -102,7 +102,7 @@ class ProductVariation extends Model
 		$link .=  optional(optional($this->category)->category)->slug ? 
 		          optional(optional($this->category)->category)->slug .'/' :
                   $slug .'/';
-        $link  .=   $this->product->slug;
+        $link  .= $this->product->slug .'/';
 
 		$link .= $this->slug;
 		return $link;
