@@ -27,6 +27,8 @@ class ContactController extends Controller
             return back()->with("success", "Thank for your message.Your request will be looked into and a member of our team will be in touch.");
         } catch (\Throwable $th) {
             //throw $th;
+            return back()->with("success", "We could not send your mail at the moment");
+
         }
        
     }
