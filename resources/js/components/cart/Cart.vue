@@ -1,11 +1,12 @@
 <template>
    <div>
-        <div v-if="!loading && carts.length" class="row">
+        <div v-if="carts.length" class="row">
             
             <div class="col-md-8">
                 <article>
                     <form action="/update/cart" method="" class="cart-form">
                         <input type="hidden" value="" name="_token" />
+                        {{ carts }}
                         <div class="cart-product-table-wrap  bg--light">
                             <div v-for="cart in carts"  :key="cart.id" class="row cart-rows raised mb-3 pt-4 pb-4 border border-gray">
                                 <div class="col-md-2 col-6">

@@ -27,7 +27,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12  text-center border-bottom">
-                
                     <h1 class="breadcrumb-title">Your Cart</h1>
                 </div>
             </div>
