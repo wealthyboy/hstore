@@ -41,11 +41,12 @@ export const getCart = ({ commit }) => {
 export const deleteCart = ({ commit },{cart_id}) => {
     return axios.delete('/api/cart/delete/'+ cart_id +'').then((response)=>{
         console.log(response.data)
-        if(response.data.length == 0){
-            $(".cart-page").remove();
-        }
+        
         commit('setCart',response.data)
         commit('setCartMeta',response.data.meta)
+        if(response.data.data.length == 0){
+            $(".cart-page").remove();
+        }
         return Promise.resolve()
     })
  }

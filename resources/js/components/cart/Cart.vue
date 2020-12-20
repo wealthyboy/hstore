@@ -1,6 +1,5 @@
 <template>
    <div>
-        {{ carts }}
         <div v-if="!loading && carts.length" class="row">
             
             <div class="col-md-8">
