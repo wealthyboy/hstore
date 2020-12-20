@@ -68,7 +68,6 @@ class AttributesController extends Controller
         $product_attribute->color_code = $request->color_code;
         $product_attribute->image = $request->image;
         $product_attribute->slug = str_slug($request->name, '_');
-
         $product_attribute->parent_id  = $request->parent_id ? $request->parent_id : null;
         $product_attribute->type  = $request->type ? $request->type : null;
         $product_attribute->save();

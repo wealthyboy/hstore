@@ -21,10 +21,14 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        
-        Notification::route('mail', 'haute.signatures@gmail.com')
+        try {
+            Notification::route('mail', 'haute.signatures@gmail.com')
             ->notify(new ContactNotification($request));
             return back()->with("success", "Thank for your message.Your request will be looked into and a member of our team will be in touch.");
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+       
     }
 
     /**
