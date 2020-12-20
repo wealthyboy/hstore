@@ -3070,8 +3070,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -43637,11 +43635,7 @@ var render = function() {
                   _c("input", {
                     attrs: { type: "hidden", value: "", name: "_token" }
                   }),
-                  _vm._v(
-                    "\n                     " +
-                      _vm._s(_vm.carts) +
-                      "\n                     "
-                  ),
+                  _vm._v(" "),
                   _c(
                     "div",
                     { staticClass: "cart-product-table-wrap  bg--light" },
