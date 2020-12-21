@@ -34,6 +34,7 @@ class WebHookController extends Controller
         // if ( !array_key_exists('x-paystack-signature', $_SERVER) ) {
         //     return;
         // } 
+        return
 
         Log::info($_SERVER);
 
