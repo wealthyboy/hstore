@@ -35,7 +35,7 @@ class WebHookController extends Controller
         //     return;
         // } 
 
-        // Log::info($_SERVER,$request->all());
+        Log::info($_SERVER,$request->all());
 
 
         try {
@@ -43,10 +43,10 @@ class WebHookController extends Controller
             $user     =  User::findOrFail($input['customer_id']);
             $carts    =  Cart::find($input['cart']);
 
-            // if (empty( $carts )){
-            //   return;
-            // }
-            // Log::info($carts);
+            if (empty( $carts )){
+              return;
+            }
+            Log::info($carts);
 
             $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
         
@@ -87,11 +87,10 @@ class WebHookController extends Controller
             
             try {
                 $when = now()->addMinutes(5); 
-                foreach ($admin_emails as $recipient) {
-                    \Mail::to($recipient)
-                        ->send(new OrderReceipt($order,$this->settings,$symbol));
-                }
                 
+                \Mail::to($user->email)
+                ->bcc($admin_emails[0])
+                ->send(new OrderReceipt($order,$this->settings,$symbol));
             } catch (\Throwable $th) {
                 Log::info("Mail error :".$th);
             }
