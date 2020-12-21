@@ -324,7 +324,7 @@ class ProductController extends Controller
                     $product_variation->weight = $request->variation_weight[$key];
                    // $product_variation->extra_percent_off  = $request->extra_percent_off[$key];
 
-                    $product_variation->quantity  = null !== $request->variation_quantity[$key] ?$request->variation_quantity[$key] : $request->quantity;
+                    $product_variation->quantity  = $request->variation_quantity[$key];
                     $product_variation->sku = str_random(6);
                     $product_variation->product_id = $product->id;
                     $product_variation->save();
@@ -677,7 +677,7 @@ class ProductController extends Controller
                                 'image' => $request->edit_variation_image[$variant_id], 
                                 'sale_price_expires' => !empty($request->edit_variation_sale_price_expires[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id]) : Helper::getFormatedDate($request->sale_price_expires),
                                 'weight' => $request->edit_variation_weight[$variant_id],
-                                'quantity'  => $request->edit_variation_quantity[$variant_id] ? $request->edit_variation_quantity[$variant_id] : $request->quantity,
+                                'quantity'  =>  $request->edit_variation_quantity[$variant_id],
                                 'product_id' => $product->id,
                                 //'extra_percent_off'  => $request->extra_percent_off[$variant_id],
                                 'name' => $request->edit_variation_name[$variant_id],
@@ -805,7 +805,7 @@ class ProductController extends Controller
 
                 $product_variation->length = $request->variation_length[$key];
                 $product_variation->weight = $request->variation_weight[$key];
-                $product_variation->quantity  = null !== $request->variation_quantity[$key] ?$request->variation_quantity[$key] : $request->quantity;
+                $product_variation->quantity  = $request->variation_quantity[$key];
                 $product_variation->product_id = $product->id;
                 $product_variation->name = $request->variation_name[$key];
                 $product_variation->slug = str_slug($request->variation_name[$key]);
