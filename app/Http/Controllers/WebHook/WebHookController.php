@@ -75,8 +75,6 @@ class WebHookController extends Controller
                 $product_variation->quantity =  $qty < 1 ? 0 : $qty;
                 $product_variation->save();
                 //Delete all the cart
-                $cart->remember_token = null;
-                $cart->save();
             }
             $admin_emails = explode(',',$this->settings->alert_email);
             $symbol = optional($currency)->symbol  ;
