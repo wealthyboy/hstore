@@ -35,6 +35,8 @@ class WebHookController extends Controller
         //     return;
         // } 
 
+        Log::info($_SERVER);
+
 
         try {
             $input    =  $request->data['metadata']['custom_fields'][0];
