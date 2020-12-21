@@ -646,6 +646,10 @@ background: white;
   opacity: 1;
 }
 
+.product-default .product-label.label-hot {
+  background-color: burlywood;
+}
+
 .image-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
