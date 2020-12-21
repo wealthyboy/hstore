@@ -34,7 +34,6 @@ class WebHookController extends Controller
         // if ( !array_key_exists('x-paystack-signature', $_SERVER) ) {
         //     return;
         // } 
-        return
 
         Log::info($_SERVER);
 
@@ -43,6 +42,10 @@ class WebHookController extends Controller
             $input    =  $request->data['metadata']['custom_fields'][0];
             $user     =  User::findOrFail($input['customer_id']);
             $carts    =  Cart::find($input['cart']);
+
+            if (empty( $carts )){
+              return;
+            }
             $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
         
             $order->user_id = $user->id;
