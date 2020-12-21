@@ -35,7 +35,7 @@ class WebHookController extends Controller
         //     return;
         // } 
 
-        Log::info($_SERVER,$request->all());
+        // Log::info($_SERVER,$request->all());
 
 
         try {
