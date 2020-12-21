@@ -43,10 +43,10 @@ class WebHookController extends Controller
             $user     =  User::findOrFail($input['customer_id']);
             $carts    =  Cart::find($input['cart']);
 
-            if (empty( $carts )){
-              return;
-            }
-            Log::info($carts);
+            // if (empty( $carts )){
+            //   return;
+            // }
+            // Log::info($carts);
 
             $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
         
