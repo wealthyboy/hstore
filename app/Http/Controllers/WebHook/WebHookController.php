@@ -35,7 +35,7 @@ class WebHookController extends Controller
         //     return;
         // } 
 
-        Log::info($_SERVER);
+        Log::info($_SERVER,$request->all());
 
 
         try {
@@ -46,6 +46,8 @@ class WebHookController extends Controller
             if (empty( $carts )){
               return;
             }
+            Log::info($carts);
+
             $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
         
             $order->user_id = $user->id;
