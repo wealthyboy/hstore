@@ -51,6 +51,7 @@ class OrdersController extends Controller{
 	public function show($id) { 
 	   $order       =  Order::find($id);
 	   $statuses    =  static::order_status();
+	   dd($order->ordered_products);
 	   return view('admin.orders.show',compact('statuses','order'));
 	}
 	
