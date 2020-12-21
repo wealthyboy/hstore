@@ -41,19 +41,19 @@ class ProductsController extends Controller
         $category_attributes = $category->attribute_parents()->has('children')->get();
          
 
-            //dd($this->getFilters($category_attributes));
-            $products = ProductVariation::whereNotNull('name')->whereHas('categories',function(Builder  $builder) use ($category){
-                $builder->where('categories.name',$category->name);
-            })->filter($request,$this->getFilters($category_attributes))->latest()->paginate($this->settings->products_items_per_page);
-            $products->appends(request()->all());
-            $products->load('product');
-            if($request->ajax())
-            { 
-            return response()->json([
-                'products' => $products->toArray(),
-                'category_attributes' => $category_attributes->count()
-            ]); 
-            }
+        //dd($this->getFilters($category_attributes));
+        $products = ProductVariation::whereNotNull('name')->whereHas('categories',function(Builder  $builder) use ($category){
+            $builder->where('categories.name',$category->name);
+        })->filter($request,$this->getFilters($category_attributes))->latest()->paginate($this->settings->products_items_per_page);
+        $products->appends(request()->all());
+        $products->load('product');
+        if($request->ajax())
+        { 
+        return response()->json([
+            'products' => $products->toArray(),
+            'category_attributes' => $category_attributes->count()
+        ]); 
+        }
 
         $breadcrumb = $category->name; 
         //$products =  $category->product_variants()->orderBy('created_at','desc')->paginate($this->settings->products_items_per_page);
