@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderedProduct extends Model
 {
-    //
+	use SoftDeletes;
 	
 	protected $table = 'ordered_product';
 	

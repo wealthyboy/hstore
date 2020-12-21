@@ -14,6 +14,8 @@ class AlterOrderedProductsTableAddSoftDeletes extends Migration
     public function up()
     {
         Schema::table('ordered_product', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+
             $table->softDeletes();
         });
     }

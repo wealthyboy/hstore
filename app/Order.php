@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Helper;
 use App\Voucher;
 use App\SystemSetting;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    
+	use SoftDeletes;
 	
 	public $appends = ['ship_price'];
 
