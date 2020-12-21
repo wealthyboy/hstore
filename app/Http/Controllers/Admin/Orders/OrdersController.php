@@ -51,7 +51,7 @@ class OrdersController extends Controller{
 	public function show($id) { 
 	   $order       =  Order::find($id);
 	   $statuses    =  static::order_status();
-       dd(OrderedProduct::where('order_id',267)->get());	   
+       dd(OrderedProduct::pluck('order_id')->get());	   
 	   return view('admin.orders.show',compact('statuses','order'));
 	}
 	
