@@ -254,7 +254,6 @@ export default {
             return [this.user ? true: false]
         },
        
-        
     },
    
     mounted(){
