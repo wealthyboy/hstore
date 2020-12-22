@@ -330,9 +330,7 @@ export default {
                     f=true
                     evt.target.classList.add('active-other-attribute')
                 }
-                                           
-                                console.log(stock)
-
+                                        
 
             try { 
                 
@@ -349,11 +347,9 @@ export default {
                 active_other_attribute = document.querySelector('.active-other-attribute')
                 if(active_attribute  && this.attributesData.length != 0 ){
                     variation = active_attribute.dataset.value+'_'+this.attributesData[0]
-                    console.log(1)
                 }
                 if(active_attribute  && this.attributesData.length == 0){
                     variation = active_attribute.dataset.value
-                    console.log(2)
                 }
                 // if(active_attribute  && active_other_attribute !== null){
                 //     variation = active_attribute.dataset.value+'_'+active_other_attribute.dataset.value
@@ -361,13 +357,10 @@ export default {
                 // }
                 if(!active_attribute  && active_other_attribute !== null){
                     variation = active_other_attribute.dataset.value
-                    console.log(4)
                 }
 
                 if(active_attribute  && other_attribute.length !== 0  && key != 'Colors' ){
                     variation = active_attribute.dataset.value+'_'+evt.target.dataset.value
-                    console.log(5)
-
                 }
 
                 console.log(variation,this.attributesData,evt.target.dataset.value)
@@ -386,7 +379,7 @@ export default {
                 this.discounted_price = vTs.discounted_price ||  vTs.default_discounted_price 
                 this.product_variation_id = vTs.id 
                 this.canNotAddToCart = false
-                this.cText = "Add To Cart" 
+                this.cText =  this.quantity >= 1 ? "Add To Cart" : "Item is sold out"
                 
 
             } catch (error) {
