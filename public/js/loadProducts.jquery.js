@@ -75,7 +75,7 @@
           for (var i in data ) {
                 col = data[i].category_attributes >= 1 ? 'col-md-3 col-6' : 'col-md-4 col-6';
                 name = typeof data[i].name != null  ? data[i].name :  data[i].product_name
-                if (!name){
+                if (name == null){
                   continue
                 }
                 html  +='<div  class="col-6   '+ col +'">'
