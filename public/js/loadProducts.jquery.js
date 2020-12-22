@@ -73,7 +73,7 @@
           html = '<div class="col-12 d-flex justify-content-center"><div class="text-center pb-3"><img  width="200" height="200" src="/images/utilities/empty_product.svg" /><p class="bold">No products found</p></div></div>'
         } else {
           for (var i in data ) {
-                col = data[i].category_attributes >= 1 ? 'col-md-3 col-6' : 'col-md-3 col-6';
+                col = data[i].category_attributes >= 1 ? 'col-md-3 col-6' : 'col-md-4 col-6';
                 name = typeof data[i].name != null  ? data[i].name :  data[i].product_name
                 html  +='<div  class="col-6   '+ col +'">'
                 html +='<div class="product-default inner-quickview inner-icon">'
