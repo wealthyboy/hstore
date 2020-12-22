@@ -265,7 +265,7 @@ export default {
         this.product_variation_id = this.product.id
         this.percentage_off = this.product.default_percentage_off
         this.quantity = this.product.quantity
-        this.cText= this.product.quantity  < 1 ? 'Out of Stock' :" Add To Cart"
+        this.cText= this.product.quantity  < 1 ? 'Item is sold out' :" Add To Cart"
         this.price =  this.product.converted_price
         this.discounted_price =  this.product.default_discounted_price
         this.is_wishlist =  this.product.is_wishlist
