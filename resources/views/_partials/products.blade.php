@@ -14,11 +14,7 @@
             </a>
             <div class="btn-icon-group"></div>
         </figure>
-        @if ($product->quantity == 0)
-            <div class="label-group">
-                <span class="product-label label-hot">SOLD OUT</span>
-            </div>
-        @endif
+        
         <div class="product-details">
             <div class="">
                 @if(optional($product->product)->colours->count())
