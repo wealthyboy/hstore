@@ -258,8 +258,6 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 
-
-
 .form-group-custom-control .custom-control-label {
   font-family: 'GalaxiePolarisCondensed-Bold', sans-serif;
 }

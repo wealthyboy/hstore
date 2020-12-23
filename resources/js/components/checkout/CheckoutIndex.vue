@@ -140,7 +140,7 @@
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1 ">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" v-model="delivery_option" class="custom-control-input" id="pick_up_surulere" name="delivery_option" required>
-                                        <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">(1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address)</span></label>
+                                        <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">(1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address)   Pick up resumes 4th January 2021</span></label>
                                     </div>
                                     <div class="custom-control custom-radio ">
                                         <input type="radio" value="Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA. Tejumade" v-model="delivery_option" class="custom-control-input" id="pick_up_magodo" name="delivery_option" required>
@@ -183,6 +183,11 @@
                                                 <label for="contact-message">Delivery Notes</label>
                                                 <textarea cols="30" rows="1" v-model="delivery_note" id="contact-message" class="form-control" name="delivery_note"></textarea>
                                             </div>
+
+                                            <div v-if="meta.isAdmin" class="form-group required-field">
+                                                <label for="contact-message">Email</label>
+                                                <input type="email" name="uemail" v-model="uemail" />
+                                            </div>
                                            
                                             <input type="hidden" :value="csrf.csrf" name="_token" />
                                             <input type="hidden" :value="shipping_id" name="ship_id" />
@@ -213,6 +218,7 @@
                                     </p>
                             </div>
 
+
                             <p class="form-field-wrapper   col-sm-12 mb-3">
                                 <template v-if="$root.settings.shipping_is_free == 0 && amount > 1">
                                     <button @click="payWithPaystack" :class="{'disabled': payment_is_processing}"   type="button" class="btn btn-round btn-lg btn-block btn--primary bold  l-f1  btn--full" name="checkout_place_order" id="place_order" value="Place order" data-value="Place Order">
@@ -223,7 +229,7 @@
                                 <template v-else>
                                     <button @click="payWithPaystack" type="button" :class="{'disabled': payment_is_processing}" class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order" id="p lace_order" value="Place order" data-value="Place Order">
                                         <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
-                                        {{ order_text }}
+                                        Make Payment
                                     </button>
                                 </template >
                                 
@@ -351,7 +357,8 @@ export default {
            loading: false,
            pageIsLoading: true,
            delivery_note:null,
-           paymentIsComplete:false
+           paymentIsComplete:false,
+           uemail: null,
         }
     },
     computed: {
