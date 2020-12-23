@@ -254,7 +254,10 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 select.form-control:not([size]):not([multiple]) {
   height: 5.3rem;
   padding: 1rem;
+  padding-right: 4rem;
 }
+
+
 
 
 .form-group-custom-control .custom-control-label {
