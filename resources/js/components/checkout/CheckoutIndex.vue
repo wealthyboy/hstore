@@ -186,7 +186,7 @@
 
                                             <div v-if="meta.isAdmin" class="form-group required-field">
                                                 <label for="contact-message">Email</label>
-                                                <input type="email" name="uemail" v-model="uemail" />
+                                                <input type="email" name="uemail" class="form-control" v-model="uemail" />
                                             </div>
                                            
                                             <input type="hidden" :value="csrf.csrf" name="_token" />
@@ -220,16 +220,11 @@
 
 
                             <p class="form-field-wrapper   col-sm-12 mb-3">
-                                <template v-if="$root.settings.shipping_is_free == 0 && amount > 1">
-                                    <button @click="payWithPaystack" :class="{'disabled': payment_is_processing}"   type="button" class="btn btn-round btn-lg btn-block btn--primary bold  l-f1  btn--full" name="checkout_place_order" id="place_order" value="Place order" data-value="Place Order">
-                                        <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
-                                        {{ order_text }}
-                                    </button>
-                                </template >
-                                <template v-else>
+                                
+                                <template>
                                     <button @click="payWithPaystack" type="button" :class="{'disabled': payment_is_processing}" class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order" id="p lace_order" value="Place order" data-value="Place Order">
                                         <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
-                                        Make Payment
+                                        {{ order_text }}
                                     </button>
                                 </template >
                                 
