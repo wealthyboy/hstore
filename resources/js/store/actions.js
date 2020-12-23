@@ -84,9 +84,9 @@ export const addProductToWishList = ({ commit,dispatch },{ product_variation_id 
     }).catch((error) =>{
         dispatch('flashMessage', "Sorry your item could not be saved.Please try again")
     })
- }
+}
 
- export const getWislist= ({ commit }) => {
+export const getWislist= ({ commit }) => {
         commit('Loading',true)
     return axios.get('/api/wishlist').then((response)=>{
         document.getElementById('js-loading').style.display='none';
@@ -97,7 +97,7 @@ export const addProductToWishList = ({ commit,dispatch },{ product_variation_id 
     }).catch((error) =>{
         console.log("could not get wishlist");
     })
- }
+}
 
 
 export const deleteWishlist = ({ commit },{id}) => {
