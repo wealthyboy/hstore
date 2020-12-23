@@ -221,8 +221,15 @@
 
                             <p class="form-field-wrapper   col-sm-12 mb-3">
                                 
-                                <template>
+                                <template v-if="!meta.isAdmin">
                                     <button @click="payWithPaystack" type="button" :class="{'disabled': payment_is_processing}" class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order" id="p lace_order" value="Place order" data-value="Place Order">
+                                        <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
+                                        {{ order_text }}
+                                    </button>
+                                </template >
+
+                                <template  v-if="meta.isAdmin">
+                                    <button @click="payAsAdmin" type="button" :class="{'disabled': payment_is_processing}" class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order" id="p lace_order" value="Place order" data-value="Place Order">
                                         <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
                                         {{ order_text }}
                                     </button>
@@ -489,15 +496,21 @@ export default {
             handler.openIframe();
         },
         payAsAdmin: function(){
-            if (!this.addresses.length){
+            if(!this.delivery_option){
+                this.delivery_error = true
+                return
+            }
+             
+            if ( !this.addresses.length ){
                 this.error = "You need to save your address before placing your order"
                 return false;
             }
 
-            if (this.$root.settings.shipping_is_free == 0 && !this.shipping_price){
+            if (this.delivery_option == 'shipping' && this.$root.settings.shipping_is_free == 0   && !this.shipping_price ){
                 this.error = "Please select your shipping method"
                 return false;
             }
+            
             this.payment_method ='admin'
 
             this.order_text =  'Please wait. We are almost done......'
