@@ -574,6 +574,7 @@ export default {
         },
         checkout: function(){
             this.order_text =  'Please wait. We are almost done......'
+            alert(this.shipping_id)
 
             axios.post('/checkout/confirm',{
                 shipping_id:  this.shipping_id,
