@@ -88,6 +88,8 @@ class AddressController extends Controller
         $address->last_name                   =  $request->last_name;
         $address->address                     =  $request->address;
         $address->address_2                   =  $request->address_2;
+        $address->email                       =  $request->email;
+        $address->phone_number                =  $request->phone_number;
         $address->city                        =  $request->city;
         $address->country_id                  =  $request->country_id;
         $address->state_id                    =  $request->state_id;
@@ -165,6 +167,8 @@ class AddressController extends Controller
         $address->last_name  =  $request->last_name;
         $address->address    =  $request->address ; 
         $address->address_2  =  $request->address_2;
+        $address->email                       =  $request->email;
+        $address->phone_number                =  $request->phone_number;
         $address->city       =  $request->city;
         $address->state_id   =  $request->state_id;
         $address->country_id =  $request->country_id;

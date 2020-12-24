@@ -232,7 +232,6 @@ export default{
             errors: 'errors',
             showForm: 'showForm',
             meta:  'meta'
-
         })
     },
     created(){
