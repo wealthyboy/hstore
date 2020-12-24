@@ -179,15 +179,12 @@
                                                 <strong  class="text-danger">{{ error }}</strong>
                                             </span>
 
-                                            <div class="form-group required-field">
+                                            <div class="form-group required-field mt-1">
                                                 <label for="contact-message">Delivery Notes</label>
                                                 <textarea cols="30" rows="1" v-model="delivery_note" id="contact-message" class="form-control" name="delivery_note"></textarea>
                                             </div>
 
-                                            <div v-if="meta.isAdmin" class="form-group required-field">
-                                                <label for="contact-message">Email</label>
-                                                <input type="email" name="uemail" class="form-control" v-model="uemail" />
-                                            </div>
+                                            
                                            
                                             <input type="hidden" :value="csrf.csrf" name="_token" />
                                             <input type="hidden" :value="shipping_id" name="ship_id" />
@@ -510,12 +507,11 @@ export default {
                 this.error = "Please select your shipping method"
                 return false;
             }
-            
+
             this.payment_method ='admin'
 
             this.order_text =  'Please wait. We are almost done......'
-            let form = document.getElementById('checkout-form-2')
-            form.submit()
+            this.checkout()
 
         },
         addShippingPrice:  function(evt){
@@ -578,19 +574,17 @@ export default {
         },
         checkout: function(){
             this.order_text =  'Please wait. We are almost done......'
-            this.checkingout = true
-            this.coupon_error = null;
 
             axios.post('/checkout/confirm',{
-                shipping_id: Window.CartMeta.shipping_id,
-                payment_type: this.meta.isAdmin ? 'admin' : 'card',
+                shipping_id:  this.shipping_id,
+                payment_type: 'admin',
                 admin: this.meta.isAdmin ? 'admin' : 'online',
-                pending:false
+                pending:false,
+                email:this.uemail
             }).then((response) => {
                 if ( response.data == 1 ){
-                    location.href="/thankyou"
-                } 
-
+                    context.paymentIsComplete =true
+                }
             }).catch((error)=>{
                 this.order_text = "Place Order"
                 this.payment_is_processing = false

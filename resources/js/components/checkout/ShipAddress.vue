@@ -31,6 +31,35 @@
                                 <strong   class="text-danger">{{ formatError(errors.last_name) }}</strong>
                             </span>
                         </p>
+
+                        <p v-if="meta.isAdmin" class="form-group reduce-gutters col-lg-6">
+                            <label for="email">Email</label>
+                            <input  :class="{'has-danger': errors.email}"  id="firstname" 
+                            v-model="form.email" 
+                            @input="removeError($event)"  
+                            @blur="vInput($event)" 
+                            type="text" class="form-control required" 
+                            name="email"
+                            >
+                            <span class="help-block error  text-danger text-sm-left" v-if="errors.first_name">
+                                <strong   class="text-danger">{{ formatError(errors.first_name) }}</strong>
+                            </span>
+                        </p>
+                        <p  v-if="meta.isAdmin" class="form-group reduce-gutters col-lg-6">
+                            <label for="phone_number">Phone Number</label>
+                            <input id="phone_number"
+                                v-model="form.phone_number"  
+                                :class="{'has-danger': errors.phone_number}"   
+                                type="text"
+                                @input="removeError($event)"  
+                                @blur="vInput($event)"  
+                                class="form-control required"
+                                name="phone_number" 
+                            >
+                            <span class="help-block error  text-danger text-sm-left" v-if="errors.last_name">
+                                <strong   class="text-danger">{{ formatError(errors.last_name) }}</strong>
+                            </span>
+                        </p>
                         <p class="form-group reduce-gutters col-md-12">
                             <label for="address">Address</label>
                             <input id="address" 
@@ -197,7 +226,9 @@ export default{
             addresses: "addresses",
             default_shipping:"default_shipping",
             errors: 'errors',
-            showForm: 'showForm'
+            showForm: 'showForm',
+            meta:  'meta'
+
         })
     },
     created(){
