@@ -582,12 +582,13 @@ export default {
                 pending:false,
                 email:this.uemail
             }).then((response) => {
+                console.log(response)
                 context.paymentIsComplete =true
             }).catch((error)=>{
                 this.order_text = "Place Order"
                 this.payment_is_processing = false
                 this.checkingout = false
-                this.error = "We could not complete your order .Please send a mail to info@ohram.org"
+                this.error = "We could not complete your order."
             })
         },
         updateCartTotal: function(obj){

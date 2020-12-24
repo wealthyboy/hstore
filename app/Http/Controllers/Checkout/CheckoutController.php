@@ -120,7 +120,9 @@ class CheckoutController extends Controller
 		$request->session()->forget('coupon');
 		$request->session()->forget('coupon_total');
 		\Cookie::queue(\Cookie::forget('cart'));
-		return 1;
+		return response()->json([
+           'status' => 'Order pLaced'
+		],200);
 	}
 
 	
