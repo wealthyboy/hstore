@@ -64,7 +64,7 @@
                      </tr>
                      <tr>
                         <td><button data-toggle="tooltip" title="Telephone" class="btn btn-info btn-xs"><i class="fa fa-phone fa-fw"></i></button></td>
-                        <td>{{ $order->user->phone_number }}</td>
+                        <td>{{ $order->address->phone_number ?? $order->user->phone_number }}</td>
                      </tr>
                   </tbody>
                </table>
