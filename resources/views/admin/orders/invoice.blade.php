@@ -33,26 +33,20 @@ body{
 <body onclick="window.print();" >
         <div  style="" id="section-to-print" class="col-md-12">
                     @if($order != '')
-                    <div><img src="" /></div>
 
                     <br/>
 
 
                      <div >
                         <div class="">
-                         <strong>Invoice No: </strong>  <span class="tx">&nbsp{{ $order->invoice }}</span><br/>
-
                         <strong>Name: </strong>   <span class="tx">&nbsp{{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }} </span><br/>
-                        <strong>Phone: </strong> <span class="tx"> &nbsp{{ optional(optional($order)->address)->phone_number }} </span><br/>
-                        <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;<br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;</span><br/><br/>
+                        <strong>Phone: </strong> <span class="tx"> &nbsp{{ optional(optional($order)->user)->phone_number }} </span><br/>
+                        <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
+                        <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/><br/>
                         <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
-
-                        <hr/>                        
-
-
-                     
                      </div>
-                     
+                     <div><img width="150" height="150" src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo"></div>
+
 
                     @else
                        <div> No data </div>
