@@ -70,8 +70,8 @@ class CheckoutController extends Controller
 		$order->address_id     =  $user->active_address->id;
 		$order->coupon         =  session('coupon');
 		$order->status         = 'Processing';
-		$order->shipping_id    =  $request->ship_id;
-		$order->shipping_price =  optional(Shipping::find($request->ship_id))->converted_price;
+		$order->shipping_id    =  $request->shipping_id;
+		$order->shipping_price =  optional(Shipping::find($request->shipping_id))->converted_price;
 		$order->currency       =  Helper::getCurrency();
 		$order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
 		$order->payment_type   = $request->payment_method;
