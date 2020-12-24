@@ -100,7 +100,7 @@ class CheckoutController extends Controller
 		$symbol = Helper::getCurrency();
 		try {
 			$when = now()->addMinutes(5);
-			\Mail::to($user->email)
+			\Mail::to(optional($user->active_address)->email)
 			   ->bcc($admin_emails[0])
 			   ->send(new OrderReceipt($order,$this->settings,$symbol));
 		} catch (\Throwable $th) {

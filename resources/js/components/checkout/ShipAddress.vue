@@ -149,7 +149,7 @@
                         <div class="shipping-info border border-gray pr-3 pt-3 pl-3">
                             <div class="shipping-address-info">
                                 <p  id="">{{ location.first_name }} {{ location.last_name }}  </p>
-                                <p v-if="meta.isadmin"> {{ location.email }} {{ location.phone_number }} </p>
+                                <p v-if="meta.isAdmin"> {{ location.email }} {{ location.phone_number }} </p>
 
                                 <p> {{ location.address }} {{ location.address2}} </p>
                                 <p> {{ location.city }} ,{{ location.state}}  {{ location.zip }}</p>
