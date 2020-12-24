@@ -32,27 +32,25 @@ body{
 </style>
 <body onclick="window.print();" >
         <div  style="" id="section-to-print" class="col-md-12">
-                    @if($order != '')
+            @if($order != '')
 
-                    <br/>
-
-
-                     <div >
-                        <div class="">
-                        <strong>Name: </strong>   <span class="tx">&nbsp{{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }} </span><br/>
-                        <strong>Phone: </strong> <span class="tx"> &nbsp{{ optional(optional($order)->user)->phone_number }} </span><br/>
-                        <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
-                        <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/><br/>
-                        <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
-                     </div>
-                     <div><img  src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo"></div>
+            <br/>
 
 
-                    @else
-                       <div> No data </div>
-                    @endif
-                  </div>
-               </div>
+            <div class="content" >
+            <div class="">
+               <strong>Name: </strong>   <span class="tx">&nbsp{{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }} </span><br/>
+               <strong>Phone: </strong> <span class="tx"> &nbsp{{ optional(optional($order)->user)->phone_number }} </span><br/>
+               <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
+               <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/><br/>
+               <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
+            </div>
+            <div class="logo"><img  src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo"></div>
+            @else
+               <div> No data </div>
+            @endif
+         </div>
+      </div>
                
 
   </div>
