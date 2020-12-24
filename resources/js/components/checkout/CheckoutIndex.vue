@@ -332,8 +332,8 @@ export default {
     },
     data(){
         return {
-            coupon: '',
-            coupon_code: '',
+           coupon: '',
+           coupon_code: '',
            locations: [],
            shipping_id: null,
            shipping_price:'',
@@ -577,6 +577,8 @@ export default {
 
             axios.post('/checkout/confirm',{
                 shipping_id:  this.shipping_id,
+                delivery_option:  this.delivery_option,
+                delivery_note:  this.delivery_note,
                 payment_type: 'admin',
                 admin: this.meta.isAdmin ? 'admin' : 'online',
                 pending:false,

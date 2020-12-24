@@ -74,6 +74,7 @@
                             <span class="material-input"></span>
                         </div>
                     </div>
+                    
                     <div class="col-md-3">
                         <div class="form-group label-floating">
                             <label class="control-label">End Date</label>
@@ -83,7 +84,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group label-floating ">
-                            <label class="control-label">Quantity  {{ $variant->quantity }}</label>
+                            <label class="control-label">Quantity  </label>
                             <input name="edit_variation_quantity[{{ $variant->id }}]"  required="true"  type="number"  value="{{ $variant->quantity }}"   class="form-control variation variation_quantity" type="text">
                             <span class="material-input"></span>
                         </div>
