@@ -45,7 +45,7 @@ body{
                         <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/><br/>
                         <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
                      </div>
-                     <div><img width="150" height="150" src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo"></div>
+                     <div><img  src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo"></div>
 
 
                     @else
