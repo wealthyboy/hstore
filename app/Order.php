@@ -76,7 +76,7 @@ class Order extends Model
 	
 	public function get_total(){
 		if ($this->order_type == 'admin'){
-			return number_format(optional($order->shipping)->price + $this->total);
+			return number_format(optional($this->shipping)->price + $this->total);
 		}
 		return number_format($this->total);
 	}
