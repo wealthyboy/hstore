@@ -582,9 +582,7 @@ export default {
                 pending:false,
                 email:this.uemail
             }).then((response) => {
-                if ( response.data == 1 ){
-                    context.paymentIsComplete =true
-                }
+                context.paymentIsComplete =true
             }).catch((error)=>{
                 this.order_text = "Place Order"
                 this.payment_is_processing = false
