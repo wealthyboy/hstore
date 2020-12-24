@@ -101,7 +101,7 @@
                                 name="postal_code"
                             >
                         </p>
-                        <p class="form-group reduce-gutters  col-sm-6">
+                        <p class="form-group reduce-gutters  col-sm-6 select-custom">
                             <label for="shipping_country">Country &nbsp;<abbr class="required" title="required">*</abbr></label>
                             <select @change="getState"  v-model="form.country_id"  name="country_id" id="shipping_country"   class="form-control required" autocomplete="country" tabindex="-1" aria-hidden="true">
                                 <option value="" selected="selected">Select a country…</option>
@@ -111,7 +111,7 @@
                                 <strong  class="text-capitalize text-danger"> Please select your country</strong>
                             </span>
                         </p>
-                        <p class="form-group reduce-gutters col-sm-6">
+                        <p class="form-group reduce-gutters col-sm-6  select-custom">
                             <label for="state_id" class="">State/Region &nbsp;<abbr class="required " title="required">*</abbr></label>
                             <select @change="getShipping"  v-model="form.state_id"  name="state_id" id="state_id" class="form-control required">
                                 <option value="" >Select a state</option>
