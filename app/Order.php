@@ -42,7 +42,8 @@ class Order extends Model
 		return false;
 	}
 
-	public  function isCouponForAmb(){
+	public  function isCouponForAmb()
+	{
 
 		if($this->coupon ){
 			$amb = Ambassador::where('unique_code',$this->coupon)->first();
