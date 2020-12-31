@@ -80,6 +80,8 @@ class WebHookController extends Controller
                 $qty  = $product_variation->quantity - $cart->quantity;
                 $product_variation->quantity =  $qty < 1 ? 0 : $qty;
                 $product_variation->save();
+
+                
                 //Delete all the cart
             }
             $admin_emails = explode(',',$this->settings->alert_email);
@@ -111,6 +113,12 @@ class WebHookController extends Controller
         return http_response_code(200);
         
         
+    }
+
+    public function gitHub()
+    {
+        $output =  shell_exec('sh /home/forge/hautesignatures.com/deploy.sh');
+        Log::info($output);
     }
 
    

@@ -5,16 +5,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Artisan;
 
-Route::get('/migrate/achu',function(){
-    try {
-        $migrate =  Artisan::call('migrate');
-        if ($migrate == 0 ){
-            echo " migration was successful";
-        }
-    } catch (\Throwable $th) {
-        //throw $th;
-    }
-});
+
 
 
 
@@ -218,7 +209,7 @@ Route::group(['prefix' => '/api','middleware' => 'currencyByIp'], function () {
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
 Route::post('contact/store',        'Contact\ContactController@store');
 
-Route::post('webhook/github',      'WebHook\WebHookController@github');
+Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
 
 
 
