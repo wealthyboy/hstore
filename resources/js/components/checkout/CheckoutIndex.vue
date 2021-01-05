@@ -140,24 +140,24 @@
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1 ">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" v-model="delivery_option" class="custom-control-input" id="pick_up_surulere" name="delivery_option" required>
-                                        <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">(1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address)   Pick up resumes 4th January 2021</span></label>
+                                        <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE. Pick up charge of ₦200 to be paid at pick up point.</span></label>
                                     </div>
                                     <div class="custom-control custom-radio ">
                                         <input type="radio" value="Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA. Tejumade" v-model="delivery_option" class="custom-control-input" id="pick_up_magodo" name="delivery_option" required>
-                                        <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">(Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA. )</span></label>
+                                        <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.</span></label>
                                     </div>
                                 </div>
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
                                     <div  class="custom-control  mt-1 mb-1 custom-radio mt-1 mb-1">
                                         <input type="radio" value="Stock Pilling" v-model="delivery_option" class="custom-control-input" id="stock_pilling" name="delivery_option" required>
-                                        <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info">Free for 1st month after which ₦500 applies every week</span></label>
+                                        <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info"> Free for the 1st month after with ₦500 applies every week.</span></label>
                                     </div>
                                 </div>
                                  
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
                                     <div class="custom-control  custom-radio mt-1 mb-1">
                                         <input type="radio" value="shipping" v-model="delivery_option" class="custom-control-input" id="shipping" name="delivery_option" required>
-                                        <label class="custom-control-label" for="shipping">Shipping</label>
+                                        <label class="custom-control-label" for="shipping">Shipping   <span>Based on your location. If in Lagos, please check our shipping & return policy <a href="https://hautesignatures.com/pages/shipping-delivery">link</a> to see where your location falls in order for you select the correct shipping option.</span></label>
                                     </div>
                                 </div>
 
@@ -313,290 +313,313 @@
 
 </template>
 <script>
-import  ShipAddress from './ShipAddress'
-import  message from '../message/index'
-import  axios from 'axios'
-import  { mapGetters,mapActions } from 'vuex'
-import  ErrorMessage from '../messages/components/Error'
-
+import ShipAddress from "./ShipAddress";
+import message from "../message/index";
+import axios from "axios";
+import { mapGetters, mapActions } from "vuex";
+import ErrorMessage from "../messages/components/Error";
 
 export default {
+  components: {
+    ShipAddress,
+    message,
+    ErrorMessage,
+  },
+  props: {
+    csrf: Object,
+  },
+  data() {
+    return {
+      coupon: "",
+      coupon_code: "",
+      locations: [],
+      shipping_id: null,
+      shipping_price: "",
+      email: "jacob.atam@gmail.com",
+      amount: 0,
+      delivery_error: false,
+      shipping: false,
+      delivery_option: null,
+      order_text: "Place Order",
+      payment_is_processing: false,
+      voucher: [],
+      error: null,
+      showForm: false,
+      scriptLoaded: null,
+      submiting: false,
+      checkingout: false,
+      coupon_error: null,
+      token: Window.csrf,
+      payment_method: null,
+      loading: false,
+      pageIsLoading: true,
+      delivery_note: null,
+      paymentIsComplete: false,
+      uemail: null,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      carts: "carts",
+      meta: "meta",
+      addresses: "addresses",
+      default_shipping: "default_shipping",
+    }),
+    shippingIsFree() {
+      return this.$root.settings.shipping_is_free == 0
+        ? "Shipping is based on your location"
+        : this.meta.currency + "0.00";
+    },
+  },
+  watch: {
+    // whenever delivery_option changes, this function will run
+    delivery_option: function (val) {
+      this.delivery_error = false;
+      /**
+       * If the delivery option changes
+       */
 
-    components: {
-        ShipAddress,
-        message,
-        ErrorMessage,
-    },
-    props:{
-       csrf: Object
-    },
-    data(){
-        return {
-           coupon: '',
-           coupon_code: '',
-           locations: [],
-           shipping_id: null,
-           shipping_price:'',
-           email: "jacob.atam@gmail.com", 
-           amount: 0,
-           delivery_error: false,
-           shipping:false,
-           delivery_option: null,
-           order_text: 'Place Order',
-           payment_is_processing: false,
-           voucher: [],
-           error: null,
-           showForm: false,
-           scriptLoaded: null,
-           submiting:false,
-           checkingout:false,
-           coupon_error: null,
-           token: Window.csrf,
-           payment_method: null,
-           loading: false,
-           pageIsLoading: true,
-           delivery_note:null,
-           paymentIsComplete:false,
-           uemail: null,
-        }
-    },
-    computed: {
-      ...mapGetters({
-            carts: 'carts',
-            meta:  'meta',
-            addresses: "addresses",
-            default_shipping: "default_shipping",
-        }), 
-        shippingIsFree(){
-          return  this.$root.settings.shipping_is_free == 0 ? 'Shipping is based on your location' : this.meta.currency+'0.00'
-        }   
+      if (val != "shipping") {
+        this.shipping_id = null;
+        this.shipping_price = 0;
+      }
 
+      if (this.voucher.length && !this.shipping_price) {
+        this.shipping_price = 0;
+        this.amount = this.voucher[0].sub_total;
+        this.shipping_id = null;
+        return;
+      } else if (this.voucher.length && this.shipping_price) {
+        this.amount =
+          parseInt(this.shipping_price) + parseInt(this.voucher[0].sub_total);
+        return;
+      } else {
+        this.amount = this.meta.sub_total;
+        this.shipping_id = null;
+        return;
+      }
     },
-    watch: {
-        // whenever delivery_option changes, this function will run
-        delivery_option: function (val) {
-            this.delivery_error = false
-            /**
-             * If the delivery option changes 
-             */
+  },
+  created() {
+    this.scriptLoaded = new Promise((resolve) => {
+      this.loadScript(() => {
+        resolve();
+      });
+    });
+    this.getCart();
+    this.getAddresses({ context: this }).then(() => {
+      document.getElementById("full-bg").style.display = "none";
+      this.pageIsLoading = false;
+    });
+  },
+  methods: {
+    ...mapActions({
+      getCart: "getCart",
+    }),
+    loadScript(callback) {
+      const script = document.createElement("script");
+      script.src = "https://js.paystack.co/v1/inline.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+      if (script.readyState) {
+        // IE
+        script.onreadystatechange = () => {
+          if (
+            script.readyState === "loaded" ||
+            script.readyState === "complete"
+          ) {
+            script.onreadystatechange = null;
+            callback();
+          }
+        };
+      } else {
+        // Others
+        script.onload = () => {
+          callback();
+        };
+      }
+    },
+    payWithPaystack: function () {
+      if (!this.delivery_option) {
+        this.delivery_error = true;
+        return;
+      }
+      let context = this;
+      var cartIds = [];
+      this.carts.forEach(function (cart, key) {
+        cartIds.push(cart.id);
+      });
+      if (!this.addresses.length) {
+        this.error = "You need to save your address before placing your order";
+        return false;
+      }
 
-            if (val != 'shipping'){
-                this.shipping_id =null;
-                this.shipping_price = 0
-            }
-            
-            if (this.voucher.length  && !this.shipping_price){
-                this.shipping_price = 0
-                this.amount = this.voucher[0].sub_total
-                this.shipping_id =null;
-                return
-            } else if(this.voucher.length && this.shipping_price){
-                this.amount =  parseInt(this.shipping_price) + parseInt(this.voucher[0].sub_total);
-                return;
-            } else {
-                this.amount = this.meta.sub_total
-                this.shipping_id =null;
-                return
-            }
-        }
+      if (
+        this.delivery_option == "shipping" &&
+        this.$root.settings.shipping_is_free == 0 &&
+        !this.shipping_price
+      ) {
+        this.error = "Please select your shipping method";
+        return false;
+      }
+
+      let form = document.getElementById("checkout-form-2");
+      this.order_text = "Please wait. We are almost done......";
+      this.payment_is_processing = true;
+      this.payment_method = "card";
+      var handler = PaystackPop.setup({
+        key: "pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+        email: context.meta.user.email,
+        amount: context.amount * 100,
+        currency: "NGN",
+        first_name: context.meta.user.name,
+        metadata: {
+          custom_fields: [
+            {
+              display_name: context.meta.user.name,
+              customer_id: context.meta.user.id,
+              coupon: context.coupon_code,
+              shipping_id: context.shipping_id,
+              shipping_price: context.shipping_price,
+              cart: cartIds,
+              total: context.amount,
+              delivery_option: context.delivery_option,
+              delivery_note: context.delivery_note,
+            },
+          ],
+        },
+        callback: function (response) {
+          if (response.status == "success") {
+            context.paymentIsComplete = true;
+          } else {
+            this.error = "We could not complete your payment";
+            context.order_text = "Place Order";
+          }
+        },
+        onClose: function () {
+          context.order_text = "Place Order";
+          context.checkingout = false;
+          context.payment_is_processing = false;
+        },
+      });
+      handler.openIframe();
     },
-    created() {
-        this.scriptLoaded = new Promise((resolve) => {
-            this.loadScript(() => {
-                resolve()
-            })
+    payAsAdmin: function () {
+      if (!this.delivery_option) {
+        this.delivery_error = true;
+        return;
+      }
+
+      if (!this.addresses.length) {
+        this.error = "You need to save your address before placing your order";
+        return false;
+      }
+
+      if (
+        this.delivery_option == "shipping" &&
+        this.$root.settings.shipping_is_free == 0 &&
+        !this.shipping_price
+      ) {
+        this.error = "Please select your shipping method";
+        return false;
+      }
+
+      this.payment_method = "admin";
+
+      this.order_text = "Please wait. We are almost done......";
+      this.checkout();
+    },
+    addShippingPrice: function (evt) {
+      if (evt.target.value == "") {
+        return;
+      }
+      this.shipping_id = evt.target.selectedOptions[0].dataset.id;
+      this.shipping_price = evt.target.value;
+      //check if a voucher was applied
+      if (this.voucher.length) {
+        this.amount =
+          parseInt(evt.target.value) + parseInt(this.voucher[0].sub_total);
+      } else {
+        this.amount =
+          parseInt(evt.target.value) + parseInt(this.meta.sub_total);
+      }
+      let obj = {
+        sub_total: this.meta.sub_total,
+        currency: this.meta.currency,
+        user: this.meta.user,
+        shipping_id: this.shipping_id,
+        isAdmin: this.meta.isAdmin,
+      };
+      Window.CartMeta = obj;
+      this.updateCartTotal(obj);
+    },
+    ...mapActions({
+      getCart: "getCart",
+      applyVoucher: "applyVoucher",
+      updateCartMeta: "updateCartMeta",
+      getAddresses: "getAddresses",
+    }),
+    applyCoupon: function () {
+      if (!this.coupon) {
+        this.coupon_error = "Enter a coupon code";
+        setTimeout(() => {
+          this.error = null;
+        }, 2000);
+        return;
+      }
+      this.coupon_code = this.coupon;
+      this.coupon_error = null;
+      this.submiting = true;
+      axios
+        .post("/checkout/coupon", {
+          coupon: this.coupon,
         })
-        this.getCart()
-        this.getAddresses({ context: this  }).then(() => {  document.getElementById("full-bg").style.display = 'none'; this.pageIsLoading = false;   })
+        .then((response) => {
+          this.submiting = false;
+          this.coupon = "";
+          this.voucher.push(response.data);
+          if (this.shipping_price) {
+            this.amount =
+              parseInt(this.shipping_price) + parseInt(response.data.sub_total);
+          } else {
+            this.amount = parseInt(response.data.sub_total);
+          }
+        })
+        .catch((error) => {
+          this.submiting = false;
+          this.coupon_error = error.response.data.error;
+          if (error.response.status) {
+            this.submiting = false;
+          }
+        });
     },
-    methods: {
-        ...mapActions({
-           getCart: "getCart"
-        }),
-        loadScript(callback) {
-            const script = document.createElement('script')
-            script.src = 'https://js.paystack.co/v1/inline.js'
-            document.getElementsByTagName('head')[0].appendChild(script)
-            if (script.readyState) {  // IE
-                script.onreadystatechange = () => {
-                    if (script.readyState === 'loaded' || script.readyState === 'complete') {
-                        script.onreadystatechange = null
-                        callback()
-                    }
-                }
-            } else {  // Others
-                script.onload = () => {
-                    callback()
-                }
-            }
-        },
-        payWithPaystack: function(){
-            if(!this.delivery_option){
-                this.delivery_error = true
-                return
-            }
-            let context = this
-            var cartIds = [];
-            this.carts.forEach(function(cart,key){
-                cartIds.push(cart.id)
-            }) 
-            if ( !this.addresses.length ){
-                this.error = "You need to save your address before placing your order"
-                return false;
-            }
+    checkout: function () {
+      this.order_text = "Please wait. We are almost done......";
+      alert(this.shipping_id);
 
-            if (this.delivery_option == 'shipping' && this.$root.settings.shipping_is_free == 0   && !this.shipping_price ){
-                this.error = "Please select your shipping method"
-                return false;
-            } 
-
-            let form = document.getElementById('checkout-form-2')
-            this.order_text =  'Please wait. We are almost done......'
-            this.payment_is_processing =true
-            this.payment_method ='card'
-            var handler = PaystackPop.setup({
-                key: 'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
-                email: context.meta.user.email,
-                amount: context.amount * 100,
-                currency: "NGN",
-                first_name: context.meta.user.name,
-                metadata: {
-                    custom_fields: [
-                        {
-                           display_name: context.meta.user.name,
-                           customer_id: context.meta.user.id,
-                           coupon: context.coupon_code,
-                           shipping_id: context.shipping_id,
-                           shipping_price: context.shipping_price,
-                           cart: cartIds,
-                           total:context.amount,
-                           delivery_option: context.delivery_option,
-                           delivery_note: context.delivery_note
-                        }
-                    ] 
-                },
-                callback: function(response){
-                    if (response.status == 'success'){
-                           context.paymentIsComplete =true
-                    } else {
-                        this.error = "We could not complete your payment"
-                        context.order_text =  'Place Order'
-                    }
-
-                },
-                onClose: function(){
-                    context.order_text =  'Place Order'
-                    context.checkingout = false
-                    context.payment_is_processing =false
-                }
-            })
-            handler.openIframe();
-        },
-        payAsAdmin: function(){
-            if(!this.delivery_option){
-                this.delivery_error = true
-                return
-            }
-             
-            if ( !this.addresses.length ){
-                this.error = "You need to save your address before placing your order"
-                return false;
-            }
-
-            if (this.delivery_option == 'shipping' && this.$root.settings.shipping_is_free == 0   && !this.shipping_price ){
-                this.error = "Please select your shipping method"
-                return false;
-            }
-
-            this.payment_method ='admin'
-
-            this.order_text =  'Please wait. We are almost done......'
-            this.checkout()
-
-        },
-        addShippingPrice:  function(evt){
-            if (evt.target.value  == ''){
-               return;
-            }
-            this.shipping_id  = evt.target.selectedOptions[0].dataset.id;
-            this.shipping_price =  evt.target.value
-            //check if a voucher was applied 
-            if ( this.voucher.length ){
-                this.amount = parseInt( evt.target.value ) + parseInt(this.voucher[0].sub_total);
-            } else {
-                this.amount = parseInt( evt.target.value ) + parseInt(this.meta.sub_total);
-            }
-            let obj = {
-                sub_total: this.meta.sub_total,
-                currency: this.meta.currency,
-                user: this.meta.user,
-                shipping_id: this.shipping_id,
-                isAdmin: this.meta.isAdmin
-            }
-            Window.CartMeta=obj
-            this.updateCartTotal(obj)
-        },
-        ...mapActions({
-            getCart:'getCart',
-            applyVoucher: 'applyVoucher',
-            updateCartMeta:'updateCartMeta',
-            getAddresses: "getAddresses",
-        }), 
-        applyCoupon: function(){
-            if (!this.coupon){
-                this.coupon_error = "Enter a coupon code"
-                setTimeout(() => {
-                   this.error = null
-                }, 2000);
-                return;
-            }
-            this.coupon_code = this.coupon
-            this.coupon_error = null;
-            this.submiting =true
-            axios.post('/checkout/coupon',{
-                coupon:this.coupon,
-            }).then((response) => {
-                this.submiting =false
-                this.coupon = ''
-                this.voucher.push(response.data)
-                if (this.shipping_price){
-                    this.amount =  parseInt(this.shipping_price) + parseInt(response.data.sub_total);
-                } else{
-                    this.amount =  parseInt(response.data.sub_total);
-                }
-            }).catch((error) => { 
-                this.submiting =false
-                this.coupon_error = error.response.data.error 
-                if ( error.response.status){
-                    this.submiting =false
-                } 
-            })
-        },
-        checkout: function(){
-            this.order_text =  'Please wait. We are almost done......'
-            alert(this.shipping_id)
-
-            axios.post('/checkout/confirm',{
-                shipping_id:  this.shipping_id,
-                delivery_option:  this.delivery_option,
-                delivery_note:  this.delivery_note,
-                payment_type: 'admin',
-                admin: this.meta.isAdmin ? 'admin' : 'online',
-                pending:false,
-                email:this.uemail
-            }).then((response) => {
-                this.paymentIsComplete =true
-            }).catch((error)=>{
-                this.order_text = "Place Order"
-                this.payment_is_processing = false
-                this.checkingout = false
-                this.error = "We could not complete your order."
-            })
-        },
-        updateCartTotal: function(obj){
-            this.updateCartMeta(obj)
-        }
-    }
-}
+      axios
+        .post("/checkout/confirm", {
+          shipping_id: this.shipping_id,
+          delivery_option: this.delivery_option,
+          delivery_note: this.delivery_note,
+          payment_type: "admin",
+          admin: this.meta.isAdmin ? "admin" : "online",
+          pending: false,
+          email: this.uemail,
+        })
+        .then((response) => {
+          this.paymentIsComplete = true;
+        })
+        .catch((error) => {
+          this.order_text = "Place Order";
+          this.payment_is_processing = false;
+          this.checkingout = false;
+          this.error = "We could not complete your order.";
+        });
+    },
+    updateCartTotal: function (obj) {
+      this.updateCartMeta(obj);
+    },
+  },
+};
 </script>
 
