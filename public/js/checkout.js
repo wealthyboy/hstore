@@ -22952,6 +22952,7 @@ var staticRenderFns = [
             "a",
             {
               attrs: {
+                target: "_blank",
                 href: "https://hautesignatures.com/pages/shipping-delivery"
               }
             },
