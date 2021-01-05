@@ -22895,7 +22895,7 @@ var staticRenderFns = [
         _vm._v(" PICK UP OPTION 1  "),
         _c("span", { staticClass: "ml-3 text-info" }, [
           _vm._v(
-            "No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE. Pick up charge of ₦200 to be paid at pick up point."
+            "(No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE. Pick up charge of ₦200 to be paid at pick up point.)"
           )
         ])
       ]
@@ -22912,7 +22912,7 @@ var staticRenderFns = [
         _vm._v("  PICK UP OPTION 2  "),
         _c("span", { staticClass: "ml-3  text-info" }, [
           _vm._v(
-            "Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA."
+            "(Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.)"
           )
         ])
       ]
@@ -22928,7 +22928,9 @@ var staticRenderFns = [
       [
         _vm._v("Stock Pile  "),
         _c("span", { staticClass: "ml-3  text-info" }, [
-          _vm._v(" Free for the 1st month after with ₦500 applies every week.")
+          _vm._v(
+            " (Free for the 1st month after with ₦500 applies every week.)"
+          )
         ])
       ]
     )
@@ -22942,9 +22944,9 @@ var staticRenderFns = [
       { staticClass: "custom-control-label", attrs: { for: "shipping" } },
       [
         _vm._v("Shipping   "),
-        _c("span", [
+        _c("span", { staticClass: "ml-3  text-info" }, [
           _vm._v(
-            "Based on your location. If in Lagos, please check our shipping & return policy "
+            "(Based on your location. If in Lagos, please check our shipping & return policy "
           ),
           _c(
             "a",
@@ -22956,7 +22958,7 @@ var staticRenderFns = [
             [_vm._v("link")]
           ),
           _vm._v(
-            " to see where your location falls in order for you select the correct shipping option."
+            " to see where your location falls in order for you select the correct shipping option.)"
           )
         ])
       ]

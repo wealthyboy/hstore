@@ -140,24 +140,24 @@
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1 ">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" v-model="delivery_option" class="custom-control-input" id="pick_up_surulere" name="delivery_option" required>
-                                        <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE. Pick up charge of ₦200 to be paid at pick up point.</span></label>
+                                        <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">(No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE. Pick up charge of ₦200 to be paid at pick up point.)</span></label>
                                     </div>
                                     <div class="custom-control custom-radio ">
                                         <input type="radio" value="Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA. Tejumade" v-model="delivery_option" class="custom-control-input" id="pick_up_magodo" name="delivery_option" required>
-                                        <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.</span></label>
+                                        <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">(Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.)</span></label>
                                     </div>
                                 </div>
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
                                     <div  class="custom-control  mt-1 mb-1 custom-radio mt-1 mb-1">
                                         <input type="radio" value="Stock Pilling" v-model="delivery_option" class="custom-control-input" id="stock_pilling" name="delivery_option" required>
-                                        <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info"> Free for the 1st month after with ₦500 applies every week.</span></label>
+                                        <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info"> (Free for the 1st month after with ₦500 applies every week.)</span></label>
                                     </div>
                                 </div>
                                  
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
                                     <div class="custom-control  custom-radio mt-1 mb-1">
                                         <input type="radio" value="shipping" v-model="delivery_option" class="custom-control-input" id="shipping" name="delivery_option" required>
-                                        <label class="custom-control-label" for="shipping">Shipping   <span>Based on your location. If in Lagos, please check our shipping & return policy <a href="https://hautesignatures.com/pages/shipping-delivery">link</a> to see where your location falls in order for you select the correct shipping option.</span></label>
+                                        <label class="custom-control-label" for="shipping">Shipping   <span class="ml-3  text-info">(Based on your location. If in Lagos, please check our shipping & return policy <a href="https://hautesignatures.com/pages/shipping-delivery">link</a> to see where your location falls in order for you select the correct shipping option.)</span></label>
                                     </div>
                                 </div>
 
