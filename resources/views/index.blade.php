@@ -6,7 +6,7 @@
 <div class="container-fliud">
     <div  class="row align-items-start">
         @foreach( $banners as $banner )
-            <div data-title="{{ $banner->title }}" class="{{ $banner->col }} {{ $banner->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $banner->title }}  pl-1 pr-1 text-center">
+            <div data-title="{{ $banner->title }}" class="{{ $banner->col }} {{ $banner->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $banner->title }} p-0 text-center">
                 <div class="banner-box">
                     <a class="portfolio-thumb" href="{{ $banner->link }}">
                         <img src="{{ $banner->image }}" alt="" />
