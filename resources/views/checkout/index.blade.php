@@ -8,7 +8,7 @@
             <div class="loading">
                 <div class="loader"></div>
             </div>
-            <img src="{{ $system_settings->logo_path() }}" height="110" width="80" alt="The Luxury sale Logo">
+            <img src="{{ $system_settings->logo_path() }}" height="110" width="80" alt="Hautesignatures sale Logo">
         </div>        
     </div>
       
