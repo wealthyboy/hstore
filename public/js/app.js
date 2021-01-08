@@ -3254,6 +3254,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
@@ -44198,6 +44200,12 @@ var render = function() {
                     cart.variations.length
                       ? _c("p", [
                           _vm._v(" " + _vm._s(cart.variations.toString()) + " ")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    cart.quantity < 1
+                      ? _c("p", { staticClass: "text-danger bold" }, [
+                          _vm._v(" This item is no longer available")
                         ])
                       : _vm._e()
                   ]),

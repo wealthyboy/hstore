@@ -2286,9 +2286,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 
@@ -2413,6 +2410,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     payWithPaystack: function payWithPaystack() {
       if (!this.delivery_option) {
         this.delivery_error = true;
+        return;
+      }
+
+      if (this.meta.sub_total < 1) {
         return;
       }
 
@@ -21764,6 +21765,18 @@ var render = function() {
                                               _vm._s(cart.variations.toString())
                                           )
                                         ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    cart.quantity < 1
+                                      ? _c(
+                                          "p",
+                                          { staticClass: "text-danger bold" },
+                                          [
+                                            _vm._v(
+                                              " This item is no longer available"
+                                            )
+                                          ]
+                                        )
                                       : _vm._e()
                                   ])
                                 ]
@@ -22687,6 +22700,18 @@ var render = function() {
                                         " " + _vm._s(cart.variations.toString())
                                       )
                                     ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                cart.quantity < 1
+                                  ? _c(
+                                      "p",
+                                      { staticClass: "text-danger bold" },
+                                      [
+                                        _vm._v(
+                                          " This item is no longer available"
+                                        )
+                                      ]
+                                    )
                                   : _vm._e()
                               ])
                             ]

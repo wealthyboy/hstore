@@ -33,17 +33,21 @@ class Cart extends Model
 		'cart_total'
 	];
 	
-	public static function items_in_cart() {  
-	    //SELECT ALL FROM THE USER ID && FROM THE USER COOKIE
-	    $cookie=\Cookie::get('cart');
-	    $cart = \DB::table('carts')->select('carts.*')->where(['remember_token'=>$cookie])->get();
-	    return null !== $cart ? $cart : null;
-	}
+	
 
 	public static function all_items_in_cart() {  
 	    //SELECT ALL FROM THE USER ID && FROM THE USER COOKIE
 		$cookie=\Cookie::get('cart');
 		$carts = Cart::with(["product_variation","product_variation.product","product_variation.product_variation_values"])->where(['carts.remember_token'=>$cookie])->get();
+	    static::sync($carts);
+	    return $carts;
+	}
+
+
+	public static function items_in_cart() {  
+	    //SELECT ALL FROM THE USER ID && FROM THE USER COOKIE
+		$cookie=\Cookie::get('cart');
+		$carts = Cart::with(["product_variation","product_variation.product","product_variation.product_variation_values"])->where(['carts.remember_token'=>$cookie,'carts.quantity','>=',1])->get();
 	    static::sync($carts);
 	    return $carts;
 	}
@@ -55,10 +59,11 @@ class Cart extends Model
 				$cart->delete();
 			}
 
-			if (null !== $cart->product_variation && $cart->product_variation->quantity < $cart->quantity){
+			
+
+			if (null !== $cart->product_variation && $cart->product_variation->quantity  == 0 ){
 				$cart->update([
-				   'quantity' => $cart->product_variation->quantity,
-				   'user_id' => optional(auth()->user())->id		
+				   'quantity' => 0,
 				]);
 			}
 
@@ -77,10 +82,9 @@ class Cart extends Model
     }
 
 
-	
 	public static function sum_items_in_cart() {   
 	   $cookie=\Cookie::get('cart'); 
-       $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token',$cookie)->get();
+       $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where(['remember_token'=>$cookie,'quantity','>=',1])->get();
        return 	static::ConvertCurrencyRate($total = $total[0]->items_total);
 	}
 

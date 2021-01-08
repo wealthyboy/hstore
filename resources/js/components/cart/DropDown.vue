@@ -17,6 +17,8 @@
                                 x <span class="cart-product-amount">{{ cart.currency }}</span>{{ cart.price | priceFormat }}
                             </span>
                             <p v-if="cart.variations.length"> {{ cart.variations.toString() }} </p>
+                            <p class="text-danger bold" v-if="cart.quantity < 1"> This item is no longer available</p>
+
                         </div><!-- End .product-details -->
 
                         <figure class="product-image-container">

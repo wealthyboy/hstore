@@ -11,14 +11,7 @@
                                 <h1>Thank you for shopping with us</h1>
                                 <p class="large">Your order has been received .</p>
                                 <p class="large"></p>
-                                <!--<div class="widget">
-                                    <form class="search-form">
-                                        <input class="search-field input--lg" placeholder="Search.." value="" name="s" type="search">
-                                        <button type="submit" class="search-button btn btn--primary btn--lg">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </form>
-                                </div>-->
+                                
                                 <a href="/" class="btn btn--primary space-t--2">Continue</a>
                                 <a href="/orders" class="btn btn--primary space-t--2">View order history</a>
 
@@ -104,6 +97,8 @@
                                             </div>
                                         </div>
                                         <p v-if="cart.variations.length"> {{ cart.variations.toString() }}</p>
+                                        <p class="text-danger bold" v-if="cart.quantity < 1"> This item is no longer available</p>
+
                                     </div>
                                     
                                 </div>
@@ -279,6 +274,8 @@
                                             </div>
                                         </div>
                                         <p v-if="cart.variations.length"> {{ cart.variations.toString() }}</p>
+                                        <p class="text-danger bold" v-if="cart.quantity < 1"> This item is no longer available</p>
+
                                     </div>
                                     
                                 </div>
@@ -443,6 +440,7 @@ export default {
         this.delivery_error = true;
         return;
       }
+      if(this.meta.sub_total <1){return;}
       let context = this;
       var cartIds = [];
       this.carts.forEach(function (cart, key) {
