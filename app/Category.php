@@ -25,7 +25,7 @@ class Category extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Product')->where('allow',1);
+        return $this->belongsToMany('App\Product')->where('allow',true);
     }
 
     public function discount()

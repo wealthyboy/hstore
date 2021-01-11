@@ -22,7 +22,7 @@ body{
     font-size: 17px;
     width: 100%;
     margin-right: 0px;
-    padding: 0px;
+    padding: 10px;
   }
   #section-to-print span{
     font-size: 15px;
