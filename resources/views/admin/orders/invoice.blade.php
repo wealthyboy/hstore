@@ -24,7 +24,7 @@ body{
     margin-right: 0px;
     padding: 10px;
   }
-  #section-to-print span{
+  span.tx{
     font-size: 15px;
     font-weight: 400;
   }
