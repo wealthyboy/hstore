@@ -92,6 +92,26 @@
             </div>
          </div>
       </div>
+
+      <div class="card">
+         <div class="card-content">
+            <div class="panel panel-default">
+               <div class="panel-heading">
+                  <h3 class="panel-title"><i class="fa fa-cog"></i> Options</h3>
+               </div>
+               <table class="table">
+                  <tbody>
+                     <tr>
+                        <td>Invoice</td>
+                        <td id="invoice" class="text-right">{{ $order->invoice  }}</td>
+                        <td style="width: 1%;" class="text-center"><button disabled="disabled" class="btn btn-success btn-xs"><i class="fa fa-refresh"></i></button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
    </div>
    <div class="col-md-12">
       <div class="card">
