@@ -114,7 +114,7 @@
                      </select>
                   </div>
                   <div class="form-group label-floating is-empty">
-                     <label class="control-label">Password</label>
+                     <label class="control-label">Message</label>
                      <textarea rows="20"  class="form-control"></textarea>
                   </div>
 						
