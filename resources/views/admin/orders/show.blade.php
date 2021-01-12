@@ -102,7 +102,7 @@
                <form method="#" action="#">
                   <div class="form-group label-floating">
                      <input type="hidden" class="p-v-id" value="{{ $order_product->id }}" />
-                     <select  class="form-control mt-3 update_status" name="order_status[{{ $order_product->id }}]" id="">
+                     <select  class="form-control mt-3 update_status" name="order_status[]" id="">
                         <option value="" >Choose Status</option>
                         @foreach($statuses as $status)
                            <option value="{{ $status }}">{{ $status }}</option>
