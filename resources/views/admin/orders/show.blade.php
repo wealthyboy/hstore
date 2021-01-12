@@ -101,21 +101,14 @@
                </div>
                <form method="" id="order-status" action="#">
                   <div class="form-group label-floating">
-                     <select  class="form-control mt-3 update_status" name="status" id="">
+                     <select  class="form-control mt-3" name="status" id="">
                         <option value="" >Choose Status</option>
                         @foreach($statuses as $status)
                            <option value="{{ $status }}">{{ $status }}</option>
                         @endforeach
                      </select>
                   </div>
-                  <div class="form-group label-floating">
-                     <select  class="form-control mt-3 update_status" name="status" id="">
-                        <option value="" >Choose Status</option>
-                        @foreach($statuses as $status)
-                           <option value="{{ $status }}">{{ $status }}</option>
-                        @endforeach
-                     </select>
-                  </div>
+                  
                   <div class="form-group label-floating is-empty">
                      <label class="control-label">Message</label>
                      <textarea rows="10" name="" class="form-control"></textarea>
@@ -258,7 +251,8 @@ $(".update_status").on('change',function(e){
 })
 
 
-$(".order-status").on('submit',function(e){
+$("#order-status").on('submit',function(e){
+   e.preventDefault()
    $.ajax({
       type: "POST",
       url: "/admin/orders/status",
