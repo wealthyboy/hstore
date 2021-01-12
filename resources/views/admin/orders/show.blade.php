@@ -97,18 +97,30 @@
          <div class="card-content">
             <div class="panel panel-default">
                <div class="panel-heading">
-                  <h3 class="panel-title"><i class="fa fa-cog"></i> Options</h3>
+                  <h3 class="panel-title"><i class="fa fa-cog"></i> Send Message</h3>
                </div>
-               <table class="table">
-                  <tbody>
-                     <tr>
-                        <td>Invoice</td>
-                        <td id="invoice" class="text-right">{{ $order->invoice  }}</td>
-                        <td style="width: 1%;" class="text-center"><button disabled="disabled" class="btn btn-success btn-xs"><i class="fa fa-refresh"></i></button>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
+               <form method="#" action="#">
+                  <div class="form-group label-floating">
+                     <input type="hidden" class="p-v-id" value="{{ $order_product->id }}" />
+                     <select  class="form-control mt-3 update_status" name="order_status[{{ $order_product->id }}]" id="">
+                        <option value="" >Choose Status</option>
+                        @foreach($statuses as $status)
+                           @if ($status == $order_product->status)
+                              <option value="{{ $status }}" selected>{{ $status }}</option>
+                           @else
+                              <option value="{{ $status }}">{{ $status }}</option>
+                           @endif
+                        @endforeach
+                     </select>
+                  </div>
+                  <div class="form-group label-floating is-empty">
+                     <label class="control-label">Password</label>
+                     <textarea rows="20"  class="form-control"></textarea>
+                  </div>
+						
+	               <button type="submit" class="btn btn-fill btn-rose">Submit</button>
+	            </form>
+               
             </div>
          </div>
       </div>
