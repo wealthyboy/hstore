@@ -97,11 +97,11 @@
          <div class="card-content">
             <div class="panel panel-default">
                <div class="panel-heading">
-                  <h3 class="panel-title"><i class="fa fa-cog"></i> Send Message</h3>
+                  <h3 class="panel-title"><i class="fa fa-mail"></i> Send Message</h3>
                </div>
                <form method="#" action="#">
                   <div class="form-group label-floating">
-                     <input type="hidden" class="p-v-id" value="{{ $order_product->id }}" />
+                     <input type="hidden" class="p-v-id" value="" />
                      <select  class="form-control mt-3 update_status" name="order_status[]" id="">
                         <option value="" >Choose Status</option>
                         @foreach($statuses as $status)
