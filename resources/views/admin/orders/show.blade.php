@@ -105,11 +105,7 @@
                      <select  class="form-control mt-3 update_status" name="order_status[{{ $order_product->id }}]" id="">
                         <option value="" >Choose Status</option>
                         @foreach($statuses as $status)
-                           @if ($status == $order_product->status)
-                              <option value="{{ $status }}" selected>{{ $status }}</option>
-                           @else
-                              <option value="{{ $status }}">{{ $status }}</option>
-                           @endif
+                           <option value="{{ $status }}">{{ $status }}</option>
                         @endforeach
                      </select>
                   </div>
