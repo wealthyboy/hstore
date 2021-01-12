@@ -30,7 +30,7 @@ class OrderStatusNotification extends Notification
     */
     public function via($notifiable)
     {
-        return $notifiable->prefers_sms ? ['nexmo'] : ['mail', 'database'];
+        return  ['nexmo'];
     }
 
 
