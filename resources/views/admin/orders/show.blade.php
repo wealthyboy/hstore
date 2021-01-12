@@ -111,7 +111,7 @@
                   
                   <div class="form-group label-floating is-empty">
                      <label class="control-label">Message</label>
-                     <textarea rows="10" name="" class="form-control"></textarea>
+                     <textarea rows="10" name="message" class="form-control"></textarea>
                      <input type="hidden" name="pn" class="" value="{{ optional(optional($order)->address)->phone_number ??  $order->user->phone_number }}" />
                   </div>
 						
