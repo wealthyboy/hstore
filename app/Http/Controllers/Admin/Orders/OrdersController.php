@@ -10,6 +10,9 @@ use App\SystemSetting;
 use App\OrderedProduct;
 use App\Http\Controllers\Controller;
 use App\Http\Helper;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\OrderStatusNotification;
+
 
 
 
@@ -60,7 +63,15 @@ class OrdersController extends Controller{
 		$ordered_product->save();        
 		return $ordered_product;
 	}
-    
+	
+	
+	public function updateOrderStatus(Request $request){
+		return $request->all();
+		
+		Notification::route('nexmo', '')
+            ->notify(new OrderStatusNotification($request));
+	}
+
 
     public function dispatchNote(Request $request,$id){
 	    $page_title = 'Dispatch Note';

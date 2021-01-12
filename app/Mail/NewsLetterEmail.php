@@ -37,7 +37,7 @@ class NewsLetterEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('noreply@ohram.org')
+        return $this->from('noreply@hautesignatures.com')
                     ->subject($this->subject)
                     ->view('emails.newsletter.index');
     }

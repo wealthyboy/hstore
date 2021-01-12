@@ -99,10 +99,17 @@
                <div class="panel-heading">
                   <h3 class="panel-title"><i class="fa fa-mail"></i> Send Message</h3>
                </div>
-               <form method="#" action="#">
+               <form method="" id="order-status" action="#">
                   <div class="form-group label-floating">
-                     <input type="hidden" class="p-v-id" value="" />
-                     <select  class="form-control mt-3 update_status" name="order_status[]" id="">
+                     <select  class="form-control mt-3 update_status" name="status" id="">
+                        <option value="" >Choose Status</option>
+                        @foreach($statuses as $status)
+                           <option value="{{ $status }}">{{ $status }}</option>
+                        @endforeach
+                     </select>
+                  </div>
+                  <div class="form-group label-floating">
+                     <select  class="form-control mt-3 update_status" name="status" id="">
                         <option value="" >Choose Status</option>
                         @foreach($statuses as $status)
                            <option value="{{ $status }}">{{ $status }}</option>
@@ -111,11 +118,13 @@
                   </div>
                   <div class="form-group label-floating is-empty">
                      <label class="control-label">Message</label>
-                     <textarea rows="10"  class="form-control"></textarea>
+                     <textarea rows="10" name="" class="form-control"></textarea>
+                     <input type="hidden" name="pn" class="" value="{{ optional(optional($order)->address)->phone_number ??  $order->user->phone_number }}" />
                   </div>
 						
-	               <button type="submit" class="btn btn-fill btn-rose">Submit</button>
+	               <button type="submit" class="btn btn-fill btn-rose">Send</button>
 	            </form>
+               
                
             </div>
          </div>
@@ -247,5 +256,19 @@ $(".update_status").on('change',function(e){
          console.log(response)
       })
 })
+
+
+$(".order-status").on('submit',function(e){
+   $.ajax({
+      type: "POST",
+      url: "/admin/orders/status",
+      data: $(this).serialize(),
+   }).done(function(response){
+      console.log(response)
+   })
+})
+
+
+
 @stop
 
