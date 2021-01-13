@@ -466,8 +466,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product=Product::find($id);
-        //$product_images = $product->product_images->slice(1);
-        return view('admin.products.show',compact('other_sizes','product_images','sizes','product'));
+        return view('admin.products.show',compact('product'));
     }
 
 
