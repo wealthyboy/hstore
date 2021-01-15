@@ -532,7 +532,6 @@ class ProductController extends Controller
         $product_attributes = [];
         $meta_fields = null;
         $product_variation_id = [];
-        dd($request->allow);
        
         
         $sale_price = $request->has('sale_price') ? $request->sale_price : null;
@@ -556,6 +555,7 @@ class ProductController extends Controller
         $product->sku         = str_random(6);
         $product->attributes  = $this->attributes($request);
         $product->save();
+        dd($product);
         $categories = Category::find($request->category_id);
         $meta_fields = array_filter(array_values($request->meta_fields));
 
