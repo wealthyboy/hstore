@@ -32,20 +32,17 @@
                             </span>
                         </p>
 
-                        <p v-if="meta.isAdmin" class="form-group reduce-gutters col-lg-6">
+                        <p class="form-group reduce-gutters col-lg-6">
                             <label for="email">Email</label>
-                            <input  :class="{'has-danger': errors.email}"  id="firstname" 
+                            <input    id="email" 
                             v-model="form.email" 
-                            @input="removeError($event)"  
-                            @blur="vInput($event)" 
-                            type="text" class="form-control required" 
+                             
+                            type="text" class="form-control" 
                             name="email"
                             >
-                            <span class="help-block error  text-danger text-sm-left" v-if="errors.first_name">
-                                <strong   class="text-danger">{{ formatError(errors.first_name) }}</strong>
-                            </span>
+                            
                         </p>
-                        <p  v-if="meta.isAdmin" class="form-group reduce-gutters col-lg-6">
+                        <p   class="form-group reduce-gutters col-lg-6">
                             <label for="phone_number">Phone Number</label>
                             <input id="phone_number"
                                 v-model="form.phone_number"  
@@ -56,8 +53,8 @@
                                 class="form-control required"
                                 name="phone_number" 
                             >
-                            <span class="help-block error  text-danger text-sm-left" v-if="errors.last_name">
-                                <strong   class="text-danger">{{ formatError(errors.last_name) }}</strong>
+                            <span class="help-block error  text-danger text-sm-left" v-if="errors.phone_number">
+                                <strong   class="text-danger">{{ formatError(errors.phone_number) }}</strong>
                             </span>
                         </p>
                         <p class="form-group reduce-gutters col-md-12">
@@ -182,179 +179,178 @@
     </div>
 </template>
 <script>
+import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
+import ErrorMessage from "../messages/components/Error";
 
-import axios from 'axios'
-import { mapActions, mapGetters } from 'vuex'
-import ErrorMessage from '../messages/components/Error'
-
-
-export default{
-    props:{
-        currency:String,
-    },
-    components:{
-        ErrorMessage,
-    },
-    data(){
-        return {
-            hideForm: true,
-            states: [],
-            shipping_companies: [],
-            country_states: [],
-            submitStatus: null,
-            state:'',
-            id:null,
-            delete_id:null,
-            errorsBag:[],
-            submiting:false,
-            address_id: '',
-            error:null,
-            form: {
-                first_name: '',
-                last_name: '',
-                address: '',
-                address_2:'',
-                city:'',
-                postal_code:'',
-                country_id:"",
-                state_id:'',
-                email: '',
-                phone_number: null
-            }
+export default {
+  props: {
+    currency: String,
+  },
+  components: {
+    ErrorMessage,
+  },
+  data() {
+    return {
+      hideForm: true,
+      states: [],
+      shipping_companies: [],
+      country_states: [],
+      submitStatus: null,
+      state: "",
+      id: null,
+      delete_id: null,
+      errorsBag: [],
+      submiting: false,
+      address_id: "",
+      error: null,
+      form: {
+        first_name: "",
+        last_name: "",
+        address: "",
+        address_2: "",
+        city: "",
+        postal_code: "",
+        country_id: "",
+        state_id: "",
+        email: "",
+        phone_number: null,
+      },
+    };
+  },
+  computed: {
+    ...mapGetters({
+      locations: "locations",
+      shipping: "shipping",
+      addresses: "addresses",
+      default_shipping: "default_shipping",
+      errors: "errors",
+      showForm: "showForm",
+      meta: "meta",
+    }),
+  },
+  created() {
+    this.state = document.getElementById("state_id");
+  },
+  methods: {
+    ...mapActions({
+      createAddress: "createAddress",
+      updateAddresses: "updateAddresses",
+      updateLocations: "updateLocations",
+      deleteAddress: "deleteAddress",
+      getAddresses: "getAddresses",
+      validateForm: "validateForm",
+      clearErrors: "clearErrors",
+      checkInput: "checkInput",
+    }),
+    getState: function (evt) {
+      let value = typeof evt.target !== "undefined" ? evt.target.value : evt;
+      let input = document.querySelectorAll(".required");
+      this.clearErrors({ context: this, input: input });
+      let state = [];
+      //loop through all countries and pluck out their states
+      this.locations.forEach((element) => {
+        if (value == element.id) {
+          state.push(element.states);
         }
+      });
+      this.states = state[0];
     },
-    computed:{
-        ...mapGetters({
-            locations: "locations",
-            shipping:  "shipping",
-            addresses: "addresses",
-            default_shipping:"default_shipping",
-            errors: 'errors',
-            showForm: 'showForm',
-            meta:  'meta'
+    getShipping: function (e) {
+      let value = e.target.value;
+      let shipping = this.shipping[value];
+      this.$store.commit("setDefaultShipping", shipping);
+      let input = document.querySelectorAll(".required");
+      this.clearErrors({ context: this, input: input });
+    },
+    formatError(error) {
+      return Array.isArray(error) ? error[0] : error;
+    },
+    removeError(e) {
+      let input = document.querySelectorAll(".required");
+      if (e.target.name == "country_id") {
+        this.form.state = "";
+        this.states = this.country_states[e.target.value];
+      }
+      if (typeof input !== "undefined") {
+        this.clearErrors({ context: this, input: input });
+      }
+    },
+    vInput(e) {
+      let input = document.querySelectorAll(".required");
+      if (typeof input !== "undefined") {
+        this.checkInput({ context: this, email: this.form.email, input: e });
+      }
+    },
+    submit: function () {
+      let input = document.querySelectorAll(".required");
+      this.validateForm({ context: this, input: input });
+      this.errorsBag = this.errors;
+      if (Object.keys(this.errorsBag).length !== 0) {
+        this.error = "Please check for errors";
+        return false;
+      }
+      this.submiting = true;
+      if (this.edit) {
+        this.updateAddresses({
+          form: this.form,
+          id: this.address_id,
+          context: this,
+        }).then((response) => {
+          this.showForm = false;
+          this.submiting = false;
+        });
+        return;
+      } else {
+        this.createAddress({ form: this.form, context: this });
+      }
+    },
+    addNewAddress: function () {
+      this.edit = false;
+      this.$store.commit("setShowForm", (this.showForm = !this.showForm));
+    },
+    cancelForm: function () {
+      this.$store.commit("setShowForm", (this.showForm = !this.showForm));
+      this.edit = false;
+    },
+    editAddress: function (index) {
+      let address = this.addresses[index];
+      this.form.first_name = address.first_name;
+      this.form.last_name = address.last_name;
+      this.form.email = address.email;
+      this.form.phone_number = address.phone_number;
+      this.form.address = address.address;
+      this.form.city = address.city;
+      this.form.postal_code = address.postal_code;
+      this.form.country_id = address.country_id;
+      let state = [];
+      let ship_prices = [];
+      this.getState(address.country_id);
+      this.form.state_id = address.state_id;
+      this.edit = true;
+      this.address_id = address.id;
+      this.$store.commit("setShowForm", true);
+    },
+    removeAddress: function (e, id) {
+      this.submiting = true;
+      this.delete_id = id;
+      this.deleteAddress({
+        id: id,
+        context: this,
+      }).then(() => {
+        this.submiting = false;
+      });
+    },
+    makeDefault: function (evt, id) {
+      this.id = id;
+      axios
+        .get("/api/addresses/active/" + id)
+        .then((response) => {
+          this.$store.dispatch("setADl", response);
+          this.submiting = false;
         })
+        .catch(() => {});
     },
-    created(){
-        this.state = document.getElementById('state_id');
-    },
-    methods:{
-        ...mapActions({
-            createAddress:   "createAddress",
-            updateAddresses:   "updateAddresses",
-            updateLocations: "updateLocations",
-            deleteAddress:   "deleteAddress",
-            getAddresses: "getAddresses",
-            validateForm: 'validateForm',
-            clearErrors: 'clearErrors',
-            checkInput: 'checkInput'
-        }),
-        getState: function(evt) {
-            let value = typeof evt.target !== 'undefined' ? evt.target.value : evt;
-            let input = document.querySelectorAll('.required');
-            this.clearErrors({  context:this, input:input })
-            let state = []
-            //loop through all countries and pluck out their states
-            this.locations.forEach(element => {
-                if (value == element.id) {
-                   state.push(element.states)  
-                }
-            });
-            this.states = state[0]
-        },
-        getShipping: function(e) {
-            let value = e.target.value;
-            let shipping = this.shipping[value]
-            this.$store.commit('setDefaultShipping',shipping)
-            let input = document.querySelectorAll('.required');
-            this.clearErrors({  context:this, input:input })
-        },
-        formatError(error){
-            return Array.isArray(error) ? error[0] : error
-        },
-        removeError(e){
-            let input = document.querySelectorAll('.required');
-            if (e.target.name == 'country_id'){
-                this.form.state = ''
-                this.states = this.country_states[e.target.value]
-            }
-            if (typeof input !== 'undefined'){
-                this.clearErrors({  context:this, input:input })
-            }
-        },
-        vInput(e){
-            let input = document.querySelectorAll('.required');
-            if (typeof input !== 'undefined') {
-                this.checkInput({ context: this, email: this.form.email, input:e })
-            }
-        },  
-        submit: function(){
-            let input = document.querySelectorAll('.required');
-            this.validateForm({ context:this, input:input })
-            this.errorsBag = this.errors
-            if ( Object.keys(this.errorsBag).length !== 0 ){
-                this.error = "Please check for errors"
-                return false;
-            }
-            this.submiting = true
-            if(this.edit){
-                this.updateAddresses({
-                    form:this.form,
-                    id: this.address_id,
-                    context: this
-                }).then((response) =>{
-                    this.showForm =false
-                    this.submiting = false  
-                })
-                return
-            } else {
-                this.createAddress({ form: this.form, context: this })
-            }   
-        },
-        addNewAddress: function(){
-            this.edit =false
-            this.$store.commit('setShowForm' , this.showForm = !this.showForm)
-        },
-        cancelForm: function(){
-            this.$store.commit('setShowForm' , this.showForm = !this.showForm)
-            this.edit = false
-        },
-        editAddress: function(index){
-            let address = this.addresses[index]
-            this.form.first_name = address.first_name
-            this.form.last_name  =  address.last_name
-            this.form.email = address.email
-            this.form.phone_number  =  address.phone_number
-            this.form.address  = address.address
-            this.form.city = address.city
-            this.form.postal_code = address.postal_code
-            this.form.country_id = address.country_id
-            let state = []
-            let ship_prices = []
-            this.getState(address.country_id)
-            this.form.state_id = address.state_id
-            this.edit = true
-            this.address_id = address.id
-            this.$store.commit('setShowForm' , true)
-        },
-        removeAddress: function(e,id){
-            this.submiting = true  
-            this.delete_id =  id
-            this.deleteAddress({
-               id:id,
-               context: this
-            }).then(() => {
-                this.submiting = false  
-            })
-        },
-        makeDefault: function(evt,id){
-            this.id =  id
-            axios.get('/api/addresses/active/'+ id).then((response) => {
-                this.$store.dispatch('setADl',response)
-                this.submiting = false
-            }).catch(() =>{})
-        }
-        
-    }
-}
-
+  },
+};
 </script>

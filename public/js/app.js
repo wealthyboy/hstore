@@ -3568,9 +3568,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 
@@ -3588,23 +3585,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       shipping_companies: [],
       country_states: [],
       submitStatus: null,
-      state: '',
+      state: "",
       id: null,
       delete_id: null,
       errorsBag: [],
       submiting: false,
-      address_id: '',
+      address_id: "",
       error: null,
       form: {
-        first_name: '',
-        last_name: '',
-        address: '',
-        address_2: '',
-        city: '',
-        postal_code: '',
+        first_name: "",
+        last_name: "",
+        address: "",
+        address_2: "",
+        city: "",
+        postal_code: "",
         country_id: "",
-        state_id: '',
-        email: '',
+        state_id: "",
+        email: "",
         phone_number: null
       }
     };
@@ -3614,12 +3611,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     shipping: "shipping",
     addresses: "addresses",
     default_shipping: "default_shipping",
-    errors: 'errors',
-    showForm: 'showForm',
-    meta: 'meta'
+    errors: "errors",
+    showForm: "showForm",
+    meta: "meta"
   })),
   created: function created() {
-    this.state = document.getElementById('state_id');
+    this.state = document.getElementById("state_id");
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
     createAddress: "createAddress",
@@ -3627,13 +3624,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateLocations: "updateLocations",
     deleteAddress: "deleteAddress",
     getAddresses: "getAddresses",
-    validateForm: 'validateForm',
-    clearErrors: 'clearErrors',
-    checkInput: 'checkInput'
+    validateForm: "validateForm",
+    clearErrors: "clearErrors",
+    checkInput: "checkInput"
   })), {}, {
     getState: function getState(evt) {
-      var value = typeof evt.target !== 'undefined' ? evt.target.value : evt;
-      var input = document.querySelectorAll('.required');
+      var value = typeof evt.target !== "undefined" ? evt.target.value : evt;
+      var input = document.querySelectorAll(".required");
       this.clearErrors({
         context: this,
         input: input
@@ -3650,8 +3647,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getShipping: function getShipping(e) {
       var value = e.target.value;
       var shipping = this.shipping[value];
-      this.$store.commit('setDefaultShipping', shipping);
-      var input = document.querySelectorAll('.required');
+      this.$store.commit("setDefaultShipping", shipping);
+      var input = document.querySelectorAll(".required");
       this.clearErrors({
         context: this,
         input: input
@@ -3661,14 +3658,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Array.isArray(error) ? error[0] : error;
     },
     removeError: function removeError(e) {
-      var input = document.querySelectorAll('.required');
+      var input = document.querySelectorAll(".required");
 
-      if (e.target.name == 'country_id') {
-        this.form.state = '';
+      if (e.target.name == "country_id") {
+        this.form.state = "";
         this.states = this.country_states[e.target.value];
       }
 
-      if (typeof input !== 'undefined') {
+      if (typeof input !== "undefined") {
         this.clearErrors({
           context: this,
           input: input
@@ -3676,9 +3673,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     vInput: function vInput(e) {
-      var input = document.querySelectorAll('.required');
+      var input = document.querySelectorAll(".required");
 
-      if (typeof input !== 'undefined') {
+      if (typeof input !== "undefined") {
         this.checkInput({
           context: this,
           email: this.form.email,
@@ -3689,7 +3686,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var _this = this;
 
-      var input = document.querySelectorAll('.required');
+      var input = document.querySelectorAll(".required");
       this.validateForm({
         context: this,
         input: input
@@ -3722,10 +3719,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     addNewAddress: function addNewAddress() {
       this.edit = false;
-      this.$store.commit('setShowForm', this.showForm = !this.showForm);
+      this.$store.commit("setShowForm", this.showForm = !this.showForm);
     },
     cancelForm: function cancelForm() {
-      this.$store.commit('setShowForm', this.showForm = !this.showForm);
+      this.$store.commit("setShowForm", this.showForm = !this.showForm);
       this.edit = false;
     },
     editAddress: function editAddress(index) {
@@ -3744,7 +3741,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.state_id = address.state_id;
       this.edit = true;
       this.address_id = address.id;
-      this.$store.commit('setShowForm', true);
+      this.$store.commit("setShowForm", true);
     },
     removeAddress: function removeAddress(e, id) {
       var _this2 = this;
@@ -3762,8 +3759,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       this.id = id;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/addresses/active/' + id).then(function (response) {
-        _this3.$store.dispatch('setADl', response);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/addresses/active/" + id).then(function (response) {
+        _this3.$store.dispatch("setADl", response);
 
         _this3.submiting = false;
       })["catch"](function () {});
@@ -44573,157 +44570,105 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm.meta.isAdmin
-                      ? _c(
-                          "p",
-                          { staticClass: "form-group reduce-gutters col-lg-6" },
-                          [
-                            _c("label", { attrs: { for: "email" } }, [
-                              _vm._v("Email")
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.email,
-                                  expression: "form.email"
-                                }
-                              ],
-                              staticClass: "form-control required",
-                              class: { "has-danger": _vm.errors.email },
-                              attrs: {
-                                id: "firstname",
-                                type: "text",
-                                name: "email"
-                              },
-                              domProps: { value: _vm.form.email },
-                              on: {
-                                input: [
-                                  function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "email",
-                                      $event.target.value
-                                    )
-                                  },
-                                  function($event) {
-                                    return _vm.removeError($event)
-                                  }
-                                ],
-                                blur: function($event) {
-                                  return _vm.vInput($event)
-                                }
+                    _c(
+                      "p",
+                      { staticClass: "form-group reduce-gutters col-lg-6" },
+                      [
+                        _c("label", { attrs: { for: "email" } }, [
+                          _vm._v("Email")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.email,
+                              expression: "form.email"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "email", type: "text", name: "email" },
+                          domProps: { value: _vm.form.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.first_name
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "help-block error  text-danger text-sm-left"
-                                  },
-                                  [
-                                    _c(
-                                      "strong",
-                                      { staticClass: "text-danger" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.formatError(
-                                              _vm.errors.first_name
-                                            )
-                                          )
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              : _vm._e()
-                          ]
-                        )
-                      : _vm._e(),
+                              _vm.$set(_vm.form, "email", $event.target.value)
+                            }
+                          }
+                        })
+                      ]
+                    ),
                     _vm._v(" "),
-                    _vm.meta.isAdmin
-                      ? _c(
-                          "p",
-                          { staticClass: "form-group reduce-gutters col-lg-6" },
-                          [
-                            _c("label", { attrs: { for: "phone_number" } }, [
-                              _vm._v("Phone Number")
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.phone_number,
-                                  expression: "form.phone_number"
+                    _c(
+                      "p",
+                      { staticClass: "form-group reduce-gutters col-lg-6" },
+                      [
+                        _c("label", { attrs: { for: "phone_number" } }, [
+                          _vm._v("Phone Number")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.phone_number,
+                              expression: "form.phone_number"
+                            }
+                          ],
+                          staticClass: "form-control required",
+                          class: { "has-danger": _vm.errors.phone_number },
+                          attrs: {
+                            id: "phone_number",
+                            type: "text",
+                            name: "phone_number"
+                          },
+                          domProps: { value: _vm.form.phone_number },
+                          on: {
+                            input: [
+                              function($event) {
+                                if ($event.target.composing) {
+                                  return
                                 }
-                              ],
-                              staticClass: "form-control required",
-                              class: { "has-danger": _vm.errors.phone_number },
-                              attrs: {
-                                id: "phone_number",
-                                type: "text",
-                                name: "phone_number"
-                              },
-                              domProps: { value: _vm.form.phone_number },
-                              on: {
-                                input: [
-                                  function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "phone_number",
-                                      $event.target.value
-                                    )
-                                  },
-                                  function($event) {
-                                    return _vm.removeError($event)
-                                  }
-                                ],
-                                blur: function($event) {
-                                  return _vm.vInput($event)
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.last_name
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "help-block error  text-danger text-sm-left"
-                                  },
-                                  [
-                                    _c(
-                                      "strong",
-                                      { staticClass: "text-danger" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.formatError(
-                                              _vm.errors.last_name
-                                            )
-                                          )
-                                        )
-                                      ]
-                                    )
-                                  ]
+                                _vm.$set(
+                                  _vm.form,
+                                  "phone_number",
+                                  $event.target.value
                                 )
-                              : _vm._e()
-                          ]
-                        )
-                      : _vm._e(),
+                              },
+                              function($event) {
+                                return _vm.removeError($event)
+                              }
+                            ],
+                            blur: function($event) {
+                              return _vm.vInput($event)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.errors.phone_number
+                          ? _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "help-block error  text-danger text-sm-left"
+                              },
+                              [
+                                _c("strong", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.formatError(_vm.errors.phone_number)
+                                    )
+                                  )
+                                ])
+                              ]
+                            )
+                          : _vm._e()
+                      ]
+                    ),
                     _vm._v(" "),
                     _c(
                       "p",
