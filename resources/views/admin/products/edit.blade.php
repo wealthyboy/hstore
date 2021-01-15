@@ -76,7 +76,7 @@
                                   </legend>
                                   <div class="togglebutton">
                                     <label>
-                                    <input {{ $product->allow == 1 ? 'checked' : ''}}  name="allow"  value="1" type="checkbox" checked>
+                                    <input {{ $product->allow == 1 ? 'checked' : ''}}  name="allow"  value="1" type="checkbox">
                                     Enable/Disable
                                     </label>
                                  </div>
