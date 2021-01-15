@@ -555,7 +555,6 @@ class ProductController extends Controller
         $product->sku         = str_random(6);
         $product->attributes  = $this->attributes($request);
         $product->save();
-        dd($product);
         $categories = Category::find($request->category_id);
         $meta_fields = array_filter(array_values($request->meta_fields));
 
