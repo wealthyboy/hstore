@@ -43,6 +43,16 @@
                             />
                         </div>
 
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Text color
+                            </label>
+                            <input class="form-control"
+                                name="text_color"
+                                type="text"  
+                            />
+                        </div>
+
                         <div class="form-group">
                             <label>Description</label>
                             <div class="form-group ">
