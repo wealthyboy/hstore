@@ -3,7 +3,7 @@
 
 @foreach($products as $product)
 
-@if($product->name == '')
+@if(optiona($product->product)->allow)
  @continue
 @endif
 <div  class="col-6   {{ isset($category_attributes) && $category_attributes->count() ? 'col-md-4' : 'col-md-3' }}">
