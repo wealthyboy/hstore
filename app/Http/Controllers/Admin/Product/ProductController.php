@@ -532,6 +532,7 @@ class ProductController extends Controller
         $product_attributes = [];
         $meta_fields = null;
         $product_variation_id = [];
+        dd($request->allow);
        
         
         $sale_price = $request->has('sale_price') ? $request->sale_price : null;
