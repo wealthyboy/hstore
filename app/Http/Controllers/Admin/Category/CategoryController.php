@@ -179,10 +179,8 @@ class CategoryController extends Controller
                 })->ignore($id)     
             ],
         ]);
+        
         $slug = $this->makeSlug($request->parent_id,$request->name);
-
-
-
         $category->name=$request->name;
         $category->sort_order=$request->sort_order;
         $category->banner_image = $request->banner_image;
