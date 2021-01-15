@@ -38,7 +38,7 @@ class ProductsController extends Controller
     public function  index(Request $request,Category $category)  {
 
         $page_title = implode(" ",explode('-',$category->slug));
-        $category_attributes = $category->attribute_parents()->has('children')->get();
+        $category_attributes = $category->attribute_parents()->get();
          
 
         //dd($this->getFilters($category_attributes));

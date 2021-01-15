@@ -14,7 +14,7 @@ class AlterProductsVariationsTableAddAllow extends Migration
     public function up()
     {
         Schema::table('product_variations', function (Blueprint $table) {
-            //
+            $table->boolean('allow')->default(true);
         });
     }
 
@@ -26,7 +26,7 @@ class AlterProductsVariationsTableAddAllow extends Migration
     public function down()
     {
         Schema::table('product_variations', function (Blueprint $table) {
-            //
+            $table->dropColumn('allow');
         });
     }
 }

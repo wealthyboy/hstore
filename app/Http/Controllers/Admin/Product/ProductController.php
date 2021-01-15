@@ -746,9 +746,7 @@ class ProductController extends Controller
                                     ProductVariationValue::destroy([$product_variation_value_id]);
                                     continue;
                                 }
-
-                                 
-                                 /**
+                                /**
                                  * 
                                  * Sync the the attributes and categories
                                  */
@@ -870,12 +868,7 @@ class ProductController extends Controller
         }
 
 
-        // foreach ($categories as $category) {
-        //     BrandCategory::updateOrCreate(
-        //         ['category_id' => $category->id, 'brand_id' => $request->brand_id],
-        //         ['category_id' => $category->id, 'brand_id' => $request->brand_id]
-        //     );  
-        // }
+       
         foreach( $cA as $key => $values){
             foreach( $values as $k => $value){
                 if ( $value == null){
