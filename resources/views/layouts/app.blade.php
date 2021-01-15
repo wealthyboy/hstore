@@ -88,7 +88,7 @@
                             @foreach( $global_categories   as  $category)
 
                                 <li>
-                                   <a class="{{ strtolower($category->name) == 'christmas shop' ? 'text-danger' : '' }}" href="/products/{{ $category->slug }}">{{ $category->name }}</a>
+                                   <a style="color: {{  $category->text_color }} !important" href="/products/{{ $category->slug }}">{{ $category->name }}</a>
                                    @if ($category->isCategoryHaveMultipleChildren())
 
                                     <div class="megamenu megamenu-fixed-width">
