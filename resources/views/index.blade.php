@@ -12,7 +12,6 @@
                         <img src="{{ $banner->image }}" alt="" />
                     </a>
                 </div>
-                
             </div> 
         @endforeach
     </div>

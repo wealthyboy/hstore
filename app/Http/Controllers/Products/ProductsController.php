@@ -38,7 +38,7 @@ class ProductsController extends Controller
     public function  index(Request $request,Category $category)  {
 
         $page_title = implode(" ",explode('-',$category->slug));
-        $category_attributes = $category->attribute_parents()->get();
+        $category_attributes = $category->attribute_parents()->has('children')->get();
          
 
         //dd($this->getFilters($category_attributes));
@@ -74,6 +74,27 @@ class ProductsController extends Controller
         }
         return $filters;
     }
+
+
+    public function quickView(Request $request)
+    {
+        $product_variation  = ProductVariation::findOrFail($request->id);
+        $data= [];
+        if ( null !== $product_variation->product){
+            foreach ($product_variation->product->parent_attributes as  $parent_attribute) {
+                if ($parent_attribute->p_attribute_children()){
+                    $data[$parent_attribute->name] = $parent_attribute->p_attribute_children();
+                }
+            }
+        }
+        $inventory = $this->product_inventory($product_variation); 
+        $stock = $this->product_stock($product_variation); 
+        $attributes =  collect($data);
+        $attributes = $attributes->count() && $product_variation->product->product_type == 'variable' ? $attributes : '{}';
+        $product_variation->load(["images","product.variants","product.variants.images"]);
+        return view('_partials.quick_view',compact('inventory','stock','attributes','product_variation'));
+    }
+    
 
 
 

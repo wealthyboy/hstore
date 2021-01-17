@@ -179,7 +179,7 @@ class CategoryController extends Controller
                 })->ignore($id)     
             ],
         ]);
-        
+
         $slug = $this->makeSlug($request->parent_id,$request->name);
         $category->name=$request->name;
         $category->sort_order=$request->sort_order;
@@ -189,7 +189,6 @@ class CategoryController extends Controller
         $category->image_custom_link = $request->image_custom_link;
         $category->image = $request->image;
         $category->text_color = $request->text_color;
-
         $category->slug=$slug;
         $category->save();
 
