@@ -870,7 +870,6 @@ class ProductController extends Controller
         }
 
 
-        AttributeCategory::where(['category_id' => 100, 'attribute_id' => 100])->delete();
         foreach( $cA as $key => $values){
             foreach( $values as $k => $value){
                 if ( $value == null){
