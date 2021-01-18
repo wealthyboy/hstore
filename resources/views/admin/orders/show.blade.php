@@ -142,7 +142,8 @@
                      <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> 
                         {{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }}  <br />
                         
-                        {{ optional(optional($order)->address)->phone_number }} {{ optional(optional($order)->address)->email }}  <br />
+                        {{ optional(optional($order)->address)->phone_number }} &nbsp;&nbsp; <br />
+                        {{ optional(optional($order)->address)->email }}  <br />
                         {{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;
                         <br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;
                      </td>
