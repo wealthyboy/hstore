@@ -18,6 +18,8 @@ use App\SystemSetting;
 use App\RelatedProduct;
 use App\CategoryProduct;
 use App\AttributeCategoryChildren;
+use App\AttributeCategory;
+
 use App\BrandCategory;
 
 use App\AttributeProduct;
