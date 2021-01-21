@@ -42,7 +42,7 @@ class ProductsController extends Controller
          
 
         //dd($this->getFilters($category_attributes));
-        $products = ProductVariation::whereNotNull('name')->whereHas('categories',function(Builder  $builder) use ($category){
+        $products = ProductVariation::whereNotNull('name')->where('allow',true)->whereHas('categories',function(Builder  $builder) use ($category){
             $builder->where('categories.name',$category->name);
         })->filter($request,$this->getFilters($category_attributes))->latest()->paginate($this->settings->products_items_per_page);
         $products->appends(request()->all());
