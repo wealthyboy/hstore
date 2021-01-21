@@ -23,7 +23,8 @@ class Cart extends Model
 			'quantity',
 			'total',
 			'price',
-			'product_variation_id'
+			'product_variation_id',
+			'status'
 		];
 
 	public $appends = [
