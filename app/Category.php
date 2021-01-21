@@ -36,7 +36,7 @@ class Category extends Model
 
     public function product_variations()
     {
-        return $this->belongsToMany('App\ProductVariation');
+        return $this->belongsToMany('App\ProductVariation')->where('allow',true);
     }
 
 
