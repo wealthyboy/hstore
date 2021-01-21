@@ -43,7 +43,8 @@ class ProductVariation extends Model
 		'image_to_show_m',
         'image_to_show_tn',
         'link',
-        'slug'
+        'slug',
+        'allow'
     ];
 
     protected $dates = [

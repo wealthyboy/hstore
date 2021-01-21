@@ -223,6 +223,8 @@ class ProductController extends Controller
         $product_variation->length = $request->length;
         $product_variation->weight = $request->weight;
         $product_variation->quantity  = $request->quantity;
+        $product_variation->allow       = $request->allow ? $request->allow : 0;
+
         //$product_variation->extra_percent_off  = $request->type == 'simple' ? $request->extra_percent_off : null;
 
         
@@ -324,6 +326,8 @@ class ProductController extends Controller
                     $product_variation->sale_price_expires = Helper::getFormatedDate($request->variation_sale_price_expires[$key]);
                     $product_variation->length = $request->variation_length[$key];
                     $product_variation->weight = $request->variation_weight[$key];
+                    $product_variation->allow  = $request->allow ? $request->allow : 0;
+
                    // $product_variation->extra_percent_off  = $request->extra_percent_off[$key];
 
                     $product_variation->quantity  = $request->variation_quantity[$key];
@@ -592,6 +596,8 @@ class ProductController extends Controller
         $product_variation->weight     = $request->weight;
         $product_variation->quantity   = $request->quantity;
         $product_variation->product_id = $product->id;
+        $product_variation->allow       = $request->allow ? $request->allow : 0;
+
         $product_variation->default = 1;
         $product_variation->save();
         if( !empty($request->category_id) ){
@@ -683,6 +689,8 @@ class ProductController extends Controller
                                 //'extra_percent_off'  => $request->extra_percent_off[$variant_id],
                                 'name' => $request->edit_variation_name[$variant_id],
                                 'slug' =>str_slug($request->edit_variation_name[$variant_id]),
+                                'allow' => $request->allow ? $request->allow : 0,
+
                                 
                             ]
                         );
@@ -808,6 +816,8 @@ class ProductController extends Controller
                 $product_variation->product_id = $product->id;
                 $product_variation->name = $request->variation_name[$key];
                 $product_variation->slug = str_slug($request->variation_name[$key]);
+                $product_variation->allow       = $request->allow ? $request->allow : 0;
+
                 $product_variation->save();
                 $names = [];
 
