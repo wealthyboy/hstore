@@ -1,19 +1,7 @@
 {
-	"folders": [
-		{
-			"path": "../../../.."
-		},
-		{
-			"path": "../../../../../nollyflix"
-		},
-		{
-			"path": "../../../../../ohram"
-		},
-		{
-			"path": "../../../../../theluxurysale"
-		},
-		{
-			"path": "../../../../../afrikangelo.com"
-		}
-	]
+    "folders": [
+        {
+            "path": "../../../.."
+        }
+    ]
 }
