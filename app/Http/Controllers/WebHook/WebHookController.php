@@ -123,7 +123,7 @@ class WebHookController extends Controller
     public function gitHub()
     {
         $output =  shell_exec('sh /home/forge/hautesignatures.com/deploy.sh');
-        Log::info($output);
+        return  $output;
     }
 
    
