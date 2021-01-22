@@ -60,8 +60,6 @@ class Cart extends Model
 				$cart->delete();
 			}
 
-			
-
 			if (null !== $cart->product_variation && $cart->product_variation->quantity  == 0 ){
 				$cart->update([
 				   'quantity' => 0,
@@ -81,8 +79,6 @@ class Cart extends Model
 	public function product_variation(){
 		return $this->belongsTo('App\ProductVariation');
     }
-
-
 
 	public static function sum_items_in_cart() {   
 	   $cookie=\Cookie::get('cart'); 
