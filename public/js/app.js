@@ -3317,7 +3317,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     deleteCart: 'deleteCart'
   })), {}, {
     removeFromCart: function removeFromCart(cart_id) {
-      console.log(cart_id);
       this.deleteCart({
         cart_id: cart_id
       });

@@ -71,7 +71,6 @@ export default {
             deleteCart: 'deleteCart'
         }),
         removeFromCart(cart_id){
-            console.log(cart_id)
             this.deleteCart({
                 cart_id:cart_id
             })
