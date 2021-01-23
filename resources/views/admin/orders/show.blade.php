@@ -111,7 +111,7 @@
 
                   <div class="form-group label-floating is-empty">
                      <label class="control-label">Phone Number</label>
-                     <input type="type" name="pn" class="form-control" placeholder="please format number like +2348169389886" />
+                     <input type="type" name="pn" class="form-control" placeholder="Eg +2348169389886" />
                   </div>
 
 
@@ -120,7 +120,6 @@
                   <div class="form-group label-floating is-empty">
                      <label class="control-label">Message</label>
                      <textarea rows="10" name="message" class="form-control"></textarea>
-                     <input type="hidden" name="pn" class="" value="{{ optional(optional($order)->address)->phone_number ??  $order->user->phone_number }}" />
                   </div>
 						
 	               <button type="submit" class="btn btn-fill btn-rose">Send</button>
