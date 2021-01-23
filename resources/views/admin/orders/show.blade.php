@@ -120,6 +120,7 @@
                   </div>
 						
 	               <button type="submit" class="btn btn-fill btn-rose">Send</button>
+                  <p class="txm"></p>
 	            </form>
                
                
@@ -269,7 +270,7 @@ $("#order-status").on('submit',function(e){
       url: "/admin/orders/status",
       data: $(this).serialize(),
    }).done(function(response){
-      console.log(response)
+      $(".txm").html("Message sent")
    })
 })
 
