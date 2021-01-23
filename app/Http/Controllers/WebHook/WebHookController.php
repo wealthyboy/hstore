@@ -92,9 +92,8 @@ class WebHookController extends Controller
             $admin_emails = explode(',',$this->settings->alert_email);
             $symbol = optional($currency)->symbol  ;
             
-             try {
+            try {
                  $when = now()->addMinutes(5); 
-                
                  \Mail::to($user->email)
                 ->bcc($admin_emails[0])
                  ->send(new OrderReceipt($order,$this->settings,$symbol));

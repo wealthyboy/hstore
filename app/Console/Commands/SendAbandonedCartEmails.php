@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Cart;
+use App\Mail\AbandonedCart;
+
 
 class SendAbandonedCartEmails extends Command
 {
@@ -37,6 +40,8 @@ class SendAbandonedCartEmails extends Command
      */
     public function handle()
     {
-        //
+        $cart = Cart::all();
+        \Mail::to('jacob.atam@gmail.com')
+               ->send(new AbandonedCart($cart));
     }
 }
