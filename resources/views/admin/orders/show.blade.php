@@ -110,7 +110,7 @@
                   </div>
 
                   <div class="form-group label-floating is-empty">
-                     <label class="control-label">Message</label>
+                     <label class="control-label">Phone Number</label>
                      <input type="type" name="pn" class="form-control" placeholder="please format number like +2348169389886" />
                   </div>
 
