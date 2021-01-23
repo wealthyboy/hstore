@@ -12,14 +12,17 @@ class OrderStatusNotification extends Notification
 {
     use Queueable;
 
+
+    public $request;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($request)
     {
-        //
+        $this->request = $request;
     }
 
     /**
@@ -44,7 +47,7 @@ class OrderStatusNotification extends Notification
     {   
         
         return (new NexmoMessage)
-                    ->content('Your SMS message content');
+                    ->content($this->request->message);
     }
 
     /**
