@@ -67,7 +67,7 @@ class OrdersController extends Controller{
 	
 	public function updateOrderStatus(Request $request){
 		//return $request->all();
-		Notification::route('nexmo', '+2348063045041')
+		Notification::route('nexmo', '+2348169389886')
             ->notify(new OrderStatusNotification($request));
 	}
 
