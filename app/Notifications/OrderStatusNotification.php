@@ -42,7 +42,7 @@ class OrderStatusNotification extends Notification
      */
     public function toNexmo($notifiable)
     {   
-        return 4;
+        
         return (new NexmoMessage)
                     ->content('Your SMS message content');
     }
