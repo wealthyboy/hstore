@@ -41,7 +41,8 @@ class OrderStatusNotification extends Notification
      * @return \Illuminate\Notifications\Messages\NexmoMessage
      */
     public function toNexmo($notifiable)
-    {
+    {   
+        return 4;
         return (new NexmoMessage)
                     ->content('Your SMS message content');
     }
