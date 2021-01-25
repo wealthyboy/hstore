@@ -46,7 +46,7 @@ return [
         ],
     ],
     'nexmo' => [
-        'sms_from' => 'Haute',
+        'sms_from' => 'Haute Sign',
     ],
 
 ];
