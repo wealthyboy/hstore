@@ -274,6 +274,7 @@ $("#order-status").on('submit',function(e){
       $(".txm").html('').html("Message sent")
    }).fail(function(){
       $(".txm").html("Sending Failed")
+   })
 
 })
 
