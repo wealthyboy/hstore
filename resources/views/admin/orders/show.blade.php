@@ -272,8 +272,6 @@ $("#order-status").on('submit',function(e){
       data: $(this).serialize(),
    }).done(function(response){
       $(".txm").html('')..html("Message sent")
-   }).fail(function(){
-      $(".txm").html("Sending Failed")
    })
 })
 
