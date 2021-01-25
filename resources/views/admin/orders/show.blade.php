@@ -271,8 +271,10 @@ $("#order-status").on('submit',function(e){
       url: "/admin/orders/status",
       data: $(this).serialize(),
    }).done(function(response){
-      $(".txm").html('')..html("Message sent")
-   })
+      $(".txm").html('').html("Message sent")
+   }).fail(function(){
+      $(".txm").html("Sending Failed")
+
 })
 
 
