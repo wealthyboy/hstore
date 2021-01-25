@@ -265,12 +265,15 @@ $(".update_status").on('change',function(e){
 
 $("#order-status").on('submit',function(e){
    e.preventDefault()
+   $(".txm").html("Sending..... ")
    $.ajax({
       type: "POST",
       url: "/admin/orders/status",
       data: $(this).serialize(),
    }).done(function(response){
-      $(".txm").html("Message sent")
+      $(".txm").html('')..html("Message sent")
+   }).fail(function(){
+      $(".txm").html("Sending Failed")
    })
 })
 
