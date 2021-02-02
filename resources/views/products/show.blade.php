@@ -1,20 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="top-notice text-white bg--gray">
-    <div class="container-fluid text-center">
-        <div class="row">
-            
-            <div class="col-12">
-                <h5 class="d-inline-block color--primary text-uppercase  mb-0"><b><i class="fas fa-money-check"></i>
-                GET 5% OFF,  USE  LOVEIT  AT CHECKOUT </b>
-                </h5>
-            </div>
+@include('_partials.top_banner')
 
-        </div>
-        
-    </div><!-- End .container -->
-</div>
 <nav aria-label="breadcrumb" class="breadcrumb-nav">
     <div class="container">
         <ol class="breadcrumb">
