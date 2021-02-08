@@ -83,5 +83,3 @@ const app = new Vue({
         SignUp,
         Images
     }   
-});
-
