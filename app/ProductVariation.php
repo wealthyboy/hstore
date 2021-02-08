@@ -139,7 +139,7 @@ class ProductVariation extends Model
 
     public function related_products()
     {
-        return $this->hasMany(RelatedProduct::class)->where('allow',true);
+        return $this->hasMany(RelatedProduct::class);
 	}
     
     
