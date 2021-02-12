@@ -38,11 +38,9 @@
                     
                 </figure>
                 <div class="product-details">
-                    
                     <h3 class="product-title">
                         <a href="{{ optional($related_product->product_variation)->link }}">{{ optional($related_product->product_variation)->name }}</a>
                     </h3>
-                    
                     <div class="price-box">
                         @if (optional($related_product->product_variation)->default_discounted_price ) 
                             <span class="old-price">{{ optional($related_product->product_variation)->currency }}{{ number_format(optional($related_product->product_variation)->converted_price)  }}</span>

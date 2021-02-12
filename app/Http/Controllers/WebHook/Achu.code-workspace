@@ -7,9 +7,6 @@
             "path": "../../../../../nollyflix"
         },
         {
-            "path": "../../../../../afrikangelo.com"
-        },
-        {
             "path": "../../../../../theluxurysale"
         },
         {
@@ -32,6 +29,12 @@
         },
         {
             "path": "../../../../../demo_11"
+        },
+        {
+            "path": "../../../../../travelo"
+        },
+        {
+            "path": "../../../../../expo-netflix"
         }
     ]
 }
