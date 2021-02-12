@@ -25,10 +25,9 @@
         <div class="products-slider owl-carousel owl-theme dots-top">
             @foreach( $related_products as $related_product)
 
-            @if(optional($related_product->product_variation)->default_discounted_price == 0)
-               @continue
-            @endif
+            {{ $related_products->count() }}
 
+            
             <div class="product-default inner-quickview inner-icon">
                 <figure>
                     <a href="{{ optional($related_product->product_variation)->link }}">
