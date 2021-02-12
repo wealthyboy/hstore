@@ -25,7 +25,6 @@
         <div class="products-slider owl-carousel owl-theme dots-top">
             @foreach( $related_products as $related_product)
 
-            {{ $related_products->count() }}
 
             
             <div class="product-default inner-quickview inner-icon">
