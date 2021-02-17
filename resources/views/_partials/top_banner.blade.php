@@ -4,7 +4,7 @@
             
             <div class="col-12">
                 <h5 class="d-inline-block color--light text-uppercase  mb-0"><b><i class="fas fa-money-check"></i>
-                   GET 10% OFF THIS VALENTINE’S SEASON, USE CODE BEMYVAL AT CHECKOUT</b>
+                Get 5% off ntire store, Use code HSEXTRA at checkout.</b>
                 </h5>
             </div>
             
