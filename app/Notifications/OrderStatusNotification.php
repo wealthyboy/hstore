@@ -65,6 +65,7 @@ class OrderStatusNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject($this->request->subject)
                     ->greeting('Hello  '. $this->user->fullname() .',')
                     ->line($this->request->message)
                     ->line('Thank you for choosing HauteSignatures!');

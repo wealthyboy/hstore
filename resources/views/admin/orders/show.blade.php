@@ -102,10 +102,9 @@
                <form method="" id="order-status" action="#">
                   
 
-                  <!-- <div class="form-group label-floating ">
-                     <label class="control-label">Phone Number</label>
-                     <input type="type" name="pn" class="form-control" placeholder="Eg +2348169389886" />
-                  </div> -->
+                  <div class="form-group label-floating ">
+                     <input type="text" name="subject"  required="true" class="form-control" placeholder="Subject" />
+                  </div>
 
                   <div class="form-group label-floating is-empty">
                      <label class="control-label">Message</label>
