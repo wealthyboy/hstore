@@ -67,7 +67,7 @@ class OrderStatusNotification extends Notification
         return (new MailMessage)
                     ->subject($this->request->subject)
                     ->greeting('Hello  '. $this->user->fullname() .',')
-                    ->line('ORDER #'.$this->request->orderId)
+                    ->line('ORDER  #'.$this->request->orderId)
                     ->line($this->request->message)
                     ->action('View your order', 'https://hautesignatures.com/orders')
                     ->line('Thank you for choosing HauteSignatures!');
