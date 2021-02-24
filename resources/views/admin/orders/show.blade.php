@@ -110,6 +110,8 @@
                      <label class="control-label">Message</label>
                      <textarea rows="10" name="message" class="form-control"></textarea>
                      <input type="hidden" name="id" class="form-control" value="{{ $order->user->id }}" />
+                     <input type="hidden" name="orderId" class="form-control" value="{{ $order->id }}" />
+
                   </div>
 						
 	               <button type="submit" class="btn btn-fill btn-rose">Send</button>
