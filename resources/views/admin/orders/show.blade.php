@@ -100,23 +100,17 @@
                   <h3 class="panel-title"><i class="fa fa-mail"></i> Send Message</h3>
                </div>
                <form method="" id="order-status" action="#">
-                  <div class="form-group label-floating">
-                     <select  class="form-control mt-3" name="status" id="">
-                        <option value="" >Choose Status</option>
-                        @foreach($statuses as $status)
-                           <option value="{{ $status }}">{{ $status }}</option>
-                        @endforeach
-                     </select>
-                  </div>
+                  
 
-                  <div class="form-group label-floating ">
+                  <!-- <div class="form-group label-floating ">
                      <label class="control-label">Phone Number</label>
                      <input type="type" name="pn" class="form-control" placeholder="Eg +2348169389886" />
-                  </div>
+                  </div> -->
 
                   <div class="form-group label-floating is-empty">
                      <label class="control-label">Message</label>
                      <textarea rows="10" name="message" class="form-control"></textarea>
+                     <input type="text" name="id" class="form-control" value="{{ $order->user->id }}" />
                   </div>
 						
 	               <button type="submit" class="btn btn-fill btn-rose">Send</button>

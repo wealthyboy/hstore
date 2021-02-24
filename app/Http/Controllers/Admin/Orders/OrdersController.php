@@ -60,14 +60,16 @@ class OrdersController extends Controller{
 	public function updateStatus(Request $request){
 		$ordered_product = OrderedProduct::findOrFail($request->ordered_product_id);
 		$ordered_product->status = $request->status;
-		$ordered_product->save();        
+		$ordered_product->save();  
+
 		return $ordered_product;
 	}
 	
 	
 	public function updateOrderStatus(Request $request){
-		Notification::route('nexmo', $request->pn)
-            ->notify(new OrderStatusNotification($request));
+		$user = User::find($request->id);
+		Notification::route('mail', $user->email)
+            ->notify(new OrderStatusNotification($user,$request));
 	}
 
 

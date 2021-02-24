@@ -15,14 +15,20 @@ class OrderStatusNotification extends Notification
 
     public $request;
 
+    public $user;
+
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct($user,$request)
     {
         $this->request = $request;
+
+        $this->user = $user;
+
     }
 
     /**
@@ -33,7 +39,7 @@ class OrderStatusNotification extends Notification
     */
     public function via($notifiable)
     {
-        return ['nexmo'];
+        return ['mail'];
     }
 
 
@@ -59,9 +65,9 @@ class OrderStatusNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->greeting('Hello!'. $this->user->fullname())
+                    ->line($this->request->message)
+                    ->line('Thank you for choosing HauteSignatures!');
     }
 
     /**
