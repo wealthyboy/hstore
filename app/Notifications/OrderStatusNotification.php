@@ -68,6 +68,8 @@ class OrderStatusNotification extends Notification
                     ->subject($this->request->subject)
                     ->greeting('Hello  '. $this->user->fullname() .',')
                     ->line($this->request->message)
+                    ->action('View your order', 'https://hautesignatures.com/orders')
+
                     ->line('Thank you for choosing HauteSignatures!');
     }
 
