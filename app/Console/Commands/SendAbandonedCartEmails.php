@@ -55,7 +55,7 @@ class SendAbandonedCartEmails extends Command
                                     ->where('status','pending')->get();
                     if ($carts[0]->user->email){
                         \Mail::to("jacob.atam@gmail.com")
-                        ->send(new AbandonedCart($carts));
+                        ->later(now()->addMinutes(10), new AbandonedCart($carts));
                     }
                 
                 }
