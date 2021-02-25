@@ -11,14 +11,17 @@ class AbandonedCart extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $carts;
+
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($carts)
     {
-        //
+        $this->carts = $carts;
     }
 
     /**
