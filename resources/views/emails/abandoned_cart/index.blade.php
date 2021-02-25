@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8" />
-   <title>Template builder</title>
+   <title>Your Cart</title>
    <meta charset="UTF-8" />
    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">

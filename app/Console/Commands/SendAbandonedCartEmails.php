@@ -21,7 +21,7 @@ class SendAbandonedCartEmails extends Command
      *
      * @var string
      */
-    protected $description = 'Send emails to users with abandou=ned cart';
+    protected $description = 'Send abandoned cart email';
 
     /**
      * Create a new command instance.
