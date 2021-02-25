@@ -88,7 +88,7 @@
                                              </tr>
                                              <tr>
                                                 <td align="center">
-                                                   <a href="https://hautesignatures.com"><img src="https://hautesignatures.com/images/logo/1608034857Untitled%20design-2.jpg" data-crop="false" width="auto" height="auto" alt="" style="display:block; width:100px;"></a>
+                                                   <a href="https://hautesignatures.com"><img src="https://hautesignatures.com/images/logo/1608034857Untitled%20design-2.jpg" data-crop="false" width="200" height="200" alt="" style="display:block; width:100px;"></a>
                                                 </td>
                                              </tr>
                                              <tr>
@@ -133,7 +133,7 @@
                                              </tr>
                                              <tr>
                                                 <td  data-color="#000000" data-fontweight="600" data-fontsize="20"  data-letterspacing="0.05" data-lineheight="25"  data-align="left" class="text" style="text-align:left; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:20px; line-height: 25px; text-decoration: none; color: #000000; font-weight:600; text-transform: uppercase; letter-spacing: 0.05em" data-size="var-8-title-size" data-color="var-8-title-color" data-link-color="var-8-link-color" data-link-style="color: blue;">
-                                                   Some words about
+                                                   Come an grab the item you have in cart.
                                                 </td>
                                              </tr>
                                              <tr>
@@ -180,7 +180,8 @@
                                           <tbody>
 
                                           <!-- Begining of Product -->
-                                          
+                                            @foreach($user_carts as $cart)
+
                                              <tr>
                                                 <th width="280" align="left" class="container-wrap" valign="top" style="vertical-align: top; width:280px;">
                                                    <table width="280" align="left" class="container" border="0" cellpadding="0" cellspacing="0" style="width:280px;">
@@ -193,7 +194,7 @@
                                                          </tr>
                                                          <tr>
                                                             <td class="text" data-fontweight="700"  data-letterspacing="0.05" data-lineheight="20"  data-fontsize="20" data-align="center" style="text-align:center; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:20px; line-height: 20px; text-decoration: none; color: #000000; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em" data-size="sale-2-title-size" data-color="sale-2-title-color" data-link-color="sale-2-link-color" data-link-style="color: blue;">
-                                                            Product Name
+                                                            {{  optional($cart->product_variation)->name  ??  optional($cart->product_variation)->product->product_name }}
                                                             </td>
                                                          </tr>
                                                          <tr>
@@ -228,9 +229,7 @@
                                                       </tbody>
                                                    </table>
                                                 </th>
-                                               
-
-
+                                          
                                                <!-- End of Product -->
                                     
                                              </tr>

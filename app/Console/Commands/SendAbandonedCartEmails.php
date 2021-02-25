@@ -40,8 +40,20 @@ class SendAbandonedCartEmails extends Command
      */
     public function handle()
     {
-        $cart = Cart::all();
-        \Mail::to('jacob.atam@gmail.com')
-               ->send(new AbandonedCart($cart));
+        $abandoned_carts = Cart::where('user_id','!=',null)
+                       ->where('status','pending')->get();
+
+        foreach ($abandoned_carts as $abandoned_cart) {
+            if (optional($abandoned_cart->user)->email) {
+                $user_carts = Cart::where('user_id',optional($abandoned_cart->user)->id)
+                                ->where('status','pending')->get();
+                if ($user_carts[0]->user->email){
+                    \Mail::to($user_carts[0]->email)
+                    ->send(new AbandonedCart($user_carts));
+                }
+               
+            }
+        }
+
     }
 }
