@@ -231,6 +231,8 @@
                                                 </th>
                                           
                                                <!-- End of Product -->
+
+                                               @endforeach
                                     
                                              </tr>
                                           </tbody>
