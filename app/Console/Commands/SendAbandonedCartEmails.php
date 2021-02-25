@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Cart;
 use App\Mail\AbandonedCart;
+use App\User;
 
 
 class SendAbandonedCartEmails extends Command
@@ -46,6 +47,9 @@ class SendAbandonedCartEmails extends Command
                         ->where('status','pending')->get();
 
             \Log::info($abandoned_carts);
+
+            \Log::info(User::find(838));
+
 
             foreach ($abandoned_carts as $abandoned_cart) {
                 if (optional($abandoned_cart->user)->email) {
