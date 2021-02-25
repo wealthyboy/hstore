@@ -42,31 +42,34 @@ class SendAbandonedCartEmails extends Command
     public function handle()
     {    
 
-        \Log::info(User::all());
+        //\Log::info(User::all());
 
         
-        try {
+        
             $abandoned_carts = Cart::where('status','pending')->get();
 
             \Log::info($abandoned_carts);
 
-            return;
+
 
             foreach ($abandoned_carts as $abandoned_cart) {
                 if (optional($abandoned_cart->user)->email) {
                     $user_carts = Cart::where('user_id',optional($abandoned_cart->user)->id)
                                     ->where('status','pending')->get();
                     if ($user_carts[0]->user->email){
-                        // \Mail::to($user_carts[0]->email)
-                        // ->send(new AbandonedCart($user_carts));
+                        \Mail::to($user_carts[0]->email)
+                        ->send(new AbandonedCart($user_carts));
                     }
                 
                 }
             }
 
-        } catch (\Throwable $th) {
-            \Log::error($th);
-        }
+            $this->info('Abandoned cart mail sent');
+
+
+        // } catch (\Throwable $th) {
+        //     \Log::error($th);
+        // }
         
     }
 }
