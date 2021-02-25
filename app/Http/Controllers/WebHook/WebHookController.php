@@ -88,6 +88,9 @@ class WebHookController extends Controller
 
                 
                 //Delete all the cart
+                $cart->remember_token = null;
+                $cart->status = 'paid';
+                $cart->save();
             }
             $admin_emails = explode(',',$this->settings->alert_email);
             $symbol = optional($currency)->symbol  ;
