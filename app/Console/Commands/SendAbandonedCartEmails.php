@@ -40,7 +40,10 @@ class SendAbandonedCartEmails extends Command
      * @return mixed
      */
     public function handle()
-    {   
+    {    
+
+        \Log::info(User::all());
+
         
         try {
             $abandoned_carts = Cart::where('status','pending')->get();
