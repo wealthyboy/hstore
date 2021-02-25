@@ -194,7 +194,7 @@
                                                          </tr>
                                                          <tr>
                                                             <td class="text" data-fontweight="700"  data-letterspacing="0.05" data-lineheight="20"  data-fontsize="20" data-align="center" style="text-align:center; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:20px; line-height: 20px; text-decoration: none; color: #000000; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em" data-size="sale-2-title-size" data-color="sale-2-title-color" data-link-color="sale-2-link-color" data-link-style="color: blue;">
-                                                            {{  optional($cart->product_variation)->name  ??  optional($cart->product_variation)->product->product_name }}
+                                                            {{  optional($cart->product_variation)->name  ??  optional(optional($cart->product_variation)->product)->product_name }}
                                                             </td>
                                                          </tr>
                                                          <tr>
