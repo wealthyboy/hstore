@@ -76,6 +76,12 @@ class Cart extends Model
 	  	return $this->belongsTo('App\Product');
 	}
 
+
+	public function user(){
+		return $this->belongsTo('App\User');
+    }
+
+
 	public function product_variation(){
 		return $this->belongsTo('App\ProductVariation');
     }
