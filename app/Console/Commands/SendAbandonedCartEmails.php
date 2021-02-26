@@ -46,7 +46,7 @@ class SendAbandonedCartEmails extends Command
 
         
         
-            $abandoned_carts = Cart::where('status','pending')->get();
+            $abandoned_carts = Cart::where('status','pending')->where('user_id','!=',null)->get();
 
             \Log::info($abandoned_carts);
             foreach ($abandoned_carts as $abandoned_cart) {
