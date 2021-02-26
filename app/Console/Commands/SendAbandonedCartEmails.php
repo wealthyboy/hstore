@@ -67,6 +67,6 @@ class SendAbandonedCartEmails extends Command
         // } catch (\Throwable $th) {
         //     \Log::error($th);
         // }
-        
+
     }
 }
