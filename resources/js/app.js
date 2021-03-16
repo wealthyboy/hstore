@@ -82,4 +82,23 @@ const app = new Vue({
         Comments,
         SignUp,
         Images
-    }   
+    }
+    
+});  
+
+
+window.onpageshow = function(event) {
+   // location.reload()
+   console.log(event)
+
+
+    if (event.persisted) {
+        console.log(event.persisted)
+       // $('#close-modal').removeClass('pointer-events').trigger('click')
+    }
+};
+
+window.onhashchange = function(e) {
+  console.log(e)
+}
+

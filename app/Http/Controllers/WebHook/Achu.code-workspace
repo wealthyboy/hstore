@@ -1,43 +1,46 @@
 {
-    "folders": [
-        {
-            "path": "../../../.."
-        },
-        {
-            "path": "../../../../../nollyflix"
-        },
-        {
-            "path": "../../../../../theluxurysale"
-        },
-        {
-            "path": "../../../../../ig.ohram.org"
-        },
-        {
-            "path": "../../../../../ohram"
-        },
-        {
-            "path": "../../../../../avenuemontaigne.ng"
-        },
-        {
-            "path": "../../../../../afrk"
-        },
-        {
-            "path": "../../../../../AM"
-        },
-        {
-            "path": "../../../../../../../../../Users/mac/Downloads/portotheme.com/html/porto_ecommerce/demo_29"
-        },
-        {
-            "path": "../../../../../demo_11"
-        },
-        {
-            "path": "../../../../../travelo"
-        },
-        {
-            "path": "../../../../../expo-netflix"
-        },
-        {
-            "path": "../../../../../DoneWithIt"
-        }
-    ]
+  "folders": [
+    {
+      "path": "../../../.."
+    },
+    {
+      "path": "../../../../../nollyflix"
+    },
+    {
+      "path": "../../../../../theluxurysale"
+    },
+    {
+      "path": "../../../../../ig.ohram.org"
+    },
+    {
+      "path": "../../../../../ohram"
+    },
+    {
+      "path": "../../../../../avenuemontaigne.ng"
+    },
+    {
+      "path": "../../../../../afrk"
+    },
+    {
+      "path": "../../../../../AM"
+    },
+    {
+      "path": "../../../../../demo_11"
+    },
+    {
+      "path": "../../../../../travelo"
+    },
+    {
+      "path": "../../../../../expo-netflix"
+    },
+    {
+      "path": "../../../../../DoneWithIt"
+    },
+    {
+      "path": "../../../../../Backend"
+    },
+    {
+      "path": "../../../../../Netflix-clone-react-native"
+    }
+  ]
 }

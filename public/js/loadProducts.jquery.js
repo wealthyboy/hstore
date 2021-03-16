@@ -134,6 +134,7 @@
         $.ajax({
             url : url,
             type: 'get',
+            cache: false,
         }).done(function (json) {
             contents(json.products,true);
         }).fail(function () {
@@ -149,6 +150,8 @@
              url:url,
              data:data,
              type:'get',
+             cache: false,
+
              beforeSend : function( xhr ) {
              }
          }).done(function (json) {
