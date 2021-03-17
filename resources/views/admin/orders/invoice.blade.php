@@ -41,8 +41,11 @@ body{
                 <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
                 <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/><br/>
                 <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
+                <div style="margin-left: 150px;" class="logo">
+                  <img width="200" src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo">
+                </div>
               </div>
-              <div class="logo"><img  src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo"></div>
+              
             @else
                <div> No data </div>
             @endif
