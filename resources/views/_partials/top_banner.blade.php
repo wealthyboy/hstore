@@ -4,7 +4,7 @@
             
             <div class="col-12">
                 <h5 class="d-inline-block color--light text-uppercase  mb-0"><b><i class="fas fa-money-check"></i>
-                Get 5% off entire store, Use code HSEXTRA at checkout.</b>
+                Get 10% off your order, Use code EASTER10 at checkout.</b>
                 </h5>
             </div>
             

@@ -10,25 +10,13 @@
       "path": "../../../../../theluxurysale"
     },
     {
-      "path": "../../../../../ig.ohram.org"
-    },
-    {
       "path": "../../../../../ohram"
     },
     {
       "path": "../../../../../avenuemontaigne.ng"
     },
     {
-      "path": "../../../../../afrk"
-    },
-    {
       "path": "../../../../../AM"
-    },
-    {
-      "path": "../../../../../demo_11"
-    },
-    {
-      "path": "../../../../../travelo"
     },
     {
       "path": "../../../../../expo-netflix"
@@ -40,7 +28,16 @@
       "path": "../../../../../Backend"
     },
     {
-      "path": "../../../../../Netflix-clone-react-native"
+      "path": "../../../../../laravel-nuxt-e-commerce"
+    },
+    {
+      "path": "../../../../../nollyflix-app"
+    },
+    {
+      "path": "../../../../../globatos.ng"
     }
-  ]
+  ],
+  "settings": {
+    "prettier.bracketSpacing": false
+  }
 }
