@@ -44,29 +44,29 @@ class SendAbandonedCartEmails extends Command
 
         ////\Log::info(User::all());
 
-        try {
         
-            $abandoned_carts = Cart::where('status','pending')->where('user_id','!=',null)->get();
+        
+            // $abandoned_carts = Cart::where('status','pending')->where('user_id','!=',null)->get();
 
-            \Log::info($abandoned_carts);
-            foreach ($abandoned_carts as $abandoned_cart) {
-                if (optional($abandoned_cart->user)->email) {
-                    $carts = Cart::where('user_id',optional($abandoned_cart->user)->id)
-                                    ->where('status','pending')->get();
-                    if ($carts[0]->user->email){
-                        \Mail::to("jacob.atam@gmail.com")
-                        ->later(now()->addMinutes(10), new AbandonedCart($carts));
-                    }
+            // \Log::info($abandoned_carts);
+            // foreach ($abandoned_carts as $abandoned_cart) {
+            //     if (optional($abandoned_cart->user)->email) {
+            //         $carts = Cart::where('user_id',optional($abandoned_cart->user)->id)
+            //                         ->where('status','pending')->get();
+            //         if ($carts[0]->user->email){
+            //             // \Mail::to("jacob.atam@gmail.com")
+            //             // ->later(now()->addMinutes(10), new AbandonedCart($carts));
+            //         }
                 
-                }
-            }
+            //     }
+            // }
 
-            $this->info('Abandoned cart mail sent');
+            // $this->info('Abandoned cart mail sent');
 
 
-        } catch (\Throwable $th) {
-            \Log::error($th);
-        }
+        // } catch (\Throwable $th) {
+        //     \Log::error($th);
+        // }
 
     }
 }
