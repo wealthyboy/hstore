@@ -47709,7 +47709,7 @@ var render = function() {
                         )
                       ]),
                   _vm._v(" "),
-                  _vm.allowSizeGuide
+                  Object.keys(this.attributes).includes("Sizes")
                     ? _c("div", { staticClass: "col-12 text-center" }, [
                         _c(
                           "a",
