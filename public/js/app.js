@@ -47745,8 +47745,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("a", { attrs: { target: "_blank", href: "/size/guide" } }, [
+    return _c("div", { staticClass: "col-2" }, [
+      _c("a", { attrs: { href: "/size/guide" } }, [
         _vm._v("\n                  Size Guide\n                ")
       ])
     ])
