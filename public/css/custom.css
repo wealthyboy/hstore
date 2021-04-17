@@ -642,6 +642,8 @@ background: white;
   margin-top: -40px;
 }
 
+svg#iconLoaded-ruler{ width: 30px; height: 30px;}
+
 
 .inner:hover .prod-full-screen{
   opacity: 1;
