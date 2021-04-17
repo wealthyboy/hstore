@@ -5215,7 +5215,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -5318,6 +5317,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.discounted_price = this.product.default_discounted_price;
     this.is_wishlist = this.product.is_wishlist;
     this.name = this.product.name;
+    console.log(Object.keys(this.attributes));
   },
   methods: _objectSpread(_objectSpread({
     getStarRating: function getStarRating(e, rating) {
