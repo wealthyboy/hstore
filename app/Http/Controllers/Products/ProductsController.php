@@ -173,6 +173,12 @@ class ProductsController extends Controller
 
         return view('products.index',compact('products','breadcrumb'));  
     }
+
+
+    public function sizeGuide(){
+        return view("products.size");
+    }
+
     
 
     public function product_stock($product_variation)

@@ -179,6 +179,8 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('newsletter/signup',              'Api\NewsLetter\NewsLetterController@store');
     Route::get('products/{category}',             'Products\ProductsController@index');
     Route::get('product/quick/view',             'Products\ProductsController@quickView');
+    Route::get('product/size/guide',             'Products\ProductsController@sizeGuide');
+
 
     Route::get('product/{category}/{product_variation}', 'Products\ProductsController@show');
     Route::get('pages/{information}',             'Information\InformationController@show');
