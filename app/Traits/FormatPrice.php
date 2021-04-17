@@ -25,6 +25,7 @@ trait FormatPrice
      */
     public function formatted_discount_price()
     {
+      //is future checks if the date is the future
       if ( $this->product_type == 'variable' && optional(optional($this->variant)->sale_price_expires)->isFuture() ) {
             return  null !== $this->variant  &&  null !== $this->variant->sale_price 
           ? $this->ConvertCurrencyRate($this->variant->sale_price)
