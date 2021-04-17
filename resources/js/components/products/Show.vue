@@ -291,7 +291,7 @@
                 </a>
               </div>
 
-              <div v-if="Object.keys(this.attributes).includes('Sizes')" class="col-12 text-center">
+              <div v-if="Object.keys(attributes).includes('Sizes')" class="col-12 text-center">
                 <a class="bold" target="_blank" href="/product/size/guide">
                   <svg  id="iconLoaded-ruler">                        
                       <use xlink:href="#sizeGuide">
