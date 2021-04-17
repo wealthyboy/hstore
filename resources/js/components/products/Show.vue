@@ -291,7 +291,7 @@
                 </a>
               </div>
 
-              <div class="col-12 text-center">
+              <div v-if="allowSizeGuide" class="col-12 text-center">
                 <a class="bold" target="_blank" href="/product/size/guide">
                   <svg  id="iconLoaded-ruler">                        
                       <use xlink:href="#sizeGuide">
@@ -376,6 +376,7 @@ export default {
   },
   data() {
     return {
+      allowSizeGuide: false,
       name: null,
       attributesData: [],
       color: "",
@@ -458,9 +459,16 @@ export default {
     this.discounted_price = this.product.default_discounted_price;
     this.is_wishlist = this.product.is_wishlist;
     this.name = this.product.name;
-    console.log(Object.keys(this.attributes))
+    this.allowSizeGuide()
   },
   methods: {
+    allowSizeGuide(){
+       if(Object.keys(this.attributes).includes('Sizes')){
+        this.allowSizeGuide =  true
+       }
+
+       return false;
+    },
     getStarRating(e, rating) {
       this.form.rating = rating;
       this.noRating = false;

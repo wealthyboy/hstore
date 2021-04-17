@@ -5238,6 +5238,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      allowSizeGuide: false,
       name: null,
       attributesData: [],
       color: "",
@@ -5317,9 +5318,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.discounted_price = this.product.default_discounted_price;
     this.is_wishlist = this.product.is_wishlist;
     this.name = this.product.name;
-    console.log(Object.keys(this.attributes));
+    this.allowSizeGuide();
   },
   methods: _objectSpread(_objectSpread({
+    allowSizeGuide: function allowSizeGuide() {
+      if (Object.keys(this.attributes).includes('Sizes')) {
+        this.allowSizeGuide = true;
+      }
+
+      return false;
+    },
     getStarRating: function getStarRating(e, rating) {
       this.form.rating = rating;
       this.noRating = false;
@@ -47708,42 +47716,53 @@ var render = function() {
                         )
                       ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-12 text-center" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "bold",
-                        attrs: { target: "_blank", href: "/product/size/guide" }
-                      },
-                      [
-                        _c("svg", { attrs: { id: "iconLoaded-ruler" } }, [
-                          _c("use", { attrs: { "xlink:href": "#sizeGuide" } }, [
-                            _c("symbol", { attrs: { id: "sizeGuide" } }, [
+                  _vm.allowSizeGuide
+                    ? _c("div", { staticClass: "col-12 text-center" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "bold",
+                            attrs: {
+                              target: "_blank",
+                              href: "/product/size/guide"
+                            }
+                          },
+                          [
+                            _c("svg", { attrs: { id: "iconLoaded-ruler" } }, [
                               _c(
-                                "svg",
-                                {
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    viewBox: "0 0 24 24"
-                                  }
-                                },
+                                "use",
+                                { attrs: { "xlink:href": "#sizeGuide" } },
                                 [
-                                  _c("path", {
-                                    attrs: {
-                                      "fill-rule": "evenodd",
-                                      d:
-                                        "M16.125 1L23 7.875 7.875 23 1 16.125 16.125 1zm0 2.75l4.125 4.125L7.875 20.25 3.75 16.125l2.75-2.75 2.75 2.75 1.375-1.375L7.875 12l1.375-1.375 2.75 2.75L13.375 12l-2.75-2.75L12 7.875l2.75 2.75 1.375-1.375-2.75-2.75 2.75-2.75z"
-                                    }
-                                  })
+                                  _c("symbol", { attrs: { id: "sizeGuide" } }, [
+                                    _c(
+                                      "svg",
+                                      {
+                                        attrs: {
+                                          xmlns: "http://www.w3.org/2000/svg",
+                                          viewBox: "0 0 24 24"
+                                        }
+                                      },
+                                      [
+                                        _c("path", {
+                                          attrs: {
+                                            "fill-rule": "evenodd",
+                                            d:
+                                              "M16.125 1L23 7.875 7.875 23 1 16.125 16.125 1zm0 2.75l4.125 4.125L7.875 20.25 3.75 16.125l2.75-2.75 2.75 2.75 1.375-1.375L7.875 12l1.375-1.375 2.75 2.75L13.375 12l-2.75-2.75L12 7.875l2.75 2.75 1.375-1.375-2.75-2.75 2.75-2.75z"
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
                                 ]
                               )
-                            ])
-                          ])
-                        ]),
-                        _vm._v("\n                Size Guide\n              ")
-                      ]
-                    )
-                  ])
+                            ]),
+                            _vm._v(
+                              "\n                Size Guide\n              "
+                            )
+                          ]
+                        )
+                      ])
+                    : _vm._e()
                 ])
               ]),
               _vm._v(" "),
