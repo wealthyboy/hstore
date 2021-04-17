@@ -462,13 +462,7 @@ export default {
     console.log(Object.keys(this.attributes).includes('Sizes'))
   },
   methods: {
-    allowSizeGuide(){
-       if(Object.keys(this.attributes).includes('Sizes')){
-        this.allowSizeGuide =  true
-       }
-
-       return false;
-    },
+    
     getStarRating(e, rating) {
       this.form.rating = rating;
       this.noRating = false;

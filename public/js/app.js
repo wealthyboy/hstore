@@ -5321,13 +5321,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     console.log(Object.keys(this.attributes).includes('Sizes'));
   },
   methods: _objectSpread(_objectSpread({
-    allowSizeGuide: function allowSizeGuide() {
-      if (Object.keys(this.attributes).includes('Sizes')) {
-        this.allowSizeGuide = true;
-      }
-
-      return false;
-    },
     getStarRating: function getStarRating(e, rating) {
       this.form.rating = rating;
       this.noRating = false;
