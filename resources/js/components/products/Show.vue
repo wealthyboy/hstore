@@ -293,7 +293,12 @@
 
               <div class="col-12 text-center">
                 <a class="bold" target="_blank" href="/product/size/guide">
-                  <!-- <svg data-icon-id="ruler" data-icon-set="farfetch-2020" id="iconLoaded-ruler"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M16.125 1L23 7.875 7.875 23 1 16.125 16.125 1zm0 2.75l4.125 4.125L7.875 20.25 3.75 16.125l2.75-2.75 2.75 2.75 1.375-1.375L7.875 12l1.375-1.375 2.75 2.75L13.375 12l-2.75-2.75L12 7.875l2.75 2.75 1.375-1.375-2.75-2.75 2.75-2.75z"></path></svg></svg> -->
+                  <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M16.125 1L23 7.875 7.875 23 1 16.125 16.125 1zm0 2.75l4.125 4.125L7.875 20.25 3.75 16.125l2.75-2.75 2.75 2.75 1.375-1.375L7.875 12l1.375-1.375 2.75 2.75L13.375 12l-2.75-2.75L12 7.875l2.75 2.75 1.375-1.375-2.75-2.75 2.75-2.75z"></path></svg></svg> -->
+                  <svg  id="iconLoaded-ruler">                        
+                      <use xlink:href="#sizeGuide">
+                        <symbol  id="sizeGuide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2l2.868 6.922L22 9.844l-5.11 4.804L18.225 22 12 18.322 5.776 22l1.333-7.352L2 9.844l7.132-.922z"></path></svg></symbol>
+                      </use>
+                    </svg>
                   Size Guide
                 </a>
               </div>
