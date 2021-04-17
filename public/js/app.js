@@ -5206,6 +5206,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -47557,8 +47559,6 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "row no-gutters mb-2" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
                   _vm.cartError
                     ? _c(
                         "div",
@@ -47599,7 +47599,7 @@ var render = function() {
                           ]
                         )
                       : _c("div", { attrs: { id: "quantity_1234" } }, [
-                          _vm._m(1)
+                          _vm._m(0)
                         ])
                   ]),
                   _vm._v(" "),
@@ -47667,7 +47667,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._m(2)]
+                              [_vm._m(1)]
                             )
                           : _vm._e(),
                         _vm._v(" "),
@@ -47696,9 +47696,11 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._m(3)]
+                          [_vm._m(2)]
                         )
-                      ])
+                      ]),
+                  _vm._v(" "),
+                  _vm._m(3)
                 ])
               ]),
               _vm._v(" "),
@@ -47745,16 +47747,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("a", { attrs: { href: "/size/guide" } }, [
-        _vm._v("\n                  Size Guide\n                ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "select",
       {
@@ -47791,6 +47783,16 @@ var staticRenderFns = [
         _c("i", { staticClass: "fas fa-heart fa-stack-1x fa-inverse" })
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 text-center" }, [
+      _c("a", { attrs: { target: "_blank", href: "/size/guide" } }, [
+        _vm._v("\n                Size Guide\n              ")
+      ])
+    ])
   },
   function() {
     var _vm = this
