@@ -459,7 +459,7 @@ export default {
     this.discounted_price = this.product.default_discounted_price;
     this.is_wishlist = this.product.is_wishlist;
     this.name = this.product.name;
-    this.allowSizeGuide()
+    console.log(Object.keys(this.attributes).includes('Sizes'))
   },
   methods: {
     allowSizeGuide(){
