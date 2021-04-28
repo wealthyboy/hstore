@@ -1,4 +1,4 @@
-<div style="background-color: #c6302c;" class="top-notice text-white">
+<div style="background-color: #ea9a23;" class="top-notice text-white">
     <div class="container-fluid text-center">
         <div class="row">
             <div class="col-12">
