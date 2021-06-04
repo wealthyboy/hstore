@@ -13,7 +13,7 @@
                 <img src="{{ $product->image_to_show_m }}" alt="{{ $product->product_name }}" />
             </a>
             <div class="btn-icon-group"></div>
-            <!-- <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn-quickvie" title="Quick View">Quick View</a>  -->
+            <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn-quickvie" title="Quick View">Quick View</a> 
         </figure>
         
         <div class="product-details">
@@ -21,7 +21,6 @@
                 @if(optional($product->product)->colours->count())
                     <div  class="justify-content-start d-flex mb-1">
                         @foreach($product->product->colours as $color)
-                        
                             @if( $color->image)
                                 <div style="border:{{ optional($product->active_color)->color_code == $color->color_code ? '1.5px' : '1px' }} solid #CCC; height: 12px; width: 12px; border-radius: 50%; background-size: cover;  background-image: url({{ $color->image }})" class="mr-1"></div>
                             @else

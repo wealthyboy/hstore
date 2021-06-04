@@ -1,84 +1,57 @@
-
-
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <title>Shipping</title>
-      <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
-      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-   
-   </head>
-   <body>
-      <div class="container">
-         <div style="page-break-after: always;">
-            <h1>Dispatch Note #{{ $order->id }}</h1>
-            <table class="table table-bordered">
-               <thead>
-                  <tr>
-                     <td colspan="2">Order Details</td>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>
-                        <address>
-                           <strong>{{ Config('app.name') }}</strong><br />
-                           {{ $system_settings->store_address }}
-                        </address>
-                        <b>Telephone: </b>{{ $system_settings->store_phone }}
-<br />
-                        <b>E-Mail: </b> {{ $system_settings->store_email }}<br />
-                        <b>Web Site:</b> <a href="{{ Config('app.url') }}">{{ Config('app.url') }}</a>
-                     </td>
-                     <td style="width: 50%;"><b>Date Added</b> {{ $order->created_at }}<br />
-                        <b>Order ID:</b> {{ $order->id }}<br />
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-            <table class="table table-bordered">
-               <thead>
-                  <tr>
-                     <td style="width: 50%;"><b>Shipp To</b></td>
-                     <td style="width: 50%;"><b>Contact</b></td>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr> 
-                     <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} {{ $order->last_name }}  <br />{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;<br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;</td>
-      
-                     <td class="text-left"> {{ optional(optional($order)->address)->first_name }} &nbsp;{{ optional(optional($order)->address)->last_name }}  <br />
-                        {{ optional($order->user)->email }} <br />{{ optional($order->user)->phone_number }} <br /><br /> <br />
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-            <table class="table table-bordered">
-               <thead>
-                  <tr>
-                     <td><b>Location</b></td>
-                     <td><b>Reference</b></td>
-                     <td><b>Product</b></td>
-                     <td><b>Product Weight</b></td>
-                     <td><b>Model</b></td>
-                     <td class="text-right"><b>Quantity</b></td>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td></td>
-                     <td> </td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td class="text-right"></td>
-                  </tr>
-               </tbody>
-            </table>
+<html>
+<head>
+<title>Dispatch</title>
+</head>
+<style>
+body{
+  margin: 0px;
+
+}
+
+@media print {
+ 
+  #section-to-print, #section-to-print * {
+    visibility: visible;
+  }
+  .no-print{visibility: hidden;}
+  #section-to-print {
+    height:100%; 
+    overflow: hidden;
+    background: #FFF; 
+    font-size: 17px;
+    width: 100%;
+    margin-right: 0px;
+    padding: 10px;
+  }
+  span.tx{
+    font-size: 15px;
+    font-weight: 400;
+  }
+}   
+</style>
+<body onclick="window.print();" >
+        <div  style="" id="section-to-print" class="col-md-12">
+            @if($order != '')
+              <br/>
+              <div class="content" >
+              <div class="">
+                <strong>Name: </strong>   <span class="tx">&nbsp{{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }} </span><br/>
+                <strong>Phone: </strong> <span class="tx"> &nbsp{{ optional(optional($order)->user)->phone_number }} </span><br/>
+                <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
+                <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/><br/>
+                <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
+                <div style="margin-left: 150px;" class="logo">
+                  <img width="200" src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo">
+                </div>
+              </div>
+              
+            @else
+               <div> No data </div>
+            @endif
          </div>
       </div>
-   </body>
+               
 
-</html>
-
+  </div>
+</body>
