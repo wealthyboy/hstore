@@ -46,7 +46,7 @@ body{
                      $order->delivery_option == "1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" ? "Pick Up:  " : "Stock Pile: " 
                   }}
                   </strong> 
-                     {{ $order->delivery_option }}
+                     {{ $order->delivery_option }}<br/>
                @endif
                 <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/><br/>
                 <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
