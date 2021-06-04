@@ -8,8 +8,13 @@
       <title>Invoice</title>
       <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-   
    </head>
+
+   <style>
+      .table th, .table td{
+        vertical-align: middle;
+      }
+   </style>
    <body>
       <div class="container">
          <div style="page-break-after: always;">
@@ -46,7 +51,11 @@
                   </thead>
                   <tbody>
                      <tr>
-                         <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} {{ $order->last_name }}  <br />{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;<br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;</td>
+                        @if (null !== $order->shipping)
+                            <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} {{ $order->last_name }}  <br />{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;<br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;</td>
+                        @else
+                          {{ $order->delivery_option }}
+                        @endif
                      </tr>
                   </tbody>
             </table>
