@@ -54,7 +54,12 @@
                         @if (null !== $order->shipping)
                             <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} {{ $order->last_name }}  <br />{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;<br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;</td>
                         @else
-                          {{ $order->delivery_option }}
+                        <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;">
+                        {{ 
+                          $order->delivery_option == "1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" ? "Pick Up:  " : "Stock Pile: " }}
+                         {{ $order->delivery_option }}
+                        
+                        </td>
                         @endif
                      </tr>
                   </tbody>
