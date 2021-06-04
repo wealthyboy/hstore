@@ -38,7 +38,16 @@ body{
               <div class="">
                 <strong>Name: </strong>   <span class="tx">&nbsp{{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }} </span><br/>
                 <strong>Phone: </strong> <span class="tx"> &nbsp{{ optional(optional($order)->user)->phone_number }} </span><br/>
-                <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
+                @if (null !== $order->shipping)
+                  <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
+                  @else
+                  <strong>
+                  {{ 
+                     $order->delivery_option == "1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" ? "Pick Up:  " : "Stock Pile: " 
+                  }}
+                  </strong> 
+                     {{ $order->delivery_option }}
+               @endif
                 <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/><br/>
                 <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
                 <div style="margin-left: 150px;" class="logo">
