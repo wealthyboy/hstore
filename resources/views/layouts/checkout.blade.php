@@ -41,6 +41,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
     <meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }} ">
+
     <script>
 		Window.user = {
 			user: {!! auth()->check() ? auth()->user() : 0000 !!},
@@ -87,6 +88,8 @@
 	
 
 	<a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
+	
+
 
 	<!-- Plugins JS File -->
     <script src="/js/checkout.js?version={{ str_random(6) }}" type="text/javascript"></script>
