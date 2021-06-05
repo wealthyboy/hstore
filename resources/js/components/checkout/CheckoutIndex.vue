@@ -134,12 +134,12 @@
                                 <h4>Choose Delivery Option</h4>
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1 ">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" v-model="delivery_option" class="custom-control-input" id="pick_up_surulere" name="delivery_option" required>
-                                        <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">(No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE. Pick up charge of ₦200 to be paid at pick up point.)</span></label>
+                                        <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE." v-model="delivery_option" class="custom-control-input" id="pick_up_surulere" name="delivery_option" required>
+                                        <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE.</span></label>
                                     </div>
                                     <div class="custom-control custom-radio ">
-                                        <input type="radio" value="Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA. Tejumade" v-model="delivery_option" class="custom-control-input" id="pick_up_magodo" name="delivery_option" required>
-                                        <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">(Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.)</span></label>
+                                        <input type="radio" value="Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA." v-model="delivery_option" class="custom-control-input" id="pick_up_magodo" name="delivery_option" required>
+                                        <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.</span></label>
                                     </div>
                                 </div>
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
