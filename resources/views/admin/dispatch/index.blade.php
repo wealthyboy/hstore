@@ -20,7 +20,7 @@ body{
     height:100%; 
     overflow: hidden;
     background: #FFF; 
-    font-size: 25px;
+    font-size: 20px;
     width: 100%;
     margin-right: 10px;
     margin-top: 10px;
