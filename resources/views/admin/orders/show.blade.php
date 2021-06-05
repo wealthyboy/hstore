@@ -87,6 +87,20 @@
                         <td style="width: 1%;" class="text-center"><button disabled="disabled" class="btn btn-success btn-xs"><i class="fa fa-refresh"></i></button>
                         </td>
                      </tr>
+
+                     <tr>
+                        <td class="td-actions text-center">
+                           <span> <a href="{{ route('order.dispatch.note',['id'=>$order->id]) }}" rel="tooltip"   target="_blank" class="btn btn-success btn-simple " data-original-title="" title="Dispatch Note">
+                              <i class="material-icons">dispatch</i>
+                           </a></span>
+                           <span><a href="{{ route('order.invoice',['id'=>$order->id]) }}" rel="tooltip"   target="_blank" class="btn btn-success btn-simple" data-original-title="" title="Print Invoice">
+                              <i class="material-icons">print</i>
+                           </a></span>
+                           <span><a href="{{ route('admin.orders.show',['order'=>$order->id]) }}" rel="tooltip" class="btn btn-success btn-simple" data-original-title="" title="View">
+                              <i class="fa fa-eye"></i>
+                           </a></span>
+                        </td>
+                     </tr>
                   </tbody>
                </table>
             </div>
