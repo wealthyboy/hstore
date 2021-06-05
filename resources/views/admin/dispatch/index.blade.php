@@ -51,9 +51,10 @@ body{
                   <strong>
                     Delivery Option: 
                   </strong> 
-                    @if ( $order->delivery_option == "1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" )
+                    @if(str_contains($order->delivery_option,  "SURULERE" )
                         Pick up at surulere.
-                    @elseif( $order->delivery_option == "Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA" )
+                    
+                    @elseif(str_contains($order->delivery_option,  "Magodo" )
                          Pick up at magodo.
                     @else
                         Stock pile.
