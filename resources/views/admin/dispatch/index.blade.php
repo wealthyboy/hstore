@@ -49,11 +49,16 @@ body{
                   <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
                   @else
                   <strong>
-                  {{ 
-                     $order->delivery_option == "1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address"  ||  $order->delivery_option == "Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA" ? "Pick Up:  " : "Stock Pile: " 
-                  }}
+                    Delivery Option: 
                   </strong> 
-                  {{ $order->delivery_option }}<br/>
+                    @if ( $order->delivery_option == "1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" )
+                        Pick up at surulere.
+                    @elseif( $order->delivery_option == "Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA" )
+                         Pick up at magodo.
+                    @else
+                        Stock pile.
+                    @endif
+                  <br/>
                 @endif
                 <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/>
                 <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span>
