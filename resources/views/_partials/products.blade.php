@@ -13,7 +13,7 @@
                 <img src="{{ $product->image_to_show_m }}" alt="{{ $product->product_name }}" />
             </a>
             <div class="btn-icon-group"></div>
-            <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn-quickvie" title="Quick View">Quick View</a> 
+            <!-- <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn-quickvie" title="Quick View">Quick View</a>  -->
         </figure>
         
         <div class="product-details">
