@@ -178,9 +178,6 @@
                                                 <label for="contact-message">Delivery Notes</label>
                                                 <textarea cols="30" rows="1" v-model="delivery_note" id="contact-message" class="form-control" name="delivery_note"></textarea>
                                             </div>
-
-                                            
-                                           
                                             <input type="hidden" :value="csrf.csrf" name="_token" />
                                             <input type="hidden" :value="shipping_id" name="ship_id" />
                                             <input type="hidden" :value="payment_method" name="payment_method" />
