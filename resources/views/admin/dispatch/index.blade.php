@@ -50,7 +50,7 @@ body{
                   @else
                   <strong>
                   {{ 
-                     $order->delivery_option == "1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" ? "Pick Up:  " : "Stock Pile: " 
+                     $order->delivery_option == "1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address"  ||  $order->delivery_option == "Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA" ? "Pick Up:  " : "Stock Pile: " 
                   }}
                   </strong> 
                   {{ $order->delivery_option }}<br/>
