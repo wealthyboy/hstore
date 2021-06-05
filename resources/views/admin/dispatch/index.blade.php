@@ -23,6 +23,7 @@ body{
     width: 100%;
     margin-right: 0px;
     padding: 10px;
+    margin-right: 15px;
   }
   span.tx{
     font-size: 15px;
@@ -50,9 +51,7 @@ body{
                @endif
                 <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/><br/>
                 <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
-                <div style="margin-left: 150px;" class="logo">
-                  <img width="200" src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo">
-                </div>
+                
               </div>
               
             @else
