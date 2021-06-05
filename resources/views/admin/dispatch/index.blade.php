@@ -51,14 +51,14 @@ body{
                   <strong>
                     Delivery Option: 
                   </strong> 
-                    @if(str_contains($order->delivery_option,  "SURULERE" )
+                    @if(str_contains($order->delivery_option,  "SURULERE" ))
                         Pick up at surulere.
-                    @endif
                     
-                    @if (str_contains($order->delivery_option,  "Magodo" )
+                    @elseif (str_contains($order->delivery_option,  "Magodo" ))
                          Pick up at magodo.
+                    @else
+                        Stock pile.
                     @endif
-
                   <br/>
                 @endif
                 <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/>
