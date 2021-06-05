@@ -15,28 +15,34 @@ body{
     visibility: visible;
   }
   .no-print{visibility: hidden;}
+  
   #section-to-print {
     height:100%; 
     overflow: hidden;
     background: #FFF; 
-    font-size: 17px;
+    font-size: 25px;
     width: 100%;
-    margin-right: 0px;
+    margin-right: 10px;
+    margin-top: 10px;
+
     padding: 10px;
     padding-right: 15px;
   }
   span.tx{
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 400;
+  }
+
+  .content strong {
+    font-size: 25px;
   }
 }   
 </style>
 <body onclick="window.print();" >
         <div  style="" id="section-to-print" class="col-md-12">
             @if($order != '')
-              <br/>
+              
               <div class="content" >
-              <div class="">
                 <strong>Name: </strong>   <span class="tx">&nbsp{{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }} </span><br/>
                 <strong>Phone: </strong> <span class="tx"> &nbsp{{ optional(optional($order)->user)->phone_number }} </span><br/>
                 @if (null !== $order->shipping)
@@ -50,9 +56,9 @@ body{
                   {{ $order->delivery_option }}<br/>
                 @endif
                 <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/>
-                <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span></div>
-                
+                <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span>
               </div>
+                
               
             @else
                <div> No data </div>
