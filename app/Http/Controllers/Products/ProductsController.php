@@ -121,7 +121,7 @@ class ProductsController extends Controller
         $attributes =  collect($data);
         $attributes = $attributes->count() && $product_variation->product->product_type == 'variable' ? $attributes : '{}';
         //$related_products = RelatedProduct::where(['product_id' => $product_variation->product->id])->get();
-        $product_variation->load(["images","product.variants","product.variants.images"]);
+        $product_variation->load(["images"]);
     	return view('products.show',compact('inventory','stock','category','attributes','product_variation','page_title'));
     }
 
