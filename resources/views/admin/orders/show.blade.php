@@ -89,7 +89,7 @@
                      </tr>
 
                      <tr>
-                        <td class="td-actions text-center">
+                        <td class="">
                            <span> <a href="{{ route('order.dispatch.note',['id'=>$order->id]) }}" rel="tooltip"   target="_blank" class="btn btn-success btn-simple " data-original-title="" title="Dispatch Note">
                               <i class="material-icons">dispatch</i>
                            </a></span>
