@@ -52,9 +52,9 @@
                   <tbody>
                      <tr>
                         @if (null !== $order->shipping)
-                           <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} {{ $order->last_name }}  <br />{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;<br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;</td>
+                           <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }}  <br />{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;<br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;</td>
                         @else
-                        <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} {{ $order->last_name }}  <br />{{ optional($order->user)->phone_number }}<br /> {{ optional($order->user)->email }} &nbsp;<br /> &nbsp;
+                        <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} optional(optional($order)->address)->last_name  <br />{{ optional($order->user)->phone_number }}<br /> {{ optional($order->user)->email }} &nbsp;<br /> &nbsp;
                         
                         <strong>
                            {{ 
