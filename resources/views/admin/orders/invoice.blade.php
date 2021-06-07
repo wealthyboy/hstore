@@ -57,8 +57,13 @@
                         <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} {{  optional(optional($order)->address)->last_name }} <br />{{ optional($order->user)->phone_number }}<br /> {{ optional($order->user)->email }} &nbsp;<br /> &nbsp;
                         
                         <strong>
-                           {{ 
-                              $order->delivery_option == "1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE (₦200 to be paid at pick up address" ? "Pick Up:  " : "Stock Pile: " }}
+                              @if(str_contains($order->delivery_option,  "SURULERE" ))
+                                    Pick up at surulere.
+                              @elseif (str_contains($order->delivery_option,  "Magodo" ))
+                                    Pick up at magodo.
+                              @else
+                                    Stock pile.
+                              @endif
                            </strong> 
                            {{ $order->delivery_option }}
                         </td>
