@@ -36,7 +36,7 @@
                             <label for="email">Email</label>
                             <input    id="email" 
                             v-model="form.email" 
-                             
+          
                             type="text" class="form-control" 
                             name="email"
                             >
@@ -214,7 +214,7 @@ export default {
         country_id: "",
         state_id: "",
         email: "",
-        phone_number: null,
+        phone_number: "",
       },
     };
   },

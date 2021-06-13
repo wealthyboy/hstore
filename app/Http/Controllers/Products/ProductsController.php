@@ -163,7 +163,6 @@ class ProductsController extends Controller
         $products = $query->groupBy('product_variations.id')->latest()->paginate($this->settings->products_items_per_page);
         $products->appends(request()->all());
         $products->load('product');
-
         if($request->ajax())
         { 
             return response()->json([

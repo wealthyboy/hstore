@@ -53,3 +53,29 @@
 
  
 @endsection
+@section('page-scripts')
+@stop
+@section('inline-scripts')
+  
+  const form = document.getElementById('contact');
+
+  let input  = document.querySelector('input[name="phone"]');
+
+  console.log(form)
+
+
+  form.addEventListener("submit", function (e) { 
+    e.preventDefault();
+    if (input.value) {
+        return false;
+    }
+    this.submit()
+    return false;
+
+
+  });
+
+  
+
+   
+@stop
