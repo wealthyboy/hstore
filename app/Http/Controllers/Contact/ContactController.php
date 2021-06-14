@@ -11,7 +11,7 @@ class ContactController extends Controller
 {
 
     public function store(Request $request)
-    {
+    {   
         try {
             Notification::route('mail', 'haute.signatures@gmail.com')
             ->notify(new ContactNotification($request));
@@ -21,5 +21,13 @@ class ContactController extends Controller
         }
        
     }
+
+    // public function filterEmail($request)
+    // {
+    //     //email  = explode('@',$request->email);
+        
+    // }
+
+
    
 }

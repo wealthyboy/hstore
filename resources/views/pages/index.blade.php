@@ -61,9 +61,6 @@
 
   let input  = document.querySelector('input[name="phone"]');
 
-  console.log(form)
-
-
   form.addEventListener("submit", function (e) { 
     e.preventDefault();
     if (input.value) {
@@ -71,7 +68,6 @@
     }
     this.submit()
     return false;
-
 
   });
 
