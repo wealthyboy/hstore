@@ -25,6 +25,8 @@ class ProductVariation extends Model
 
     public $folder = 'products';
 
+    protected $hidden = ['categories','product_variation_values','product_variation_value'];
+
 
     protected $fillable = [
         'name',

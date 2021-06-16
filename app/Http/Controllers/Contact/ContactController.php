@@ -24,7 +24,8 @@ class ContactController extends Controller
 
     // public function filterEmail($request)
     // {
-    //     //email  = explode('@',$request->email);
+       //     //email  = explode('@',$request->email);
+       //$ValidationExpression = "^\w+([-+.']\w+)*@[A-Za-z\d]+\.com$"
         
     // }
 

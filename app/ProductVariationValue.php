@@ -14,6 +14,9 @@ class ProductVariationValue extends Model
         'product_id',
     ];
 
+    protected $hidden = ['attribute'];
+
+
     public function product_variation(){
         return $this->belongsTo('App\ProductVariation');
     }

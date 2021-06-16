@@ -141,7 +141,7 @@
                     :data-value="children"
                     v-for="(children, index) in map"
                     :key="children"
-                    :style="{ 'background-color': index }"
+                    :style="{'background-color': index}"
                     style="
                       height: 30px;
                       width: 30px;
@@ -176,21 +176,15 @@
                   </template>
                   <template v-else>
                     <div
-                      id=""
                       @click="getAttribute($event, key)"
                       :data-name="key"
-                      :class="[index == 0 ? ' active-other-attribute ' : '']"
+                      :class="[index == 0 ? 'active-other-attribute' : '']"
                       v-if="key != 'Colors'"
                       :data-value="children"
+                      :data-amount="quantity"
                       v-for="(children, index) in map"
                       :key="children"
-                      style="
-                        height: 35px;
-                        width: auto;
-                        border-radius: 5%;
-                        cursor: pointer;
-                      "
-                      class="mr-1 pr-3 pl-3 pt-1 border bold other-attribute"
+                      class="mr-1 product-variation-box pr-3 pl-3 pt-1 border bold other-attribute"
                     >
                       {{ children }}
                     </div>
@@ -200,7 +194,6 @@
             </form>
 
             <div class="row no-gutters mb-2">
-                
               <div v-if="cartError" class="text-danger text-center bold col-12">
                 {{ cartError }}
               </div>
@@ -252,7 +245,6 @@
                     class="icon-shopping-cart text-left"
                   ></i>
                 </button>
-                
               </div>
               <div v-if="$root.loggedIn" class="col-1">
                 <a
@@ -291,16 +283,26 @@
                 </a>
               </div>
 
-              <div v-if="Object.keys(attributes).includes('Sizes')" class="col-12 text-center">
+              <div
+                v-if="Object.keys(attributes).includes('Sizes')"
+                class="col-12 text-center"
+              >
                 <a class="bold" target="_blank" href="/product/size/guide">
-                  <svg  id="iconLoaded-ruler">                        
-                      <use xlink:href="#sizeGuide">
-                        <symbol  id="sizeGuide">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M16.125 1L23 7.875 7.875 23 1 16.125 16.125 1zm0 2.75l4.125 4.125L7.875 20.25 3.75 16.125l2.75-2.75 2.75 2.75 1.375-1.375L7.875 12l1.375-1.375 2.75 2.75L13.375 12l-2.75-2.75L12 7.875l2.75 2.75 1.375-1.375-2.75-2.75 2.75-2.75z"></path></svg>
-                          </symbol>
-                      </use>
-                    </svg>
+                  <svg id="iconLoaded-ruler">
+                    <use xlink:href="#sizeGuide">
+                      <symbol id="sizeGuide">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M16.125 1L23 7.875 7.875 23 1 16.125 16.125 1zm0 2.75l4.125 4.125L7.875 20.25 3.75 16.125l2.75-2.75 2.75 2.75 1.375-1.375L7.875 12l1.375-1.375 2.75 2.75L13.375 12l-2.75-2.75L12 7.875l2.75 2.75 1.375-1.375-2.75-2.75 2.75-2.75z"
+                          ></path>
+                        </svg>
+                      </symbol>
+                    </use>
+                  </svg>
                   Size Guide
                 </a>
               </div>
@@ -355,7 +357,7 @@
 import Images from "./Images.vue";
 import LoginModal from "../auth/LoginModal.vue";
 import RegisterModal from "../auth/RegisterModal.vue";
-import { mapGetters, mapActions } from "vuex";
+import {mapGetters, mapActions} from "vuex";
 import Pagination from "../pagination/Pagination.vue";
 import "../../../css/owl.carousel.css";
 import "../../plugins.min.js";
@@ -389,7 +391,7 @@ export default {
       noRating: false,
       user: Window.auth,
       file: null,
-      quantity: "",
+      quantity: null,
       useUrl: false,
       price: null,
       discounted_price: null,
@@ -402,6 +404,7 @@ export default {
       loading: false,
       is_loggeIn: false,
       is_wishlist: null,
+      testn: "x",
       image_m: "",
       image_tn: null,
       profile_photo: null,
@@ -418,6 +421,9 @@ export default {
         image: null,
       },
       submiting: false,
+      styleObject: {
+        "background-color": "red",
+      },
     };
   },
   computed: {
@@ -429,18 +435,18 @@ export default {
       meta: "reviewsMeta",
       errors: "errors",
     }),
-    activeObject: function () {
+    activeObject: function() {
       return {
         "active-attributes": this.isActive,
       };
     },
-    cartText: function () {
+    cartText: function() {
       return this.cText;
     },
-    canAddToCart: function () {
+    canAddToCart: function() {
       return [this.canNotAddToCart ? "disabled" : ""];
     },
-    loggedIn: function () {
+    loggedIn: function() {
       return [this.user ? true : false];
     },
   },
@@ -459,10 +465,9 @@ export default {
     this.discounted_price = this.product.default_discounted_price;
     this.is_wishlist = this.product.is_wishlist;
     this.name = this.product.name;
-    console.log(Object.keys(this.attributes).includes('Sizes'))
+    console.log(Object.keys(this.attributes).includes("Sizes"));
   },
   methods: {
-    
     getStarRating(e, rating) {
       this.form.rating = rating;
       this.noRating = false;
@@ -485,7 +490,7 @@ export default {
         });
     },
 
-    currentSlide: function (image) {
+    currentSlide: function(image) {
       this.fadeIn = !this.fadeIn;
       this.image = image;
       setTimeout(() => {
@@ -493,7 +498,7 @@ export default {
       }, 1000); // Will alert once, after a second.
     },
 
-    getAttribute: function (evt, key) {
+    getAttribute: function(evt, key) {
       this.cartError = null;
       let active_attribute = null,
         variation,
@@ -515,7 +520,7 @@ export default {
        */
 
       if (evt.target.classList.contains("first-attribute")) {
-        first_attribute.forEach(function (elm, key) {
+        first_attribute.forEach(function(elm, key) {
           elm.classList.remove("active-attribute");
         });
         af = true;
@@ -526,7 +531,7 @@ export default {
        * Toggle active statte for other attributes
        */
       if (evt.target.classList.contains("other-attribute")) {
-        other_attribute.forEach(function (elm, key) {
+        other_attribute.forEach(function(elm, key) {
           elm.classList.remove("active-other-attribute");
         });
         f = true;
@@ -542,7 +547,10 @@ export default {
             }
           }
         }
-        //console.log(other_attribute[0].dataset.value)
+
+        //console.log(this.inventory);
+        //console.log(this.stock[]);
+
         active_attribute = document.querySelector(".active-attribute");
         active_other_attribute = document.querySelector(
           ".active-other-attribute"
@@ -554,10 +562,7 @@ export default {
         if (active_attribute && this.attributesData.length == 0) {
           variation = active_attribute.dataset.value;
         }
-        // if(active_attribute  && active_other_attribute !== null){
-        //     variation = active_attribute.dataset.value+'_'+active_other_attribute.dataset.value
-        //     console.log(3)
-        // }
+
         if (!active_attribute && active_other_attribute !== null) {
           variation = active_other_attribute.dataset.value;
         }
@@ -571,16 +576,17 @@ export default {
             active_attribute.dataset.value + "_" + evt.target.dataset.value;
         }
 
-        console.log(variation, this.attributesData, evt.target.dataset.value);
-
         let vTs = stock[0][variation];
+        console.log(vTs);
         this.name = vTs.name ?? this.name;
+
         if (key == "Colors") {
           this.image = vTs.image;
           this.image_m = vTs.image_m;
           this.images = vTs.images;
         }
         this.quantity = vTs.quantity;
+
         this.price = vTs.converted_price;
         this.percentage_off = vTs.percentage_off;
         this.discounted_price =
@@ -596,10 +602,10 @@ export default {
       }
     },
 
-    selectProductAttributes: function () {
+    selectProductAttributes: function() {
       let values = [];
       let attributes = document.querySelectorAll("select.vs");
-      attributes.forEach(function (elm, key) {
+      attributes.forEach(function(elm, key) {
         values.push(elm.value);
       });
       return values;
@@ -610,13 +616,13 @@ export default {
     removeError(e) {
       let input = document.querySelectorAll(".rating_required");
       if (typeof input !== "undefined") {
-        this.clearErrors({ context: this, input: input });
+        this.clearErrors({context: this, input: input});
       }
     },
     vInput(e) {
       let input = document.querySelectorAll(".rating_required");
       if (typeof input !== "undefined") {
-        this.checkInput({ context: this, input: e });
+        this.checkInput({context: this, input: e});
       }
     },
     showColor(color) {
@@ -634,7 +640,7 @@ export default {
       checkInput: "checkInput",
       getReviews: "getReviews",
     }),
-    addToCart: function () {
+    addToCart: function() {
       let qty = document.getElementById("add-to-cart-quantity").value;
       //if (!this.otherAttrPresent) { this.cartError = 'Please select a size'; return;}
 
@@ -656,7 +662,7 @@ export default {
           this.loading = false;
         });
     },
-    addToWishList: function () {
+    addToWishList: function() {
       this.wishlistText = true;
       this.addProductToWishList({
         product_variation_id: this.product_variation_id,
@@ -676,7 +682,7 @@ export default {
     },
     submit() {
       let input = document.querySelectorAll(".rating_required");
-      this.validateForm({ context: this, input: input });
+      this.validateForm({context: this, input: input});
       if (Object.keys(this.errors).length !== 0) {
         if (!this.form.rating) {
           this.noRating = true;
@@ -689,7 +695,7 @@ export default {
       form.append("description", this.form.description);
       form.append("rating", this.form.rating);
       form.append("product_id", this.form.product_id);
-      this.createReviews({ context: this, form });
+      this.createReviews({context: this, form});
     },
   },
 };

@@ -637,6 +637,13 @@ background: white;
   margin-top: 5px;
 }
 
+.product-variation-box {
+  height: 35px;
+  width: auto;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
 
 .product-thumbnails {
   margin-top: -40px;
