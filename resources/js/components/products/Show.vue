@@ -140,6 +140,7 @@
                     v-if="key == 'Colors'"
                     :data-value="children"
                     v-for="(children, index) in map"
+                    :id="children"
                     :key="children"
                     :style="{'background-color': index}"
                     class="mr-2  product-variation-circle first-attribute"
@@ -451,6 +452,35 @@ export default {
     this.discounted_price = this.product.default_discounted_price;
     this.is_wishlist = this.product.is_wishlist;
     this.name = this.product.name;
+    let other_attribute = document.querySelectorAll(".other-attribute");
+    let first_attribute = document.querySelector(".active-attribute");
+
+    let styles = {
+      pointerEvents: "none",
+      textDecoration: "line-through",
+      backgroundColor: "#999",
+      color: "#fff",
+      backgroundImage: "url(/img/outofstock.svg)",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    };
+
+    if (other_attribute.length) {
+      other_attribute.forEach((element) => {
+        try {
+          let st = this.stock[0][
+            first_attribute.dataset.value + "_" + element.dataset.value
+          ];
+          if (st.quantity === 0) {
+            Object.assign(
+              document.getElementById(element.dataset.value).style,
+              styles
+            );
+          } else {
+          }
+        } catch (error) {}
+      });
+    }
   },
   methods: {
     getStarRating(e, rating) {
@@ -570,6 +600,7 @@ export default {
             if (element) {
               document.getElementById(element).removeAttribute("style");
             }
+            console.log(element);
             let st = stock[0][active_attribute.dataset.value + "_" + element];
             if (st.quantity === 0) {
               Object.assign(document.getElementById(element).style, styles);
