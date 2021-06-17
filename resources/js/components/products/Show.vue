@@ -491,9 +491,6 @@ export default {
         first_attribute,
         active_other_attribute,
         other_attribute,
-        oAv,
-        ooA,
-        iam,
         f = false,
         af = false,
         cA;
@@ -544,9 +541,6 @@ export default {
           backgroundRepeat: "no-repeat",
         };
 
-        //console.log(this.inventory);
-        //console.log(this.stock[]);
-
         active_attribute = document.querySelector(".active-attribute");
         active_other_attribute = document.querySelector(
           ".active-other-attribute"
@@ -586,7 +580,6 @@ export default {
         });
 
         let vTs = stock[0][variation];
-        console.log(vTs);
         this.name = vTs.name ?? this.name;
 
         if (key == "Colors") {
