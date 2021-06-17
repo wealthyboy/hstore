@@ -142,18 +142,10 @@
                     v-for="(children, index) in map"
                     :key="children"
                     :style="{'background-color': index}"
-                    style="
-                      height: 30px;
-                      width: 30px;
-                      border-radius: 50%;
-                      cursor: pointer;
-                      box-shadow: 2px 2px 2px 2px #888888;
-                    "
-                    class="mr-2 first-attribute"
+                    class="mr-2  product-variation-circle first-attribute"
                   ></div>
                   <template v-if="attributesData.length">
                     <div
-                      id=""
                       @click="getAttribute($event, key)"
                       :data-name="key"
                       v-if="key != 'Colors'"
@@ -161,15 +153,10 @@
                         index == 0 ? ' active-other-attribute' : 'border',
                       ]"
                       :data-value="children"
+                      :id="children"
                       v-for="(children, index) in attributesData"
                       :key="children"
-                      style="
-                        height: 35px;
-                        width: auto;
-                        border-radius: 5%;
-                        cursor: pointer;
-                      "
-                      class="mr-1 border pr-3 pl-3 o-a bold pt-1 other-attribute"
+                      class="mr-1 product-variation-box position-relative border pr-3 pl-3 o-a bold pt-1 other-attribute"
                     >
                       {{ children }}
                     </div>
@@ -184,6 +171,7 @@
                       :data-amount="quantity"
                       v-for="(children, index) in map"
                       :key="children"
+                      :id="children"
                       class="mr-1 product-variation-box pr-3 pl-3 pt-1 border bold other-attribute"
                     >
                       {{ children }}
@@ -359,8 +347,6 @@ import LoginModal from "../auth/LoginModal.vue";
 import RegisterModal from "../auth/RegisterModal.vue";
 import {mapGetters, mapActions} from "vuex";
 import Pagination from "../pagination/Pagination.vue";
-import "../../../css/owl.carousel.css";
-import "../../plugins.min.js";
 
 export default {
   name: "Show",
@@ -548,6 +534,16 @@ export default {
           }
         }
 
+        const styles = {
+          pointerEvents: "none",
+          textDecoration: "line-through",
+          backgroundColor: "#999",
+          color: "#fff",
+          backgroundImage: "url(/img/outofstock.svg)",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        };
+
         //console.log(this.inventory);
         //console.log(this.stock[]);
 
@@ -575,6 +571,17 @@ export default {
           variation =
             active_attribute.dataset.value + "_" + evt.target.dataset.value;
         }
+
+        this.attributesData.forEach((element) => {
+          document.getElementById(element).removeAttribute("style");
+          try {
+            let st = stock[0][active_attribute.dataset.value + "_" + element];
+            if (st.quantity === 0) {
+              Object.assign(document.getElementById(element).style, styles);
+            } else {
+            }
+          } catch (error) {}
+        });
 
         let vTs = stock[0][variation];
         console.log(vTs);
