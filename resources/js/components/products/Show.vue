@@ -573,8 +573,10 @@ export default {
         }
 
         this.attributesData.forEach((element) => {
-          document.getElementById(element).removeAttribute("style");
           try {
+            if (element) {
+              document.getElementById(element).removeAttribute("style");
+            }
             let st = stock[0][active_attribute.dataset.value + "_" + element];
             if (st.quantity === 0) {
               Object.assign(document.getElementById(element).style, styles);
