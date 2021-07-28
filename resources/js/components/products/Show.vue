@@ -151,7 +151,7 @@
                       :data-name="key"
                       v-if="key != 'Colors'"
                       :class="[
-                        index == 0 ? ' active-other-attribute' : 'border',
+                        index == 0 ? 'active-other-attribute' : 'border',
                       ]"
                       :data-value="children"
                       :id="children"
@@ -432,6 +432,9 @@ export default {
     },
     canAddToCart: function() {
       return [this.canNotAddToCart ? "disabled" : ""];
+    },
+    removeSpace: function(str) {
+      return str.replace(/\s/g, "");
     },
     loggedIn: function() {
       return [this.user ? true : false];

@@ -109,6 +109,10 @@ class ProductsController extends Controller
         $favorites ='';
         $data= [];
 
+        if (!$product_variation->product->allow){
+            return redirect('404');
+        }
+
         if ( null !== $product_variation->product){
             foreach ($product_variation->product->parent_attributes as  $parent_attribute) {
                 if ($parent_attribute->p_attribute_children()){

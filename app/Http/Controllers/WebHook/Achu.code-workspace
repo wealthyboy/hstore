@@ -38,9 +38,13 @@
     },
     {
       "path": "../../../../../myshortlet.com"
+    },
+    {
+      "path": "../../../../../oluremiabimbola.com"
     }
   ],
   "settings": {
-    "prettier.bracketSpacing": false
+    "prettier.bracketSpacing": false,
+    "git.ignoreLimitWarning": true
   }
 }

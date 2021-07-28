@@ -59,53 +59,6 @@
 </div>
 
 
-<!--End Portfolio-->
-    <!--End Categories-->
-    @if ($posts->count()) 
-
-    <!--Blog-->
-    <section class="pb-4 pt-4 bg--primary mb-1">
-        <div class="container">
-            <div class="page-head">
-                <span class="page-sub-title"></span>
-                <h2 class="page-title  heading-hr-margin-white">BLOG</h2>
-            </div>
-        </div>
-       <div class="container">
-            <div class="blog-slider owl-carousel owl-theme text-center">
-                 @foreach($posts as $post)
-                    <!--Item-->
-                    <div class="item raised animated fadeIn  bg--light mb-4">
-                        <div class="blog-item">
-                            <div class="blog-item-image">
-                                <a title="{{  $post->title }}" href="{{ route('blog.show',['blog'=> $post->slug]) }}" class="blog-img-link">
-                                    <img  title="{{  $post->title }}" src="{{ $post->image }}" alt="{{  $post->title }}" />
-                                </a>
-                            </div>
-                            <div class="blog-item-content">
-                                <p class="info mb-2">
-                                    <i class="fa fa-clock-o"></i><span>{{ $post->created_at->diffForHumans() }}</span>
-                                </p>
-                                <div class="tag bold">
-                                    @foreach($post->attributes as $tag)
-                                    <a href="/blog/tag/{{ $tag->id }}"><i class="fa fa-tags"></i> {{ $tag->name }}</a>
-                                    @endforeach
-                                </div>
-                                <h6 class="blog-title text-uppercase"> 
-                                    <a title="{{  $post->title }}" href="{{ route('blog.show',['blog'=> $post->slug]) }}" class="">
-                                        {{ $post->title }}
-                                    </a> 
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-               
-            </div>
-        </div>
-    </section>
-    <!--End Blog-->
-    @endif
 
 @endsection
 @section('page-scripts')
