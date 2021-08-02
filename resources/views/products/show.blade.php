@@ -32,7 +32,7 @@
                     <a href="{{ optional($related_product->product_variation)->link }}">
                         <img  src="{{ optional($related_product->product_variation)->image_to_show_m }}">
                     </a>
-                    @if ( optional($related_product->product_variation)->default_discounted_price)
+                    @if ( optional($related_product->product_variation)->default_discounted_price > 1)
                     <div class="label-group">
                         <span class="product-label label-sale">-{{ optional($related_product->product_variation)->default_percentage_off }}%</span>
                     </div>
@@ -48,7 +48,7 @@
                             <span class="old-price">{{ optional($related_product->product_variation)->currency }}{{ number_format(optional($related_product->product_variation)->converted_price)  }}</span>
                             <span class="product-price">{{ optional($related_product->product_variation)->currency }}{{ number_format(optional($related_product->product_variation)->default_discounted_price)  }}</span>
                         @else
-                           <span class="product-price">{{ optional($related_product->product_variation)->currency }}{{ number_format(optional($related_product->product_variation)->converted_price)  }}</span>
+                           <span title="{{ optional($related_product->product_variation)->default_discounted_price }}" class="product-price">{{ optional($related_product->product_variation)->currency }}{{ number_format(optional($related_product->product_variation)->converted_price)  }}</span>
                         @endif
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
