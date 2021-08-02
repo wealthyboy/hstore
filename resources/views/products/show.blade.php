@@ -30,9 +30,9 @@
             <div class="product-default inner-quickview inner-icon">
                 <figure>
                     <a href="{{ optional($related_product->product_variation)->link }}">
-                        <img src="{{ optional($related_product->product_variation)->image_to_show_m }}">
+                        <img alt="{{ optional($related_product->product_variation)->default_discounted_price }}" src="{{ optional($related_product->product_variation)->image_to_show_m }}">
                     </a>
-                    @if (optional($related_product->product_variation)->default_discounted_price && optional($related_product->product_variation)->default_percentage_off)
+                    @if ( optional($related_product->product_variation)->default_percentage_off)
                     <div class="label-group">
                         <span class="product-label label-sale">-{{ optional($related_product->product_variation)->default_percentage_off }}%</span>
                     </div>
