@@ -48,7 +48,7 @@
                             <span class="old-price">{{ optional($related_product->product_variation)->currency }}{{ number_format(optional($related_product->product_variation)->converted_price)  }}</span>
                             <span class="product-price">{{ optional($related_product->product_variation)->currency }}{{ number_format(optional($related_product->product_variation)->default_discounted_price)  }}</span>
                         @else
-                           <span title="{{ optional($related_product->product_variation)->default_discounted_price }} pppp" class="product-price">{{ optional($related_product->product_variation)->currency }}{{ number_format(optional($related_product->product_variation)->converted_price)  }}</span>
+                           <span title="{{ optional($related_product->product_variation)->default_discounted_price }} pppp" class="product-price  pppp">{{ optional($related_product->product_variation)->currency }}{{ number_format(optional($related_product->product_variation)->converted_price)  }}</span>
                         @endif
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
