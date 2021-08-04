@@ -155,7 +155,7 @@
                                     </div>
                                 </div>
 
-                                <p class="bold">
+                                <p v-if="meta.sub_total >= 30000  && delivery_option =='shipping' " class="bold">
                                   Shipping is free on orders above 30k
                                 </p>
 
