@@ -112,7 +112,7 @@
 
           <div class="clearfix"></div>
 
-          <div class="mt-2">
+          <div class="mt-1">
             <!--Product Variations Form-->
             <form class="row">
               <div
@@ -142,7 +142,7 @@
                     v-for="(children, index) in map"
                     :id="children"
                     :key="children"
-                    :style="{'background-color': index}"
+                    :style="{ 'background-color': index }"
                     class="mr-2  product-variation-circle first-attribute"
                   ></div>
                   <template v-if="attributesData.length">
@@ -180,6 +180,17 @@
                   </template>
                 </div>
               </div>
+              <div class="col-12 mt-2 text-danger bold">{{ qty }}</div>
+              <!-- <div class="col-12  text-info bold">
+                <a
+                  data-toggle="modal"
+                  data-target="#out-of-stock-modal"
+                  class="text-info"
+                  href="#"
+                  ><i class="fas  text-info fa-bell"></i> Notify me when
+                  available</a
+                >
+              </div> -->
             </form>
 
             <div class="row no-gutters mb-2">
@@ -340,13 +351,16 @@
     <!-- End .product-single-container -->
     <login-modal />
     <register-modal />
+    <out-of-stock />
   </div>
 </template>
 <script>
 import Images from "./Images.vue";
 import LoginModal from "../auth/LoginModal.vue";
 import RegisterModal from "../auth/RegisterModal.vue";
-import {mapGetters, mapActions} from "vuex";
+import OutOfStock from "../newsletter/OutOfStock.vue";
+
+import { mapGetters, mapActions } from "vuex";
 import Pagination from "../pagination/Pagination.vue";
 
 export default {
@@ -362,6 +376,7 @@ export default {
     LoginModal,
     Pagination,
     RegisterModal,
+    OutOfStock,
   },
   data() {
     return {
@@ -422,6 +437,9 @@ export default {
       meta: "reviewsMeta",
       errors: "errors",
     }),
+    qty() {
+      return this.quantity == 1 ? "Only 1 left" : "";
+    },
     activeObject: function() {
       return {
         "active-attributes": this.isActive,
@@ -603,7 +621,6 @@ export default {
             if (element) {
               document.getElementById(element).removeAttribute("style");
             }
-            console.log(element);
             let st = stock[0][active_attribute.dataset.value + "_" + element];
             if (st.quantity === 0) {
               Object.assign(document.getElementById(element).style, styles);
@@ -620,6 +637,7 @@ export default {
           this.image_m = vTs.image_m;
           this.images = vTs.images;
         }
+
         this.quantity = vTs.quantity;
 
         this.price = vTs.converted_price;
@@ -651,13 +669,13 @@ export default {
     removeError(e) {
       let input = document.querySelectorAll(".rating_required");
       if (typeof input !== "undefined") {
-        this.clearErrors({context: this, input: input});
+        this.clearErrors({ context: this, input: input });
       }
     },
     vInput(e) {
       let input = document.querySelectorAll(".rating_required");
       if (typeof input !== "undefined") {
-        this.checkInput({context: this, input: e});
+        this.checkInput({ context: this, input: e });
       }
     },
     showColor(color) {
@@ -677,7 +695,6 @@ export default {
     }),
     addToCart: function() {
       let qty = document.getElementById("add-to-cart-quantity").value;
-      //if (!this.otherAttrPresent) { this.cartError = 'Please select a size'; return;}
 
       if (qty === "") {
         return;
@@ -717,7 +734,7 @@ export default {
     },
     submit() {
       let input = document.querySelectorAll(".rating_required");
-      this.validateForm({context: this, input: input});
+      this.validateForm({ context: this, input: input });
       if (Object.keys(this.errors).length !== 0) {
         if (!this.form.rating) {
           this.noRating = true;
@@ -730,7 +747,7 @@ export default {
       form.append("description", this.form.description);
       form.append("rating", this.form.rating);
       form.append("product_id", this.form.product_id);
-      this.createReviews({context: this, form});
+      this.createReviews({ context: this, form });
     },
   },
 };

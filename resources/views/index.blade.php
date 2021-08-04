@@ -60,6 +60,27 @@
 
 
 
+<div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url(/images/newsletter/newsletter_popup_bg.jpg)">
+    <div class="newsletter-popup-content">
+        <img src="{{ $system_settings->logo_path() }}"  class="logo-newsletter" alt="{{ Config('app.name') }} Logo">
+        <h2>BE THE FIRST TO KNOW</h2>
+        <p class="mb-2">Subscribe to the hautesignatures newsletter to receive timely updates.</p>
+        
+        <sign-up />
+
+        <div class="newsletter-subscribe">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="1">
+                    Don't show this popup again
+                </label>
+            </div>
+        </div>
+    </div><!-- End .newsletter-popup-content -->
+</div><!-- End .newsletter-popup -->
+
+
+
 @endsection
 @section('page-scripts')
 @stop

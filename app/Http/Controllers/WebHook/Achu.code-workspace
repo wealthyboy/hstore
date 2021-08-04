@@ -1,50 +1,22 @@
 {
   "folders": [
     {
-      "path": "../../../.."
-    },
-    {
-      "path": "../../../../../nollyflix"
-    },
-    {
-      "path": "../../../../../theluxurysale"
-    },
-    {
-      "path": "../../../../../ohram"
-    },
-    {
-      "path": "../../../../../avenuemontaigne.ng"
+      "path": "../../../../../globatos.ng"
     },
     {
       "path": "../../../../../AM"
     },
     {
-      "path": "../../../../../expo-netflix"
+      "path": "../../../../../avenuemontaigne.ng"
     },
     {
-      "path": "../../../../../DoneWithIt"
-    },
-    {
-      "path": "../../../../../Backend"
-    },
-    {
-      "path": "../../../../../laravel-nuxt-e-commerce"
-    },
-    {
-      "path": "../../../../../nollyflix-app"
-    },
-    {
-      "path": "../../../../../globatos.ng"
+      "path": "../../../.."
     },
     {
       "path": "../../../../../myshortlet.com"
     },
     {
-      "path": "../../../../../oluremiabimbola.com"
+      "path": "../../../../../theluxurysale"
     }
-  ],
-  "settings": {
-    "prettier.bracketSpacing": false,
-    "git.ignoreLimitWarning": true
-  }
+  ]
 }

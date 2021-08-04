@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableCartTransactionLog extends Migration
+class CreateMailForOutOfStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateTableCartTransactionLog extends Migration
      */
     public function up()
     {
-        Schema::create('cart_transaction_log', function (Blueprint $table) {
+        Schema::create('mail_for_out_of_stocks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('product_variation_id')->nullable();
+            $table->integer('product_id')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateTableCartTransactionLog extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cart_transaction_log');
+        Schema::dropIfExists('mail_for_out_of_stocks');
     }
 }

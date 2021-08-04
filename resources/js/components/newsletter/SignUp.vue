@@ -7,29 +7,26 @@
                 </div>
             </p>
         </template>
-        <form  v-if="!message"  @submit.prevent="signUp" method="POST" class="pt-2">
-            <div class="form-field-wrapper">
+        <form  v-if="!message"  @submit.prevent="signUp" method="POST" class="">
+            <div class="input-group">
                 <input 
                     name="email"
                         v-model="form.email" 
-                        class="input--lg form-full " 
+                        class="form-control" 
+                        id="newsletter-email"                        
                         title="Email" placeholder="Enter Your Email..."
                         value=""
-                        id="newsletteremail" 
                         type="email"
                         required
                     >
-            </div>
-            <span  class="text-danger" role="" >
-                <strong></strong>
-            </span>
-            <div class="form-field-wrapper">
-                <button  type="submit" class="newsletter-btn btn btn--primary btn--lg form-full" name="Sign_Up"  value="Sign Up" data-value="Sign_Up">
+                <!-- <input type="submit" class="btn" value="Go!"> -->
+                <button  type="submit" class="newsletter-btn btn btn--primary" name="Sign_Up" id="Sign_Up" value="Sign Up" data-value="Sign_Up">
                     <span  v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Sign Up!
+                    SUBSCRIBE
                 </button>
-            </div>
+            </div><!-- End .from-group -->
         </form>
+        
         <error-message  :error="error" />
     </div>
 </template>

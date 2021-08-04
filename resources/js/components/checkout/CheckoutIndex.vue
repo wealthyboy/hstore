@@ -112,7 +112,7 @@
 
                                     <span class="float-right">
                                         <span v-if="shipping_price" class="currencySymbol bold">{{  meta.currency }}{{ shipping_price }}</span>
-                                        <span class="" v-else>{{  shippingIsFree }}</span>
+                                        <span class="" v-else>{{ shippingIsFree }}</span>
                                     </span>
                                 </div>
 
@@ -149,7 +149,7 @@
                                     </div>
                                 </div>
                                  
-                                <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
+                                <div v-if="meta.sub_total < 30000" :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
                                     <div class="custom-control  custom-radio mt-1 mb-1">
                                         <input type="radio" value="shipping" v-model="delivery_option" class="custom-control-input" id="shipping" name="delivery_option" required>
                                         <label class="custom-control-label" for="shipping">Shipping   <span class="ml-3  text-info">(Based on your location. If in Lagos, please check our shipping & return policy <a target="_blank" href="https://hautesignatures.com/pages/shipping-delivery">link</a> to see where your location falls in order for you select the correct shipping option.)</span></label>
@@ -161,7 +161,7 @@
                                 <p  class="">
                                     <p  class="form-field-wrapper   col-sm-12">
                                         <form method="POST"  id="checkout-form-2" class="form-group" action="/checkout/confirm">
-                                            <div v-if="$root.settings.shipping_is_free == 0 && delivery_option =='shipping' " class="shipping  select-custom">
+                                            <div v-if="meta.sub_total >= 30000 && $root.settings.shipping_is_free == 0 && delivery_option =='shipping' " class="shipping  select-custom">
                                                 <label for="shipping_country">SELECT SHIPPING &nbsp;<abbr class="required text-danger" title="required">*</abbr></label>
                                                 <select @change="addShippingPrice"  name="shipping_id" id="shipping_price" class="form-control  input--lg" autocomplete="shipping" tabindex="-1" aria-hidden="true">
                                                     <option value="" selected="selected">Choose a shipping</option> 
@@ -360,9 +360,9 @@ export default {
       default_shipping: "default_shipping",
     }),
     shippingIsFree() {
-      return this.$root.settings.shipping_is_free == 0
+      return this.$root.settings.shipping_is_free == 0 && this.meta.sub_total < 30000
         ? "Shipping is based on your location"
-        : this.meta.currency + "0.00";
+        : "Free";
     },
   },
   watch: {
@@ -437,6 +437,7 @@ export default {
         this.delivery_error = true;
         return;
       }
+      
       if(this.meta.sub_total <1){return;}
       let context = this;
       var cartIds = [];
@@ -462,7 +463,7 @@ export default {
       this.payment_is_processing = true;
       this.payment_method = "card";
       var handler = PaystackPop.setup({
-        key: "pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+        key: "pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
         email: context.meta.user.email,
         amount: context.amount * 100,
         currency: "NGN",
@@ -499,6 +500,8 @@ export default {
       handler.openIframe();
     },
     payAsAdmin: function () {
+       this.payWithPaystack();
+       return;
       if (!this.delivery_option) {
         this.delivery_error = true;
         return;
@@ -589,7 +592,6 @@ export default {
     },
     checkout: function () {
       this.order_text = "Please wait. We are almost done......";
-      alert(this.shipping_id);
 
       axios
         .post("/checkout/confirm", {

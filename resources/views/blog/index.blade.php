@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<div class=" bg--gray">
-   <section class="breadcrumb justify-content-center">
-      <div class="background-image" data-background="{{ optional($blog_image)->image }}" 
-         style="background-image: url({{ optional($blog_image)->image }}); background-position: {{ optional($blog_image)->x_pos . '%' }} {{ optional($blog_image)->y_pos . '%'}};"
-         data-bg-posx="center" data-bg-posy="center" data-bg-overlay="4"></div>
+<div class="">
+   <section  style="background-image: url({{ optional($blog_image)->image }}); background-position: {{ optional($blog_image)->x_pos . '%' }} {{ optional($blog_image)->y_pos . '%'}};"
+       class="breadcrumb justify-content-center">
+     
       <div class="breadcrumb-content">
          <div class="container-fluid">
             <div class="row">
@@ -19,10 +18,8 @@
          </div>
       </div>
    </section>
-   <div class="container  bg--gray">
-      <div class="head text-center mt-3 mb-3">
-         <h4  class="widget-title "> BLOG </h4>
-      </div>
+   <div class="container  ">
+      
       <!--Content-->
       <div class="col-lg-9">
         @foreach($posts as $post)
@@ -37,7 +34,7 @@
             <div class="post-body">
                <div class="post-date">
                   <span class="day">{{ $post->created_at->format('d') }}</span>
-                  <span class="month">Jun</span>
+                  <span class="month">{{  $post->created_at->format('F') }}</span>
                </div>
                <!-- End .post-date -->
                <h2 class="post-title">
@@ -49,13 +46,14 @@
                </div>
                <!-- End .post-content -->
                <div class="post-meta">
-                  <span><i class="icon-calendar"></i></span>
+                  <!-- <span><i class="icon-calendar"></i></span> -->
                   <span><i class="icon-user"></i>By <a href="#">Admin</a></span>
-                  <span><i class="icon-folder-open"></i>
                   @foreach($post->attributes as $tag)
+                    <span>
+                       <i class="icon-folder-open"></i>
                        <a href="/blog/tag/{{ $tag->id }}"><i class="fa fa-tags"></i> {{ $tag->name }}</a>
-                    @endforeach
-                  </span>
+                     </span>
+                  @endforeach
                </div>
                <!-- End .post-meta -->
             </div>
@@ -63,7 +61,7 @@
          </article>
         @endforeach
          <!-- End .post -->
-         <nav class="toolbox toolbox-pagination border-0">
+         <!-- <nav class="toolbox toolbox-pagination border-0">
             <ul class="pagination">
                <li class="page-item active">
                   <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
@@ -77,7 +75,7 @@
                   <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
                </li>
             </ul>
-         </nav>
+         </nav> -->
       </div>
       <!-- End .col-lg-9 -->
       <!--End Content--> 
