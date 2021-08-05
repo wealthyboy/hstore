@@ -169,7 +169,7 @@
                                         data-target="#out-of-stock-modal"
                                         class=""
                                         href="#"
-                                        > STANDARD DELIVERY IS FREE ON ORDERS FROM 30K AND ABOVE</a
+                                        > STANDARD DELIVERY IS FREE ON ALL ORDERS ABOVE 30k</a
                                       ></strong
                                     >
                                     <button
@@ -393,7 +393,7 @@ export default {
     shippingIsFree() {
       return this.$root.settings.shipping_is_free == 0 && this.meta.sub_total < 30000
         ? "Shipping is based on your location"
-        : "Free";
+        : "FREE FOR STANDARD DELIVERY";
     },
   },
   watch: {
