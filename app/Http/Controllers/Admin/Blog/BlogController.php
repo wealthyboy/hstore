@@ -52,6 +52,8 @@ class BlogController extends Controller
         $info->name= "Admin";
         $info->image=$request->image;
         $info->blog= true;
+		$info->is_active=  $request->is_active ? 1 : 0;
+
 		$info->save();
 		$info->attributes()->sync($request->attribute_id);
 		return redirect()->route('posts.index')->with('status','created');
@@ -74,6 +76,8 @@ class BlogController extends Controller
 		$post->teaser=$request->teaser;
 		$post->slug= str_slug($request->title);
         $post->image=$request->image;
+		$post->is_active=  $request->is_active ? 1 : 0;
+
 		$post->save();
 		$post->attributes()->sync($request->attribute_id);
 		return redirect()->route('posts.index')->with('status','created');

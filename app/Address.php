@@ -31,6 +31,11 @@ class Address extends Model
         return $this->belongsTo('App\Location','state_id');
     }
 
+
+    public function parent_shippings(){
+        return $this->hasMany(Shipping::class,'location_id');
+    }
+
     public function getStateAttribute(){
         return $this->address_state->name;
     }
@@ -49,7 +54,7 @@ class Address extends Model
 
  
     public function shipping(){
-        return $this->hasManyThrough(Shipping::class,Location::class,'id','location_id');
+        return $this->hasManyThrough(Shipping::class,Location::class,'id','location_id')->where('parent_id',null);
     }
 
     

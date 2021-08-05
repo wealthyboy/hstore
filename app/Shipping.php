@@ -27,6 +27,7 @@ class Shipping extends Model
     public function parent()
     {
         return $this->belongsTo('App\Shipping','parent_id','id');
+        ;
     }
 
 

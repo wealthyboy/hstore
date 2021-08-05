@@ -25,7 +25,7 @@ class BlogController extends Controller
 
 	
 	public function  index(Request $request)  {
-		$posts = Information::where('blog',true)->get(); 
+		$posts = Information::where(['blog'=>true,'is_active' => true])->get(); 
 		$blog_image = PageBanner::where('page_name','blog')->first();
 	    return view('blog.index',compact('posts','blog_image'));
 	}

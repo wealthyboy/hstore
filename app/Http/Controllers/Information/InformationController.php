@@ -51,6 +51,7 @@ class InformationController extends Controller
 		   $info->same_page =$request->same_page == 'yes'? true : false;
 		   $info->parent_id=$request->parent_id;
 		   $info->slug= str_slug($request->title);
+
 		   $info->blog= false;
 		   $info->save();
 		   return redirect()->route('pages.index')->with('status','created');

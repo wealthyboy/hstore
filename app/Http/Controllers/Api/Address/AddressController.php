@@ -40,11 +40,14 @@ class AddressController extends Controller
 
 
     public function allAddress(){
+
         $user =  \Auth::user();
         $addresses = User::find($user->id)->addresses;
         $locations = Location::parents()->orderBy('name','asc')->get();
         $shipping_parents = Shipping::parents()->get();
-        $default_address = $user->activeAddress();
+    
+
+        $default_address  = $user->activeAddress();
         $default_shipping = optional($default_address)->address_state  !== null ?
                                optional($default_address)
                                ->address_state

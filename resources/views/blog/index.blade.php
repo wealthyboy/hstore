@@ -38,7 +38,7 @@
                </div>
                <!-- End .post-date -->
                <h2 class="post-title">
-                  <a title="{{  post->title }}" href="{{ route('blog.show',['blog'=> $post->slug]) }}">{{ $post->title }}</a>
+                  <a title="{{  $post->title }}" href="{{ route('blog.show',['blog'=> $post->slug]) }}">{{ $post->title }}</a>
                </h2>
                <div class="post-content">
                   <p><?php echo  html_entity_decode($post->teaser);  ?></p>

@@ -351,7 +351,7 @@
     <!-- End .product-single-container -->
     <login-modal />
     <register-modal />
-    <out-of-stock />
+    <out-of-stock :product_variation="product_variation" />
   </div>
 </template>
 <script>
@@ -399,7 +399,7 @@ export default {
       discounted_price: null,
       percentage_off: "",
       product_variation_id: "",
-      product_variation: [],
+      product_variation: null,
       prodAttributes: null,
       category: "",
       cartSideBarOpen: false,
@@ -630,6 +630,7 @@ export default {
         });
 
         let vTs = stock[0][variation];
+        this.product_variation = vTs;
         this.name = vTs.name ?? this.name;
 
         if (key == "Colors") {

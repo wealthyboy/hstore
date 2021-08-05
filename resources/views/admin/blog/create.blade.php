@@ -16,31 +16,45 @@
                                     <small>*</small>
                             </label>
                             <input class="form-control"
-                                    name="title"
-                                    type="text"
-                                    required="true"
-                                    value="{{ old('title') }}"
+                                name="title"
+                                type="text"
+                                required="true"
+                                value="{{ old('title') }}"
                             />
                             </div>
                             <div class="form-group label-floating">
                             <label class="control-label">
-                                    Teaser
-                                    <small>*</small>
+                                Teaser
+                                <small>*</small>
                             </label>
                             <input class="form-control"
-                                    name="teaser"
-                                    type="text"
-                                    required="true"
-                                    value="{{ old('teaser') }}"
+                                name="teaser"
+                                type="text"
+                                required="true"
+                                value="{{ old('teaser') }}"
                             />
                             </div>
                             <div class="form-group">
-                            <label>Description</label>
-                            <div class="form-group ">
-                                <label class="control-label"> </label>
-                                <textarea name="description" 
-                                id="description" class="form-control"  required rows="20">{{ old('description') }}</textarea>
+                                <label>Description</label>
+                                <div class="form-group ">
+                                    <label class="control-label"> </label>
+                                    <textarea name="description" 
+                                    id="description" class="form-control"  required rows="20">{{ old('description') }}</textarea>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <legend>  
+                                    Enable/Disable
+                                    </legend>
+                                    <div class="togglebutton">
+                                    <label>
+                                    <input name="is_active"  value="1" type="checkbox" >
+                                    Enable/Disable
+                                    </label>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="form-footer text-right">
                                 <button type="submit" class="btn btn-rose btn-round btn-group  btn-fill">Submit</button>

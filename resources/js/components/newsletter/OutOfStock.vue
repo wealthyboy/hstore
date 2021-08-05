@@ -5,7 +5,7 @@
         <!-- Modal content-->
         <div class="modal-content ">
           <div class="modal-header">
-            <div class="modal-title">
+            <div class="modal-title text-center">
               <img
                 width="200"
                 height="200"
@@ -23,32 +23,54 @@
             ></span>
           </div>
           <div class="modal-body">
-            <div
-              class="newsletter-popup mfp-hide bg-img"
-              id="newsletter-popup-form"
-              style="background: #f1f1f1 no-repeat center/cover url(/images/newsletter/newsletter_popup_bg.jpg)"
-            >
-              <div class="newsletter-popup-content">
-                <img src="" class="logo-newsletter" alt=" Logo" />
-                <h2>BE THE FIRST TO KNOW</h2>
-                <p class="mb-2">
-                  Subscribe to the hautesignatures newsletter to receive timely
-                  updates.
-                </p>
-
-                <sign-up />
-
-                <div class="newsletter-subscribe">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="1" />
-                      Don't show this popup again
-                    </label>
+            <div class="row">
+              <div class="col-md-6">
+                <img
+                  src="https://hautesignatures.com/images/products/ITkHtCoG7dH9ia2bN2xOIYaEQ7vShed6uKga6Kkk.png"
+                  alt=""
+                />
+              </div>
+              <div class="col-md-6">
+                <div class="newsletter-content">
+                  <div>
+                    <h3 class="newsletter-popup-title">ITEM IS OUT OF STOCK</h3>
+                    <p class="newsletter-popup-slogen">
+                      Get notified when this item is available.
+                      {{ product_variation }}
+                    </p>
+                    <form class="form-group">
+                      <div class="form-field-wrapper">
+                        <input
+                          name="email"
+                          v-model="form.email"
+                          class="form-control"
+                          id="newsletter-email"
+                          title="Email"
+                          placeholder="Enter Your Email..."
+                          value=""
+                          type="email"
+                          required
+                        />
+                      </div>
+                      <div class="form-field-wrapper mt-1">
+                        <input
+                          class="btn btn-lg btn-primary btn-block"
+                          value="Get Notified"
+                          type="submit"
+                        />
+                      </div>
+                    </form>
+                    <p class="newsletter-popup-info"></p>
+                    <div class="newsletter-popup-footer">
+                      <a href="javascript:void(0)" class="newsletter-close-text"
+                        >No Thanks</a
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
-              <!-- End .newsletter-popup-content -->
             </div>
+
             <!-- End .newsletter-popup -->
           </div>
         </div>
@@ -61,39 +83,48 @@
   <!--loginModal-->
 </template>
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import ErrorMessage from "../messages/components/Error";
 
 export default {
+  props: ["product_variation"],
   data() {
     return {
-      email: "",
-      password: "",
+      form: {
+        email: null,
+      },
       loading: false,
+      message: null,
+      error: null,
+      errorsBag: [],
     };
   },
-  components: {},
   computed: {
     ...mapGetters({
       errors: "errors",
     }),
   },
+  components: {
+    ErrorMessage,
+  },
+  mounted() {
+    console.log(this.product_variation);
+  },
   methods: {
-    ...mapActions({
-      login: "login",
-    }),
-
-    closeLogin() {
-      document.getElementById("login_modal").click();
-    },
-    authenticate: function() {
+    signUp() {
       this.loading = true;
-      this.login({
-        email: this.email,
-        password: this.password,
-      }).catch((error) => {
-        this.loading = false;
-        this.errors = error.response.data.error || error.response.data.errors;
-      });
+      return axios
+        .post("/newsletter/signup", {
+          email: this.form.email,
+        })
+        .then((response) => {
+          this.loading = false;
+          this.message = response.data.message;
+        })
+        .catch((error) => {
+          this.loading = false;
+          this.error = "There was an error";
+        });
     },
   },
 };

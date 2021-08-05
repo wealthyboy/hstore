@@ -502,8 +502,7 @@ export default {
       handler.openIframe();
     },
     payAsAdmin: function () {
-       this.payWithPaystack();
-       return;
+       
       if (!this.delivery_option) {
         this.delivery_error = true;
         return;

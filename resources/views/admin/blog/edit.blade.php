@@ -47,8 +47,20 @@
                             </div>
                             </div>
                         
-                            <div class="">
-                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <legend>  
+                                    Enable/Disable
+                                    </legend>
+                                    <div class="togglebutton">
+                                    <label>
+                                    <input  {{ $post->is_active == 1 ? 'checked' : ''}} name="is_active"  value="1" type="checkbox" >
+                                    Enable/Disable
+                                    </label>
+                                    </div>
+                                </div>
+
+                                
                             </div>
                             <div class="form-footer text-right">
                                 <button type="submit" class="btn btn-rose btn-round btn-group  btn-fill">Submit</button>

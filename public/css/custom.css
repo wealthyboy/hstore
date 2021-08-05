@@ -223,7 +223,13 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 
 .main.main-page{margin-top:117px;}
 
-
+.modal.show  {
+  display:flex!important;
+  flex-direction:column;
+  justify-content:center;
+  align-content:center;
+  align-items: flex-start;
+}
 
 .dropdown-cart-products {
   height: 200px;
