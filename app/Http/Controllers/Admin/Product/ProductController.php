@@ -25,6 +25,8 @@ use App\BrandCategory;
 use App\AttributeProduct;
 use App\ProductAttribute;
 use App\ProductVariation;
+use App\MailForOutOfStock;
+
 use Endroid\QrCode\QrCode;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -36,6 +38,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
+use App\Mail\OutOfStockMail;
 
 
 
@@ -563,8 +566,6 @@ class ProductController extends Controller
         $categories = Category::find($request->category_id);
         $meta_fields = array_filter(array_values($request->meta_fields));
 
-
-
         if( !empty($request->category_id) ){
             $product->categories()->sync($request->category_id);
         }
@@ -573,8 +574,6 @@ class ProductController extends Controller
         /**
           *  Sync categories with attributes
         */
-
-
 
         $product_variation =  new ProductVariation();
 
@@ -670,9 +669,35 @@ class ProductController extends Controller
                 $add_to_product_attributes = [];
                 if(!empty($request->edit_product_attributes)){
 
+
                     foreach($request->edit_product_attributes as $variant_id => $attribute_id ){ 
                         $stored_variation_images  = !empty($request->edit_variation_images[$variant_id]) ? $request->edit_variation_images[$variant_id] : [];
-                        //$image = $request->edit_variation_image[$variant_id] ?? 
+                        $email = MailForOutOfStock::where('product_variation_id',$variant_id)->first();
+                        if ($email) {
+                            $pd = ProductVariation::find($variant_id);
+                            if (null !== $pd && $pd->quantity == 0 ) {
+                                if ($variant_id == $pd->id &&  $request->edit_variation_quantity[$variant_id] >=1 ) {
+                                    /**
+                                     * 
+                                     * Send mail
+                                    */
+
+                                    //dd(true);
+                                    try {
+                                            
+                                        \Mail::to($email->email)
+                                        ->send(new OutOfStockMail($pd));
+                                    } catch (\Throwable $th) {
+                                        //throw $th;
+                                        dd($th);
+                                    }
+
+                                }
+                            }
+                        }
+                        
+
+
                         $product_variation       =  ProductVariation::updateOrCreate(
                             ['id' => $variant_id],
                             [
@@ -693,6 +718,11 @@ class ProductController extends Controller
                                 
                             ]
                         );
+
+                        /**
+                         * 
+                         * Mail people 
+                         */
 
 
                         $product_variation->categories()->sync($request->category_id);

@@ -18,7 +18,7 @@
                                         left: 0;
                                         font-size: 11px;
                                         line-height: 1.0714285718;" 
-                                        class="control-label">{{ $product_attribute->name }} {{ optional($variantion_value)->id }} </label>
+                                        class="control-label">{{ $product_attribute->name }} {{ optional($variant)->id }} </label>
                                 <select  
                                         name="{{ optional($variantion_value)->attribute_id  ? "edit_product_attributes[$variant->id][$variantion_value->id][$product_attribute->id]" : "add_to_product_attributes[$variant->id][$product_attribute->id]" }}" 
                                         class="form-control">

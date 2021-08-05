@@ -25,10 +25,8 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-6">
-                <img
-                  src="https://hautesignatures.com/images/products/ITkHtCoG7dH9ia2bN2xOIYaEQ7vShed6uKga6Kkk.png"
-                  alt=""
-                />
+                <img :src="product_variation.image" alt="" />
+                <p></p>
               </div>
               <div class="col-md-6">
                 <div class="newsletter-content">
@@ -36,9 +34,15 @@
                     <h3 class="newsletter-popup-title">ITEM IS OUT OF STOCK</h3>
                     <p class="newsletter-popup-slogen">
                       Get notified when this item is available.
-                      {{ product_variation }}
                     </p>
-                    <form class="form-group">
+
+                    <p v-if="message">{{ message }}</p>
+                    <form
+                      v-if="!message"
+                      @submit.prevent="signUp"
+                      method="POST"
+                      class="form-group"
+                    >
                       <div class="form-field-wrapper">
                         <input
                           name="email"
@@ -53,16 +57,32 @@
                         />
                       </div>
                       <div class="form-field-wrapper mt-1">
-                        <input
-                          class="btn btn-lg btn-primary btn-block"
-                          value="Get Notified"
+                        <button
                           type="submit"
-                        />
+                          class="newsletter-btn btn btn--primary btn-block"
+                          name="Sign_Up"
+                          id="Sign_Up"
+                          value="Sign Up"
+                          data-value="Sign_Up"
+                          :class="{ disabled: loading }"
+                        >
+                          <span
+                            v-if="loading"
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          Get Notified
+                        </button>
                       </div>
                     </form>
                     <p class="newsletter-popup-info"></p>
                     <div class="newsletter-popup-footer">
-                      <a href="javascript:void(0)" class="newsletter-close-text"
+                      <a
+                        href="#"
+                        id="out-of-stock-modal"
+                        data-dismiss="modal"
+                        class=" newsletter-close-text"
                         >No Thanks</a
                       >
                     </div>
@@ -107,19 +127,26 @@ export default {
   components: {
     ErrorMessage,
   },
+
   mounted() {
-    console.log(this.product_variation);
+    this.message = null;
   },
+
   methods: {
     signUp() {
       this.loading = true;
       return axios
-        .post("/newsletter/signup", {
+        .post("/out_of_stock/signup", {
           email: this.form.email,
+          product_variation_id: this.product_variation.id,
         })
         .then((response) => {
           this.loading = false;
-          this.message = response.data.message;
+          this.message = "You have been added";
+          let context = this;
+          setTimeout(() => {
+            context.message = null;
+          }, 1000);
         })
         .catch((error) => {
           this.loading = false;

@@ -155,21 +155,49 @@
                                     </div>
                                 </div>
 
-                                <p v-if="meta.sub_total >= 30000  && delivery_option =='shipping' " class="bold">
-                                  Shipping is free on orders above 30k
-                                </p>
+                                
+
+                                <div class="col-12  text-info bold">
+                                  <div
+                                    v-if="meta.sub_total >= 30000"
+                                    class="alert alert-info alert-dismissible fade show"
+                                    role="alert"
+                                  >
+                                    <strong
+                                      ><a
+                                        data-toggle="modal"
+                                        data-target="#out-of-stock-modal"
+                                        class=""
+                                        href="#"
+                                        > STANDARD DELIVERY IS FREE ON ORDERS FROM 30K AND ABOVE</a
+                                      ></strong
+                                    >
+                                    <button
+                                      type="button"
+                                      class="close"
+                                      data-dismiss="alert"
+                                      aria-label="Close"
+                                    >
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                </div>
 
                                 
                           
                                 <p  class="">
                                     <p  class="form-field-wrapper   col-sm-12">
                                         <form method="POST"  id="checkout-form-2" class="form-group" action="/checkout/confirm">
-                                            <div v-if="meta.sub_total < 30000 && $root.settings.shipping_is_free == 0 && delivery_option =='shipping' " class="shipping  select-custom">
+                                            <div v-if=" $root.settings.shipping_is_free == 0 && delivery_option =='shipping' " class="shipping  select-custom">
                                                 <label for="shipping_country">SELECT SHIPPING &nbsp;<abbr class="required text-danger" title="required">*</abbr></label>
                                                 <select @change="addShippingPrice"  name="shipping_id" id="shipping_price" class="form-control  input--lg" autocomplete="shipping" tabindex="-1" aria-hidden="true">
                                                     <option value="" selected="selected">Choose a shipping</option> 
-                                                    <optgroup  v-for="(map, key) in  default_shipping" :key="key" :label="key">
-                                                        <option :data-id="shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ shipping.converted_price }}</option>
+                                                    <optgroup  v-if="meta.sub_total >= 30000" v-for="(map, key) in  default_shipping"  :key="key" :label="key">
+                                                        <option :data-id="key.includes(standard_shipping) ? null : shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="key.includes(standard_shipping) ? 0 :shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ key.includes(standard_shipping) ? 0 :shipping.converted_price  }}</option>
+                                                    </optgroup>
+
+                                                    <optgroup  v-else v-for="(map, key) in  default_shipping"  :key="key" :label="key">
+                                                        <option :data-id="shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ shipping.converted_price  }}</option>
                                                     </optgroup>
                                                 </select>
                                             </div>
@@ -333,6 +361,7 @@ export default {
       shipping_price: "",
       email: "jacob.atam@gmail.com",
       amount: 0,
+      standard_shipping: "STANDARD DELIVERY",
       delivery_error: false,
       shipping: false,
       delivery_option: null,

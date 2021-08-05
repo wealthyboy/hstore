@@ -83,10 +83,11 @@ class CartController  extends Controller {
 			return response()->json([
 				'data' => [
 					
-					0 => [ 'cart_id' => $cart->id,
+					0 => [ 
+						'cart_id' => $cart->id,
 						'product_variation_id' => $cart->product_variation_id,
 						'image'        => optional($cart->product_variation)->image_to_show,
-						'name'        => optional($cart->product_variation)->name,
+						'name'         => optional($cart->product_variation)->name,
 						'quantity'     => $cart->quantity,
 						'price'        => $cart->converted_price,
 						'product_name' => optional($cart->product_variation)->product->product_name,

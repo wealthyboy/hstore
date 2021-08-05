@@ -60,7 +60,7 @@
 
 
 
-<div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url(/images/newsletter/newsletter_popup_bg.jpg)">
+<div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url(/images/newsletter/newsletter-popup.jpg)">
     <div class="newsletter-popup-content">
         <img src="{{ $system_settings->logo_path() }}"  class="logo-newsletter" alt="{{ Config('app.name') }} Logo">
         <h2>BE THE FIRST TO KNOW</h2>

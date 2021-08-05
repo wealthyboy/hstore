@@ -186,6 +186,8 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('pages/{information}',             'Information\InformationController@show');
     Route::get('newsletter/unsubscribe',          'NewsLetter\NewsLetterController@index');
     Route::post('newsletter/unsubscribe',         'NewsLetter\NewsLetterController@unsubscribe');
+    Route::post('out_of_stock/signup',            'SignUp\OutOfStockSignUpController@store');
+
 });
 
 

@@ -181,16 +181,31 @@
                 </div>
               </div>
               <div class="col-12 mt-2 text-danger bold">{{ qty }}</div>
-              <!-- <div class="col-12  text-info bold">
-                <a
-                  data-toggle="modal"
-                  data-target="#out-of-stock-modal"
-                  class="text-info"
-                  href="#"
-                  ><i class="fas  text-info fa-bell"></i> Notify me when
-                  available</a
+              <div class="col-12  text-info bold">
+                <div
+                  v-if="parseInt(quantity) < 1"
+                  class="alert alert-warning alert-dismissible fade show"
+                  role="alert"
                 >
-              </div> -->
+                  <strong
+                    ><a
+                      data-toggle="modal"
+                      data-target="#out-of-stock-modal"
+                      class=""
+                      href="#"
+                      ><i class="fas  fa-bell"></i> Notify me when available</a
+                    ></strong
+                  >
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
             </form>
 
             <div class="row no-gutters mb-2">
@@ -461,6 +476,7 @@ export default {
 
   mounted() {
     this.productReviews();
+    this.product_variation = this.product;
     this.image = this.product.image_to_show;
     this.image_tn = this.product.image_to_show_tn;
     this.images = this.product.images;
@@ -632,6 +648,7 @@ export default {
         let vTs = stock[0][variation];
         this.product_variation = vTs;
         this.name = vTs.name ?? this.name;
+        console.log(vTs);
 
         if (key == "Colors") {
           this.image = vTs.image;
