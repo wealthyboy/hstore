@@ -62,7 +62,7 @@
          @endforeach
 
          @else
-            <div class="no-posts">No posts at the moment</div>
+            <h3 class="no-posts">No posts at the moment</h3>
          @endif
 
          <!-- End .post -->
