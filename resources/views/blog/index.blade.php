@@ -22,8 +22,8 @@
       
       <!--Content-->
       <div class="col-lg-9">
-        @foreach($posts as $post)
-
+         @if ($posts->count())
+         @foreach($posts as $post)
          <article class="post">
             <div class="post-media">
                <a href="">
@@ -59,7 +59,12 @@
             </div>
             <!-- End .post-body -->
          </article>
-        @endforeach
+         @endforeach
+
+         @else
+            <div class="no-posts">No posts at the moment</div>
+         @endif
+
          <!-- End .post -->
          <!-- <nav class="toolbox toolbox-pagination border-0">
             <ul class="pagination">
