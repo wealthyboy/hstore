@@ -668,8 +668,6 @@ class ProductController extends Controller
 
                 $add_to_product_attributes = [];
                 if(!empty($request->edit_product_attributes)){
-
-
                     foreach($request->edit_product_attributes as $variant_id => $attribute_id ){ 
                         $stored_variation_images  = !empty($request->edit_variation_images[$variant_id]) ? $request->edit_variation_images[$variant_id] : [];
                         $email = MailForOutOfStock::where('product_variation_id',$variant_id)->first();
@@ -688,7 +686,7 @@ class ProductController extends Controller
                                     foreach($emails as $email){
                                         try {
                                             \Mail::to($email->email)
-                                            ->send(new OutOfStockMail($pd));
+                                            ->later(now()->addMinutes(10), new OutOfStockMail($pd));
                                         } catch (\Throwable $th) {
                                             //throw $th;
                                             dd($th);
