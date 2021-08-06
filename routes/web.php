@@ -109,9 +109,9 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 });
 
 Route::get('/mailable', function () {
-    $order = App\Order::find(1);
+    $pd = App\ProductVariation::find(2547);
     $settings =  App\SystemSetting::first();
-    return new App\Mail\OrderReceipt($order,$settings,$symbol='');
+    return new App\Mail\OutOfStockMail($pd);
 });
 
 
