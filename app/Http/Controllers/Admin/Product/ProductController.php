@@ -674,6 +674,8 @@ class ProductController extends Controller
                         $stored_variation_images  = !empty($request->edit_variation_images[$variant_id]) ? $request->edit_variation_images[$variant_id] : [];
                         $email = MailForOutOfStock::where('product_variation_id',$variant_id)->first();
                         if ($email) {
+                            $emails = MailForOutOfStock::where('product_variation_id',$variant_id)->get();
+
                             $pd = ProductVariation::find($variant_id);
                             if (null !== $pd && $pd->quantity == 0 ) {
                                 if ($variant_id == $pd->id &&  $request->edit_variation_quantity[$variant_id] >=1 ) {
@@ -683,15 +685,16 @@ class ProductController extends Controller
                                     */
 
                                     //dd(true);
-                                    try {
-                                            
-                                        \Mail::to($email->email)
-                                        ->send(new OutOfStockMail($pd));
-                                    } catch (\Throwable $th) {
-                                        //throw $th;
-                                        dd($th);
+                                    foreach($emails as $email){
+                                        try {
+                                            \Mail::to($email->email)
+                                            ->send(new OutOfStockMail($pd));
+                                        } catch (\Throwable $th) {
+                                            //throw $th;
+                                            dd($th);
+                                        }
                                     }
-
+                                    
                                 }
                             }
                         }
