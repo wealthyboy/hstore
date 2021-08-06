@@ -101,7 +101,7 @@ class ProductVariation extends Model
     public function link()
 	{   
         $slug = $this->categories->count() ? $this->categories->first()->slug : null;
-        $pv_slug =  $this->slug;
+        $pv_slug =  $this->slug ? $this->slug : optional($this->product)->slug;
 		$link  = '/product/';
 		$link .=  optional(optional($this->category)->category)->slug ? 
 		          optional(optional($this->category)->category)->slug .'/' :
