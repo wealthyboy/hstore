@@ -194,7 +194,7 @@ class CheckoutController extends Controller
 		//get all the infomation 
 		$total = [];
 		$total['currency'] = $this->settings->currency->symbol;
-		$total['message'] = $items_on_sale_in_cart_total ? 'Coupon does not apply on sale items' : null;
+		$total['message'] = $items_on_sale_in_cart_total ? 'Coupon will not apply on already discounted products.' : null;
 		if ( !empty ( $coupon->from_value ) && $cart_total >= $coupon->from_value  ) {
 			$new_total = ($coupon->amount * $items_not_on_sale_in_cart_total) /100;
 			$new_total = $items_not_on_sale_in_cart_total - $new_total;
