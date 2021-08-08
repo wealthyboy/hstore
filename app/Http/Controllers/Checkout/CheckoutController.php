@@ -200,9 +200,6 @@ class CheckoutController extends Controller
 			$new_total = $items_not_on_sale_in_cart_total - $new_total;
 			$items_total = $items_on_sale_in_cart_total ? $items_on_sale_in_cart_total : 0;
 			$new_total = $new_total + $items_total;
-
-
-
 			$total['sub_total'] = round($new_total,0);
 			$request->session()->put(['new_total'=>$new_total]);
 			$request->session()->put(['coupon_total'=>$new_total]);

@@ -17,6 +17,41 @@
     </div>
 </div>
 
+
+@if ($posts->count()) 
+
+<div class="blog-section pt-0 mt-3">
+    <h1 title="fashion blog" class="text-center mb-3">Blog</h1>
+
+    <div class="products-slider owl-carousel owl-theme dots-top">
+       @foreach($posts as $post)
+        <div class="blog-default inner-quickview inner-icon">
+            <figure>
+                <a href="{{ route('blog.show',['blog'=> $post->slug]) }}">
+                    <img  title="{{  $post->title }}" src="{{ $post->image }}" alt="{{  $post->title }}">
+                </a>
+            </figure>
+            <div class="blog-details text-center">
+                <h3 class="blog-title">
+                    <a title="{{ $post->title }}  fashion blog" href="{{ route('blog.show',['blog'=> $post->slug]) }}" class="">
+                        {{ $post->title }}
+                    </a>
+                </h3>
+                <div class="blog-teaser-box">
+                    {{ $post->teaser }}
+                </div><!-- End .price-box -->
+            </div><!-- End .product-details -->
+        </div>
+
+
+        @endforeach
+        
+    </div><!-- End .products-slider -->
+</div><!-- End .products-section -->
+
+@endif
+
+
 <div class="container-fluid ">
 <div class="feature-boxes-container row mt-6 mb-1">
     <div class="col-md-4 col-4">
