@@ -31,8 +31,8 @@
                     <img  title="{{  $post->title }}" src="{{ $post->image }}" alt="{{  $post->title }}">
                 </a>
             </figure>
-            <div class="blog-details text-center">
-                <h4 class="blog-title">
+            <div class="blog-details text-left">
+                <h4 class="blog-title mb-1">
                     <a title="{{ $post->title }}  fashion blog" href="{{ route('blog.show',['blog'=> $post->slug]) }}" class="">
                         {{ $post->title }}
                     </a>
