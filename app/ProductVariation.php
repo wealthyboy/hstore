@@ -115,8 +115,6 @@ class ProductVariation extends Model
         return (new ProductFilters($request))->add($filters)->filter($builder);
     }
 
-
-
 	public function category(){
 		return $this->hasOne(CategoryProductVariation::class)->where('category_id',optional($this->pivot)->category_id);
     }

@@ -130,9 +130,20 @@ class CheckoutController extends Controller
 	
 	protected function coupon (Request $request) { 
 
-		$cart_total  = Cart::sum_items_in_cart();
+		$cart_total      = Cart::sum_items_in_cart();
+
+		$items_on_sale_in_cart_total  = Cart::sum_sale_items_in_cart();
+
+		$items_not_on_sale_in_cart_total   = Cart::sum_items_in_cart_that_is_not_on_sale();
+
+
 		if ( !$cart_total ){
 			$error['error']='We cannot process your voucher';
+			return response()->json($error, 422);
+		}
+
+		if ( !$items_not_on_sale_in_cart_total && $items_on_sale_in_cart_total ){
+			$error['error']='Coupon deos not apply on sale items';
 			return response()->json($error, 422);
 		}
 
@@ -163,8 +174,9 @@ class CheckoutController extends Controller
 			return response()->json($error, 422);
 		}
 
+
 		if( $coupon->is_coupon_expired() ){
-			$error['error']='Coupon has expired';
+			$error['error']='Coupon has expired  ';
 			return response()->json($error, 422); 
 		}
 
@@ -182,10 +194,15 @@ class CheckoutController extends Controller
 		//get all the infomation 
 		$total = [];
 		$total['currency'] = $this->settings->currency->symbol;
-
+		$total['message'] = $items_on_sale_in_cart_total ? 'Coupon does not apply on sale items' : null;
 		if ( !empty ( $coupon->from_value ) && $cart_total >= $coupon->from_value  ) {
-			$new_total = ($coupon->amount * $cart_total) /100;
-			$new_total = $cart_total - $new_total;
+			$new_total = ($coupon->amount * $items_not_on_sale_in_cart_total) /100;
+			$new_total = $items_not_on_sale_in_cart_total - $new_total;
+			$items_total = $items_on_sale_in_cart_total ? $items_on_sale_in_cart_total : 0;
+			$new_total = $new_total + $items_total;
+
+
+
 			$total['sub_total'] = round($new_total,0);
 			$request->session()->put(['new_total'=>$new_total]);
 			$request->session()->put(['coupon_total'=>$new_total]);
@@ -196,8 +213,10 @@ class CheckoutController extends Controller
 			$error['error']='Coupon is invalid ';
 			return response()->json($error, 422);
 		} else  {
-			$new_total = ($coupon->amount * $cart_total) /100;
-			$new_total = $cart_total - $new_total; 
+			$new_total = ($coupon->amount * $items_not_on_sale_in_cart_total) /100;
+			$new_total = $items_not_on_sale_in_cart_total - $new_total; 
+			$items_total = $items_on_sale_in_cart_total ? $items_on_sale_in_cart_total : 0;
+			$new_total = $new_total + $items_total;
 			$total['sub_total'] =   $new_total;
 			$request->session()->put(['new_total'=>$new_total]);
 			$request->session()->put(['coupon_total'=>$new_total]);

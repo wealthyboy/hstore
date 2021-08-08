@@ -125,10 +125,12 @@
                                                 Apply Coupon
                                             </button>
                                         </div>
+
                                     </div><!-- End .input-group -->
+                                    <div v-if="coupon_error"  class="text-capitalize bold text-danger">{{coupon_error}}</div>
+                                  
                                 </div>
                         
-                                <span v-if="coupon_error"  class="text-capitalize bold ml-3 text-danger">{{coupon_error}}</span >
 
                                 <h4>Choose Delivery Option</h4>
                                 <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1 ">
@@ -183,6 +185,24 @@
                                   </div>
                                 </div>
 
+                                <div class="col-12  text-info bold">
+                                  <div
+                                    v-if="voucher.length && voucher[0].message"
+                                    class="alert alert-info alert-dismissible fade show"
+                                    role="alert"
+                                  >
+                                    <strong> {{voucher[0].message}}</strong>
+                                    <button
+                                      type="button"
+                                      class="close"
+                                      data-dismiss="alert"
+                                      aria-label="Close"
+                                    >
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                </div>
+
                                 
                           
                                 <p  class="">
@@ -226,7 +246,6 @@
                                                 <span style="" class="currencySymbol fa-2x">{{ meta.currency }}{{ amount ||  meta.sub_total | priceFormat }}</span>
                                                 <p class="retail-title fa-1x">{{ voucher[0].percent }}</p>
                                             </span>
-                        
                                         </template>
                                         <template v-else>
                                             <span class="price-amount amount bold float-right mr-3">

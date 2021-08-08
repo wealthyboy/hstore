@@ -59,7 +59,8 @@ class CartController  extends Controller {
 					'quantity'   => $request->quantity,
 					'price'      => $price,
 					'total'      => $price * $request->quantity,
-					'status' => 'pending'
+					'status' => 'pending',
+					'is_sale_product'  => $product_variation->discounted_price ? 1 : 0
 				]
 			);
 
@@ -75,6 +76,8 @@ class CartController  extends Controller {
 			$cart->total      = $price * $request->quantity;
 			$cart->status     =   'pending';
 			$cart->remember_token =$cookie->getValue();
+			$cart->is_sale_product  = $product_variation->discounted_price ? 1 : 0;
+
 			$cart->save();
 			$carts = Cart::all_items_in_cart();
 			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token',$cookie->getValue())->get();

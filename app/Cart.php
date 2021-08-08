@@ -24,7 +24,8 @@ class Cart extends Model
 			'total',
 			'price',
 			'product_variation_id',
-			'status'
+			'status',
+			'is_sale_product'
 		];
 
 	public $appends = [
@@ -91,6 +92,21 @@ class Cart extends Model
        $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token',$cookie)->where('quantity','>=',1)->get();
        return 	static::ConvertCurrencyRate($total = $total[0]->items_total);
 	}
+
+
+	public static function sum_sale_items_in_cart() {   
+		$cookie=\Cookie::get('cart'); 
+		$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where(['remember_token'=>$cookie, 'is_sale_product'=> true])->where('quantity','>=',1)->get();
+		return 	static::ConvertCurrencyRate($total = $total[0]->items_total);
+	 }
+
+
+	public static function sum_items_in_cart_that_is_not_on_sale() {   
+		$cookie=\Cookie::get('cart'); 
+		$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where(['remember_token'=> $cookie, 'is_sale_product'=> false])->where('quantity','>=',1)->get();
+		return 	static::ConvertCurrencyRate($total = $total[0]->items_total);
+	}
+
 
 	public static function cart_number() { 
 		$cookie=\Cookie::get('cart');
