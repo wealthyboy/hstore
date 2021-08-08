@@ -32,13 +32,13 @@
                 </a>
             </figure>
             <div class="blog-details text-center">
-                <h3 class="blog-title">
+                <h4 class="blog-title">
                     <a title="{{ $post->title }}  fashion blog" href="{{ route('blog.show',['blog'=> $post->slug]) }}" class="">
                         {{ $post->title }}
                     </a>
-                </h3>
+                </h4>
                 <div class="blog-teaser-box">
-                    {{ $post->teaser }}
+                    <?php echo  str_limit(html_entity_decode($post->teaser), $limit = 100, $end = '...') ?>   
                 </div><!-- End .price-box -->
             </div><!-- End .product-details -->
         </div>
