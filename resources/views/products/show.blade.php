@@ -25,7 +25,7 @@
         <div class="products-slider owl-carousel owl-theme dots-top">
             @foreach( optional($product_variation->product)->related_products as $related_product)
 
-
+             @if ($related_product->product_variation)
             
             <div class="product-default inner-quickview inner-icon">
                 <figure>
@@ -53,6 +53,7 @@
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
             </div>
+            @endif
 
 
             @endforeach
