@@ -126,7 +126,7 @@ class ProductsController extends Controller
         $stock = $this->product_stock($product_variation); 
         $attributes =  collect($data);
         $attributes = $attributes->count() && $product_variation->product->product_type == 'variable' ? $attributes : '{}';
-        $product_variation->load(["images","product.related_products"]);
+        $product_variation->load(["images","product.related_products.product_variation"]);
 
         if ($request->debug){
             dd($product_variation);
