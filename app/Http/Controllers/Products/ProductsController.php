@@ -105,6 +105,8 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request,Category $category,ProductVariation $product_variation)  { 
+
+        
         $page_title = "{$product_variation->name}";
         $favorites ='';
         $data= [];
@@ -125,6 +127,10 @@ class ProductsController extends Controller
         $attributes =  collect($data);
         $attributes = $attributes->count() && $product_variation->product->product_type == 'variable' ? $attributes : '{}';
         $product_variation->load(["images"]);
+
+        if ($request->debug){
+            dd($product_variation);
+       }
     	return view('products.show',compact('inventory','stock','category','attributes','product_variation','page_title'));
     }
 

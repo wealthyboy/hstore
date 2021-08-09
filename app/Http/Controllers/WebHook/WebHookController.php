@@ -31,9 +31,7 @@ class WebHookController extends Controller
 
     public function payment(Request $request,OrderedProduct $ordered_product,Order $order)
     {   
-        // if ( !array_key_exists('x-paystack-signature', $_SERVER) ) {
-        //     return;
-        // } 
+        
 
         Log::info($request->all());
 
