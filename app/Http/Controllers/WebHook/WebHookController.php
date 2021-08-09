@@ -54,20 +54,20 @@ class WebHookController extends Controller
             }
 
             $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
-        
+            $shipping_id = isset($input['shipping_id']) ? $input['shipping_id'] : null;
             $order->user_id = $user->id;
             $order->address_id     =  optional($user->active_address)->id;
             $order->coupon         =  $input['coupon'];
             $order->status         = 'Processing';
-            $order->shipping_id    =  $input['shipping_id'];
-            $order->shipping_price =  optional(Shipping::find($input['shipping_id']))->converted_price;
+            $order->shipping_id    =  $shipping_id;
+            $order->shipping_price =  optional(Shipping::find($shipping_id))->converted_price;
             $order->currency       =  optional($currency)->symbol ?? '₦';
             $order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
             $order->payment_type   =  $request->data['authorization']['channel'];
             $order->delivery_option   =  $input['delivery_option'];
-            $order->delivery_note   =  $input['delivery_note'];
-            $order->total          =  $input['total'];
-            $order->ip             =  $request->data['ip_address'];
+            $order->delivery_note   =    $input['delivery_note'];
+            $order->total          =     $input['total'];
+            $order->ip             =     $request->data['ip_address'];
             $order->save();
 
             foreach ( $carts   as $cart){
