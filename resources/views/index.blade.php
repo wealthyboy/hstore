@@ -23,7 +23,7 @@
 <div class="blog-section pt-0 mt-3">
     <h1 title="fashion blog" class="text-center mb-3">Blog</h1>
 
-    <div class="products-slider owl-carousel owl-theme dots-top">
+    <div class="products-slider ml-3 owl-carousel owl-theme dots-top">
        @foreach($posts as $post)
         <div class="blog-default inner-quickview inner-icon">
             <figure>
@@ -104,7 +104,6 @@
         <p>Join the geng!</p>
         
         <sign-up />
-
         <div class="newsletter-subscribe">
             <div class="checkbox">
                 <label>
