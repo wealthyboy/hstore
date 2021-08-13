@@ -11,7 +11,7 @@
                           <nav class="breadcrumb-link">
                             <span><a href="/">Home</a></span> 
                             <span>Blog</span> 
-                            <span>{{ $blog->title }}</span>
+                            <span></span>
                         </nav>
                     </div>
                 </div>
@@ -21,8 +21,8 @@
 <section id="home">   
     <div class="container">
         <div class="row justifiy-content-center">        
-            <div id="content" class="col-md-12">  
-                <h3 class="">{{ $blog->title }}</h3>
+            <div id="content" class="col-md-8 offset-md-2">  
+                <h1 class="text-center">{{ $blog->title }}</h1>
                 <div class="blog-item">
                    <p><?php echo  str_replace('""="">','',html_entity_decode($blog->description));  ?></p>
                 </div>

@@ -20,7 +20,10 @@ class Information extends Model
     public $folder = 'blog';
     
     public $appends = [
-        'link'
+        'link',		
+        'image_m',
+
+
     ];
 	
 	protected $table = 'information';

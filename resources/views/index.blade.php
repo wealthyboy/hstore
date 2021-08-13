@@ -28,7 +28,7 @@
         <div class="blog-default inner-quickview inner-icon">
             <figure>
                 <a href="{{ route('blog.show',['blog'=> $post->slug]) }}">
-                    <img  title="{{  $post->title }}" src="{{ $post->image }}" alt="{{  $post->title }}">
+                    <img  title="{{ $post->title }}" src="{{ $post->image_m }}" alt="{{  $post->title }}">
                 </a>
             </figure>
             <div class="blog-details text-left">
@@ -42,8 +42,6 @@
                 </div><!-- End .price-box -->
             </div><!-- End .product-details -->
         </div>
-
-
         @endforeach
         
     </div><!-- End .products-slider -->
