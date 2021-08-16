@@ -10,6 +10,7 @@
                         <h1 class="breadcrumb-title">Blog</h1>
                           <nav class="breadcrumb-link">
                             <span><a href="/">Home</a></span> 
+                             >
                             <span>Blog</span> 
                             <span></span>
                         </nav>
@@ -26,6 +27,7 @@
                 <div class="blog-item">
                    <p><?php echo  str_replace('""="">','',html_entity_decode($blog->description));  ?></p>
                 </div>
+                <div class="clearfix"></div>
                 <div class="comments-area clearfix">
                     <!--Comments-->
                     <comments :blog="{{ $blog }}" />

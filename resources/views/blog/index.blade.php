@@ -19,9 +19,10 @@
       </div>
    </section>
    <div class="container  mt-2">
-      
       <!--Content-->
-      <div class="col-lg-9">
+      
+      <div class="row justifiy-content-center">        
+         <div id="content" class="col-md-8 offset-md-2"> 
          @if ($posts->count())
          @foreach($posts as $post)
          <article class="post">
@@ -82,6 +83,8 @@
             </ul>
          </nav> -->
       </div>
+      </div>
+
       <!-- End .col-lg-9 -->
       <!--End Content--> 
    </div>
