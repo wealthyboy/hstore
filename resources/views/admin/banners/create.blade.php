@@ -30,6 +30,14 @@
                            <input id="sort-order" required="required" type="number" name="sort_order" value="{{ !empty(  $banner->sort_order )  ? $banner->sort_order : old('sort_order')   }}" class="form-control" id="inputPassword3" placeholder="sort order">
                         </div>
                      </div>
+
+                     <div class="form-group">
+                        <label for="sort-order"  class="col-sm-2 control-label">Image Alt tag</label>
+                        <div class="col-sm-10">
+                           <input id="" required="required" type="text" name="img_alt" value="{{ !empty(  $banner->img_alt )  ? $banner->img_alt : old('img_alt')   }}" class="form-control" id="inputPassword3" placeholder="Img Alt">
+                        </div>
+                     </div>
+
                      <div class="form-group">
                         <label for="link" class="col-sm-2 control-label">Link</label>
                         <div class="col-sm-10">

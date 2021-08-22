@@ -42,7 +42,6 @@
                                 type="text"  
                             />
                         </div>
-
                         <div class="form-group label-floating">
                             <label class="control-label">
                                 Text color
@@ -53,14 +52,45 @@
                             />
                         </div>
 
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Meta Title
+                            </label>
+                            <input class="form-control"
+                                name="title"
+                                type="text"  
+                            />
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Keywords
+                            </label>
+                            <input class="form-control"
+                                name="keywords"
+                                type="text"  
+                            />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Meta Description</label>
+                            <div class="form-group ">
+                                <label class="control-label"> </label>
+                                <textarea name="meta_description" id="description" class="form-control"  rows="7"></textarea>
+                            </div>
+                        </div>
+                        
+
                         <div class="form-group">
                             <label>Description</label>
                             <div class="form-group ">
                                 <label class="control-label"> </label>
-                                <textarea name="description" 
-                                id="description" class="form-control"  rows="7"></textarea>
+                                <textarea name="description" id="description" class="form-control"  rows="7"></textarea>
                             </div>
                         </div>
+
+
                         <div class="form-group ">
                             <label class="control-label"></label>
                             <select name="parent_id" class="form-control">
@@ -69,9 +99,10 @@
                                     <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
                                     @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
                                 @endforeach
-                                
                             </select>
                         </div>
+
+
                        <div class="row">
                             <div class="col-md-12">
                                <h3 class="info-text">Upload Image</h3>

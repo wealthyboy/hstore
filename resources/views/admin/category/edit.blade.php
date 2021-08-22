@@ -59,6 +59,38 @@
 
                             />
                         </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Meta Title
+                            </label>
+                            <input class="form-control"
+                                name="title"
+                                type="text" 
+                                value="{{ $cat->title }}" 
+                            />
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Keywords
+                            </label>
+                            <input class="form-control"
+                                name="keywords"
+                                type="text" 
+                                value="{{ $cat->keywords }}" 
+                            />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Meta Description</label>
+                            <div class="form-group ">
+                                <label class="control-label"> </label>
+                                <textarea name="meta_description" id="description" class="form-control"  rows="7">{{ $cat->meta_description }}</textarea>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label>Description</label>
                             <div class="form-group ">

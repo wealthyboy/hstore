@@ -9,7 +9,7 @@
             <div data-title="{{ $banner->title }}" class="{{ $banner->col }} {{ $banner->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $banner->title }} p-0 text-center">
                 <div class="banner-box">
                     <a class="portfolio-thumb" href="{{ $banner->link }}">
-                        <img src="{{ $banner->image }}" alt="" />
+                        <img src="{{ $banner->image }}" title="{{ $banner->title }}" alt="{{ $banner->img_alt }}" />
                     </a>
                 </div>
             </div> 

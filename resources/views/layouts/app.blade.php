@@ -9,7 +9,7 @@
 	<meta name="google-site-verification" content="WQGOl-v7IztNDZtgNC1ZEBkG8nyRsHJ1oLsnsLeiuIQ" />
 
     <meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
-    <meta name="keywords" content="{{ isset($system_settings->meta_tag_keywords) ? $system_settings->meta_tag_keywords : 'cleanse,detox,flattummy,flattummy tea ng,slimming tea' }}" />
+    <meta name="keywords" content="{{ isset($meta_tag_keywords) ? $meta_tag_keywords : $system_settings->meta_tag_keywords }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="canonical" href="{{ Config('app.url') }}">
 
@@ -100,7 +100,7 @@
                             @foreach( $global_categories   as  $category)
 
                                 <li>
-                                   <a style="color: {{  $category->text_color }} !important" href="/products/{{ $category->slug }}">{{ $category->name }}</a>
+                                   <a  title="{{ $category->title }}" style="color: {{  $category->text_color }} !important" href="/products/{{ $category->slug }}">{{ $category->name }}</a>
                                    @if ($category->isCategoryHaveMultipleChildren())
 
                                     <div class="megamenu megamenu-fixed-width">
@@ -109,11 +109,11 @@
 											    <div class="row">
 													@foreach (  $category->children as $children)
 													<div class="col-lg-3">
-														<a href="/products/{{ $children->slug }}" class="category-heading"><b>{{ $children->name !== 'No Heading' ? $children->name : '' }} </b></a>
+														<a href="/products/{{ $children->slug }}" title="{{ $children->title }}" class="category-heading"><b>{{ $children->name !== 'No Heading' ? $children->name : '' }} </b></a>
 														@if ($children->children->count())
 															<ul class="submenu">
 																@foreach (  $children->children as $children)
-																	<li><a href="/products/{{ $children->slug }}">{{ ucfirst($children->name) }}</a></li>
+																	<li><a title="{{ $children->title }}"  href="/products/{{ $children->slug }}">{{ ucfirst($children->name) }}</a></li>
 																@endforeach
 															</ul>
 														@endif
@@ -124,7 +124,7 @@
 											
 											<div class="col-lg-3">
 												<div class="col-lg-12 p-0">
-												   <a href="{{ $category->image_custom_link }}"><img src="{{ $category->image }}" alt="{{ $category->image }}" class="product-promo" ></a>
+												   <a title="{{ $category->title }}" href="{{ $category->image_custom_link }}"><img src="{{ $category->image }}" alt="{{ $category->image }}" class="product-promo" ></a>
 												</div><!-- End .col-lg-4 -->
 											</div>
 										   
@@ -134,7 +134,7 @@
                                     @elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
                                         <ul  >
                                             @foreach (  $category->children as $children)
-                                               <li class="nav-children color--primary  {{ strtolower($category->name) == 'christmas shop' ? 'pl-5' : '' }}"><a href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
+                                               <li class="nav-children color--primary  {{ strtolower($category->name) == 'christmas shop' ? 'pl-5' : '' }}"><a title="{{ $children->title }}" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
                                             @endforeach 
                                         </ul>
                                     @endif
@@ -272,10 +272,6 @@
 
 	<!-- Plugins JS File -->
 	<script src="/js/app.js?version={{ str_random(6) }}" type="text/javascript"></script>
-	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-	<!-- Main JS File -->
-	<script src="/js/main.min.js?version={{ str_random(6) }}"></script>
-	<script src="{{ asset('js/loadProducts.jquery.js') }}"></script> 
 
     @yield('page-scripts')
     <script type="text/javascript">

@@ -37,11 +37,11 @@ class ProductsController extends Controller
 
     public function  index(Request $request,Category $category)  {
 
-        $page_title = implode(" ",explode('-',$category->slug));
+        $page_title = $category->title;
+        $meta_tag_keywords = $category->keywords;
+        $page_meta_description = $category->meta_description;
         $category_attributes = $category->attribute_parents()->has('children')->get();
-         
 
-        //dd($this->getFilters($category_attributes));
         $products = ProductVariation::whereNotNull('name')->where('allow',true)->whereHas('categories',function(Builder  $builder) use ($category){
             $builder->where('categories.name',$category->name);
         })->filter($request,$this->getFilters($category_attributes))->latest()->paginate($this->settings->products_items_per_page);
@@ -62,7 +62,9 @@ class ProductsController extends Controller
             'page_title',
             'category_attributes',
             'breadcrumb',
-            'products'
+            'products',
+            'meta_tag_keywords',
+            'meta_tag_keywords'
         ));     
     }
 

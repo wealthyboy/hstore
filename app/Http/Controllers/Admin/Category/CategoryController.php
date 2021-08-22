@@ -20,6 +20,7 @@ class CategoryController extends Controller
     
     public function __construct()
     {
+        $this->middleware('admin'); 
     }
     
     
@@ -90,8 +91,10 @@ class CategoryController extends Controller
         $category->image_custom_link = $request->image_custom_link;
         $category->banner_image = $request->banner_image;
         $category->image = $request->image;
+        $category->meta_description = $request->meta_description;
+        $category->keywords = $request->keywords;
         $category->text_color = $request->text_color;
-
+        $category->title = $request->title;
         $category->slug=$slug;
         $category->sort_order=$request->sort_order;
         $category->description=$request->description;
@@ -189,6 +192,9 @@ class CategoryController extends Controller
         $category->image_custom_link = $request->image_custom_link;
         $category->image = $request->image;
         $category->text_color = $request->text_color;
+        $category->meta_description = $request->meta_description;
+        $category->keywords = $request->keywords;
+        $category->title = $request->title;
         $category->slug=$slug;
         $category->save();
 
