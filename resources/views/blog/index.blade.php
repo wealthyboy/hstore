@@ -62,6 +62,8 @@
          </article>
          @endforeach
 
+
+
          @else
             <h3 class="no-posts">No posts at the moment</h3>
          @endif
