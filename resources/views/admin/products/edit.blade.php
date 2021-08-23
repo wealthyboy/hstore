@@ -56,6 +56,7 @@
                                  </div>
                               </div>
                            </div>
+                           <div class="row">
 
                            <div class="col-md-12">
                               <div class="form-group label-floating is-empty">
@@ -73,15 +74,14 @@
                               </div>
                            </div>
 
+                           </div>
+
                            <div class="row">
                               <div class="col-md-12">
                                  <div class="form-group">
-                                 <label>Description</label>
-                                 <div class="form-group ">
                                        <label class="control-label"> Meta description </label>
                                        <textarea name="meta_description" 
-                                       id="" class="form-control" rows="50">{{ isset($product) ? $product->meta_description : old('meta_description') }}</textarea>
-                                 </div>
+                                       id="" class="form-control" rows="10">{{ isset($product) ? $product->meta_description : old('meta_description') }}</textarea>
                                  </div>
                               </div>
                            </div>
