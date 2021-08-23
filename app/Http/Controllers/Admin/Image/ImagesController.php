@@ -19,7 +19,15 @@ class ImagesController extends Controller
     {	  
 	  $this->settings =  SystemSetting::first();
     }
-    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        
+    }
 
    
 
@@ -36,11 +44,31 @@ class ImagesController extends Controller
         if ( $request->filled('image_id') && $request->image_id !== 'undefined') {  
             $this->update($request);
         }
-
         $path = $this->uploadImage($request);
         return response()->json(['path'=>$path]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.
@@ -66,7 +94,7 @@ class ImagesController extends Controller
 
             //when the user clicks change remove the previuos image
             request()->validate([
-               'file' => 'required|image|mimes:jpeg,png,webp,jpg,gif,webp',
+               'file' => 'required|image|mimes:jpeg,png,webp,jpg,gif',
                'folder' => 'required'
             ]);
 
@@ -94,22 +122,14 @@ class ImagesController extends Controller
                 \File::makeDirectory(public_path('images/'. $request->folder.'/tn' ),0755, true);
             }
 
-            
-
-            $classifiedImg = $request->file('file');
-            $filename = explode('.', $classifiedImg->getClientOriginalName());
-            $filename = $filename[0] .'.webp';
-            // Intervention 
-            $image = \Image::make($classifiedImg)->encode('webp', 90)->save(public_path('images/'  .  $request->folder .  '/' . $filename));
-            
-            ///return $path;
-
-            $path =  public_path('images/'. $request->folder .'/'.$filename);
+            $path = $request->file('file')->store('images/'.$request->folder);
+            $file = basename($path);
+            $path =  public_path('images/'. $request->folder .'/'.$file);
             
             if ($request->folder == 'products'){
 
                 $img  = \Image::make($path)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
-                    public_path('images/products/m/'.$filename)
+                    public_path('images/products/m/'.$file)
                 );
                 $canvas = \Image::canvas(106, 145);
                 $image  = \Image::make($path)->resize(77, 105, function($constraint)
@@ -118,32 +138,25 @@ class ImagesController extends Controller
                 });
                 $canvas->insert($image, 'center');
                 $canvas->save(
-                    public_path('images/products/tn/'.$filename)
+                    public_path('images/products/tn/'.$file)
                 );
 
-                return $path = asset('images/'. $request->folder .'/'.$filename);
+                return $path = asset('images/'. $request->folder .'/'.$file);
             }
 
-            $img  = \Image::make($path)->fit(465, 465)->save(
-                public_path('images/'. $request->folder .'/m/'.$filename)
+            $img  = \Image::make($path)->fit(400, 200)->save(
+                public_path('images/'. $request->folder .'/m/'.$file)
             );
-
-            $img  = \Image::make($path)->fit(465, 465)->save(
-                public_path('images/'. $request->folder .'/m/'.$filename)
-            );
-
             $canvas = \Image::canvas(106, 145);
             $image  = \Image::make($path)->resize(150, 250, function($constraint)
             {
                 $constraint->aspectRatio();
             });
             $canvas->insert($image, 'center');
-
             $canvas->save(
-                public_path('images/'.$request->folder.'/tn/'.$filename)
+                public_path('images/'.$request->folder.'/tn/'.$file)
             );
-
-            return $path = asset('images/'. $request->folder .'/'.$filename);
+           return $path = asset('images/'. $request->folder .'/'.$file);
         }
 
     }
@@ -176,10 +189,17 @@ class ImagesController extends Controller
                     return response(null,200);
                 }
             }
-            return response(null,200);
-
             
+        } else {
+            $model = $class::find($request->image_id);
+            if ($model){
+                $model->image = null;
+                $model->save();
+            }
+            return response('deleted',200);
         }
+
+        return response(null,200);  
     } 
 
     /**
