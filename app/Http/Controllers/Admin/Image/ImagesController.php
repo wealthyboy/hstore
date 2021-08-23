@@ -97,11 +97,11 @@ class ImagesController extends Controller
             $path = $request->file('file')->store('images/'.$request->folder);
             $file = basename($path);
 
-            $path =  \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
-                public_path('images/'. $request->folder .'/'.$file)
-            );
+            // $path =  \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
+            //     public_path('images/'. $request->folder .'/'.$file)
+            // );
 
-            return $path;
+            // return $path;
 
 
             $file = basename($path);
