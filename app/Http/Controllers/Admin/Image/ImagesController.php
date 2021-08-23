@@ -103,14 +103,12 @@ class ImagesController extends Controller
             $image = \Image::make($classifiedImg)->encode('webp', 90)->save(public_path('images/'  .  $request->folder .  '/' . $filename));
             
             ///return $path;
-            return $path = asset('images/'. $request->folder .'/'.$filename);
-
 
             $path =  public_path('images/'. $request->folder .'/'.$filename);
             
             if ($request->folder == 'products'){
 
-                $img  = \Image::make($path)->encode('webp', 90)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
+                $img  = \Image::make($path)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
                     public_path('images/products/m/'.$filename)
                 );
                 $canvas = \Image::canvas(106, 145);
@@ -126,11 +124,11 @@ class ImagesController extends Controller
                 return $path = asset('images/'. $request->folder .'/'.$filename);
             }
 
-            $img  = \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
+            $img  = \Image::make($path)->fit(465, 465)->save(
                 public_path('images/'. $request->folder .'/m/'.$filename)
             );
 
-            $img  = \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
+            $img  = \Image::make($path)->fit(465, 465)->save(
                 public_path('images/'. $request->folder .'/m/'.$filename)
             );
 
