@@ -7,6 +7,14 @@
     <title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') :  $system_settings->meta_title  }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="google-site-verification" content="WQGOl-v7IztNDZtgNC1ZEBkG8nyRsHJ1oLsnsLeiuIQ" />
+	
+    <link rel="preload" href="https://hautesignatures.com/css/bootstrap.min.css" as="style">
+	<link rel="preload" href="https://hautesignatures.com/css/style.min.css" as="style">
+    <link rel="preload" href="https://hautesignatures.com/css/vendor/fontawesome-free/css/all.min.css" as="style">
+    <link rel="preload" href="https://hautesignatures.com/css/skins/skin-default.css" as="style">
+
+    <link rel="preload" href="https://hautesignatures.com/js/app.js" as="script">
+ 
 
     <meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
     <meta name="keywords" content="{{ isset($meta_tag_keywords) ? $meta_tag_keywords : $system_settings->meta_tag_keywords }}" />
