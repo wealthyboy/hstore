@@ -31,9 +31,6 @@ class HomeCtrl extends Controller
 
 	public function index() { 
 
-         $o = Category::where('name' ,'BAGS')->first();
-         $o->parent_id = null;
-         $o->save();
          
 
         return view('admin.index'); 
