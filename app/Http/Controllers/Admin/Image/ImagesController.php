@@ -19,15 +19,7 @@ class ImagesController extends Controller
     {	  
 	  $this->settings =  SystemSetting::first();
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-    }
+    
 
    
 
@@ -44,31 +36,11 @@ class ImagesController extends Controller
         if ( $request->filled('image_id') && $request->image_id !== 'undefined') {  
             $this->update($request);
         }
+
         $path = $this->uploadImage($request);
         return response()->json(['path'=>$path]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -124,6 +96,15 @@ class ImagesController extends Controller
 
             $path = $request->file('file')->store('images/'.$request->folder);
             $file = basename($path);
+
+            $path =  \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
+                public_path('images/'. $request->folder .'/'.$file)
+            );
+
+            return $path;
+
+
+            $file = basename($path);
             $path =  public_path('images/'. $request->folder .'/'.$file);
             
             if ($request->folder == 'products'){
@@ -147,16 +128,23 @@ class ImagesController extends Controller
             $img  = \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
                 public_path('images/'. $request->folder .'/m/'.$file)
             );
+
+            $img  = \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
+                public_path('images/'. $request->folder .'/m/'.$file)
+            );
+
             $canvas = \Image::canvas(106, 145);
             $image  = \Image::make($path)->resize(150, 250, function($constraint)
             {
                 $constraint->aspectRatio();
             });
             $canvas->insert($image, 'center');
+
             $canvas->save(
                 public_path('images/'.$request->folder.'/tn/'.$file)
             );
-           return $path = asset('images/'. $request->folder .'/'.$file);
+
+            return $path = asset('images/'. $request->folder .'/'.$file);
         }
 
     }
