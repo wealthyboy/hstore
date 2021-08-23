@@ -145,6 +145,10 @@ class ProductController extends Controller
         $product->height       = $request->height;
         $product->image        = $request->image;
         $product->width        = $request->width;
+        $product->meta_description = $request->meta_description;
+        $product->meta_keywords = $request->meta_keywords;
+        $product->meta_title = $request->meta_title;
+
         ///$product->extra_percent_off  = $request->extra_percent_off;
 
         $product->description  = $request->description;
@@ -555,6 +559,10 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->allow       = $request->allow ? $request->allow : 0;
         $product->brand_id    = $request->brand_id;
+
+        $product->meta_description = $request->meta_description;
+        $product->meta_keywords = $request->meta_keywords;
+        $product->meta_title = $request->meta_title;
         $product->total       = 2;
         $product->product_type = $request->type;
         $product->featured    =  $request->featured_product ? 1 : 0;

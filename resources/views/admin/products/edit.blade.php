@@ -56,6 +56,35 @@
                                  </div>
                               </div>
                            </div>
+
+                           <div class="col-md-12">
+                              <div class="form-group label-floating is-empty">
+                              <label class="control-label">Meta Tile</label>
+                              <input  required="true" name="meta_title" data-msg="" value="{{ isset($product) ? $product->meta_title : old('meta_title') }}" class="form-control" type="text">
+                              <span class="material-input"></span>
+                              </div>
+                           </div>
+
+                           <div class="col-md-12">
+                              <div class="form-group label-floating is-empty">
+                                 <label class="control-label">Meta Keywords</label>
+                                 <input  required="true" name="meta_keywords" data-msg="" value="{{ isset($product) ? $product->meta_keywords : old('meta_keywords') }}" class="form-control" type="text">
+                                 <span class="material-input"></span>
+                              </div>
+                           </div>
+
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="form-group">
+                                 <label>Description</label>
+                                 <div class="form-group ">
+                                       <label class="control-label"> Meta description </label>
+                                       <textarea name="meta_description" 
+                                       id="" class="form-control" rows="50">{{ isset($product) ? $product->meta_description : old('meta_description') }}</textarea>
+                                 </div>
+                                 </div>
+                              </div>
+                           </div>
                            
                           <div class="row">
                               <div class="col-md-12">
