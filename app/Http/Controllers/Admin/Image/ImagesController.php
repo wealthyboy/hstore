@@ -128,7 +128,7 @@ class ImagesController extends Controller
             
             if ($request->folder == 'products'){
 
-                $img  = \Image::make($path)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
+                $img  = \Image::make($path)->encode('webp', 90)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
                     public_path('images/products/m/'.$file)
                 );
                 $canvas = \Image::canvas(106, 145);
@@ -144,7 +144,7 @@ class ImagesController extends Controller
                 return $path = asset('images/'. $request->folder .'/'.$file);
             }
 
-            $img  = \Image::make($path)->fit(465, 465)->save(
+            $img  = \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
                 public_path('images/'. $request->folder .'/m/'.$file)
             );
             $canvas = \Image::canvas(106, 145);
