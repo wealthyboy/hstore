@@ -94,23 +94,24 @@ class ImagesController extends Controller
                 \File::makeDirectory(public_path('images/'. $request->folder.'/tn' ),0755, true);
             }
 
-            $path = $request->file('file')->store('images/'.$request->folder);
-            $file = basename($path);
+            
 
-            // $path =  \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
-            //     public_path('images/'. $request->folder .'/'.$file)
-            // );
+            $classifiedImg = $request->file('file');
+            $filename = explode('.', $classifiedImg->getClientOriginalName());
+            $filename = $filename[0] .'.webp';
+            // Intervention 
+            $image = \Image::make($classifiedImg)->encode('webp', 90)->save(public_path('images/'  .  $request->folder .  '/' . $filename));
+            
+            ///return $path;
+            return $path = asset('images/'. $request->folder .'/'.$filename);
 
-            // return $path;
 
-
-            $file = basename($path);
-            $path =  public_path('images/'. $request->folder .'/'.$file);
+            $path =  public_path('images/'. $request->folder .'/'.$filename);
             
             if ($request->folder == 'products'){
 
                 $img  = \Image::make($path)->encode('webp', 90)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
-                    public_path('images/products/m/'.$file)
+                    public_path('images/products/m/'.$filename)
                 );
                 $canvas = \Image::canvas(106, 145);
                 $image  = \Image::make($path)->resize(77, 105, function($constraint)
@@ -119,18 +120,18 @@ class ImagesController extends Controller
                 });
                 $canvas->insert($image, 'center');
                 $canvas->save(
-                    public_path('images/products/tn/'.$file)
+                    public_path('images/products/tn/'.$filename)
                 );
 
-                return $path = asset('images/'. $request->folder .'/'.$file);
+                return $path = asset('images/'. $request->folder .'/'.$filename);
             }
 
             $img  = \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
-                public_path('images/'. $request->folder .'/m/'.$file)
+                public_path('images/'. $request->folder .'/m/'.$filename)
             );
 
             $img  = \Image::make($path)->encode('webp', 90)->fit(465, 465)->save(
-                public_path('images/'. $request->folder .'/m/'.$file)
+                public_path('images/'. $request->folder .'/m/'.$filename)
             );
 
             $canvas = \Image::canvas(106, 145);
@@ -141,10 +142,10 @@ class ImagesController extends Controller
             $canvas->insert($image, 'center');
 
             $canvas->save(
-                public_path('images/'.$request->folder.'/tn/'.$file)
+                public_path('images/'.$request->folder.'/tn/'.$filename)
             );
 
-            return $path = asset('images/'. $request->folder .'/'.$file);
+            return $path = asset('images/'. $request->folder .'/'.$filename);
         }
 
     }
