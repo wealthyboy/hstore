@@ -7,7 +7,9 @@
     <title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') :  $system_settings->meta_title  }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="google-site-verification" content="WQGOl-v7IztNDZtgNC1ZEBkG8nyRsHJ1oLsnsLeiuIQ" />
-	
+	<link rel="preload" href="https://hautesignatures.com/fonts/ProximaNovaAltRegular.otf" as="font" type="font/otf" crossorigin>
+	<link rel="preload" href="https://hautesignatures.com/fonts/GalaxiePolaris-Bold.otf" as="font" type="font/otf" crossorigin>
+	<link rel="preload" href="https://hautesignatures.com/fonts/porto-64334846.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://hautesignatures.com/css/bootstrap.min.css" as="style">
 	<link rel="preload" href="https://hautesignatures.com/css/style.min.css" as="style">
     <link rel="preload" href="https://hautesignatures.com/css/vendor/fontawesome-free/css/all.min.css" as="style">
