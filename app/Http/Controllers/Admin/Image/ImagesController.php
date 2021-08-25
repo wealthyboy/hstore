@@ -144,7 +144,7 @@ class ImagesController extends Controller
                 return $path = asset('images/'. $request->folder .'/'.$file);
             }
 
-            $img  = \Image::make($path)->fit(305, 305)->save(
+            $img  = \Image::make($path)->fit(465, 465)->save(
                 public_path('images/'. $request->folder .'/m/'.$file)
             );
             $canvas = \Image::canvas(106, 145);
