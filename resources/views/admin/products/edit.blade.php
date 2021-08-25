@@ -393,7 +393,7 @@
                               </div>
                            @endif
                         </div>
-                     @include('admin.products.edit_variation')
+                        @include('admin.products.edit_variation')
                </div>
                <div class="wizard-footer">
                   <div class="pull-right">
