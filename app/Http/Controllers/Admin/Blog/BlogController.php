@@ -51,6 +51,9 @@ class BlogController extends Controller
         $info->slug= str_slug($request->title);
         $info->name= "Admin";
         $info->image=$request->image;
+        $info->meta_description = $request->meta_description;
+        $info->meta_keywords = $request->meta_keywords;
+        $info->meta_title = $request->meta_title;
         $info->blog= true;
 		$info->is_active=  $request->is_active ? 1 : 0;
 
@@ -77,6 +80,9 @@ class BlogController extends Controller
 		$post->slug= str_slug($request->title);
         $post->image=$request->image;
 		$post->is_active=  $request->is_active ? 1 : 0;
+        $post->meta_description = $request->meta_description;
+        $post->meta_keywords = $request->meta_keywords;
+        $post->meta_title = $request->meta_title;
 
 		$post->save();
 		$post->attributes()->sync($request->attribute_id);

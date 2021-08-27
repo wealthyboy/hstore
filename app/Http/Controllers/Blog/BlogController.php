@@ -25,15 +25,18 @@ class BlogController extends Controller
 
 	
 	public function  index(Request $request)  {
+		$page_title = 'Blog | HauteSignatures';
+
 		$posts = Information::where(['blog'=>true,'is_active' => true])->get(); 
 		$blog_image = PageBanner::where('page_name','blog')->first();
-	    return view('blog.index',compact('posts','blog_image'));
+	    return view('blog.index',compact('page_title','posts','blog_image'));
 	}
 
 	public function  create(Request $request)  {
 		//User::canTakeAction(2);
 	    return view('blog.create');
 	}
+
 
 	public function  store(Request $request) 
 	{
@@ -66,15 +69,17 @@ class BlogController extends Controller
 
 	public function  show(Request $request,Information $blog)  
 	{   
-		$page_title = $blog->title;
+        $page_title = $blog->meta_title;
+        $meta_tag_keywords = $blog->keywords;
+        $page_meta_description = $blog->meta_description;
 		$blog_image = PageBanner::where('page_name','blog')->first();
-		return view('blog.show',compact('blog','blog_image','page_title'));
+		return view('blog.show',compact('page_title','meta_tag_keywords','page_meta_description','blog','blog_image','page_title'));
 	}
 
 	public function  tag(Request $request,$tag_id)  
 	{   
 		$attribute = Attribute::find($tag_id);
-		$page_title = 'Bold -' .  $attribute->name. ' | Ohram'; 
+		$page_title = 'Bold -' .  $attribute->name. ' | Hautesignatures'; 
         $posts = $attribute->information;
 		$blog_image = PageBanner::where('page_name','blog')->first();
 		return view('blog.index',compact('posts','blog_image','page_title'));

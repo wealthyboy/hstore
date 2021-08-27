@@ -33,7 +33,7 @@
             </figure>
             <div class="blog-details text-left">
                 <h4 class="blog-title mb-1">
-                    <a title="{{ $post->title }}  fashion blog" href="{{ route('blog.show',['blog'=> $post->slug]) }}" class="">
+                    <a title="{{ $post->title }} " href="{{ route('blog.show',['blog'=> $post->slug]) }}" class="">
                         {{ $post->title }}
                     </a>
                 </h4>

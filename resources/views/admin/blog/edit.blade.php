@@ -36,6 +36,45 @@
                                     value="{{ $post->teaser }}"
                                 />
                             </div>
+
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Meta Title
+                                    <small>*</small>
+                                </label>
+                                <input class="form-control"
+                                    name="meta_title"
+                                    type="text"
+                                    required="true"
+                                    value="{{ $post->meta_title }}"
+                                />
+                            </div>
+
+
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Meta Keywords
+                                    <small>*</small>
+                                </label>
+                                <input class="form-control"
+                                    name="meta_keywords"
+                                    type="text"
+                                    required="true"
+                                    value="{{ $post->meta_keywords }}"
+                                />
+                            </div>
+
+
+
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Meta Keywords
+                                    <small>*</small>
+                                </label>
+                                
+                                <textarea name="meta_description" 
+                                            id="" class="form-control" rows="10">{{  $post->meta_description }}</textarea>
+                            </div>
                             <div class="form-group">
                             <label>Description</label>
                             <div class="form-group ">
