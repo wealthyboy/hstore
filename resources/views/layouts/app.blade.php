@@ -120,7 +120,10 @@
                             @foreach( $global_categories   as  $category)
 
                                 <li>
-                                   <a  title="{{ $category->title }}" style="color: {{  $category->text_color }} !important" href="/products/{{ $category->slug }}">{{ $category->name }}</a>
+                                   <a  title="{{ $category->title }}" style="color: {{  $category->text_color }} !important" href="
+								       {{  $category->link ? $category->link : '/products/'.$category->slug }}
+								   
+								   ">{{ $category->name }}</a>
                                    @if ($category->isCategoryHaveMultipleChildren())
 
                                     <div class="megamenu megamenu-fixed-width">
@@ -245,7 +248,7 @@
 				<ul class="mobile-menu">
 				@foreach( $global_categories   as  $category)
 				    <li>
-						<a href="/products/{{ $category->slug }}">{{ $category->name }}</a>
+						<a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">{{ $category->name }}</a>
 						@if ($category->isCategoryHaveMultipleChildren())
 							<ul>
 							    @foreach (  $category->children as $children)

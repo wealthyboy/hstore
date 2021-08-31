@@ -48,6 +48,19 @@
                             />
                         </div>
 
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Custom link
+                            </label>
+                            <input class="form-control"
+                                name="link"
+                                type="text"
+                                value="{{ $cat->link }}"      
+  
+                            />
+                        </div>
+
                         <div class="form-group label-floating">
                             <label class="control-label">
                                 Text color

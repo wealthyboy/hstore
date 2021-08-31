@@ -679,12 +679,6 @@ background: white;
   position: absolute;
 }
 
-
-
-
-  
-
-
 .product-thumbnails {
   margin-top: -40px;
 }
@@ -713,6 +707,7 @@ svg#iconLoaded-ruler{ width: 30px; height: 30px;}
   background-color: #fff; /* Fallback color */
   background-color: #fff; /* Black w/ opacity */
 }
+
 
 .image-modal .close {
   position: absolute;

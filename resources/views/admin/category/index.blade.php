@@ -42,6 +42,17 @@
                                 type="text"  
                             />
                         </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Custom link
+                            </label>
+                            <input class="form-control"
+                                name="link"
+                                type="text"  
+                            />
+                        </div>
+
                         <div class="form-group label-floating">
                             <label class="control-label">
                                 Text color

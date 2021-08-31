@@ -89,6 +89,8 @@ class CategoryController extends Controller
         $category = new Category;
         $category->name = $request->name;
         $category->image_custom_link = $request->image_custom_link;
+        $category->link = $request->link;
+
         $category->banner_image = $request->banner_image;
         $category->image = $request->image;
         $category->meta_description = $request->meta_description;
@@ -187,6 +189,7 @@ class CategoryController extends Controller
         $category->name=$request->name;
         $category->sort_order=$request->sort_order;
         $category->banner_image = $request->banner_image;
+        $category->link = $request->link;
         $category->parent_id     = $request->parent_id;
         $category->description=$request->description;
         $category->image_custom_link = $request->image_custom_link;
