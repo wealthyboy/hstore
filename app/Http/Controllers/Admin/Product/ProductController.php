@@ -229,8 +229,8 @@ class ProductController extends Controller
         $product_variation->width = $request->width;
         $product_variation->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
         $product_variation->length = $request->length;
-        $product_variation->weight = $request->weight;
-        $product_variation->quantity  = $request->quantity;
+        $product_variation->weight      = $request->weight;
+        $product_variation->quantity    = $request->quantity;
         $product_variation->allow       = $request->allow ? $request->allow : 0;
 
         //$product_variation->extra_percent_off  = $request->type == 'simple' ? $request->extra_percent_off : null;

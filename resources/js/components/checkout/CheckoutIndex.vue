@@ -8,13 +8,11 @@
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
                             <div class="error-page text-center">
-                                <h1>Thank you for shopping with us</h1>
-                                <p class="large">Your order has been received .</p>
-                                <p class="large"></p>
-                                
-                                <a href="/" class="btn btn--primary space-t--2">Continue</a>
-                                <a href="/orders" class="btn btn--primary space-t--2">View order history</a>
-
+                              <h1>Thank you for shopping with us</h1>
+                              <p class="large">Your order has been received .</p>
+                              <p class="large"></p>
+                              <a href="/" class="btn btn--primary space-t--2">Continue</a>
+                              <a href="/orders" class="btn btn--primary space-t--2">View order history</a>
                             </div>
                         </div>
 
@@ -43,7 +41,7 @@
                         <ship-address   />
                     </div>
 
-                    <div class="col-md-12 bg--light ">
+                    <div class="col-md-12 bg--light">
                     <div class="pt-3 pb-2 ">
                         <span class="float-right">
                             <div class="payment-icons mt-1 d-flex">

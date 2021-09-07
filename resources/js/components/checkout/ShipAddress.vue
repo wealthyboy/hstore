@@ -36,7 +36,7 @@
                             <label for="email">Email</label>
                             <input    id="email" 
                             v-model="form.email" 
-          
+        
                             type="text" class="form-control" 
                             name="email"
                             >
