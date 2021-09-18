@@ -70,9 +70,11 @@
       }
     };
 
-    displayHtml = function(data, clear_html = false) {
-      console.log(true);
+    formatNumber = function(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
 
+    displayHtml = function(data, clear_html = false) {
       let col = null;
       let html = "";
       if (data.length == 0) {
@@ -147,20 +149,20 @@
               '<span class="old-price bold text-danger"> ' +
               data[i].currency +
               "" +
-              data[i].converted_price +
+              formatNumber(data[i].converted_price) +
               " </span>";
             html +=
               '<span class="product-price bold ">' +
               data[i].currency +
               "" +
-              data[i].default_discounted_price +
+              formatNumber(data[i].default_discounted_price) +
               " </span>";
           } else {
             html +=
               '<span class="product-price bold ">' +
               data[i].currency +
               "" +
-              data[i].converted_price +
+              formatNumber(data[i].converted_price) +
               " </span>";
           }
           html += "</div></div></div></div></div> </div> </div>";
