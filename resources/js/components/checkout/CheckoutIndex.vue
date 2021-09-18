@@ -22,16 +22,7 @@
             <!--End Content-->
         </div>
         <div  v-if="!pageIsLoading && !paymentIsComplete" class="container   mt-1">
-            <div  class="row d-none justify-content-center">
-                <ul class="checkout-progress-bar">
-                    <li :class="{'active': !addresses.length}">
-                        <span>Shipping Address</span>
-                    </li>
-                    <li :class="{'active': addresses.length}">
-                        <span>Review &amp; Payments</span>
-                    </li>
-                </ul>
-            </div>
+            
             <div  class="row   align-items-start">
                 <div class="col-12 col-md-7">
                     <div class="col-md-12 m7 bg--light border border-gray mb-2">

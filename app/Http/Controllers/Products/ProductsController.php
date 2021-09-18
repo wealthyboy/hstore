@@ -169,7 +169,7 @@ class ProductsController extends Controller
 
 		if($request->has('q')){
 			$filtered_array = array_filter($filtered_array);
-                $query = ProductVariation::whereNotNull('name')->whereHas('categories', function( $query ) use ( $filtered_array ){
+                $query = ProductVariation::whereNotNull('name')->whereNotNull('price')->whereHas('categories', function( $query ) use ( $filtered_array ){
                     $query->where('categories.name','like','%' .$filtered_array['q'] . '%')
                         ->orWhere('product_variations.name', 'like', '%' .$filtered_array['q'] . '%')
                         ->orWhere('product_variations.sku', 'like', '%' .$filtered_array['q'] . '%');
