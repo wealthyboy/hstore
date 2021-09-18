@@ -71,6 +71,8 @@
     };
 
     displayHtml = function(data, clear_html = false) {
+      console.log(true);
+
       let col = null;
       let html = "";
       if (data.length == 0) {
@@ -78,7 +80,6 @@
           '<div class="col-12 d-flex justify-content-center"><div class="text-center pb-3"><img  width="200" height="200" src="/images/utilities/empty_product.svg" /><p class="bold">No products found</p></div></div>';
       } else {
         for (var i in data) {
-          console.log(!data[i].converted_price);
           col =
             data[i].category_attributes >= 1
               ? "col-md-3 col-6"
