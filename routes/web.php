@@ -109,7 +109,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 });
 
 Route::get('/mailable', function () {
-    $order = App\Order::find(189);
+    $order = App\Order::find(4910);
     $settings =  App\SystemSetting::first();
     return  new App\Mail\OrderReceipt($order,$settings,$symbol="NGN");
 
