@@ -17,14 +17,19 @@ class OrderReceipt extends Mailable
 
     public $currency;
 
+    public $sub_total;
 
-    public function __construct($order,$settings,$symbol)
+
+    public function __construct($order,$settings,$symbol, $sub_total)
     {
         $this->order = $order;
         
         $this->settings = $settings;
 
         $this->currency = $symbol;
+
+        $this->sub_total = $sub_total;
+
 
     }
 

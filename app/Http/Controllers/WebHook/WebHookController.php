@@ -15,6 +15,7 @@ use App\ProductVariation;
 use App\Voucher;
 use App\Mail\OrderReceipt;
 use App\SystemSetting;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -92,12 +93,14 @@ class WebHookController extends Controller
             }
             $admin_emails = explode(',',$this->settings->alert_email);
             $symbol = optional($currency)->symbol  ;
+            $total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();
+            $sub_total = $total[0]->items_total ?? '0.00';
             
             try {
                  $when = now()->addMinutes(5); 
                  \Mail::to($user->email)
                 ->bcc($admin_emails[0])
-                 ->send(new OrderReceipt($order,$this->settings,$symbol));
+                 ->send(new OrderReceipt($order,$this->settings,$symbol,$sub_total));
              } catch (\Throwable $th) {
                 Log::info("Mail error :".$th);
             }

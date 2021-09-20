@@ -100,7 +100,7 @@
                                                       </tr>
                                                       <tr>
                                                          <td class="wz" width="30"></td>
-                                                         <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $order->user->fullname() }},<br>Your order has been received and is now being processed. Please find your order details below.</td>
+                                                         <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ optional($order->user)->fullname() }},<br>Your order has been received and is now being processed. Please find your order details below.</td>
                                                          <td class="wz" width="30"></td>
                                                       </tr>
                                                       <tr>
@@ -526,7 +526,7 @@
                                                       </tr>
                                                       <tr>
                                                          <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{  $order->get_total()   }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{  $sub_total  }}</td>
                                                          <td class="wz2" width="30"><br></td>
                                                       </tr>
                                                       <tr>
