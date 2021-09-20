@@ -109,9 +109,10 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 });
 
 Route::get('/mailable', function () {
-    $pd = App\ProductVariation::find(2547);
+    $order = App\Order::find(189);
     $settings =  App\SystemSetting::first();
-    return new App\Mail\OutOfStockMail($pd);
+    return  new App\Mail\OrderReceipt($order,$settings,$symbol="NGN");
+
 });
 
 

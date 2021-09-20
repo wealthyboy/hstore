@@ -511,7 +511,7 @@
                                                       </tr>
                                                       <tr>
                                                          <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065; font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>Shipping</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065; font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a> Sub Total</td>
                                                          <td class="wz2" width="30"></td>
                                                       </tr>
                                                       <tr>
@@ -526,7 +526,7 @@
                                                       </tr>
                                                       <tr>
                                                          <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ optional($order->shipping)->converted_price }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{  $order->get_total()   }}</td>
                                                          <td class="wz2" width="30"><br></td>
                                                       </tr>
                                                       <tr>
@@ -575,7 +575,7 @@
                                                       </tr>
                                                       <tr>
                                                          <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>Sub Total </td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>Shipping </td>
                                                          <td class="wz2" width="30"><br></td>
                                                       </tr>
                                                       <tr>
@@ -590,7 +590,7 @@
                                                       </tr> 
                                                       <tr>
                                                          <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{  $order->get_total()   }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ optional($order->shipping)->converted_price  ?? '0.00'}} </td>
                                                          <td class="wz2" width="30"><br></td>
                                                       </tr>
                                                      <tr>
