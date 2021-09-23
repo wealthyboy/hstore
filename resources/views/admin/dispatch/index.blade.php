@@ -45,7 +45,8 @@ body{
               <div class="content" >
                 <strong>Name: </strong>   <span class="tx">&nbsp{{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }} </span><br/>
                 <strong>Phone: </strong> <span class="tx"> &nbsp{{ optional(optional($order)->address)->phone_number  }} </span><br/>
-                @if (null !== $order->shipping)
+
+                @if ( $order->delivery_option == 'shipping')
                   <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
                   @else
                   <strong>

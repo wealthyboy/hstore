@@ -82,22 +82,17 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::post('products/delete','Admin\Product\ProductController@destroy')->name('delete_products');
     Route::post('variation/create','Admin\Product\ProductController@saveVariation');
     Route::post('logout',  'Auth\LoginController@logout')->name('admin_users_logout');
- 
     Route::get('register','Admin\Users\UsersController@create')->name('create_admin_users');
     Route::post('register','Auth\RegisterController@register');
-
     Route::resource('users',  'Admin\Users\UsersController',['names'=>'admin.users']);
     Route::resource('customers', 'Admin\Customers\CustomersController',['name'=>'customers']);
     Route::resource('newsletter',              'Admin\NewsLetter\NewsLetterController',['name'=>'newsletter']);
     Route::resource('lists',              'Admin\EmailLists\EmailListsController',['name'=>'lists']);
     Route::get('lists/emails/create/{id}',      'Admin\NewsLetter\NewsLetterController@create');
     Route::post('lists/emails/create/{id}',      'Admin\NewsLetter\NewsLetterController@store');
-
     Route::resource('campaigns',              'Admin\Campaign\CampaignController',['name'=>'campaigns']);
     Route::get('campaigns/{campaign_id}/{email_list_id}/{template_id}',              'Admin\Campaign\CampaignController@resendMail');
-
     Route::resource('templates',              'Admin\Templates\TemplatesController',['name'=>'templates']);
-
     Route::resource('promos',             'Admin\Promo\PromoController',['names'=> 'promos']);
     Route::get('promo-text/create/{id}',      'Admin\PromoText\PromoTextController@create')->name('create_promo_text');
     Route::get('promo-text/edit/{id}',   'Admin\PromoText\PromoTextController@edit')->name('edit_promo_text');
@@ -105,15 +100,15 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::post('promo-text/create/{id}',     'Admin\PromoText\PromoTextController@store');
     Route::get('promo-text/delete/{id}',     'Admin\PromoText\PromoTextController@destroy')->name('delete_promo_text');
     Route::resource('brands', 'Admin\Brand\BrandsController',['names' =>'brands']);
-
 });
+
+
 
 Route::get('/mailable', function () {
     $order = App\Order::find(4910);
     $settings =  App\SystemSetting::first();
     $total = Illuminate\Support\Facades\DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();
     $sub_total = $total[0]->items_total ?? '0.00';
-            
     return  new App\Mail\OrderReceipt($order,$settings,$symbol="NGN",$sub_total);
 
 });

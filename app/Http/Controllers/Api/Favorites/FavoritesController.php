@@ -34,14 +34,12 @@ class FavoritesController  extends Controller
 	public function store(Request $request) 
 	{
 		$user = $request->user();
-		
 		$favorite = Favorite::CreateOrDelete($user->id,$request->product_variation_id);
 		return FavoritesResource::collection($user->favorites);
 	}
 
 	public function destroy(Request $request,$id) 
 	{ 
-	
 		if($request->ajax()){
 			$favorite =  Favorite::findOrFail($id);
 			if (null !== $favorite){
@@ -51,7 +49,6 @@ class FavoritesController  extends Controller
 			}
 			return response()->json([],422);
 		}
-
 	}
 
 	
