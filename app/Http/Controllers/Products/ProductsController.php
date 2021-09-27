@@ -42,7 +42,10 @@ class ProductsController extends Controller
         $page_meta_description = $category->meta_description;
         $category_attributes = $category->attribute_parents()->has('children')->get();
 
-        $products = ProductVariation::whereNotNull('name')->where('allow',true)->whereHas('categories',function(Builder  $builder) use ($category){
+        $products = ProductVariation::whereNotNull('name')
+            ->where('allow',true)
+            ->where('quantity', '>=' , 1)
+            ->whereHas('categories',function(Builder  $builder) use ($category){
             $builder->where('categories.name',$category->name);
         })->filter($request,$this->getFilters($category_attributes))->latest()->paginate($this->settings->products_items_per_page);
         $products->appends(request()->all());
@@ -169,7 +172,9 @@ class ProductsController extends Controller
 
 		if($request->has('q')){
 			$filtered_array = array_filter($filtered_array);
-                $query = ProductVariation::whereNotNull('name')->whereHas('categories', function( $query ) use ( $filtered_array ){
+                $query = ProductVariation::whereNotNull('name')            
+                ->where('allow',true)
+                ->whereHas('categories', function( $query ) use ( $filtered_array ){
                     $query->where('categories.name','like','%' .$filtered_array['q'] . '%')
                         ->orWhere('product_variations.name', 'like', '%' .$filtered_array['q'] . '%')
                         ->orWhere('product_variations.sku', 'like', '%' .$filtered_array['q'] . '%');

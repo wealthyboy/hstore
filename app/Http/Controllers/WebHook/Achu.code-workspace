@@ -32,6 +32,9 @@
     },
     {
       "path": "../../../../../avm-admin"
+    },
+    {
+      "path": "../../../../../shopmata-client"
     }
   ]
 }
