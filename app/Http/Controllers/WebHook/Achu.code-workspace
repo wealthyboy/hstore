@@ -35,6 +35,12 @@
     },
     {
       "path": "../../../../../shopmata-client"
+    },
+    {
+      "path": "../../../../../marzipano/demos"
+    },
+    {
+      "path": "../../../../../sampletour"
     }
   ]
 }
