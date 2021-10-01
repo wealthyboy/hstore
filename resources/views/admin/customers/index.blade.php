@@ -85,6 +85,10 @@
                          </table>
                         </form>
                     </div>
+
+                    <div class="pull-right">
+                     {{ $users->links() }}
+                  </div>
                 </div><!-- end content-->
             </div><!--  end card  -->
         </div> <!-- end col-md-12 -->
