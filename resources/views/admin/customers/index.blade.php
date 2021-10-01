@@ -87,7 +87,6 @@
                     </div>
 
                     <div class="pull-right">
-                     {{ $users->links() }}
                   </div>
                 </div><!-- end content-->
             </div><!--  end card  -->
