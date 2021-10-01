@@ -99,7 +99,7 @@ class CheckoutController extends Controller
 			$product_variation->save();
 		}
 		$admin_emails = explode(',',$this->settings->alert_email);
-		$symbol = optional($currency)->symbol ?? Helper::getCurrency(); ;
+		$symbol = Helper::getCurrency(); ;
 		$total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();
 		$sub_total = $total[0]->items_total ?? '0.00';
 		
@@ -110,6 +110,8 @@ class CheckoutController extends Controller
 				->send(new OrderReceipt($order,$this->settings,$symbol,$sub_total));
 			} catch (\Throwable $th) {
 			Log::info("Mail error :".$th);
+
+			return $th;
 		}
 
 		//delete cart
