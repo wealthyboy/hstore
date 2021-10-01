@@ -523,7 +523,23 @@ export default {
         },
         callback: function (response) {
           if (response.status == "success") {
-            context.paymentIsComplete = true;
+           this.order_text = "Please wait. We are almost done......";
+            axios.post('/checkout/confirm', {
+              customer_id: context.meta.user.id,
+              coupon: context.coupon_code,
+              shipping_id: context.shipping_id,
+              shipping_price: context.shipping_price,
+              cart: cartIds,
+              total: context.amount,
+              delivery_option: context.delivery_option,
+              delivery_note: context.delivery_note,
+            }).then((response) => {
+              context.order_text = "Place Order";
+            })
+              .catch((error) => {
+                alert('We could not process your order.')
+            })
+
           } else {
             this.error = "We could not complete your payment";
             context.order_text = "Place Order";

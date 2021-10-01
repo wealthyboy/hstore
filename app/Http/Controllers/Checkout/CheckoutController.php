@@ -67,21 +67,21 @@ class CheckoutController extends Controller
 		$cart = new Cart();
 
 		$order->user_id = $user->id;
-		$order->address_id     =  $user->active_address->id;
-		$order->coupon         =  session('coupon');
-		$order->status         = 'Processing';
-		$order->shipping_id    =  $request->shipping_id;
-		$order->shipping_price =  optional(Shipping::find($request->shipping_id))->converted_price;
-		$order->currency       =  Helper::getCurrency();
-		$order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
-		$order->payment_type   = $request->payment_method;
-		$order->order_type     = $request->admin;
-		$order->total          = Cart::sum_items_in_cart();
-		$order->delivery_option   =  $request->delivery_option;
+		$order->address_id      =  $user->active_address->id;
+		$order->coupon          =  session('coupon');
+		$order->status          = 'Processing';
+		$order->shipping_id     =  $request->shipping_id;
+		$order->shipping_price  =  optional(Shipping::find($request->shipping_id))->converted_price;
+		$order->currency        =  Helper::getCurrency();
+		$order->invoice         =  "INV-".date('Y')."-".rand(10000,39999);
+		$order->payment_type    = $request->payment_method;
+		$order->order_type      = $request->admin;
+		$order->total           = Cart::sum_items_in_cart();
+		$order->delivery_option =  $request->delivery_option;
 		$order->delivery_note   =  $request->delivery_note;
-		$order->ip             = $request->ip();
-		$order->user_agent     = $request->server('HTTP_USER_AGENT');
-		$order->save();
+		$order->ip              = $request->ip();
+		$order->user_agent      = $request->server('HTTP_USER_AGENT');
+		$order->save(); 
 		foreach ( $carts   as $cart){
 			$insert = [
 				'order_id'=>$order->id,
@@ -99,14 +99,17 @@ class CheckoutController extends Controller
 			$product_variation->save();
 		}
 		$admin_emails = explode(',',$this->settings->alert_email);
-		$symbol = Helper::getCurrency();
+		$symbol = optional($currency)->symbol ?? Helper::getCurrency(); ;
+		$total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();
+		$sub_total = $total[0]->items_total ?? '0.00';
+		
 		try {
-			$when = now()->addMinutes(5);
-			\Mail::to(optional($user->active_address)->email)
-			   ->bcc($admin_emails[0])
-			   ->send(new OrderReceipt($order,$this->settings,$symbol));
-		} catch (\Throwable $th) {
-			//throw $th;
+				$when = now()->addMinutes(5); 
+				\Mail::to($user->email)
+			->bcc($admin_emails[0])
+				->send(new OrderReceipt($order,$this->settings,$symbol,$sub_total));
+			} catch (\Throwable $th) {
+			Log::info("Mail error :".$th);
 		}
 
 		//delete cart
@@ -125,6 +128,94 @@ class CheckoutController extends Controller
 		return response()->json([
            'status' => 'Order pLaced'
 		],200);
+
+
+
+        // try {
+        //     $input    =  $request->data['metadata']['custom_fields'][0];
+        //     $user     =  User::findOrFail($input['customer_id']);
+        //     $carts    =  Cart::find($input['cart']);
+
+        //     // if (empty( $carts )){
+        //     //   return;
+        //     // }
+        //     // Log::info($carts);
+        //     foreach ($carts as $cart) {
+        //         if ( $cart->quantity  < 1){
+        //             $cart->delete();
+        //         }
+        //     }
+
+        //     $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
+        //     $shipping_id = isset($input['shipping_id']) ? $input['shipping_id'] : null;
+        //     $order->user_id = $user->id;
+        //     $order->address_id     =  optional($user->active_address)->id;
+        //     $order->coupon         =  $input['coupon'];
+        //     $order->status         = 'Processing';
+        //     $order->shipping_id    =  $shipping_id;
+        //     $order->shipping_price =  optional(Shipping::find($shipping_id))->converted_price;
+        //     $order->currency       =  optional($currency)->symbol ?? '₦';
+        //     $order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
+        //     $order->payment_type   =  $request->data['authorization']['channel'];
+        //     $order->delivery_option   =  $input['delivery_option'];
+        //     $order->delivery_note   =    $input['delivery_note'];
+        //     $order->total          =     $input['total'];
+        //     $order->ip             =     $request->data['ip_address'];
+        //     $order->save();
+
+        //     foreach ( $carts   as $cart){
+        //         $insert = [
+        //             'order_id'=>$order->id,
+        //             'product_variation_id'=>$cart->product_variation_id,
+        //             'quantity'=>$cart->quantity,
+        //             'status'=>"Processing",
+        //             'price'=>$cart->ConvertCurrencyRate($cart->price),
+        //             'total'=>$cart->ConvertCurrencyRate($cart->quantity * $cart->price),
+        //             'created_at'=>\Carbon\Carbon::now()
+        //         ];
+        //         OrderedProduct::Insert($insert);
+        //         $product_variation = ProductVariation::find($cart->product_variation_id);
+        //         $qty  = $product_variation->quantity - $cart->quantity;
+        //         $product_variation->quantity =  $qty < 1 ? 0 : $qty;
+        //         $product_variation->save();
+
+                
+        //         //Delete all the cart
+        //         $cart->remember_token = null;
+        //         $cart->status = 'paid';
+        //         $cart->save();
+        //     }
+        //     $admin_emails = explode(',',$this->settings->alert_email);
+        //     $symbol = optional($currency)->symbol  ;
+        //     $total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();
+        //     $sub_total = $total[0]->items_total ?? '0.00';
+            
+        //     try {
+        //          $when = now()->addMinutes(5); 
+        //          \Mail::to($user->email)
+        //         ->bcc($admin_emails[0])
+        //          ->send(new OrderReceipt($order,$this->settings,$symbol,$sub_total));
+        //      } catch (\Throwable $th) {
+        //         Log::info("Mail error :".$th);
+        //     }
+
+        //     //delete cart
+        //     if ( $input['coupon'] ) {
+        //         $code = trim($input['coupon']);
+        //         $coupon =  Voucher::where('code', $input['coupon'])->first();
+        //         if(null !== $coupon && $coupon->type == 'specific'){
+        //             $coupon->update(['valid'=>false]);
+        //         }
+        //     }
+        // } catch (\Throwable $th) {
+        //     Log::info("Custom error :".$th);
+
+        // }
+
+        // return http_response_code(200);
+        
+        
+        //}
 	}
 
 	
