@@ -124,11 +124,11 @@
                   <tfoot>
                      <tr>
                         <td colspan="6" class="text-right">Sub-Total</td>
-                        <td class="text-right"><small>{{  optional($order_product->product_variation)->currency }}</small>{{  number_format(($order->total - optional($order->shipping)->price)) }}</td>
+                        <td class="text-right"><small>{{ $order->currency }}</small>{{ number_format(($order->total - optional($order->shipping)->price))  }}</td>
                      </tr>
                      <tr>
                         <td colspan="6" class="text-right">Coupon</td>
-                        <td class="text-right">{{  $order->coupon ?  $order->coupon.'  -%'.$order->voucher()->amount . '      '.number_format($order->getCouponDiscount( $order->total ) )  : '---' }}</td>
+                        <td class="text-right">  {{  $order->coupon ?  $order->coupon.'  -%'.optional($order->voucher())->amount . 'off'  : '---' }}</td>
                      </tr>
                      <tr>
                         <td colspan="6" class="text-right">Shipping</td>
@@ -136,7 +136,7 @@
                      </tr>
                      <tr>
                         <td colspan="6" class="text-right">Total</td>
-                        <td class="text-right">{{  optional($order_product->product_variation)->currency }}{{  $order->get_total() }}</td>
+                        <td class="text-right">{{ $order->currency }}{{  $order->get_total() }}</td>
                      </tr>
                   </tfoot>
                </table>

@@ -11,7 +11,7 @@
                   <h4 class="card-title">Orders</h4>
                </div>
                <div class="text-right">
-               
+            
                </div>
             </div>
             <div class="toolbar">
@@ -73,8 +73,6 @@
                   <div class="pull-right">
                   </div>
 
-
-               
             </div>
          </div>
          <!-- end content-->
