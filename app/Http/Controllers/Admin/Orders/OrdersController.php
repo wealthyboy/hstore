@@ -38,7 +38,9 @@ class OrdersController extends Controller{
     public function invoice($id){
         $order     =  Order::find($id);
         $system_settings = SystemSetting::first();
-		$sub_total = '';
+
+		$total = \Db::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',3004030)->get();
+		$sub_total = $total[0]->items_total ?? '0.00';
         return view('admin.orders.invoice',compact('sub_total','order','system_settings'));
     }
 
