@@ -233,7 +233,7 @@
                   <tfoot>
                      <tr>
                         <td colspan="6" class="text-right">Sub-Total</td>
-                        <td class="text-right"><small>{{ $order->currency }}</small>{{ number_format(($order->total - optional($order->shipping)->price))  }}</td>
+                        <td class="text-right"><small>{{ $order->currency }}</small>{{ number_format($sub_total)  }}</td>
                      </tr>
                      <tr>
                         <td colspan="6" class="text-right">Coupon</td>
