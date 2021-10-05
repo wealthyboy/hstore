@@ -69,6 +69,12 @@ class Category extends Model
                     ->withPivot('id');
     }
 
+    public function child_attributes()
+    {
+        return $this->belongsToMany('App\Attribute')
+                    ->where('parent_id',null);
+    }
+
 
     public function attribute_parents()
     {

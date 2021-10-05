@@ -2,10 +2,8 @@
 <!--Widget-->
 
 
+
 <form id="collections" action="">
-
-
-
 <div class="widget">
     <h3 class="widget-title ">
         <a data-toggle="collapse" href="#widget-prices" role="button" class="bold" aria-expanded="true" aria-controls="widget-body-2">Prices</a>
@@ -59,6 +57,8 @@
     </div><!-- End .collapse -->
 </div><!-- End .widget -->
 
+@if (!$all)
+
 @foreach($category_attributes as $category)
     <div  class="widget">
         <h3 class="widget-title">
@@ -87,5 +87,37 @@
     </div><!-- End .widget -->
 @endforeach
     <!-- Content -->
+
+@else
+
+@foreach($category_attributes as $category)
+    <div  class="widget">
+        <h3 class="widget-title">
+            <a class="collapsed bold"   data-toggle="collapse" href="#widget-body-4{{ $category->id }}" role="button" aria-expanded="true" aria-controls="widget-body-4{{ $category->id}}">{{ $category->name }}</a>
+        </h3>
+        <div class="collapse"  id="widget-body-4{{ $category->id }}">
+            <div class="widget-body">
+                <ul class="cat-list  {{ $category->children->count() > 6  ?  'widget-scroll' : '' }}">
+                   @foreach($category->children as $category_attribute)
+                       
+                        <li class="">
+                            <div class="checkbox">
+                                <label  id="box{{ $category->slug }}" class="checkbox-label">
+                                <input for="box{{ $category->slug }}" name="{{ $category->slug }}[]" value="{{ $category_attribute->slug }}" class="filter-product" type="checkbox">
+                                    <span class="checkbox-custom rectangular"></span>
+                                     <span class="checkbox-label-text color--primary">{{ optional($category_attribute)->name }}   </span> 
+                                </label>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div><!-- End .widget-body -->
+        </div><!-- End .collapse -->
+    </div><!-- End .widget -->
+@endforeach
+    <!-- Content -->
+
+
+@endif
     
 </form>

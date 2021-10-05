@@ -41,6 +41,10 @@ class ProductsController extends Controller
         $meta_tag_keywords = $category->keywords;
         $page_meta_description = $category->meta_description;
         $category_attributes = $category->attribute_parents()->has('children')->get();
+        $products = ProductVariation::whereNotNull('name')
+            ->where('allow',true)->paginate(4);
+        //dd($products[0]->link);
+        
 
         $products = ProductVariation::whereNotNull('name')
             ->where('allow',true)
@@ -49,6 +53,7 @@ class ProductsController extends Controller
         })->filter($request,$this->getFilters($category_attributes))->latest()->paginate($this->settings->products_items_per_page);
         $products->appends(request()->all());
         $products->load('product');
+        $all = false;
         if($request->ajax())
         { 
         return response()->json([
@@ -66,10 +71,65 @@ class ProductsController extends Controller
             'breadcrumb',
             'products',
             'meta_tag_keywords',
-            'meta_tag_keywords'
+            'meta_tag_keywords',
+            'all'
+        ));     
+    }
+    
+    
+
+
+    public function  all(Request $request,Category $category)  {
+
+        $page_title = $category->title;
+        $meta_tag_keywords = $category->keywords;
+        $page_meta_description = $category->meta_description;
+
+        $category_attributes = Attribute::parents()->has('children')->get();
+
+
+        $products = ProductVariation::whereNotNull('name')
+            ->where('allow',true)
+            ->filter($request,$this->filters($category_attributes))
+            ->latest()
+            ->paginate($this->settings->products_items_per_page);        
+
+        $products->appends(request()->all());
+        $products->load('product');
+        $all = true;
+
+
+        if($request->ajax())
+        { 
+        return response()->json([
+            'products' => $products->toArray(),
+            'category_attributes' => $category_attributes->count()
+        ]); 
+        }
+
+        $breadcrumb = $category->name; 
+        return  view('products.index',compact(
+            'category',
+            'page_title',
+            'category_attributes',
+            'breadcrumb',
+            'products',
+            'meta_tag_keywords',
+            'meta_tag_keywords',
+            'all'
         ));     
     }
 
+
+    public function filters($category_attributes){
+        $filters = [];
+        foreach ($category_attributes as $category_attribute){
+            foreach ($category_attribute->children as $category_attribute){
+                $filters[$category_attribute->slug] = AttributesFilter::class;
+            }
+        }
+        return $filters;
+    }
 
     public function getFilters($category_attributes){
         $filters = [];

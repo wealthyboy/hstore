@@ -176,6 +176,8 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('cart-delete',                   'Cart\CartController@delete');
     Route::get('wishlist',                       'Favorites\FavoritesController@index')->name('wishlist');
     Route::post('newsletter/signup',              'Api\NewsLetter\NewsLetterController@store');
+    Route::get('products/all',                    'Products\ProductsController@all');
+
     Route::get('products/{category}',             'Products\ProductsController@index');
     Route::get('product/quick/view',             'Products\ProductsController@quickView');
     Route::get('product/size/guide',             'Products\ProductsController@sizeGuide');
