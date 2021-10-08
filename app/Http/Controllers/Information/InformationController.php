@@ -105,9 +105,11 @@ class InformationController extends Controller
 
 
 	public function  show(Request $request,Information $information)  
-	{
-		$page_title = $information->name;
-		return view('pages.index',compact('information','page_title'));
+	{		
+        $page_title = $information->title;
+        $meta_tag_keywords = $information->keywords;
+        $page_meta_description = $information->meta_description;
+		return view('pages.index',compact('page_meta_description','meta_tag_keywords','page_title','information','page_title'));
 	}
 
 	public function  destroy(Request $request,$id)  

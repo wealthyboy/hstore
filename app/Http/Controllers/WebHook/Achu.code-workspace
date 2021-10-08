@@ -41,6 +41,12 @@
     },
     {
       "path": "../../../../../sampletour"
+    },
+    {
+      "path": "../../../../../royalbnbproperties.com"
     }
-  ]
+  ],
+  "settings": {
+    "git.ignoreLimitWarning": true
+  }
 }

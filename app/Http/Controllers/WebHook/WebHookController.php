@@ -34,11 +34,8 @@ class WebHookController extends Controller
     {   
         
 
-        Log::info($request->all());
-
-
         try {
-            $input    =  $request->data['metadata']['custom_fields'][0];
+            $input    =  $request->data['authorization']['custom_fields'][0];
             $user     =  User::findOrFail($input['customer_id']);
             $carts    =  Cart::find($input['cart']);
 
