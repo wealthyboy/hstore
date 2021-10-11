@@ -42,7 +42,8 @@ class WebHookController extends Controller
             $carts    =  Cart::whereIn('id',$input['cart'])->where('status', '!=', 'paid');
 
             if (null !== $carts ){
-               return;
+               return    http_response_code(200);
+
             }
 
             foreach ($carts as $cart) {
