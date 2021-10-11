@@ -4,7 +4,7 @@
        <div v-if="paymentIsProcessing" class="c-overlay">
           <div class=" mr-2 ml-2 bold text-center" id="text">
             <span  class='spinner-border spinner-border-lg' role='status' aria-hidden='true'></span>
-            Please wait while we finish your order. Do not leave your browser.
+            Please wait while we finish processing your order. Do not leave your browser.
             </div>
        </div>
 
