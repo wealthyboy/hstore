@@ -560,6 +560,8 @@ export default {
           context.order_text = "Place Order";
           context.checkingout = false;
           context.payment_is_processing = false;
+          context.paymentIsProcessing = false;
+
         },
       });
       handler.openIframe();
