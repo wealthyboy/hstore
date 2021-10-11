@@ -35,14 +35,16 @@ class WebHookController extends Controller
         
 
         try {
+            \Log::info($carts);
+
             $input    =  $request->data['authorization']['custom_fields'][0];
             $user     =  User::findOrFail($input['customer_id']);
-            $carts    =  Cart::find($input['cart']);
+            $carts    =  Cart::whereIn('id',$input['cart'])->where('status', '!=', 'paid');
 
-            // if (empty( $carts )){
-            //   return;
-            // }
-            // Log::info($carts);
+            if (null !== $carts ){
+               return;
+            }
+
             foreach ($carts as $cart) {
                 if ( $cart->quantity  < 1){
                     $cart->delete();

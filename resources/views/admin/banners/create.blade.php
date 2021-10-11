@@ -56,25 +56,37 @@
                         </div>
                     </div>
 
-            
-                         <div class="row">
-                           <div class="">
-                              <div id="m_image"  class="uploadloaded_image text-center mb-3">
-                                 <div class="upload-text"> 
-                                          <a class="activate-file" href="#">
-                                          <img src="{{ asset('backend/img/upload_icon.png') }}">
-                                          <b>Add Image </b> 
-                                          </a>
-                                 </div>
-                                 <div id="remove_image" class="remove_image hide">
-                                       <a class="delete_image" href="#">Remove</a>
-                                 </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Col Width</label>
+                        <div class="col-sm-10">
+                           <select name="col_width" required="required" class="form-control select2" style="width: 100%;">
+                              <option value="" selected="selected">--choose one--</option>
+                                 @foreach ( $cols  as $col ) 
+                                   <option value="{{ $col }}">{{ $col }}</option>
+                                 @endforeach 
+                           </select>
+                        </div>
+                    </div>
 
-                                 <input accept="image/*"  class="upload_input" data-msg="Upload  your image" type="file" id="file_upload_input" name="product_image"  />
-                                 <input type="hidden" data-msg="Uplaod  your art work" class="file_upload_input  stored_image" id="stored_image" name="image">
+            
+                     <div class="row">
+                        <div class="">
+                           <div id="m_image"  class="uploadloaded_image text-center mb-3">
+                              <div class="upload-text"> 
+                                       <a class="activate-file" href="#">
+                                       <img src="{{ asset('backend/img/upload_icon.png') }}">
+                                       <b>Add Image </b> 
+                                       </a>
                               </div>
+                              <div id="remove_image" class="remove_image hide">
+                                    <a class="delete_image" href="#">Remove</a>
+                              </div>
+
+                              <input accept="image/*"  class="upload_input" data-msg="Upload  your image" type="file" id="file_upload_input" name="product_image"  />
+                              <input type="hidden" data-msg="Uplaod  your art work" class="file_upload_input  stored_image" id="stored_image" name="image">
                            </div>
                         </div>
+                     </div>
                   
                
                      <!-- /.box-body -->

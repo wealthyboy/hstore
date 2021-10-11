@@ -1,6 +1,13 @@
 
 <template>
     <div>
+       <div v-if="paymentIsProcessing" class="c-overlay">
+          <div class=" mr-2 ml-2 bold text-center" id="text">
+            <span  class='spinner-border spinner-border-lg' role='status' aria-hidden='true'></span>
+            Please wait while we finish your order. Do not leave your browser.
+            </div>
+       </div>
+
         <div v-if="paymentIsComplete" class="page-contaiter">
             <!--Content-->
             <section class="sec-padding--lg vh--100">
@@ -370,6 +377,7 @@ export default {
       amount: 0,
       standard_shipping: "STANDARD DELIVERY",
       delivery_error: false,
+      paymentIsProcessing: false,
       shipping: false,
       delivery_option: null,
       order_text: "Place Order",
@@ -440,7 +448,7 @@ export default {
     });
     this.getCart();
     this.getAddresses({ context: this }).then(() => {
-      document.getElementById("full-bg").style.display = "none";
+     document.getElementById("full-bg").style.display = "none";
       this.pageIsLoading = false;
     });
   },
@@ -497,6 +505,7 @@ export default {
       }
 
       let form = document.getElementById("checkout-form-2");
+      this.paymentIsProcessing = true;
       this.order_text = "Please wait. We are almost done......";
       this.payment_is_processing = true;
       this.payment_method = "card";
@@ -534,6 +543,8 @@ export default {
               delivery_option: context.delivery_option,
               delivery_note: context.delivery_note,
             }).then((response) => {
+              context.paymentIsProcessing = false;
+              context.paymentIsComplete =true
               context.order_text = "Place Order";
             })
               .catch((error) => {
