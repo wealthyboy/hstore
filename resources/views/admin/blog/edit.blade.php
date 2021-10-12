@@ -68,7 +68,7 @@
 
                             <div class="form-group label-floating">
                                 <label class="control-label">
-                                    Meta Keywords
+                                    Meta Description
                                     <small>*</small>
                                 </label>
                                 
