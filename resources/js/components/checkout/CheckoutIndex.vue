@@ -668,6 +668,8 @@ export default {
           admin: this.meta.isAdmin ? "admin" : "online",
           pending: false,
           email: this.uemail,
+          total: this.amount,
+
         })
         .then((response) => {
           this.paymentIsComplete = true;
