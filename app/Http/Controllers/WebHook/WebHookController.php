@@ -35,15 +35,14 @@ class WebHookController extends Controller
         
 
         try {
-            \Log::info($carts);
+            \Log::info($request->all());
 
             $input    =  $request->data['authorization']['custom_fields'][0];
             $user     =  User::findOrFail($input['customer_id']);
             $carts    =  Cart::whereIn('id',$input['cart'])->where('status', '!=', 'paid');
 
-            if (null !== $carts ){
-               return    http_response_code(200);
-
+            if (null == $carts ){
+               return  http_response_code(200);
             }
 
             foreach ($carts as $cart) {

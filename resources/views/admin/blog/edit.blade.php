@@ -72,8 +72,9 @@
                                     <small>*</small>
                                 </label>
                                 
-                                <textarea name="meta_description" 
-                                            id="" class="form-control" rows="10">{{  $post->meta_description }}</textarea>
+                                <textarea 
+                                     name="meta_description" 
+                                  id="" class="form-control" rows="10">{{  $post->meta_description }}</textarea>
                             </div>
                             <div class="form-group">
                             <label>Description</label>
