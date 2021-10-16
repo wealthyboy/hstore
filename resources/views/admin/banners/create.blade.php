@@ -68,15 +68,27 @@
                         </div>
                     </div>
 
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Device</label>
+                        <div class="col-sm-10">
+                           <select name="device"  class="form-control select2" style="width: 100%;">
+                                 <option value="" selected="selected">--device--</option>
+                                 <option value="d-block d-sm-none">Show only on sm devices </option>
+                                 <option value="d-none d-lg-block d-xl-block">Show only on lg devices </option>
+                           </select>
+                        </div>
+                    </div>
+
             
                      <div class="row">
                         <div class="">
                            <div id="m_image"  class="uploadloaded_image text-center mb-3">
                               <div class="upload-text"> 
-                                       <a class="activate-file" href="#">
-                                       <img src="{{ asset('backend/img/upload_icon.png') }}">
-                                       <b>Add Image </b> 
-                                       </a>
+                                 <a class="activate-file" href="#">
+                                    <img src="{{ asset('backend/img/upload_icon.png') }}">
+                                    <b>Add Image </b> 
+                                 </a>
                               </div>
                               <div id="remove_image" class="remove_image hide">
                                     <a class="delete_image" href="#">Remove</a>

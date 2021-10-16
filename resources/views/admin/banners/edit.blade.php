@@ -50,7 +50,7 @@
                               <option value="" >--choose one--</option>
                                  @foreach ( $cols  as $col ) 
                                     @if( $col  == $banner->col)
-                                        <option value="{{ $col }}" Selected>{{ $col }}</option>
+                                        <option value="{{ $col }}" selected>{{ $col }}</option>
                                     @else
                                         <option value="{{ $col }}">{{ $col }}</option>
                                     @endif
@@ -58,6 +58,19 @@
                            </select>
                         </div>
                     </div>
+
+
+
+                           <div class="form-group">
+                                 <label for="title" class="col-sm-2 control-label">Device</label>
+                                 <div class="col-sm-10">
+                                    <select name="device"  class="form-control select2" style="width: 100%;">
+                                       <option value="">--device--</option>
+                                       <option  {{ $banner->device == "d-block d-sm-none" ? 'selected' : "" }} value="d-block d-sm-none">Show only on sm devices </option>
+                                       <option  {{ $banner->device == "d-none d-lg-block d-xl-block" ? 'selected' : "" }} value="d-none d-lg-block d-xl-block">Show only on lg devices </option>
+                                    </select>
+                                 </div>
+                           </div>
 
 
                          <div class="row">

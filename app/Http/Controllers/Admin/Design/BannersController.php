@@ -58,6 +58,8 @@ class BannersController extends Controller
         $banner->link  = $request->link;
         $banner->col   = $request->col_width;
         $banner->image   = $request->image;
+        $banner->device   = $request->device;
+
         $banner->img_alt = $request->img_alt;
 
         
@@ -114,6 +116,8 @@ class BannersController extends Controller
         $banner->col   = $request->col_width;
         $banner->image   = $request->image;
         $banner->img_alt = $request->img_alt;
+        $banner->device   = $request->device;
+
         $banner->save();
         // $flash = app( 'App\Http\flash' );
         // $flash->success( "Success", "Details Updated" );
