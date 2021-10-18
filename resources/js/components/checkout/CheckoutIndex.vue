@@ -447,6 +447,7 @@ export default {
       });
     });
     this.getCart();
+    console.log(true)
     this.getAddresses({ context: this }).then(() => {
      document.getElementById("full-bg").style.display = "none";
       this.pageIsLoading = false;

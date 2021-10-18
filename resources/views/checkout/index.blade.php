@@ -10,6 +10,8 @@
             <img src="{{ $system_settings->logo_path() }}" height="110" width="80" alt="Hautesignatures sale Logo">
         </div>  
     </div>
+    <checkout-index  :csrf="{{ $csrf }}" />
+
 </section>
 @endsection
 
