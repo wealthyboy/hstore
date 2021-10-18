@@ -38,11 +38,11 @@ class WebHookController extends Controller
             \Log::info($request->all());
             $input    =  $request->data['metadata']['custom_fields'][0];
             $user     =  User::findOrFail($input['customer_id']);
-            $carts    =  Cart::find($input['cart'])->where('status', '!=', 'paid');
+            $carts    =  Cart::find($input['cart']);
 
             \Log::info($carts);
 
-            if (null == $carts ){
+            if ($carts->count() < 1 ){
                return  http_response_code(200);
             }
 
