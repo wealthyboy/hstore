@@ -38,14 +38,16 @@ class WebHookController extends Controller
             \Log::info($request->all());
             $input    =  $request->data['metadata']['custom_fields'][0];
             $user     =  User::findOrFail($input['customer_id']);
-            $carts    =  Cart::whereIn('id',$input['cart'])->where('status', '!=', 'paid');
+            $carts    =  Cart::find($input['cart'])->where('status', '!=', 'paid');
+
+            \Log::info($carts);
 
             if (null == $carts ){
                return  http_response_code(200);
             }
 
             foreach ($carts as $cart) {
-                if ( $cart->quantity  < 1){
+                if ( $cart->quantity  < 1 ){
                     $cart->delete();
                 }
             }
@@ -85,9 +87,8 @@ class WebHookController extends Controller
 
                 
                 //Delete all the cart
-                $cart->remember_token = null;
-                $cart->status = 'paid';
-                $cart->save();
+                $cart->delete();
+
             }
             $admin_emails = explode(',',$this->settings->alert_email);
             $symbol = optional($currency)->symbol  ;

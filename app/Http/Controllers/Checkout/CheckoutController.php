@@ -99,9 +99,7 @@ class CheckoutController extends Controller
 			$product_variation->save();
 
 			//Delete all the cart
-			$cart->remember_token = null;
-			$cart->status = 'paid';
-			$cart->save();
+			$cart->delete();
 		}
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();
