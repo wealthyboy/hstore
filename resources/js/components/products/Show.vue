@@ -650,12 +650,6 @@ export default {
         this.name = vTs.name ?? this.name;
         console.log(vTs);
 
-        if (key == "Colors") {
-          this.image = vTs.image;
-          this.image_m = vTs.image_m;
-          this.images = vTs.images;
-        }
-
         this.quantity = vTs.quantity;
 
         this.price = vTs.converted_price;
@@ -665,6 +659,12 @@ export default {
         this.product_variation_id = vTs.id;
         this.canNotAddToCart = false;
         this.cText = this.quantity >= 1 ? "Add To Cart" : "Item is sold out";
+
+        if (key == "Colors") {
+          this.image = vTs.image;
+          this.image_m = vTs.image_m;
+          this.images = vTs.images;
+        }
       } catch (error) {
         console.log(error);
         this.canNotAddToCart = true;
