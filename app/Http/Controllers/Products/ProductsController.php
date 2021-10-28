@@ -43,7 +43,6 @@ class ProductsController extends Controller
         $category_attributes = $category->attribute_parents()->has('children')->get();
         $products = ProductVariation::whereNotNull('name')
             ->where('allow',true)->paginate(4);
-        //dd($products[0]->link);
         
 
         $products = ProductVariation::whereNotNull('name')
