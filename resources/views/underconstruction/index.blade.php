@@ -132,14 +132,13 @@ hr {
     <p></p>
   </div>
   <div class="middle">
-    <h1> COMING SOON</h1>
-    <p>Our website is almost here !!!</p>
-    <p>Sign up below for first dibs on new arrivals ,vip surprises and more</p>
+    <h1> Hautesignatures is under maintainance</h1>
+    <p>Please check back later</p>
 
     <hr>
     <h1 class="target"></h1>
     <p>
-     
+<!--      
       <form id="signup-form"  class="form-group" action="#" >
 
        <div class="form-row align-items-center">
@@ -160,7 +159,7 @@ hr {
             <button type="submit" style="background-color: #000000; color: #ffffff; outline: none; border: none;" class="btn btn-primary">Sign Up</button>
           </div>
         </div>
-      </form>
+      </form> -->
     </p>
   </div>
   <div class="bottomleft">
