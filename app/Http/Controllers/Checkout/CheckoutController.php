@@ -102,6 +102,8 @@ class CheckoutController extends Controller
 			$cart->status = 'paid';
 			$cart->save();
 		}
+
+		
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();
 		$total =  \DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();

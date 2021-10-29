@@ -41,18 +41,10 @@ class WebHookController extends Controller
             $carts    =  Cart::find($input['cart']);
 
             \Log::info($carts);
-            if ($carts->count()  ){
-                foreach ($carts as $cart) {
-                    if ( $cart->quantity  < 1  || $cart->status == 'paid'){
-                        $cart->delete();
-                    }
-                }
-            }
             
-
-
+        
             foreach ($carts as $cart) {
-                if ( $cart->quantity  < 1 || $cart->status == 'paid' ){
+                if ( $cart->quantity  < 1 ){
                     $cart->delete();
                 }
             }
@@ -60,7 +52,7 @@ class WebHookController extends Controller
 
             if ($carts->count() < 1 ){
                 return  http_response_code(200);
-             }
+            }
 
             $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
             $shipping_id = isset($input['shipping_id']) ? $input['shipping_id'] : null;

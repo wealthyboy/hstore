@@ -82,8 +82,6 @@
 	<!-- End Google Tag Manager (noscript) -->
 
 	<div id="app" class="page-wrapper">
-		
-
 		<header class="header fixed-top">
 			<div class="header-middle">
 				<div class="container">
@@ -118,7 +116,6 @@
 						<ul class="menu">
 							
                             @foreach( $global_categories   as  $category)
-
                                 <li>
                                    <a  title="{{ $category->title }}" style="color: {{  $category->text_color }} !important" href="
 								       {{  $category->link ? $category->link : '/products/'.$category->slug }}

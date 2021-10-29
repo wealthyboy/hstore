@@ -174,9 +174,6 @@ class ProductsController extends Controller
         $favorites ='';
         $data= [];
         $product = $product_variation->product;
-
-
-
         $page_title = $product->meta_title;
         $meta_tag_keywords = $product->keywords;
         $page_meta_description = $product->meta_description;
@@ -197,8 +194,6 @@ class ProductsController extends Controller
         $attributes =  collect($data);
         $attributes = $attributes->count() && $product->product_type == 'variable' ? $attributes : '{}';
         $product_variation->load(["images"]);
-
-        
     	return view('products.show',compact('meta_tag_keywords','page_meta_description','inventory','stock','category','attributes','product_variation','page_title'));
     }
 
