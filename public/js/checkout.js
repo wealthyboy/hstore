@@ -22666,7 +22666,7 @@ var render = function() {
                                         value: "Place order",
                                         "data-value": "Place Order"
                                       },
-                                      on: { click: _vm.payAsAdmin }
+                                      on: { click: _vm.payWithPaystack }
                                     },
                                     [
                                       _vm.checkingout
