@@ -27,7 +27,7 @@ class Product extends Model
      *
      * @var array
      */
-	protected $dates = ['deleted_at','sale_price_expires'];
+	protected $dates = ['deleted_at','sale_price_expires','sale_price_starts'];
 
 	public $appends = [
 		'discounted_price',

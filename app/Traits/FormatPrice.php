@@ -76,17 +76,28 @@ trait FormatPrice
     }
 
     public function getDiscountedPriceAttribute(){
-      if ( null !== $this->sale_price &&  optional($this->sale_price_expires)->isFuture() ) {
-        return $this->ConvertCurrencyRate($this->sale_price);
-      }
+      return $this->salePrice();
+
     }
 
     public function getCustomerPriceAttribute(){
       return $this->discounted_price ?? $this->converted_price ;
     }
+
+
+    public function salePrice(){
+      if ( null !== $this->sale_price 
+           &&  optional($this->sale_price_starts)->isToday()
+           &&  optional($this->sale_price_expires)->isFuture() 
+        ) {
+          return $this->ConvertCurrencyRate($this->sale_price);
+        }
+      return null;
+    }
   
     public function getDefaultDiscountedPriceAttribute(){
-      return optional($this->sale_price_expires)->isFuture()  ?  $this->sale_price : null;
+      
+      return $this->salePrice();
     }
 
     public function getCurrencyAttribute(){

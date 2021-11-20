@@ -148,11 +148,10 @@ class ProductController extends Controller
         $product->meta_description = $request->meta_description;
         $product->meta_keywords = $request->meta_keywords;
         $product->meta_title = $request->meta_title;
-
-        ///$product->extra_percent_off  = $request->extra_percent_off;
-
         $product->description  = $request->description;
         $product->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
+        $product->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
+
         $product->allow       = $request->allow ? $request->allow : 0;
         $product->brand_id    = $request->brand_id;
         $product->total = 2;
@@ -228,14 +227,12 @@ class ProductController extends Controller
         $product_variation->slug = $request->type == 'simple' ? str_slug($request->product_name) : null;
         $product_variation->width = $request->width;
         $product_variation->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
+        $product_variation->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
+
         $product_variation->length = $request->length;
         $product_variation->weight      = $request->weight;
         $product_variation->quantity    = $request->quantity;
         $product_variation->allow       = $request->allow ? $request->allow : 0;
-
-        //$product_variation->extra_percent_off  = $request->type == 'simple' ? $request->extra_percent_off : null;
-
-        
         $product_variation->sku = str_random(6);
         $product_variation->product_id = $product->id;
         $product_variation->default = 1;
@@ -332,6 +329,8 @@ class ProductController extends Controller
                     $product_variation->image = $request->variation_image[$key];
                     $product_variation->width = $request->variation_width[$key];
                     $product_variation->sale_price_expires = Helper::getFormatedDate($request->variation_sale_price_expires[$key]);
+                    $product_variation->sale_price_starts = Helper::getFormatedDate($request->variation_sale_price_starts[$key]);
+
                     $product_variation->length = $request->variation_length[$key];
                     $product_variation->weight = $request->variation_weight[$key];
                     $product_variation->allow  = $request->allow ? $request->allow : 0;
@@ -551,6 +550,9 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->sale_price = $sale_price;
         $product->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
+        $product->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
+
+        
         $product->slug        =  str_slug($request->product_name);
         $product->weight      = $request->weight;
         $product->height      = $request->height;
@@ -598,6 +600,8 @@ class ProductController extends Controller
         $product_variation->image      = $request->image;
         $product_variation->width      = $request->width;
         $product_variation->sale_price_expires   = Helper::getFormatedDate($request->sale_price_expires);
+        $product_variation->sale_price_starts   = Helper::getFormatedDate($request->sale_price_starts);
+
         $product_variation->length     = $request->length;
         $product_variation->weight     = $request->weight;
         $product_variation->quantity   = $request->quantity;
@@ -716,6 +720,7 @@ class ProductController extends Controller
                                 'length' => $request->edit_variation_length[$variant_id],
                                 'image' => $request->edit_variation_image[$variant_id], 
                                 'sale_price_expires' => !empty($request->edit_variation_sale_price_expires[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id]) : Helper::getFormatedDate($request->sale_price_expires),
+                                'sale_price_starts' => !empty($request->edit_variation_sale_price_starts[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_starts[$variant_id]) : Helper::getFormatedDate($request->sale_price_starts),
                                 'weight' => $request->edit_variation_weight[$variant_id],
                                 'quantity'  =>  $request->edit_variation_quantity[$variant_id],
                                 'product_id' => $product->id,
@@ -846,7 +851,7 @@ class ProductController extends Controller
                 $product_variation->image = $request->variation_image[$key];
                 $product_variation->width = $request->variation_width[$key];
                 $product_variation->sale_price_expires = Helper::getFormatedDate($request->variation_sale_price_expires[$key]);
-                //$product_variation->extra_percent_off  = $request->extra_percent_off[$key];
+                $product_variation->sale_price_starts = Helper::getFormatedDate($request->variation_sale_price_starts[$key]);
 
                 $product_variation->length = $request->variation_length[$key];
                 $product_variation->weight = $request->variation_weight[$key];

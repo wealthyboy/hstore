@@ -47,21 +47,21 @@
                      <div class="simple-product hide">
                         @include('admin.products.product_images') 
                         <div class="row">
-                           <div class="col-md-3">
+                           <div class="col-md-1">
                               <div class="form-group label-floating is-empty">
                                  <label class="control-label">Quantity</label>
                                  <input name="quantity"  type="number" required="true"  value="{{ old('quantity') }}"  class="form-control">
                                  <span class="material-input"></span>
                               </div>
                            </div>
-                           <div class="col-md-3">
+                           <div class="col-md-2">
                               <div class="form-group label-floating is-empty">
                                  <label class="control-label">Price</label>
                                  <input name="price"  required="true" type="text" value="{{ old('price') }}" class="form-control">
                                  <span class="material-input"></span>
                               </div>
                            </div>
-                           <div class="col-md-3">
+                           <div class="col-md-2">
                               <div class="form-group label-floating is-empty">
                                  <label class="control-label">Sale Price</label>
                                  <input name="sale_price"   value=""  class="form-control" type="text">
@@ -70,9 +70,14 @@
                            </div>
                            <div class="col-md-3">
                               <div class="form-group label-floating">
+                                 <label class="control-label">Start Date</label>
+                                 <input class="form-control  pull-right" name="sale_price_starts" id="datepicker" type="date">
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group label-floating">
                                  <label class="control-label">End Date</label>
                                  <input class="form-control  pull-right" name="sale_price_expires" id="datepicker" type="date">
-                                 <span class="material-input"></span>
                               </div>
                            </div>
                         </div>

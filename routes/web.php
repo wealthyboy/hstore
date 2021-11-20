@@ -73,6 +73,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
     /* INFORMATION */
     Route::resource('pages','Information\InformationController',['name' => 'pages']);
+
     /* INFORMATION */
 
     Route::post('page/banner','Admin\PageBanner\PageBannerController@store');

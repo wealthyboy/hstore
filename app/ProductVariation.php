@@ -46,11 +46,13 @@ class ProductVariation extends Model
         'image_to_show_tn',
         'link',
         'slug',
-        'allow'
+        'allow',
+        'sale_price_starts'
     ];
 
     protected $dates = [
-        'sale_price_expires'
+        'sale_price_expires',
+        'sale_price_starts'
     ];
 
     public $appends = [

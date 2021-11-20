@@ -304,21 +304,21 @@
                               </div>
                            </div>
                            <div class="row">
-                              <div class="col-md-3">
+                              <div class="col-md-1">
                                  <div class="form-group is-empty">
                                     <label class="control-label">Quantity</label>
                                     <input name="quantity"  type="number" required="true"  value="{{ optional($product)->qty }}"  class="form-control">
                                     <span class="material-input"></span>
                                  </div>
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-2">
                                  <div class="form-group  is-empty">
                                     <label class="control-label">Price</label>
                                     <input name="price"  required="true" type="text" value="{{ isset($product) ? $product->price : old('price') }}" class="form-control">
                                     <span class="material-input"></span>
                                  </div>
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-2">
                                  <div class="form-group  is-empty">
                                     <label class="control-label">Sale Price</label>
                                     <input name="sale_price"   value="{{ $product->sale_price }}"  class="form-control" type="text">
@@ -326,6 +326,13 @@
                                  </div>
                               </div>
                               <div class="col-md-3">
+                                 <div class="form-group">
+                                    <label class="control-label">Start Date</label>
+                                    <input class="form-control  pull-right" name="sale_price_starts" value="{{   $product->sale_price_starts ? date('Y') .'-'.  optional($product->sale_price_starts)->format('m-d') : '' }}" id="datepicker" type="date">
+                                    <span class="material-input"></span>
+                                 </div>
+                              </div>
+                              <div class="col-md-4">
                                  <div class="form-group">
                                     <label class="control-label">End Date</label>
                                     <input class="form-control  pull-right" name="sale_price_expires" value="{{   $product->sale_price_expires ? date('Y') .'-'.  optional($product->sale_price_expires)->format('m-d') : '' }}" id="datepicker" type="date">

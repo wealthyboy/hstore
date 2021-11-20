@@ -33,14 +33,21 @@
                 <span class="material-input"></span>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-1">
+            <div class="form-group label-floating is-empty">
+                <label class="control-label">Quantity</label>
+                <input name="variation_quantity[{{ $counter }}]"  required="true"  type="number"  value="{{ old('sale_price') }}"  class="form-control variation variation_quantity" type="text">
+                <span class="material-input"></span>
+            </div>
+        </div> 
+        <div class="col-md-2">
             <div class="form-group label-floating is-empty">
                 <label class="control-label">Price</label>
                 <input name="variation_price[{{ $counter }}]"  required="true" value="{{ old('price') }}" class="form-control  variation" type="text">
                 <span class="material-input"></span>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="form-group label-floating is-empty">
                 <label class="control-label">Sale Price</label>
                 <input name="variation_sale_price[{{ $counter }}]"   value=""  class="form-control variation_sale_price variation" type="text">
@@ -49,18 +56,19 @@
         </div>
         <div class="col-md-3">
             <div class="form-group label-floating">
+                <label class="control-label">Start Date</label>
+                <input class="form-control  pull-right" name="variation_sale_price_starts[{{ $counter }}]" id="datepicker" type="date">
+                <span class="material-input"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group label-floating">
                 <label class="control-label">End Date</label>
                 <input class="form-control  pull-right" name="variation_sale_price_expires[{{ $counter }}]" id="datepicker" type="date">
                 <span class="material-input"></span>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group label-floating is-empty">
-                <label class="control-label">Quantity</label>
-                <input name="variation_quantity[{{ $counter }}]"  required="true"  type="number"  value="{{ old('sale_price') }}"  class="form-control variation variation_quantity" type="text">
-                <span class="material-input"></span>
-            </div>
-        </div>  
+         
         <div class="clearfix"></div>
         <div class="col-md-3">
             <div class="form-group label-floating is-empty">
