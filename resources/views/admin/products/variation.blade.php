@@ -2,8 +2,8 @@
 <div style="margin-bottom: 10px;" class="row p-attr variation-panel">
     <div class="col-md-9 col-xs-9 col-sm-9">
         <div class="row">
-        <input name="has_more_variation"     value="1"   class="" type="hidden">
-        <input name="new_variation"     value="1"   class="" type="hidden">
+            <input name="has_more_variation"     value="1"   class="" type="hidden">
+            <input name="new_variation"     value="1"   class="" type="hidden">
             @foreach($product_attributes as $product_attribute)
                 <div class="col-md-3 col-xs-6 col-sm-6">
                     <div class="form-group label-floating">
@@ -20,8 +20,8 @@
         </div>
     </div>
     <div class="col-md-3 col-xs-12 text-right col-sm-12">
-        <a href="#"   title="remove panel" class="remove-panel"><i class="fa fa-trash-o"></i> Remove</a>  |
-        <a href="#"   title="open/close panel" class="open-close-panel"><i class="fa fa-plus"></i> Expand</a> 
+        <a href="#" title="remove panel" class="remove-panel"><i class="fa fa-trash-o"></i> Remove</a>  |
+        <a href="#" title="open/close panel" class="open-close-panel"><i class="fa fa-plus"></i> Expand</a> 
     </div>
 
     <div id="variation-panel" data-id="{{ $counter }}"   class="hide v-panel">

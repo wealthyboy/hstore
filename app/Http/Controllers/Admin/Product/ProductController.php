@@ -543,16 +543,12 @@ class ProductController extends Controller
         $product_attributes = [];
         $meta_fields = null;
         $product_variation_id = [];
-       
-        
         $sale_price = $request->has('sale_price') ? $request->sale_price : null;
         $product->product_name = $request->product_name;
         $product->price = $request->price;
         $product->sale_price = $sale_price;
         $product->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
         $product->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
-
-        
         $product->slug        =  str_slug($request->product_name);
         $product->weight      = $request->weight;
         $product->height      = $request->height;

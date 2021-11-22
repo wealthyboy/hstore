@@ -87,7 +87,9 @@ trait FormatPrice
 
     public function salePrice(){
       if ( null !== $this->sale_price 
-           &&  optional($this->sale_price_starts)->isToday()
+           &&
+           null !== $this->sale_price_starts
+           &&  !optional($this->sale_price_starts)->isFuture() 
            &&  optional($this->sale_price_expires)->isFuture() 
         ) {
           return $this->ConvertCurrencyRate($this->sale_price);
