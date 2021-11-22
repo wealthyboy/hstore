@@ -100,7 +100,7 @@ class CheckoutController extends Controller
 
 			//Delete all the cart
 			$cart->status = 'paid';
-			$cart->save();
+			$cart->delete();
 		}
 
 		
