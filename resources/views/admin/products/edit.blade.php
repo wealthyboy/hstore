@@ -307,7 +307,7 @@
                               <div class="col-md-1">
                                  <div class="form-group is-empty">
                                     <label class="control-label">Quantity</label>
-                                    <input name="quantity"  type="number" required="true"  value="{{ optional($product)->qty }}"  class="form-control">
+                                    <input name="quantity"  type="number" required="true"  value="{{ optional($product_variant)->quantity }}"  class="form-control">
                                     <span class="material-input"></span>
                                  </div>
                               </div>

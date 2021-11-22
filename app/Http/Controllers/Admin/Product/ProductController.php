@@ -508,11 +508,12 @@ class ProductController extends Controller
         $categories = Category::parents()->get();
         $product = Product::find($id);
         $variants = $product->product_variations;
+        $product_variant =$product->default_variation;
         
         $product_attributes = Attribute::parents()->where('type','both')->orderBy('sort_order','asc')->get();
         $meta_attributes = Attribute::parents()->where('type','!=','both')->orderBy('sort_order','asc')->get();
         
-        return view('admin.products.edit',compact('metas','variants','product','meta_attributes','product_attributes','brands','categories'));
+        return view('admin.products.edit',compact('product_variant','metas','variants','product','meta_attributes','product_attributes','brands','categories'));
     }
 
     /**
