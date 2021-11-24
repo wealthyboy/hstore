@@ -89,7 +89,7 @@ trait FormatPrice
       if ( null !== $this->sale_price 
            &&
            null !== $this->sale_price_starts
-           &&  !optional($this->sale_price_starts)->isFuture() 
+           //&&  !optional($this->sale_price_starts)->isFuture() 
            
            &&  optional($this->sale_price_expires)->isFuture() 
         ) {
