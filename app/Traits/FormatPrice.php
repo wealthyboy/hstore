@@ -86,16 +86,26 @@ trait FormatPrice
 
 
     public function salePrice(){
-      if ( null !== $this->sale_price 
-           &&
-           null !== $this->sale_price_starts
-           //&&  !optional($this->sale_price_starts)->isFuture() 
-           
-           &&  optional($this->sale_price_expires)->isFuture() 
-        ) {
-          return $this->ConvertCurrencyRate($this->sale_price);
+
+      if ( null !== $this->sale_price  && null !== $this->sale_price_starts ) {
+        if ( optional($this->sale_price_starts)->isPast()   || $this->sale_price_starts->isToday() ) { 
+          if ( $this->sale_price_expires->isFuture() ) { 
+            return $this->ConvertCurrencyRate($this->sale_price);
+          }
         }
+      }
+      
+
+      if ( null !== $this->sale_price   ) {
+          if ( $this->sale_price_expires->isFuture() ) { 
+            return $this->ConvertCurrencyRate($this->sale_price);
+          }
+      }
+
+    
+
       return null;
+
     }
   
     public function getDefaultDiscountedPriceAttribute(){
