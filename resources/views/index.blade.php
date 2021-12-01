@@ -18,7 +18,7 @@
 </div>
 
 
-@if ($posts->count()) 
+@if ($posts->count() && $blog_status->is_active) 
 
 <div class="blog-section pt-0 mt-3">
     <h1 title="fashion blog" class="text-center mb-3">Blog</h1>

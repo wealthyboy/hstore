@@ -13,6 +13,7 @@ use App\SystemSetting;
 use App\Voucher;
 use App\Promo;
 use App\Currency;
+use App\EnableBlog;
 
 use App\PageBanner;
 
@@ -28,6 +29,7 @@ class   NavComposer {
 		$global_promos = Promo::where('make_live',1)->get(); 
 		$system_settings = SystemSetting::first();
 		$currencies = Currency::all();
+		$blog_status = EnableBlog::first();
 		$news_letter_image = PageBanner::where('page_name','newsletter')->first();
 	    $view->with([
 		   	'footer_info'=>$footer_info,
@@ -35,7 +37,8 @@ class   NavComposer {
 			'system_settings'=>$system_settings,
 			'global_promos'=>$global_promos,
 			'news_letter_image' =>$news_letter_image,
-			'currencies' =>$currencies
+			'currencies' =>$currencies,
+			'blog_status'=>$blog_status
 	    ]);
     
 

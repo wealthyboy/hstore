@@ -5,11 +5,15 @@
 <div class="row">
         <div class="col-md-12">
            <div class="text-right">
-            <a href="" rel="tooltip" title="Refresh" class="btn btn-primary btn-simple btn-xs">
+                <a href="" rel="tooltip" title="Refresh" class="btn btn-primary btn-simple btn-xs">
                     <i class="material-icons">refresh</i>
                     Refresh
                 </a>
-            <a href="{{ route('posts.create') }}" rel="tooltip" title="Add New" class="btn btn-primary btn-simple btn-xs">
+                <a href="{{ route('posts.index',['status' => true ]) }}" rel="tooltip" title="Enable/Disable" class="btn btn-primary btn-simple btn-xs">
+                    <i class="material-icons">add</i>
+                    {{ optional($status)->is_active ? 'Enabled' : 'Disable' }} Blog 
+                </a>
+                <a href="{{ route('posts.create') }}" rel="tooltip" title="Add New" class="btn btn-primary btn-simple btn-xs">
                     <i class="material-icons">add</i>
                     Add Post
                 </a>

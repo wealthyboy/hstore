@@ -13,6 +13,7 @@ use App\User;
 use App\PageBanner;
 use Illuminate\Validation\Rule;
 use App\Attribute;
+use App\EnableBlog;
 
 
 
@@ -27,10 +28,27 @@ class BlogController extends Controller
 
 	
 	public function  index(Request $request)  {
+        $status = null;
+		if( $request->status ) {
+            $status = EnableBlog::first();
+			if ($status){
+				if ($status->is_active){
+					$status->is_active = false;
+					$status->save();
+				}else{	
+					$status->is_active = true;
+					$status->save();
+				}
+			} else {
+				$status = new EnableBlog;
+				$status->is_active = true;
+				$status->save();
+			}
+		}
+
 		$posts = Information::where('blog',true)->get(); 
 		$blog_image = PageBanner::where('page_name','blog')->first();
-
-	    return view('admin.blog.index',compact('blog_image','posts'));
+	    return view('admin.blog.index',compact('status','blog_image','posts'));
 	}
 
 	public function  create(Request $request)  {
