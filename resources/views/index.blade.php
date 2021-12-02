@@ -80,7 +80,7 @@
             <i class="icon-action-undo"></i>
 
             <div class="feature-box-content">
-                <h3 class="mb-0 pb-1">Returns</h3>
+                <h3 class="mb-0 pb-1">DELIVERIES AND RETURNS</h3>
                 <h5 class="m-b-3">Hassle Free</h5>
 
                 <p></p>
