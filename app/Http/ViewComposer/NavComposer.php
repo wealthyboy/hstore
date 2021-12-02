@@ -23,10 +23,11 @@ use Illuminate\Support\Facades\Cache;
 class   NavComposer { 
    
    
-    public function compose (View $view) { 
+    public function compose (View $view) 
+	{ 
 		$global_categories = Category::parents('sort_order', 'asc')->get();
 		$footer_info = Information::where('blog',false)->parents()->get(); 
-		$global_promos = Promo::where('make_live',1)->get(); 
+		$global_promo = Promo::first(); 
 		$system_settings = SystemSetting::first();
 		$currencies = Currency::all();
 		$blog_status = EnableBlog::first();
@@ -35,14 +36,12 @@ class   NavComposer {
 		   	'footer_info'=>$footer_info,
 		   	'global_categories'=> $global_categories,
 			'system_settings'=>$system_settings,
-			'global_promos'=>$global_promos,
+			'global_promo'=>$global_promo,
 			'news_letter_image' =>$news_letter_image,
 			'currencies' =>$currencies,
 			'blog_status'=>$blog_status
 	    ]);
-    
-
-}
+    }
 
 
 
