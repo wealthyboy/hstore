@@ -32,7 +32,8 @@ class Cart extends Model
 		'sub_total',
 		'converted_price',
 		'customer_price',
-		'cart_total'
+		'cart_total',
+		'real_price'
 	];
 	
 	
@@ -44,7 +45,6 @@ class Cart extends Model
 	    static::sync($carts);
 	    return $carts;
 	}
-
 
 	public static function items_in_cart() {  
 	    //SELECT ALL FROM THE USER ID && FROM THE USER COOKIE
@@ -68,7 +68,10 @@ class Cart extends Model
 			}
 
 			$cart->update([
-				'user_id' => optional(auth()->user())->id	
+				'user_id' => optional(auth()->user())->id,
+				'price'=> $cart->real_price,
+				'total'=> $cart->real_price * $cart->quantity
+
 			]);
 		}
 	}
@@ -114,15 +117,15 @@ class Cart extends Model
 		return $number_products_in_cart;
 	}
 
-	public static function ConvertCurrencyRate($price){
-      
+	public static function ConvertCurrencyRate($price)
+	{
 		$rate = Helper::rate();
 		if ($rate){
 		  return round(($price * $rate->rate),0);  
 		}
 		return round($price,0);  
-  
-	 }
+	}
+
 
 	public static function delete_items_in_cart_purchased() { 
 		$cookie=\Cookie::get('cart');
@@ -130,13 +133,22 @@ class Cart extends Model
 		return $delete_cart;
 	}
 
+
 	public function getCustomerPriceAttribute(){
 		return $this->converted_price;
 	}
 
+
+	public function getRealPriceAttribute(){
+		return $this->product_variation->discounted_price ?  $this->product_variation->discounted_price : $this->product_variation->price;
+	}
+
+
 	public function getConvertedPriceAttribute(){
 	    return static::ConvertCurrencyRate($this->price);   
 	}
+
+	
 
 	public function getCartTotalAttribute(){
 		return  static::ConvertCurrencyRate($this->total);

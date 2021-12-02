@@ -108,8 +108,8 @@ class CartController  extends Controller {
     }
 
 
-	public function loadCart(Request $request){
-
+	public function loadCart(Request $request)
+	{
 		$carts = Cart::all_items_in_cart();
 		$sub_total =  Cart::sum_items_in_cart();
 		$rate=\Cookie::get('rate');
