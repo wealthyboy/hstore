@@ -162,7 +162,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('cart',                           'Cart\CartController@store');
     Route::post('update_cart',                    'Cart\CartController@update')->name('update_cart');
     Route::get('cart/all/in/cart',                'Cart\CartController@all_in_cart');
-    Route::get('reviews/{product}',               'Api\Reviews\ReviewsController@index');
+    Route::get('reviews/{id}',                    'Api\Reviews\ReviewsController@index');
     Route::post('reviews/store',                  'Api\Reviews\ReviewsController@store');
     Route::post('/load-login-modal', function ( ) { 
         return view('modal.login.modal_body');

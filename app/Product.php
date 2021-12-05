@@ -41,8 +41,6 @@ class Product extends Model
 		'default_variation_id',
 		'percentage_off',
 		'default_percentage_off',
-		'average_rating',
-		'average_rating_count',
 		'add_images',
 		'customer_price',
 		'qty',
@@ -117,22 +115,12 @@ class Product extends Model
 	}
 
 	
-	public function getAverageRatingAttribute(){
-		return (new Review())->highest_rating($this->id);
-	}
-
-
-	public function getAverageRatingCountAttribute(){
-        return (new Review())->number_of_occurencies($this->id);
-	}
+	
 	
 
 	public function getIsWishlistAttribute(){
         return null !== Favorite::where('product_variation_id',$this->default_variation_id)->first() ? true : false;
 	}
-
-
-	
 
 
 	public function stock(){

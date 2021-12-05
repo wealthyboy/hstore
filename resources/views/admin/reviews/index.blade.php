@@ -10,7 +10,7 @@
             </a>
         </div>
     </div>
-    <form class="form-horizontal"  action="/admin/page/banner" method="POST">
+    <form class="form-horizontal"  action="#" method="POST">
         @csrf
         <input type="hidden" name="page_name" value="reviews" />
         <div class="col-md-4">
@@ -94,7 +94,8 @@
                                     <th>Product Name</th>
                                     <th>Author Name</th>
                                     <th>Rating</th>
-                                    <th>Description</th>
+                                    <th>Action</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -107,15 +108,35 @@
                                                 </label>
                                             </div>
                                         </td>
-                                        <td>{{ $review->title }}</td>
-                                        <td>{{ optional($review->product)->product_name }} </td>
+                                        <td>
+                                             <a href="" class="">{{ $review->title }}</a>
+                                        </td>
+                                        <td> <a href="{{ route('reviews.show',['review'=>$review->id]) }}" class="">{{ optional($review->product)->product_name }}</a> </td>
                                         <td>{{ optional($review->user)->name }}</td>
-                                        <td>{{ $review->rating }}</td>
-                                        <td>{{ $review->description }}</td>
+                                        <td>{{ $review->rating / 20 }} stars</td>
+                                        <td class="td-actions text-center">
+
+                                            @if(!$review->is_verified)
+                                                <span>
+                                                    <a href="{{ route('reviews.index',['accept'=>1,'id' => $review->id ]) }}" rel="tooltip" class="btn btn-success btn-simple" data-original-title="" title="Accept">
+                                                    <i class="fa fa-thumbs-up"></i> Accept
+                                                    </a>
+                                                </span>
+                                            @endif
+
+                                            @if($review->is_verified)
+                                                <span>
+                                                    <a href="{{ route('reviews.index',['accept'=>0 ,'id' => $review->id ]) }}" rel="tooltip" class="btn btn-danger btn-simple" data-original-title="" title="Accept">
+                                                    <i class="fa fa-thumbs-down"></i> Reject
+                                                    </a>
+                                                </span>
+                                           @endif
+
+                                        </td>
                                     </tr>
                                 @endforeach  
                             </tbody>
-                        </table>
+                           </table>
                         </form>
                     </div>
                 </div><!-- end content-->

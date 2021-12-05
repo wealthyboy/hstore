@@ -70,7 +70,9 @@ class ProductVariation extends Model
         'image_to_show_m',
         'link',
         'image_to_show_tn',
-        'active_color'
+        'active_color',
+        'average_rating',
+		'average_rating_count',
 	];
 
 
@@ -84,9 +86,24 @@ class ProductVariation extends Model
     }
 
 
+    public function reviews(){
+		return $this->hasMany('App\Review')->where('is_verified',true);
+	}
+
+
     public function categories(){
         return $this->belongsToMany('App\Category')->withPivot('category_id');
     }
+
+
+    public function getAverageRatingAttribute(){
+		return (new Review())->highest_rating($this->id);
+	}
+
+
+	public function getAverageRatingCountAttribute(){
+        return (new Review())->number_of_occurencies($this->id);
+	}
 
 
     public function meta_fields()

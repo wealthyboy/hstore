@@ -71,7 +71,6 @@ class Cart extends Model
 				'user_id' => optional(auth()->user())->id,
 				'price'=> $cart->real_price,
 				'total'=> $cart->real_price * $cart->quantity
-
 			]);
 		}
 	}

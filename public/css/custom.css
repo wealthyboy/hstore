@@ -727,6 +727,10 @@ svg#iconLoaded-ruler{ width: 30px; height: 30px;}
   background-color: burlywood;
 }
 
+.fa-stack{
+  margin-top: .4rem;
+}
+
 .image-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */

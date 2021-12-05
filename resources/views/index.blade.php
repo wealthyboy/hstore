@@ -92,12 +92,12 @@
 
 
 
-<div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url(/images/newsletter/newsletter-popup.jpg)">
+<div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url({{ $news_letter_image->image }})">
     <div class="newsletter-popup-content">
         <img src="{{ $system_settings->logo_path() }}"  class="logo-newsletter" alt="{{ Config('app.name') }} Logo">
         <h2>Join The Fashionista Stylish Geng!</h2>
         <p title="Subscribe to the hautesignatures newsletter to receive timely updates" class="mb-2">Subscribe to the hautesignatures newsletter to receive timely updates.
-              You don’t want to miss out with new trends in fashion. Join Now and receive updates to glam up!</p> 
+            You don’t want to miss out with new trends in fashion. Join Now and receive updates to glam up!</p> 
         <p>Join the geng!</p>
         
         <sign-up />

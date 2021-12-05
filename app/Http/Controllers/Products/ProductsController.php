@@ -178,6 +178,8 @@ class ProductsController extends Controller
         $meta_tag_keywords = $product->keywords;
         $page_meta_description = $product->meta_description;
 
+    
+
         if (!$product->allow){
             return redirect('404');
         }

@@ -51,6 +51,7 @@ class User extends Authenticatable
 		return $this->hasMany('App\Order');	
 	}
 
+	
 	public function carts(){
 		return $this->hasMany('App\Cart');	
 	}
@@ -64,6 +65,16 @@ class User extends Authenticatable
 	public function social(){
 		return $this->hasMany('App\UserSocial');	
 	}
+
+
+	public function ordered_products()
+    {
+        return $this->hasManyThrough(
+            'App\OrderedProduct',
+            'App\Order',
+        );
+    }
+
 
 
 	public function activities(){

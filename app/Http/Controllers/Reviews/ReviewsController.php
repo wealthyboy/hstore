@@ -18,8 +18,39 @@ class ReviewsController extends Controller
 
 	
 	public function  index(Request $request)  {
-		$reviews  = Review::orderBy('created_at','DESC')->paginate(20);
+		$reviews      = Review::orderBy('created_at','DESC')->paginate(20);
 		$review_image = PageBanner::where('page_name','reviews')->first();
 	    return view('reviews.index',compact('reviews','review_image'));
 	}	
+
+
+	public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+   
 }

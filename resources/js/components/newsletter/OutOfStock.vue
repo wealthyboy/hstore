@@ -25,7 +25,11 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-6">
-                <img :src="product_variation.image" alt="" />
+                <img
+                  v-if="null !== product_variation"
+                  :src="product_variation.image"
+                  alt=""
+                />
                 <p></p>
               </div>
               <div class="col-md-6">

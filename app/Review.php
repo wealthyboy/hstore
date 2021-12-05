@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     //
-    protected  $fillable = ['title','user_id','description','image','rating','product_id'];
+    protected  $fillable = ['title','user_id','description','image','rating','product_id','product_variation_id'];
 
     public function product(){
        return $this->belongsTo('App\Product');
@@ -17,11 +17,11 @@ class Review extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function number_of_occurencies($product_id){
+    public function number_of_occurencies($id){
         $result = \DB::table('reviews')->select(\DB::raw('COUNT(rating) AS occurrences'))
         ->groupBy('rating')
         ->orderBy('occurrences', 'DESC')
-        ->where(['reviews.product_id'=>$product_id])
+        ->where(['reviews.product_variation_id'=>$id,'is_verified' => true])
         ->first();
         return $result  !== null ? $result->occurrences : 0;  
     }
@@ -30,11 +30,11 @@ class Review extends Model
         return ($number * 100)/$total;
     }
 
-    public function highest_rating($product_id){
+    public function highest_rating($id){
         $result= static::select('rating')
         ->groupBy('rating')
         ->orderByRaw('COUNT(*) DESC')
-        ->where(['reviews.product_id'=>$product_id])
+        ->where(['reviews.product_variation_id'=>$id ,'is_verified' => true])
         ->first();
         return $result !== null ?  $result->rating : 0;
    } 

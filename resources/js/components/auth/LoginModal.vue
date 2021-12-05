@@ -1,7 +1,7 @@
 <template>
-<div>
-<div id="login-modal" class="modal fade " role="dialog">
-   <div class="modal-dialog" style="">        <!-- Modal content-->
+
+   <div id="login-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="">        <!-- Modal content-->
         <div class="modal-content ">
             <div class="modal-header">
                 <div class="modal-title"><img width="200" height="200" :src="'/images/logo/'+$root.settings.store_logo" /></div>
@@ -57,7 +57,7 @@
         </div><!--modal-content-->
 
     </div><!--modal-dialog-->
-</div>
+
 
 <!--loginModal--> 
 </template>

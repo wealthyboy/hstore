@@ -165,6 +165,45 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="{{ $helper->active_link(['products','category','discounts','attributes','vouchers']) }} ">
+                <a data-toggle="collapse" href="dashboard.html#newsletter">
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i>      
+                    <p> Newsletter 
+                       <b class="caret"></b>
+                    </p>
+                </a>
+
+                <div class="collapse {{ $helper->active_link(['newsletter','campaigns','lists','templates']) ? 'in' : ''}}" id="newsletter">
+                    <ul class="nav">
+                        <li class="{{ $helper->active_link(['lists']) }} ">
+                             <a  href="{{ route('lists.index') }}">
+                                <span class="sidebar-mini"> C </span>
+                                <span class="sidebar-normal"> Email Lists </span>
+                            </a>
+                        </li>
+                        <li class="{{ $helper->active_link(['campaigns']) }} ">
+                            <a href="{{ route('campaigns.index') }}">
+                                <span class="sidebar-mini"> C</span>
+                                <span class="sidebar-normal"> Campaign </span>
+                            </a>
+                        </li>
+                        <li class="{{ $helper->active_link(['templates']) }} ">
+                            <a href="{{ route('templates.index') }}">
+                                <span class="sidebar-mini"> T</span>
+                                <span class="sidebar-normal"> Templates </span>
+                            </a>
+                        </li>
+                        <li class="{{ $helper->active_link(['newsletter']) }} ">
+                            <a href="{{ route('newsletter.index') }}">
+                                <span class="sidebar-mini"> N</span>
+                                <span class="sidebar-normal"> NewsLetter </span>
+                            </a>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </li>
             <li class="{{ $helper->active_link(['pages']) }} ">
                 <a href="{{ route('pages.index') }}">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>  
