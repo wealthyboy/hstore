@@ -8122,7 +8122,7 @@ main .sticky-header .product-ratings:before {
 }
 .add-product-review .form-control {
   font-size: 1.4rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0rem;
   max-width: 100%;
 }
 .add-product-review .btn {
@@ -8134,7 +8134,7 @@ main .sticky-header .product-ratings:before {
   position: relative;
   height: 14px;
   font-size: 1.4rem;
-  margin-bottom: 2.8rem;
+  margin-bottom: 0rem;
 }
 .rating-stars a {
   color: gold;

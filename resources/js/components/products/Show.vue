@@ -404,6 +404,19 @@
         >
           <div class="product-reviews-content">
             <div class="row">
+              <div class="col-12">
+                <div class="alert alert-info">
+                  <div class="container d-flex">
+                    <div class="alert-icon mr-2">
+                      <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div>
+                      You can only review this item only if your have purchased
+                      it.
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="col-xl-5 pb-5">
                 <div v-if="$root.loggedIn" class="add-product-review">
                   <form
@@ -412,6 +425,14 @@
                     class="comment-form m-0"
                   >
                     <h3 class="review-title">Add a Review</h3>
+
+                    <div v-if="message" class="alert alert-success">
+                      <div class="container d-flex">
+                        <div>
+                          {{ message }}
+                        </div>
+                      </div>
+                    </div>
 
                     <div class="rating-form">
                       <label for="rating">Your rating</label>
@@ -448,6 +469,13 @@
                         >
                       </span>
 
+                      <span
+                        v-if="noRating"
+                        class="help-block error text-danger text-sm-left"
+                      >
+                        <strong class="text-danger">Add your rating</strong>
+                      </span>
+
                       <select name="rating" id="rating" style="display: none">
                         <option value="">Rate…</option>
                         <option value="5">Perfect</option>
@@ -461,12 +489,12 @@
                     <div class="row">
                       <div class="clearfix"></div>
                       <div class="col-md-6 col-xl-12">
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                           <label for="title">Title</label>
                           <input
                             id="title"
                             type="text"
-                            class="form-control"
+                            class="form-control rating_required"
                             name="title"
                             @input="removeError($event)"
                             @blur="vInput($event)"
@@ -483,13 +511,13 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="comment">Comment</label>
+                          <label for="comment">Comment </label>
                           <textarea
                             id="comment"
                             v-model="form.description"
                             name="description"
-                            class="rating_required form-control form-control-sm"
-                            cols="45"
+                            class=" form-control rating_required form-control-sm"
+                            cols="35"
                             rows="10"
                             @input="removeError($event)"
                             @blur="vInput($event)"
@@ -519,24 +547,13 @@
                         <span
                           v-if="submiting"
                           class="spinner-border spinner-border-sm"
+                          :class="{ disabled: submiting }"
                           role="status"
                           aria-hidden="true"
                         ></span>
                         Submit
                       </button>
                     </p>
-
-                    <div class="alert alert-info">
-                      <div class="container d-flex">
-                        <div class="alert-icon mr-2">
-                          <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <div>
-                          You can only review this item only if your have
-                          purchased it.
-                        </div>
-                      </div>
-                    </div>
                   </form>
                 </div>
                 <!-- End .add-product-review -->
@@ -650,7 +667,6 @@ import Images from "./Images.vue";
 import LoginModal from "../auth/LoginModal.vue";
 import RegisterModal from "../auth/RegisterModal.vue";
 import OutOfStock from "../newsletter/OutOfStock.vue";
-
 import { mapGetters, mapActions } from "vuex";
 import Pagination from "../pagination/Pagination.vue";
 
@@ -672,6 +688,7 @@ export default {
   data() {
     return {
       allowSizeGuide: false,
+      showMsg: false,
       name: null,
       attributesData: [],
       color: "",
@@ -728,6 +745,7 @@ export default {
       reviews: "reviews",
       meta: "reviewsMeta",
       errors: "errors",
+      message: "message",
     }),
     qty() {
       return this.quantity == 1 ? "Only 1 left" : "";
@@ -753,7 +771,6 @@ export default {
 
   mounted() {
     this.productReviews();
-    console.log(this.product);
     this.product_variation = this.product;
     this.image = this.product.image_to_show;
     this.image_tn = this.product.image_to_show_tn;
@@ -1031,12 +1048,17 @@ export default {
     submitReview() {
       let input = document.querySelectorAll(".rating_required");
       this.validateForm({ context: this, input: input });
-      if (Object.keys(this.errors).length !== 0) {
-        if (!this.form.rating) {
-          this.noRating = true;
-        }
+
+      console.log(this.errors);
+      if (!this.form.rating) {
+        this.noRating = true;
         return false;
       }
+
+      if (Object.keys(this.errors).length !== 0) {
+        return false;
+      }
+
       this.submiting = true;
       let form = new FormData();
       form.append("description", this.form.description);

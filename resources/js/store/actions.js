@@ -310,41 +310,7 @@ export const setADl = ({ commit }, response) => {
   commit("setDefaultShipping", response.data.meta.default_shipping);
 };
 
-export const validateForm = ({ dispatch, commit }, { context, input }) => {
-  let p = {},
-    k,
-    errors = [];
-  if (input.length) {
-    input.forEach(function(element, v) {
-      if (element.value == "") {
-        k = element.name.split("_").join(" ");
-        errors = Object.assign({}, errors, {
-          [element.name]: k + "  is required",
-        });
-      }
-      if (element.name == "email") {
-        let value = element.value;
-        if (!validateEmail(value)) {
-          p.email = "Please enter a valid email";
-        }
-      }
-    });
-  }
-
-  if (
-    context.form.password !== "" &&
-    typeof context.form.password_confirmation !== "undefined" &&
-    context.form.password_confirmation !== ""
-  ) {
-    if (context.form.password !== context.form.password_confirmation) {
-      p.password_confirmation = "Password do not match";
-    }
-  }
-  errors = Object.assign({}, errors, p);
-  commit("setFormErrors", errors);
-};
-
-export const forgotPassword = ({ commit }, { payload, context }) => {
+export const forgotPassword = ({ commit, dispatch }, { payload, context }) => {
   return axios
     .post("/password/reset/link", payload)
     .then((response) => {
@@ -369,7 +335,8 @@ export const createReviews = ({ commit }, { payload, context, form }) => {
     .post("/reviews/store", form)
     .then((response) => {
       context.submiting = false;
-      commit("setReviews", response.data.data);
+      commit("setMessage", "Your review has been received.");
+      dispatch("flashMessage", "Your review has been received.");
     })
     .catch((error) => {
       context.submiting = false;
@@ -409,6 +376,7 @@ export const getReviews = ({ commit }, { context }) => {
     .get("/reviews/" + context.product_slug)
     .then((response) => {
       context.loading = false;
+
       commit("setReviews", response.data.data);
     })
     .catch((error) => {
@@ -454,30 +422,50 @@ export const clearErrors = ({ commit }, { context, input }) => {
   commit("setFormErrors", errors);
 };
 
-export const checkInput = ({ commit }, { context, input }) => {
+export const validateForm = ({ dispatch, commit }, { context, input }) => {
   let p = {},
-    errors = [],
-    errMsg = [],
-    k;
-  if (typeof input !== "undefined") {
-    if (input.target.value == "") {
-      k = input.target.name.split("_").join(" ");
-      errMsg = Object.assign({}, errMsg, {
-        [input.target.name]: k + "  is required",
-      });
-    }
-    if (input.target.name == "email") {
-      if (!validateEmail(input.target.value)) {
-        p.email = "Please enter a valid email";
+    k,
+    errors = [];
+
+  if (input.length) {
+    input.forEach(function(element, v) {
+      if (element.value == "") {
+        k = element.name.split("_").join(" ");
+        errors = Object.assign({}, errors, {
+          [element.name]: k + "  is required",
+        });
       }
-    }
+      if (element.name == "email") {
+        let value = element.value;
+        if (!validateEmail(value)) {
+          p.email = "Please enter a valid email";
+        }
+      }
+
+      if (element.name == "phone_number") {
+        let value = element.value;
+        if (!/^[0-9]+$/.test(value)) {
+          p.phone_number = "Please enter a valid phone number";
+        }
+      }
+    });
   }
 
-  if (typeof context !== "undefined") {
-    errMsg = Object.assign({}, context.errorsBag, errMsg);
+  if (
+    context.form.password !== "" &&
+    typeof context.form.password_confirmation !== "undefined" &&
+    context.form.password_confirmation !== ""
+  ) {
+    if (context.form.password !== context.form.password_confirmation) {
+      p.password_confirmation = "Password do not match";
+    }
   }
-  errors = Object.assign({}, errMsg, p);
+  errors = Object.assign({}, errors, p);
   commit("setFormErrors", errors);
+};
+
+export const checkInput = ({ commit }, { context, input, e }) => {
+  validateForm({ commit }, { context, input, e });
 };
 
 export const validateEmail = (email) => {

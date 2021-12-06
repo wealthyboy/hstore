@@ -58,9 +58,9 @@ class ReviewsController extends Controller
         }
 
         if( empty($pv) ) {
-            return response()->json([
-               'msg' => 'You are not elgible.'
-            ],422);
+            // return response()->json([
+            //    'msg' => 'You are not elgible.'
+            // ],422);
         }
 
         $new_review =  $review->create([
@@ -89,7 +89,7 @@ class ReviewsController extends Controller
        
         return response()->json([
             'msg' => 'Your review has been submitted successfully'
-        ],422);
+        ],200);
         
     }
     
