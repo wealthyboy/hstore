@@ -85,24 +85,23 @@ trait FormatPrice
     }
 
 
-    public function salePrice(){
+    public function salePrice()
+    {
 
       if ( null !== $this->sale_price  && null !== $this->sale_price_starts ) {
         if ( optional($this->sale_price_starts)->isPast()   || $this->sale_price_starts->isToday() ) { 
-          if ( optional($this->sale_price_expires)->isFuture() ) { 
+          if ( optional($this->sale_price_expires)->isFuture() &&  !optional($this->sale_price_starts)->isFuture()) { 
             return $this->ConvertCurrencyRate($this->sale_price);
           }
         }
       }
       
 
-      if ( null !== $this->sale_price   ) {
-          if ( optional($this->sale_price_expires)->isFuture() ) { 
-            return $this->ConvertCurrencyRate($this->sale_price);
-          }
-      }
-
-    
+      // if ( null !== $this->sale_price  && null !== $this->sale_price_starts  ) {
+      //     if ( optional($this->sale_price_expires)->isFuture() ) { 
+      //       return $this->ConvertCurrencyRate($this->sale_price);
+      //     }
+      // }
 
       return null;
 
