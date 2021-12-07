@@ -89,7 +89,7 @@ trait FormatPrice
 
       if ( null !== $this->sale_price  && null !== $this->sale_price_starts ) {
         if ( optional($this->sale_price_starts)->isPast()   || $this->sale_price_starts->isToday() ) { 
-          if ( $this->sale_price_expires->isFuture() ) { 
+          if ( optional($this->sale_price_expires)->isFuture() ) { 
             return $this->ConvertCurrencyRate($this->sale_price);
           }
         }
@@ -97,7 +97,7 @@ trait FormatPrice
       
 
       if ( null !== $this->sale_price   ) {
-          if ( $this->sale_price_expires->isFuture() ) { 
+          if ( optional($this->sale_price_expires)->isFuture() ) { 
             return $this->ConvertCurrencyRate($this->sale_price);
           }
       }
