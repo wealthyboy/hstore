@@ -63,7 +63,7 @@
                             <div v-for="cart in carts"  :key="cart.id" class="row cart-rows  mb-2 pt-4 pb-2 border-top border-gray">
                                 <div class="col-md-3 col-6">
                                     <div class="cart-image">
-                                        <img :src="cart.product_variation.image_tn" alt="">
+                                        <img :src="cart.product_variation.image_m" alt="">
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-6">
@@ -285,7 +285,7 @@
                             <div v-for="cart in carts"  :key="cart.id" class="row cart-rows  mb-2 pt-4 pb-2 border-top border-gray">
                                 <div class="col-md-3 col-6">
                                     <div class="cart-image">
-                                        <img :src="cart.product_variation.image_tn" alt="">
+                                        <img :src="cart.product_variation.image_m" alt="">
                                     </div>
                                 </div>
                                 <div class="col-md-9 col-6">
