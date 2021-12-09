@@ -417,8 +417,26 @@
                   </div>
                 </div>
               </div>
+
               <div class="col-xl-5 pb-5">
-                <div v-if="$root.loggedIn" class="add-product-review">
+                <div class="col-12">
+                  <div
+                    v-if="$root.loggedIn && !showForm"
+                    class="review-form-wrapper ml-3 mt-2"
+                  >
+                    <button
+                      @click="activateForm"
+                      type="button"
+                      class="bold btn  btn-round btn-block btn--primary"
+                    >
+                      Add Review
+                    </button>
+                  </div>
+                </div>
+                <div
+                  v-if="$root.loggedIn && showForm"
+                  class="add-product-review"
+                >
                   <form
                     action="#"
                     @submit.prevent="submitReview()"
@@ -537,12 +555,10 @@
                       </div>
                     </div>
 
-                    <p class="form-field-wrapper form-row">
+                    <p class="d-flex">
                       <button
                         type="submit"
-                        class="ml-1 btn btn--primary btn-round btn-lg btn-block"
-                        name="login"
-                        value="Log in"
+                        class="btn btn--primary btn-round  btn-lg btn-block"
                       >
                         <span
                           v-if="submiting"
@@ -552,6 +568,10 @@
                           aria-hidden="true"
                         ></span>
                         Submit
+                      </button>
+
+                      <button @click="activateForm" type="button" class="ml-1">
+                        Cancel
                       </button>
                     </p>
                   </form>
@@ -722,6 +742,7 @@ export default {
       otherAttrPresent: false,
       fadeIn: false,
       product_slug: this.product.slug,
+      showForm: false,
       wishlistText: false,
       cartError: null,
       form: {
@@ -815,6 +836,9 @@ export default {
     }
   },
   methods: {
+    activateForm() {
+      this.showForm = !this.showForm;
+    },
     getStarRating(e, rating) {
       this.form.rating = rating;
       this.noRating = false;
