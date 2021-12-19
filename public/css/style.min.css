@@ -2477,11 +2477,11 @@ label {
 .select-custom:after {
   display: inline-block;
   position: absolute;
-  top: 50%;
+  top: 66%;
   right: 1.9rem;
   transform: translateY(-50%);
   font-family: porto;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   content: "\e81c";
 }
 .select-custom .form-control,
@@ -2512,7 +2512,7 @@ label {
 }
 .custom-control-label {
   position: static;
-  margin-top: 0.1rem;
+  margin-top: 0rem;
   margin-bottom: 0;
 }
 .custom-control-label:after,

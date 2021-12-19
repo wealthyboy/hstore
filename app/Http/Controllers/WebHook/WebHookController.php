@@ -14,8 +14,11 @@ use App\Shipping;
 use App\ProductVariation;
 use App\Voucher;
 use App\Mail\OrderReceipt;
+use App\Mail\SendGiftCard;
+
 use App\SystemSetting;
 use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -64,11 +67,11 @@ class WebHookController extends Controller
             $order->shipping_price =  optional(Shipping::find($shipping_id))->converted_price;
             $order->currency       =  optional($currency)->symbol ?? '₦';
             $order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
-            $order->payment_type   =  $request->data['authorization']['channel'];
-            $order->delivery_option   =  $input['delivery_option'];
-            $order->delivery_note   =    $input['delivery_note'];
-            $order->total          =     $input['total'];
-            $order->ip             =     $request->data['ip_address'];
+            $order->payment_type       =  $request->data['authorization']['channel'];
+            $order->delivery_option    =  $input['delivery_option'];
+            $order->delivery_note      =    $input['delivery_note'];
+            $order->total              =     $input['total'];
+            $order->ip                 =     $request->data['ip_address'];
             $order->save();
 
             foreach ( $carts   as $cart){
@@ -87,11 +90,20 @@ class WebHookController extends Controller
                 $product_variation->quantity =  $qty < 1 ? 0 : $qty;
                 $product_variation->save();
 
-                
+                if($cart->is_gift_card){
+                    try {
+                        $when = now()->addMinutes(5); 
+                        \Mail::to($cart->gift_card_to_email)
+                        ->send(new SendGiftCard($cart, $this->settings));
+                    } catch (\Throwable $th) {
+                       Log::info("Mail error :".$th);
+                    }
+                }
+
                 //Delete all the cart
                 $cart->delete();
-
             }
+            
             $admin_emails = explode(',',$this->settings->alert_email);
             $symbol = optional($currency)->symbol  ;
             $total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();

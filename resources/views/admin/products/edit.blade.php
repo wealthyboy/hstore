@@ -110,6 +110,7 @@
                                     </label>
                                  </div>
                               </div>
+                              
                                <div class="col-md-6">
                                   <legend>  
                                     Featured Product
@@ -368,6 +369,18 @@
                                     <input name="height" value="{{ isset($product) ? $product->height : old('height') }}"  class="form-control" type="text">
                                     <span class="material-input"></span>
                                  </div>
+                              </div>
+                           </div>
+                           
+                           <div class="col-md-12">
+                              <legend>  
+                                  Gift Card
+                              </legend>
+                              <div class="togglebutton">
+                              <label>
+                              <input {{ optional($product->default_variation)->is_gift_card == 1 ? 'checked' : ''}}   name="is_gift_card"  value="1" type="checkbox" >
+                                 Gift Card
+                              </label>
                               </div>
                            </div>
                         </div><!--simple-product-->

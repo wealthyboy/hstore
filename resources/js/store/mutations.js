@@ -43,7 +43,7 @@ export const setNotification = (state, notification) => {
 };
 
 export const clearMessage = (state, message) => {
-  state.message = [];
+  state.message = null;
 };
 
 export const appendToWishlist = (state, wishlist) => {

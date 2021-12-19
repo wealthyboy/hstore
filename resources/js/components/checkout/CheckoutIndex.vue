@@ -1,7 +1,7 @@
 
 <template>
     <div>
-       <div v-if="paymentIsProcessing" class="c-overlay">
+       <div v-if="paymentIsProcessing && !paymentIsComplete" class="c-overlay">
           <div class=" mr-2 ml-2 bold text-center" id="text">
             <span  class='spinner-border spinner-border-lg' role='status' aria-hidden='true'></span>
             Please wait while we finish processing your order. Do not leave your browser.
@@ -92,17 +92,30 @@
                                                 <span class="retail--title"></span>
                                             </div>
                                         </div>
+                                        <p v-if="cart.is_gift_card">
+                                          Name: {{ cart.gift_card_to_name }}
+                                          <br />
+                                          To:
+                                          {{ cart.gift_card_to_email }}
+                                        </p>
                                         <p v-if="cart.variations.length"> {{ cart.variations.toString() }}</p>
                                         <p class="text-danger bold" v-if="cart.quantity < 1"> This item is no longer available</p>
 
                                     </div>
                                     
                                 </div>
+                                
+
+
                                 <p class="border-bottom pb-3">
                                     <span  style="font-size: 22px;" class="bold">Subtotal</span> 
                                         <span class="float-right"><span  style="font-size: 22px" class="currencySymbol f-20 bold">{{  meta.currency }}{{ meta.sub_total | priceFormat}}</span>
                                     </span>
                                 </p>
+
+                                <template v-if="!meta.cart_is_only_gift_card">
+
+
                                 <div class="border-bottom pb-3">
                                     <span class="bold">Shipping</span> 
                                     <span class="float-right">
@@ -110,50 +123,64 @@
                                         <span class="" v-else>{{ shippingIsFree }}</span>
                                     </span>
                                 </div>
+                                </template>
 
-                                <div class="cart-discount  mt-3 col-sm-12">
-                                    <h4>Apply Discount Code</h4>
+                                <div class="cart-discount p-0  mt-3 col-sm-12">
+                                    <h4>Apply Discount Code/Redeem Gift Card</h4>
                                     <div class="input-group">
-                                        <input type="text" v-model="coupon"  class="form-control" placeholder="Enter discount code" required="">
+                                        <input type="text" v-model="coupon"  class="form-control" placeholder="Enter  code" required="">
                                         <div class="input-group-append">
                                             <button  @click.prevent="applyCoupon" class="btn btn-sm btn-primary" type="submit">
                                                 <span v-if="submiting" class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
-                                                Apply Coupon
+                                                Apply 
                                             </button>
                                         </div>
 
                                     </div><!-- End .input-group -->
-                                    <div v-if="coupon_error"  class="text-capitalize bold text-danger">{{coupon_error}}</div>
+                                    <div v-if="coupon_error"  class="text- text-danger">{{coupon_error}}</div>
                                   
                                 </div>
-                        
 
-                                <h4>Choose Delivery Option</h4>
-                                <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1 ">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE." v-model="delivery_option" class="custom-control-input" id="pick_up_surulere" name="delivery_option" required>
-                                        <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE.</span></label>
-                                    </div>
-                                    <div class="custom-control custom-radio ">
-                                        <input type="radio" value="Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA." v-model="delivery_option" class="custom-control-input" id="pick_up_magodo" name="delivery_option" required>
-                                        <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.</span></label>
-                                    </div>
-                                </div>
-                                <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
-                                    <div  class="custom-control  mt-1 mb-1 custom-radio mt-1 mb-1">
-                                        <input type="radio" value="Stock Pilling" v-model="delivery_option" class="custom-control-input" id="stock_pilling" name="delivery_option" required>
-                                        <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info"> (Free for the 1st month after with ₦500 applies every week.)</span></label>
-                                    </div>
-                                </div>
-                                 
-                                <div  :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
-                                    <div class="custom-control  custom-radio mt-1 mb-1">
-                                        <input type="radio" value="shipping" v-model="delivery_option" class="custom-control-input" id="shipping" name="delivery_option" required>
-                                        <label class="custom-control-label" for="shipping">Shipping   <span class="ml-3  text-info">(Based on your location. If in Lagos, please check our shipping & return policy <a target="_blank" href="https://hautesignatures.com/pages/shipping-delivery">link</a> to see where your location falls in order for you select the correct shipping option.)</span></label>
-                                    </div>
-                                </div>
+                                <template v-if="gift_card">
+
+                                  <div class="border-bottom border-top mb-4 p-3">
+                                      <span class="bold">GIft card value</span> 
+                                      <span class="float-right">
+                                          <span class="currencySymbol bold">{{  meta.currency }}{{ gift_card.amount }}</span>
+                                      </span>
+                                  </div>
+                                </template>
+                        
+                                <template v-if="!meta.cart_is_only_gift_card">
+                                  <h4 >Choose Delivery Option</h4>
+                                  <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1 ">
+                                      <div class="custom-control custom-radio">
+                                          <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE." v-model="delivery_option" class="custom-control-input" id="pick_up_surulere" name="delivery_option" required>
+                                          <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE.</span></label>
+                                      </div>
+                                      <div class="custom-control custom-radio ">
+                                          <input type="radio" value="Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA." v-model="delivery_option" class="custom-control-input" id="pick_up_magodo" name="delivery_option" required>
+                                          <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.</span></label>
+                                      </div>
+                                  </div>
+                                  <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
+                                      <div  class="custom-control  mt-1 mb-1 custom-radio mt-1 mb-1">
+                                          <input type="radio" value="Stock Pilling" v-model="delivery_option" class="custom-control-input" id="stock_pilling" name="delivery_option" required>
+                                          <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info"> (Free for the 1st month after with ₦500 applies every week.)</span></label>
+                                      </div>
+                                  </div>
+                                  
+                                  <div  :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
+                                      <div class="custom-control  custom-radio mt-1 mb-1">
+                                          <input type="radio" value="shipping" v-model="delivery_option" class="custom-control-input" id="shipping" name="delivery_option" required>
+                                          <label class="custom-control-label" for="shipping">Shipping   <span class="ml-3  text-info">(Based on your location. If in Lagos, please check our shipping & return policy <a target="_blank" href="https://hautesignatures.com/pages/shipping-delivery">link</a> to see where your location falls in order for you select the correct shipping option.)</span></label>
+                                      </div>
+                                  </div>
+                                </template>
+                                
 
                                 
+                                <template v-if="!meta.cart_is_only_gift_card">
 
                                 <div class="col-12  text-info bold">
                                   <div
@@ -180,6 +207,7 @@
                                     </button>
                                   </div>
                                 </div>
+                                </template>
 
                                 <div class="col-12  text-info bold">
                                   <div
@@ -201,7 +229,6 @@
 
                                 
                           
-                                <p  class="">
                                     <p  class="form-field-wrapper   col-sm-12">
                                         <form method="POST"  id="checkout-form-2" class="form-group" action="/checkout/confirm">
                                             <div v-if=" $root.settings.shipping_is_free == 0 && delivery_option =='shipping' " class="shipping  select-custom">
@@ -211,19 +238,18 @@
                                                     <optgroup   v-for="(map, key) in  default_shipping"  :key="key" :label="key">
                                                         <option v-if="meta.sub_total >= 30000" :data-id="key.includes(standard_shipping) ? null : shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="key.includes(standard_shipping) ? 0 :shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ key.includes(standard_shipping) ? 0 :shipping.converted_price  }}</option>
                                                         <option v-if="meta.sub_total < 30000" :data-id="shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ shipping.converted_price  }}</option>
-
                                                     </optgroup>
-
                                                 </select>
                                             </div>
                                             <span  v-if="error" class="" role="" >
                                                 <strong  class="text-danger">{{ error }}</strong>
                                             </span>
-
+                                            <template v-if="!meta.cart_is_only_gift_card">
                                             <div class="form-group required-field mt-1">
                                                 <label for="contact-message">Delivery Notes</label>
                                                 <textarea cols="30" rows="1" v-model="delivery_note" id="contact-message" class="form-control" name="delivery_note"></textarea>
                                             </div>
+                                            </template>
                                             <input type="hidden" :value="csrf.csrf" name="_token" />
                                             <input type="hidden" :value="shipping_id" name="ship_id" />
                                             <input type="hidden" :value="payment_method" name="payment_method" />
@@ -231,29 +257,46 @@
                                         </form>
                                         
                                     </p>
-                                    <p>
-                                        <span    class="bold fa-2x ml-3">Total</span> 
+                                    <div>
+                                        <span    class="bold fa-2x ">Total</span> 
                                         <template v-if="voucher.length">
-                                            <span class="price-amount amount bold float-right mr-3">
-                                                <span  class="currencySymbol fa-2x text-danger"><del>{{ meta.currency }}{{  meta.sub_total | priceFormat }}</del></span>
+                                            <span class="price-amount amount bold float-right">
+                                                <span  class="currencySymbol fa-2x text-danger ml-4"><del>{{ meta.currency }}{{  meta.sub_total | priceFormat }}</del></span>
                                             </span>
-                                            <span class="price-amount amount bold float-right mr-3">
+                                            <span class="price-amount amount bold float-right ml-4">
                                                 <span style="" class="currencySymbol fa-2x">{{ meta.currency }}{{ amount ||  meta.sub_total | priceFormat }}</span>
                                                 <p class="retail-title fa-1x">{{ voucher[0].percent }}</p>
                                             </span>
                                         </template>
                                         <template v-else>
-                                            <span class="price-amount amount bold float-right mr-3">
+                                            <span class="price-amount amount bold float-right">
                                                 <span style="" class="currencySymbol fa-2x">{{ meta.currency }}{{ amount ||  meta.sub_total | priceFormat }}
                                                 </span>
                                             </span>
                                         </template>
-                                    </p>
-                            </div>
+                                    </div>
 
+                                    <div v-if="gift_card" class="gift-card mt-1 mb-1  justify-content-between p-0 align-items-center">
+                                        <span class="bmd-form-group is-filled">
+                                          <div class="checkbox">
+                                            <label id="box50"  class="checkbox-label">
+                                              <input for="box50" name="prices[]"  
+                                                @change="payWithGiftCard($event)"  type="checkbox" data-price="34444.00" class="property-filter-attribute" value="61" checked>
+                                              <span class="checkbox-decorator">
+                                                <span class="check"></span>
+                                                </span> 
+                                                <span class="checkbox-custom rectangular"></span> <span class="checkbox-label-text mt-1 bold">Use gift card</span></label>
+                                          </div>
+                                        </span>
+                                        <span class="fa-1x bold text-heading total-price">Balance:  {{ meta.currency }}{{ gift_card.amount }}</span>
+                                    </div>
+                                </div>
+
+                              
+
+                            
 
                             <p class="form-field-wrapper   col-sm-12 mb-3">
-                                
                                 <template v-if="!meta.isAdmin">
                                     <button @click="payWithPaystack" type="button" :class="{'disabled': payment_is_processing}" class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order" id="p lace_order" value="Place order" data-value="Place Order">
                                         <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
@@ -314,6 +357,12 @@
                                                 <span class="retail--title"></span>
                                             </div>
                                         </div>
+                                        <p v-if="cart.is_gift_card">
+                                            Name: {{ cart.gift_card_to_name }}
+                                            <br />
+                                            To:
+                                            {{ cart.gift_card_to_email }}
+                                          </p>
                                         <p v-if="cart.variations.length"> {{ cart.variations.toString() }}</p>
                                         <p class="text-danger bold" v-if="cart.quantity < 1"> This item is no longer available</p>
 
@@ -338,15 +387,12 @@
                                 <span class="price-amount amount bold float-right"><span style="font-size: 28px" class="currencySymbol">{{ meta.currency }}{{ amount ||  meta.sub_total | priceFormat }}</span></span>
                             </p>
                             <div class="proceed-to-checkout"></div>
-
                         </div>
                     </div> 
-                </div>
+                  </div>
                 </div>
             </div>
         </div>
-
-        
     </div>
 
 </template>
@@ -368,15 +414,15 @@ export default {
   },
   data() {
     return {
+      amount: 0,
       coupon: "",
       coupon_code: "",
-      locations: [],
-      shipping_id: null,
-      shipping_price: "",
-      email: "jacob.atam@gmail.com",
-      amount: 0,
-      standard_shipping: "STANDARD DELIVERY",
       delivery_error: false,
+      gift_card: null,
+      use_gift_card: false,
+      locations: [],
+      email: "jacob.atam@gmail.com",
+      standard_shipping: "STANDARD DELIVERY",
       paymentIsProcessing: false,
       shipping: false,
       delivery_option: null,
@@ -395,6 +441,8 @@ export default {
       pageIsLoading: true,
       delivery_note: null,
       paymentIsComplete: false,
+      shipping_id: null,
+      shipping_price: "",
       uemail: null,
     };
   },
@@ -479,18 +527,30 @@ export default {
         };
       }
     },
+    payWithGiftCard: function (e) {
+      console.log(e)
+      this.use_gift_card = !this.use_gift_card
+    },
     payWithPaystack: function () {
+      if (this.meta.cart_is_only_gift_card){
+        this.delivery_option = "Email"
+      }
+      console.log(true)
+
       if (!this.delivery_option) {
         this.delivery_error = true;
         return;
       }
       
-      if(this.meta.sub_total <1){return;}
+      if( this.meta.sub_total < 1 ){ return; }
       let context = this;
       var cartIds = [];
       this.carts.forEach(function (cart, key) {
         cartIds.push(cart.id);
       });
+
+
+
       if (!this.addresses.length) {
         this.error = "You need to save your address before placing your order";
         return false;
@@ -505,11 +565,32 @@ export default {
         return false;
       }
 
+
       let form = document.getElementById("checkout-form-2");
       this.paymentIsProcessing = true;
       this.order_text = "Please wait. We are almost done......";
       this.payment_is_processing = true;
       this.payment_method = "card";
+
+      if (this.gift_card && this.use_gift_card){
+        if (this.amount == this.gift_card.amount) {
+            this.payment_method = "Gift Card";
+            this.order_text = "Please wait. We are almost done......";
+            this.checkout();
+            return;
+        } else if ( this.amount  < this.gift_card.amount ){
+            this.payment_method = "Gift Card";
+            this.order_text     = "Please wait. We are almost done......";
+            this.checkout();
+            return;
+        } else if ( this.amount  >  this.gift_card.amount ){
+            this.amount         = this.amount - this.gift_card.amount;
+            this.payment_method = "Gift Card/Paystack";
+            this.order_text     = "Please wait. We are almost done......";
+        } 
+      }
+
+
       var handler = PaystackPop.setup({
         key: "pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
         email: context.meta.user.email,
@@ -537,25 +618,7 @@ export default {
               context.paymentIsComplete =true
               context.order_text = "Place Order";
           }
-          //   axios.post('/checkout/confirm', {
-          //     customer_id: context.meta.user.id,
-          //     coupon: context.coupon_code,
-          //     shipping_id: context.shipping_id,
-          //     shipping_price: context.shipping_price,
-          //     cart: cartIds,
-          //     total: context.amount,
-          //     delivery_option: context.delivery_option,
-          //     delivery_note: context.delivery_note,
-          //   }).then((response) => {
-          //   })
-          //     .catch((error) => {
-          //       alert('We could not process your order.')
-          //   })
-
-          // } else {
-          //   this.error = "We could not complete your payment";
-          //   context.order_text = "Place Order";
-          // }
+          
         },
         onClose: function () {
           context.order_text = "Place Order";
@@ -568,7 +631,9 @@ export default {
       handler.openIframe();
     },
     payAsAdmin: function () {
-       
+      if (this.meta.cart_is_only_gift_card){
+          this.delivery_option = "Email"
+      }
       if (!this.delivery_option) {
         this.delivery_error = true;
         return;
@@ -625,7 +690,7 @@ export default {
     }),
     applyCoupon: function () {
       if (!this.coupon) {
-        this.coupon_error = "Enter a coupon code";
+        this.coupon_error = "Enter a  code";
         setTimeout(() => {
           this.error = null;
         }, 2000);
@@ -639,8 +704,15 @@ export default {
           coupon: this.coupon,
         })
         .then((response) => {
-          this.submiting = false;
           this.coupon = "";
+          this.submiting = false;
+          if ( response.data.is_gift_card){
+            this.gift_card = response.data
+            this.use_gift_card = true;
+            return;
+          }
+
+
           this.voucher.push(response.data);
           if (this.shipping_price) {
             this.amount =
@@ -652,6 +724,9 @@ export default {
         .catch((error) => {
           this.submiting = false;
           this.coupon_error = error.response.data.error;
+          console.log(error)
+          this.use_gift_card = false;
+
           if (error.response.status) {
             this.submiting = false;
           }
@@ -673,6 +748,7 @@ export default {
 
         })
         .then((response) => {
+          this.payment_is_processing = false;
           this.paymentIsComplete = true;
         })
         .catch((error) => {

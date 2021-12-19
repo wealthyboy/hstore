@@ -3,12 +3,13 @@ import store from "./index";
 
 export const addProductToCart = (
   { commit },
-  { product_variation_id, quantity }
+  { product_variation_id, quantity, form = null }
 ) => {
   return axios
     .post("/api/cart", {
       product_variation_id: product_variation_id,
       quantity,
+      form,
     })
     .then((response) => {
       commit("appendToCart", response.data.data);
@@ -62,7 +63,7 @@ export const flashMessage = ({ commit }, message) => {
   commit("setMessage", message);
   setTimeout(() => {
     commit("clearMessage");
-  }, 3000);
+  }, 2000);
 };
 
 export const applyVoucher = ({ commit }, coupon) => {
@@ -330,12 +331,14 @@ export const forgotPassword = ({ commit, dispatch }, { payload, context }) => {
     });
 };
 
-export const createReviews = ({ commit }, { payload, context, form }) => {
+export const createReviews = (
+  { commit, dispatch },
+  { payload, context, form }
+) => {
   return axios
     .post("/reviews/store", form)
     .then((response) => {
       context.submiting = false;
-      commit("setMessage", "Your review has been received.");
       dispatch("flashMessage", "Your review has been received.");
     })
     .catch((error) => {
@@ -405,6 +408,8 @@ export const clearErrors = ({ commit }, { context, input }) => {
     input.forEach(function(element, v) {
       if (element.value !== "") {
         const prop = element.name;
+        console.log(input);
+
         delete context.errorsBag[prop];
       }
       if (
@@ -442,10 +447,11 @@ export const validateForm = ({ dispatch, commit }, { context, input }) => {
         }
       }
 
-      if (element.name == "phone_number") {
+      if (element.name == "phone_number" || element.name == "amount") {
         let value = element.value;
         if (!/^[0-9]+$/.test(value)) {
-          p.phone_number = "Please enter a valid phone number";
+          p.phone_number = "Please enter a valid phone  number";
+          p.amount = "Please enter a valid  number";
         }
       }
     });

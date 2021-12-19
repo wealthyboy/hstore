@@ -10,6 +10,14 @@ class Voucher extends Model
 {
     use FormatPrice;
 
+	protected $fillable =[
+        'email',
+        'code',      
+        'is_gift_card',
+        'amount',
+        'valid',
+        'user_id'
+    ];
 
     public $appends = [
 		'currency',

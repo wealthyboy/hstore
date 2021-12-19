@@ -16,7 +16,8 @@ class Cart extends Model
 	
 	public $timestamps = false;
 	
-	protected $fillable =[
+	protected $fillable = 
+	   [
 			'product_id',
 			'user_id',
 			'remember_token',
@@ -25,7 +26,15 @@ class Cart extends Model
 			'price',
 			'product_variation_id',
 			'status',
-			'is_sale_product'
+			'is_sale_product',
+			'is_sale_product',
+			'gift_card_to_name'  ,
+			'gift_card_to_email'  ,
+			'gift_card_comment'   ,
+			'gift_card_from_name' ,
+			'gift_card_from_email',
+			'gift_card_token'     ,
+			'gift_card_amount' ,
 		];
 
 	public $appends = [
@@ -56,7 +65,8 @@ class Cart extends Model
 
 	public  static function sync($carts){
         if ( null == $carts ) return null;
-		foreach ($carts as $cart) {
+		foreach ($carts as $cart) 
+		{
 			if (null == $cart->product_variation){
 				$cart->delete();
 			}
@@ -89,11 +99,16 @@ class Cart extends Model
 		return $this->belongsTo('App\ProductVariation');
     }
 
+	public function voucher(){
+		return $this->hasOne('App\Voucher');
+    }
+
 	public static function sum_items_in_cart() {   
 	   $cookie=\Cookie::get('cart'); 
        $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token',$cookie)->where('quantity','>=',1)->get();
        return 	static::ConvertCurrencyRate($total = $total[0]->items_total);
 	}
+
 
 
 	public static function sum_sale_items_in_cart() {   
@@ -139,6 +154,9 @@ class Cart extends Model
 
 
 	public function getRealPriceAttribute(){
+		if ($this->product_variation->is_gift_card) {
+			return $this->price;
+		}
 		return $this->product_variation->discounted_price ?  $this->product_variation->discounted_price : $this->product_variation->price;
 	}
 

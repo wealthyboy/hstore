@@ -21,11 +21,14 @@ class CartIndexResource extends JsonResource
             'product_variation' => $this->product_variation,
             'image' => optional($this->product_variation)->image_tn,
             'quantity' => $this->quantity,
+            'is_gift_card' => $this->is_gift_card,
             'name'     => optional($this->product_variation)->name,
             'price' => Cart::ConvertCurrencyRate($this->real_price),
             'currency' => optional($this->product_variation)->currency,
             'product_name' => optional(optional($this->product_variation)->product)->product_name,
             'variations' => optional(optional($this->product_variation)->product_variation_values)->pluck('name')->toArray(),
+            'gift_card_to_email' => $this->gift_card_to_email,
+            'gift_card_to_name' =>  $this->gift_card_to_name
         ];
     }
 }

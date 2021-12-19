@@ -17,6 +17,12 @@
                 x <span class="cart-product-amount">{{ cart.currency }}</span
                 >{{ cart.price | priceFormat }}
               </span>
+              <p v-if="cart.is_gift_card">
+                Name: {{ cart.gift_card_to_name }}
+                <br />
+                To:
+                {{ cart.gift_card_to_email }}
+              </p>
               <p v-if="cart.variations.length">
                 {{ cart.variations.toString() }}
               </p>

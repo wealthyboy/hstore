@@ -227,8 +227,8 @@ class ProductController extends Controller
         $product_variation->slug = $request->type == 'simple' ? str_slug($request->product_name) : null;
         $product_variation->width = $request->width;
         $product_variation->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
-        $product_variation->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
-
+        $product_variation->sale_price_starts  = Helper::getFormatedDate($request->sale_price_starts);
+        $product_variation->is_gift_card       = $request->is_gift_card;
         $product_variation->length = $request->length;
         $product_variation->weight      = $request->weight;
         $product_variation->quantity    = $request->quantity;
@@ -598,13 +598,12 @@ class ProductController extends Controller
         $product_variation->width      = $request->width;
         $product_variation->sale_price_expires   = Helper::getFormatedDate($request->sale_price_expires);
         $product_variation->sale_price_starts   = Helper::getFormatedDate($request->sale_price_starts);
-
         $product_variation->length     = $request->length;
         $product_variation->weight     = $request->weight;
         $product_variation->quantity   = $request->quantity;
         $product_variation->product_id = $product->id;
         $product_variation->allow       = $request->allow ? $request->allow : 0;
-
+        $product_variation->is_gift_card       = $request->is_gift_card;
         $product_variation->default = 1;
         $product_variation->save();
         if( !empty($request->category_id) ){

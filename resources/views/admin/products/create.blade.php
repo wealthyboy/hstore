@@ -99,16 +99,27 @@
                            <div class="col-md-3">
                               <div class="form-group label-floating is-empty">
                                  <label class="control-label">Width</label>
-                                 <input name="width"      value="{{ old('width') }}"  class="form-control" type="text">
+                                 <input name="width"  value="{{ old('width') }}"  class="form-control" type="text">
                                  <span class="material-input"></span>
                               </div>
                            </div>
                            <div class="col-md-3">
                               <div class="form-group label-floating is-empty">
                                  <label class="control-label">Height</label>
-                                 <input name="height"      value="{{ old('height') }}"  class="form-control" type="text">
+                                 <input name="height"  value="{{ old('height') }}"  class="form-control" type="text">
                                  <span class="material-input"></span>
                               </div>
+                           </div>
+                        </div>
+                        <div class="col-md-12">
+                           <legend>  
+                              Gift Card
+                           </legend>
+                           <div class="togglebutton">
+                              <label>
+                                 <input name="is_gift_card"  value="1" type="checkbox" >
+                                 Gift Card
+                              </label>
                            </div>
                         </div>
                      </div>

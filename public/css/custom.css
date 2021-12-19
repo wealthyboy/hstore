@@ -458,6 +458,14 @@ background: white;
   font-weight: normal;
 }
 
+
+.gift-card .checkbox-label-text {
+  top: -12px;
+  width: 200px;
+  font-size: 16px;
+
+}
+
 /* Style for Circular Checkbox */
 .checkbox-label .checkbox-custom.circular {
   border-radius: 50%;

@@ -14,6 +14,7 @@ use App\Http\Resources\CartIndexResource;
 use App\Http\Resources\CartResource;
 use App\SystemSetting;
 use App\Http\Helper;
+use App\Voucher;
 
 
 
@@ -27,7 +28,8 @@ class CartController  extends Controller {
 	}
 		
 
-	public function store(Request $request) { 
+	public function store(Request $request) 
+	{ 
 
 
 		$this->validate($request,[
@@ -36,7 +38,7 @@ class CartController  extends Controller {
 		]);
 
 		$product_variation = ProductVariation::find($request->product_variation_id);
-		if ($product_variation->quantity < 1) {
+		if ($product_variation->quantity < 1 && !$product_variation->is_gift_card) {
 			return response()->json([
                 'message' => [
 					'errors' => "Product out of stock"
@@ -50,42 +52,60 @@ class CartController  extends Controller {
 			$cart->user_id    = $request->user()->id;
 		}
 		$price = $product_variation->discounted_price ?? $product_variation->price;
+
+
 		if (\Cookie::get('cart') !== null) {
 			$remember_token  = \Cookie::get('cart');
+			if($product_variation->is_gift_card)
+			{   
+			    $this->saveGiftCard($cart, $request, $remember_token, $product_variation);				
+				return $this->loadCart($request);
+			} 
+
 			$result = $cart->updateOrCreate(
-				['product_variation_id' => $request->product_variation_id,'remember_token' => $remember_token],
+				[
+					'product_variation_id' => $request->product_variation_id,
+					'remember_token' => $remember_token
+				],
 				[
 					'product_variation_id' => $request->product_variation_id,
 					'quantity'   => $request->quantity,
 					'price'      => $price,
 					'total'      => $price * $request->quantity,
-					'status' => 'pending',
-					'is_sale_product'  => $product_variation->discounted_price ? 1 : 0
+					'status'     => 'pending',
+					'is_sale_product'   => $product_variation->discounted_price ? 1 : 0,
 				]
 			);
 
+		
 			return $this->loadCart($request);
 			
 		}  else  {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart',$value);
 			$cookie = cookie('cart',session()->get('cart'), 60*60*7);
-			$cart->product_variation_id = $request->product_variation_id;
-			$cart->quantity   = $request->quantity;
-			$cart->price      = $price;
-			$cart->total      = $price * $request->quantity;
-			$cart->status     =   'pending';
-			$cart->remember_token =$cookie->getValue();
-			$cart->is_sale_product  = $product_variation->discounted_price ? 1 : 0;
+			
+			if($product_variation->is_gift_card)
+			{
+			   $token = $cookie->getValue();
+			   $this->saveGiftCard($cart, $request, $token, $product_variation);
+			}  else {
+				$cart->product_variation_id = $request->product_variation_id;
+				$cart->price                = $price;
+				$cart->total                = $price * $request->quantity;
+				$cart->quantity             = $request->quantity;
+				$cart->status               = 'pending';
+				$cart->remember_token       = $cookie->getValue();
+				$cart->is_sale_product      = $product_variation->discounted_price ? 1 : 0;
+				$cart->save();
+			}
 
-			$cart->save();
 			$carts = Cart::all_items_in_cart();
 			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token',$cookie->getValue())->get();
 			$sub_total =  Cart::ConvertCurrencyRate($total[0]->items_total);
 			
 			return response()->json([
 				'data' => [
-					
 					0 => [ 
 						'cart_id' => $cart->id,
 						'product_variation_id' => $cart->product_variation_id,
@@ -95,6 +115,9 @@ class CartController  extends Controller {
 						'price'        => $cart->converted_price,
 						'product_name' => optional($cart->product_variation)->product->product_name,
 						'variations'   => optional($cart->product_variation)->product_variation_values->pluck('name')->toArray(),
+						'is_gift_card' => $cart->is_gift_card,
+						'gift_card_to_name' =>  $cart->gift_card_to_name,
+						'gift_card_to_email' => $cart->gift_card_to_email,
 					]
 				],
 				'meta' => [
@@ -108,6 +131,39 @@ class CartController  extends Controller {
     }
 
 
+	public function saveGiftCard($cart, $request, $cookie, $product_variation)
+	{   
+		$code = "HAUTE-".strtoupper(str_random(5));
+
+		$cart->price                = $request->form['amount'];
+		$cart->total                = $request->form['amount'] * 1;
+		$cart->is_gift_card         = $product_variation->is_gift_card;
+		$cart->quantity             = 1;
+		$cart->product_variation_id = $request->product_variation_id;
+		$cart->gift_card_to_name    = $request->form['recipients_name'];
+		$cart->gift_card_to_email   = $request->form['recipients_email'];
+		$cart->gift_card_comment    = $request->form['comment'];
+		$cart->gift_card_from_name  = $request->form['recipients_email'];
+		$cart->gift_card_from_email = $request->form['recipients_email'];
+		$cart->gift_card_token      = $code;
+		$cart->gift_card_amount     = $request->form['amount'];
+		$cart->is_gift_card         = 1;
+		$cart->status               = 'pending';
+		$cart->remember_token       = $cookie;
+		$cart->save();
+
+		$voucher = new Voucher;
+		$voucher->email        = $request->form['recipients_email'];
+		$voucher->code         = $code;
+		$voucher->cart_id      = $cart->id;
+		$voucher->is_gift_card = 1;
+		$voucher->status       = 1;
+		$voucher->type         = 'general';
+		$voucher->amount       = $request->form['amount'];
+		$voucher->save();
+	}
+
+
 	public function loadCart(Request $request)
 	{
 		$carts = Cart::all_items_in_cart();
@@ -119,10 +175,27 @@ class CartController  extends Controller {
 				'currency' => Helper::rate()->symbol ?? optional(optional($this->settings)->currency)->symbol,
 				'currency_code' => Helper::rate()->iso_code3 ?? optional(optional($this->settings)->currency)->iso_code3,
 				'user' => $request->user(),
-				'isAdmin' => null !== $request->user() ? $request->user()->isAdmin() : false 
+				'isAdmin' => null !== $request->user() ? $request->user()->isAdmin() : false ,
+				'cart_is_only_gift_card' => $this->CartIsOnlyGiftCard()
 			],
         ]);
 	}
+
+
+	public function CartIsOnlyGiftCard()
+	{   		
+		$cookie=\Cookie::get('cart'); 
+        $cart_has_gift_card = Cart::where(['remember_token'=>$cookie,'is_gift_card' => 1])->first();
+		$cart_has_others = Cart::where(['remember_token'=>$cookie,'is_gift_card' => 0])->first();
+		if(null !== $cart_has_gift_card && null == $cart_has_others){
+            return true;
+		} else {
+            return false;
+		}
+
+		return false;
+	}
+
 	
 	public function destroy(Request $request,$cart_id) { 
 		
@@ -140,15 +213,5 @@ class CartController  extends Controller {
 		}
     }
 	    
-	
-	
-    
-		
-	
-	
-	
-
-
-
-
 }
+
