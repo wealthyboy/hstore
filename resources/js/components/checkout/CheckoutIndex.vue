@@ -156,11 +156,11 @@
                                   <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1 ">
                                       <div class="custom-control custom-radio">
                                           <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE." v-model="delivery_option" class="custom-control-input" id="pick_up_surulere" name="delivery_option" required>
-                                          <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE.</span></label>
+                                          <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 bold  text-danger">Currently closed until 10th January</span></label>
                                       </div>
                                       <div class="custom-control custom-radio ">
                                           <input type="radio" value="Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA." v-model="delivery_option" class="custom-control-input" id="pick_up_magodo" name="delivery_option" required>
-                                          <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.</span></label>
+                                          <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  bold  text-danger">Closed on public holidays.</span></label>
                                       </div>
                                   </div>
                                   <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
@@ -173,7 +173,7 @@
                                   <div  :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
                                       <div class="custom-control  custom-radio mt-1 mb-1">
                                           <input type="radio" value="shipping" v-model="delivery_option" class="custom-control-input" id="shipping" name="delivery_option" required>
-                                          <label class="custom-control-label" for="shipping">Shipping   <span class="ml-3  text-info">(Based on your location. If in Lagos, please check our shipping & return policy <a target="_blank" href="https://hautesignatures.com/pages/shipping-delivery">link</a> to see where your location falls in order for you select the correct shipping option.)</span></label>
+                                          <label class="custom-control-label" for="shipping">Shipping   <span class="ml-3  text-info">(Based on your location. If in Lagos, please check our shipping & return policy <a target="_blank" href="https://hautesignatures.com/pages/delivery-and-returns">link</a> to see where your location falls in order for you select the correct shipping option.)</span></label>
                                       </div>
                                   </div>
                                 </template>
@@ -324,7 +324,6 @@
                             <div class="head  border-bottom">
                                 <h3>SUMMARY</h3>
                             </div>
-
                             <div v-for="cart in carts"  :key="cart.id" class="row cart-rows  mb-2 pt-4 pb-2 border-top border-gray">
                                 <div class="col-md-3 col-6">
                                     <div class="cart-image">
@@ -333,7 +332,6 @@
                                 </div>
                                 <div class="col-md-9 col-6">
                                     <div class="tag mb-1 brand-name bold color--gray">{{ cart.brand }}</div>
-
                                     <div><a href="#">{{ cart.product_name }}</a></div>
                                     <!--Product Ratting-->
                                     <div class="product-item-prices d-flex"  v-if="cart.product_variation.discounted_price">
@@ -350,13 +348,13 @@
                                         </div>
                                     </div>
 
-                                        <div class="product-item-prices" v-else>
-                                            <div class="product--price--amount">
-                                                <span class="retail--title text-gold">PRICE</span>
-                                                <span class="product--price">{{ meta.currency }}{{ cart.price | priceFormat}}</span>
-                                                <span class="retail--title"></span>
-                                            </div>
-                                        </div>
+                                      <div class="product-item-prices" v-else>
+                                          <div class="product--price--amount">
+                                              <span class="retail--title text-gold">PRICE</span>
+                                              <span class="product--price">{{ meta.currency }}{{ cart.price | priceFormat}}</span>
+                                              <span class="retail--title"></span>
+                                          </div>
+                                      </div>
                                         <p v-if="cart.is_gift_card">
                                             Name: {{ cart.gift_card_to_name }}
                                             <br />
@@ -535,7 +533,6 @@ export default {
       if (this.meta.cart_is_only_gift_card){
         this.delivery_option = "Email"
       }
-      console.log(true)
 
       if (!this.delivery_option) {
         this.delivery_error = true;

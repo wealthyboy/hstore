@@ -18,7 +18,10 @@
                         </div>
                     </nav>
                     <h1 class="breadcrumb-title">{{ $breadcrumb }}</h1>
-                    <p class="text-center"> {{ isset($category) ? $category->description : '' }}</p>
+                    <div class="category-description">
+                        <p class="text-center"> {{ isset($category) ? $category->description : '' }} </p>
+                        <a href="http://">Read More</a>
+                    </div>
                 </div>
             </div>
         </div>
