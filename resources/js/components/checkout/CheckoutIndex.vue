@@ -182,7 +182,7 @@
                                   <div  :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
                                       <div class="custom-control  custom-radio mt-1 mb-1">
                                           <input type="radio" value="shipping" v-model="delivery_option" class="custom-control-input" id="shipping" name="delivery_option" required>
-                                          <label class="custom-control-label" for="shipping">Shipping   <span class="ml-3  text-info">(Based on your location. If in Lagos, please check our shipping & return policy <a target="_blank" href="https://hautesignatures.com/pages/shipping-delivery">link</a> to see where your location falls in order for you select the correct shipping option.)</span></label>
+                                          <label class="custom-control-label" for="shipping">Shipping   <span class="ml-3  text-info">(Based on your location. If in Lagos, please check our shipping & return policy <a target="_blank" href="https://hautesignatures.com/pages/delivery-and-returns">link</a> to see where your location falls in order for you select the correct shipping option.)</span></label>
                                       </div>
                                   </div>
                                 </template>
