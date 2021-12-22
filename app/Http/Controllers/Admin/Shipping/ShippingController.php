@@ -33,11 +33,7 @@ class ShippingController extends Controller
     {
         //
 
-        $shipping = Shipping::find(['259','262','264']);
-        foreach($shipping as $s){
-             $s->delete();
-        }
-        
+
         $shippings = Shipping::parents()->get();
         $locations = Location::parents()->get();
         return view('admin.shipping.index',compact('locations','shippings'));
