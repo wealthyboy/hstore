@@ -20,7 +20,6 @@
                     <h1 class="breadcrumb-title">{{ $breadcrumb }}</h1>
                     <div class="category-description">
                         <p class="text-center"> {{ isset($category) ? $category->description : '' }} </p>
-                        <a href="http://">Read More</a>
                     </div>
                 </div>
             </div>
@@ -44,7 +43,7 @@
        @else
             <div class="col-lg-12 main-content">
         @endif
-        @if ($products->count())
+        @if ($products->count() && isset($category) && strtolower($category->name) !== 'gift cards')
             <nav class="toolbox horizontal-filter filter-sorts">
                 <div class="toolbox-left">
                     <div class="toolbox-item toolbox-sort pr-1">
