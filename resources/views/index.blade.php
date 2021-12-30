@@ -58,7 +58,6 @@
             <div class="feature-box-content">
                 <h3 class="mb-0 pb-1">Customer Support</h3>
                 <h5 class="m-b-3">Need Assistance?</h5>
-
                 <p></p>
             </div><!-- End .feature-box-content -->
         </div><!-- End .feature-box -->

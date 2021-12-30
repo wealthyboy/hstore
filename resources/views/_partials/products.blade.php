@@ -38,6 +38,7 @@
                     <div class="text-left  mr-5">
                         <a href="{{ $product->link }}">{{ $product->name }}</a>
                     </div> 
+                    @if (!$product->is_gift_card )
                     <div class="text-right">
                         @if( $product->default_discounted_price)
                             <span class="old-price bold">{{ $product->currency }}{{ number_format($product->converted_price)   }}</span>
@@ -46,6 +47,7 @@
                             <span class="product-price bold">{{ $product->currency }}{{ number_format($product->converted_price)}}</span>
                         @endif
                     </div><!-- End .price-box -->
+                    @endif
                 </div>
             </div>
         </div><!-- End .product-details -->
