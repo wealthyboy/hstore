@@ -82,7 +82,7 @@
                                       
                                 </blockquote>
 
-                                <h5 class="testi-author">{{ optional($review->user)->name }} </h5>
+                                <h5 class="testi-author">{{ optional($review->user)->name }} {{ optional($review->user)->last_name[0]  }}.</h5>
                             </div>
                         </div>
                     </div>
