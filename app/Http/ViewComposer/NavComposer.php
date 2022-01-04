@@ -29,8 +29,8 @@ class   NavComposer {
 		$footer_info = Information::where('blog',false)->parents()->get(); 
 		$global_promo = Promo::first(); 
 		$system_settings = SystemSetting::first();
-		$currencies = Currency::all();
-		$blog_status = EnableBlog::first();
+		$currencies      = Currency::all();
+		$blog_status     = EnableBlog::first();
 		$news_letter_image = PageBanner::where('page_name','newsletter')->first();
 	    $view->with([
 		   	'footer_info'=>$footer_info,

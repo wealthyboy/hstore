@@ -13,6 +13,12 @@ class Review extends Model
        return $this->belongsTo('App\Product');
     }
 
+
+    public function product_variation(){
+        return $this->belongsTo('App\ProductVariation');
+    }
+
+
     public function user(){
         return $this->belongsTo('App\User');
     }

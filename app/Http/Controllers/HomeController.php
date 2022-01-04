@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         $banners =  Banner::banners()->get();
         $products = Product::where('featured',1)->orderBy('created_at','DESC')->take(8)->get();
-        $reviews  = Review::orderBy('created_at','DESC')->take(4)->get();
+        $reviews  = Review::where('is_verified', 1)->orderBy('created_at','DESC')->take(20)->get();
         $posts  =   Information::orderBy('created_at','DESC')->where(['blog'=>true,'is_active' => true])->take(6)->get();
             
         if ( empty($site_status->make_live) ) {

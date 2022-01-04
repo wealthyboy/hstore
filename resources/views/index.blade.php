@@ -50,6 +50,56 @@
 @endif
 
 
+<section class="section-6  bg-gray  appear-animate">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <h2 class="section-title">Latest Product Reviews</h2>
+                <div class="owl-carousel owl-theme testimonials-carousel" data-owl-options="{
+                        'autoplay': false,
+                        'autoHeight': true
+                    }">
+                    @foreach($reviews as $review)
+
+                    <div class="testimonial bg-white pt-3">
+                        <div class="testimonial-owner">
+                            <figure>
+                                <img title="{{ $review->title }}" src="{{ optional($review->product_variation)->image_to_show_m }}"  width="96" height="96" alt="{{ $review->title }} ">
+
+                            </figure>
+
+                            <div class="testi-content">
+                                <div class="ratings-container mb-1">
+                                    <div class="product-ratings">
+                                        <div class="ratings" style="width: {{ $review->rating }}%"></div>
+                                    </div>
+                                </div>
+
+                                <h4 class="testimonial-title p-0">{{ optional($review->product)->product_name }}</h4>
+
+                                <blockquote class="ml-3 pr-0">
+                                <p>{{ $review->description }}</p>
+                                      
+                                </blockquote>
+
+                                <h5 class="testi-author">{{ optional($review->user)->name }} </h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    @endforeach
+
+
+                </div>
+                <!-- End .testimonial-slider -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End .blog-section -->
+
+
+
 <div class="container-fluid ">
 <div class="feature-boxes-container row mt-6 mb-1">
     <div class="col-md-4 col-4">
