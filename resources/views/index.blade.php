@@ -62,7 +62,7 @@
                     @foreach($reviews as $review)
 
                     <div class="testimonial bg-white pt-3">
-                        <div class="testimonial-owner">
+                        <div class="testimonial-owner pl-3">
                             <figure>
                                 <img title="{{ $review->title }}" src="{{ optional($review->product_variation)->image_to_show_m }}"  width="96" height="96" alt="{{ $review->title }} ">
 
