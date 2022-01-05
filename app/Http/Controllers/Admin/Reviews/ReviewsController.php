@@ -36,16 +36,16 @@ class ReviewsController extends Controller
 
 	   //dd($orders);
 
-	   foreach ($orders as $key => $order) {
-		try {
-			$when = now()->addMinutes(5); 
-			\Mail::to($order->user->email)
-				->send(new ReviewMail($order));
-		} catch (\Throwable $th) {
-			dd($th);
-			\Log::info("Mail error :".$th);
-		}
-	   }
+	//    foreach ($orders as $key => $order) {
+	// 	try {
+	// 		$when = now()->addMinutes(5); 
+	// 		\Mail::to($order->user->email)
+	// 			->send(new ReviewMail($order));
+	// 	} catch (\Throwable $th) {
+	// 		dd($th);
+	// 		\Log::info("Mail error :".$th);
+	// 	}
+	//    }
 
 
 
