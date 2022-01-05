@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Review;
 use App\PageBanner;
 use App\Order;
+use Carbon\Carbon;
 
 
 
@@ -24,8 +25,8 @@ class ReviewsController extends Controller
 	
 	public function  index()  
 	{  
-	    $startDate = \Carbon::createFromFormat('d/m/Y', '01/11/2021');
-        $endDate = \Carbon::createFromFormat('d/m/Y', '15/12/2021');
+	    $startDate = Carbon::createFromFormat('d/m/Y', '01/11/2021');
+        $endDate = Carbon::createFromFormat('d/m/Y', '15/12/2021');
   
 		$orders = Order::has('ordered_products')
 		->whereBetween('created_at',[$startDate, $endDate])
