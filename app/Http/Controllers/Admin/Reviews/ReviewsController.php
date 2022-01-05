@@ -9,6 +9,8 @@ use App\Review;
 use App\PageBanner;
 use App\Order;
 use Carbon\Carbon;
+use App\Mail\ReviewMail;
+
 
 
 
@@ -32,7 +34,17 @@ class ReviewsController extends Controller
 		->whereBetween('created_at',[$startDate, $endDate])
 		->get();
 
-	   dd($orders);
+	   //dd($orders);
+
+	   foreach ($orders as $key => $order) {
+		try {
+			$when = now()->addMinutes(5); 
+			\Mail::to($order->user->email)
+				->send(new ReviewMail($order));
+		} catch (\Throwable $th) {
+			Log::info("Mail error :".$th);
+		}
+	   }
 	   $this->updateStatus();
 
 	   $reviews = Review::all();

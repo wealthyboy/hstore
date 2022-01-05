@@ -25,7 +25,6 @@ class SendGiftCard extends Mailable
     
     public function build()
     {   
-        
-        return $this->subject('A Gift For You')->view('emails.review.index');
+        return $this->subject('A Gift For You')->view('emails.gift_cards.index');
     }
 }

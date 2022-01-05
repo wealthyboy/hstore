@@ -106,11 +106,11 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
 
 Route::get('/mailable', function () {
-    $cart = App\Cart::find(438);
+    $order = App\Order::find(201);
     $settings =  App\SystemSetting::first();
     // $total = Illuminate\Support\Facades\DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();
     // $sub_total = $total[0]->items_total ?? '0.00';
-    return  new App\Mail\SendGiftCard($cart,$settings);
+    return  new App\Mail\ReviewMail($order);
 
 });
 
