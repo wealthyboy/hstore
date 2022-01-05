@@ -45,6 +45,9 @@ class ReviewsController extends Controller
 			Log::info("Mail error :".$th);
 		}
 	   }
+
+
+	   
 	   $this->updateStatus();
 
 	   $reviews = Review::all();
