@@ -180,9 +180,9 @@ class ProductsController extends Controller
 
     
 
-        if (!$product->allow){
-            return redirect('404');
-        }
+        // if (!$product->allow){
+        //     return redirect('404');
+        // }
 
         if ( null !== $product){
             foreach ($product->parent_attributes as  $parent_attribute) {
