@@ -42,12 +42,13 @@ class ReviewsController extends Controller
 			\Mail::to($order->user->email)
 				->send(new ReviewMail($order));
 		} catch (\Throwable $th) {
-			Log::info("Mail error :".$th);
+			dd($th);
+			\Log::info("Mail error :".$th);
 		}
 	   }
 
 
-	   
+
 	   $this->updateStatus();
 
 	   $reviews = Review::all();
