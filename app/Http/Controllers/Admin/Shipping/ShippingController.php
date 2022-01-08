@@ -33,10 +33,10 @@ class ShippingController extends Controller
     {
         //
 
-        $s = Shipping::find([267,268,269,270]);
-        foreach ($s as $key => $v) {
-            $v->delete();
-        }
+        //$s = Shipping::find([267,268,269,270]);
+        // foreach ($s as $key => $v) {
+        //     $v->delete();
+        // }
 
         $shippings = Shipping::parents()->get();
         $locations = Location::parents()->get();
