@@ -33,7 +33,7 @@ class ShippingController extends Controller
     {
         //
 
-      //  $s = Shipping::find(272)->delete();
+       $s = Shipping::find(273)->delete();
         
         $shippings = Shipping::parents()->get();
         $locations = Location::parents()->get();
