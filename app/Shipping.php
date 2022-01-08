@@ -18,7 +18,6 @@ class Shipping extends Model
         'converted_price',
     ];
 	
-
     public function children()
     {
         return $this->hasMany('App\Shipping','parent_id','id');
@@ -27,16 +26,13 @@ class Shipping extends Model
     public function parent()
     {
         return $this->belongsTo('App\Shipping','parent_id','id');
-        ;
     }
-
 
     public function location()
     {
         return $this->belongsTo('App\Location');
     }
     
-
     public function locations()
     {
         return $this->belongsToMany('App\Shipping','location_shipping');

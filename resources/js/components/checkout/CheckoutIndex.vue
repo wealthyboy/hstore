@@ -244,7 +244,7 @@
                                                 <label for="shipping_country">SELECT SHIPPING &nbsp;<abbr class="required text-danger" title="required">*</abbr></label>
                                                 <select @change="addShippingPrice"  name="shipping_id" id="shipping_price" class="form-control  input--lg" autocomplete="shipping" tabindex="-1" aria-hidden="true">
                                                     <option value="" selected="selected">Choose a shipping</option> 
-                                                    <optgroup   v-for="(map, key) in  default_shipping"  :key="key" :label="key">
+                                                    <optgroup   v-for="(map, key) in  default_shipping"  v-if="key" :key="key" :label="key">
                                                         <option v-if="meta.sub_total >= 30000" :data-id="key.includes(standard_shipping) ? null : shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="key.includes(standard_shipping) ? 0 :shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ key.includes(standard_shipping) ? 0 :shipping.converted_price  }}</option>
                                                         <option v-if="meta.sub_total < 30000" :data-id="shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ shipping.converted_price  }}</option>
                                                     </optgroup>
