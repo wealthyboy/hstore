@@ -115,9 +115,6 @@ class Product extends Model
 	}
 
 	
-	
-	
-
 	public function getIsWishlistAttribute(){
         return null !== Favorite::where('product_variation_id',$this->default_variation_id)->first() ? true : false;
 	}
