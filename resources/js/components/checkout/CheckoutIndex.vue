@@ -159,7 +159,7 @@
                                           <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE." v-model="delivery_option" class="custom-control-input" id="pick_up_surulere" name="delivery_option" required>
                                           <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1  <span class="ml-3 text-info">No 1, Bassie Ogamba Street off Adeniran Ogunsanya street, SURULERE.</span>
                                              <span class="mr-3 bold text-danger">
-                                              Currently closed until 10th January
+                                              Closed on weekends and public holidays
                                             </span>
                                           </label>
                                       </div>
@@ -167,7 +167,7 @@
                                           <input type="radio" value="Plot 14, Gbelegbo street, by TOB Plaza, MAGODO PHASE 1, OLOWORA." v-model="delivery_option" class="custom-control-input" id="pick_up_magodo" name="delivery_option" required>
                                           <label class="custom-control-label" for="pick_up_magodo">  PICK UP OPTION 2  <span class="ml-3  text-info">Plot 14, Gbelegbo street by TOB Plaza, Magodo phase 1, OLOWORA.</span>
                                             <span class="mr-3 bold text-danger">
-                                              Closed on public holidays
+                                              Closed on Sundays and public holidays
                                             </span>
                                           </label>
                                       </div>
