@@ -50,7 +50,7 @@
 @endif
 
 
-<section class="section-6  bg-gray  appear-animate">
+<section class="section-6    appear-animate">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-12">
