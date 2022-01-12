@@ -45,7 +45,7 @@ class ProductsController extends Controller
             ->where('allow',true)->paginate(4);
         
 
-        $products = ProductVariation::where('quantity','>=', 1)
+        $products = ProductVariation::whereNotNull('name')
             ->where('allow',true)
             ->whereHas('categories',function(Builder  $builder) use ($category){
             $builder->where('categories.name',$category->name);
