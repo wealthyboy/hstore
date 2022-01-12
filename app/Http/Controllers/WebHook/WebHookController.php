@@ -110,10 +110,10 @@ class WebHookController extends Controller
             $sub_total = $total[0]->items_total ?? '0.00';
             
             try {
-                 $when = now()->addMinutes(5); 
-                 \Mail::to($user->email)
+                $when = now()->addMinutes(5); 
+                \Mail::to($user->email)
                 ->bcc($admin_emails[0])
-                 ->send(new OrderReceipt($order,$this->settings,$symbol,$sub_total));
+                ->send(new OrderReceipt($order,$this->settings,$symbol,$sub_total));
              } catch (\Throwable $th) {
                 Log::info("Mail error :".$th);
             }
@@ -126,6 +126,9 @@ class WebHookController extends Controller
                     $coupon->update(['valid'=>false]);
                 }
             }
+
+            ReviewProduct::dispatch($order)->delay(now()->addDays(10));
+
         } catch (\Throwable $th) {
             Log::info("Custom error :".$th);
 
