@@ -108,7 +108,7 @@
                 <div
                   v-if="quantity >= 1"
                   id="quantity_1234"
-                  class="select-custom"
+                  class="cart-select-custom"
                 >
                   <select
                     id="add-to-cart-quantity"

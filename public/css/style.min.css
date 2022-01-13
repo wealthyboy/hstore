@@ -2474,16 +2474,27 @@ label {
     color: currentColor;
   }
 }
-.select-custom:after {
+.select-custom:after , .cart-select-custom:after{
   display: inline-block;
   position: absolute;
-  top: 66%;
   right: 1.9rem;
   transform: translateY(-50%);
   font-family: porto;
   font-size: 2.5rem;
   content: "\e81c";
 }
+
+.select-custom:after{
+  top: 66%;
+
+}
+
+
+.cart-select-custom:after {
+  top: 50%;
+}
+
+
 .select-custom .form-control,
 .select-custom .form-control-sm {
   padding-right: 4rem;
