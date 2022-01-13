@@ -50,6 +50,68 @@
 @endif
 
 
+@if ( $products->count() )
+    <div class="container-fluid mt-1 ">
+        <div class="products-section pt-0">
+            <div class=" text-center fa-2x">Best of sale: shop our editor's picks</div>
+            <div class="products-slider owl-carousel owl-theme ">
+                @foreach( $products as $featered_product)
+                <div class="product-default inner-quickview inner-icon">
+                    <figure>
+                        <a href="{{ $featered_product->link }}">
+                            <img src="{{ $featered_product->image_to_show_m }}">
+                        </a>
+                    </figure>
+                    <div class="product-details text-left">
+                        <div class="">
+                            
+                            @if($featered_product->colours->count()  && $featered_product->colours->count() > 1)
+                                <div  class="justify-content-start d-flex mb-1">
+                                    @foreach($featered_product->colours as $color)
+                                    <div   style="border:1px solid #222; height: 15px; width: 15px; border-radius: 50%; background-color: {{ $color->color_code }};" class="mr-1"></div>
+                                    @endforeach
+                                </div>
+                            @endif
+                            @if($featered_product->brand_name)
+                                <div  class="product-brand text-capitalize  bold">
+                                    {{ strtolower($featered_product->brand_name) }} 
+
+                                </div>
+                            @endif
+
+                            <div class="color--primary">
+                                <a href="{{ $featered_product->link }}">{{ $featered_product->product_name }}</a>
+                            </div>
+                        </div>
+                        <div class="price-box mt-1">
+                            @if( $featered_product->default_discounted_price)
+                                <span class="old-price">{{ $featered_product->currency }}{{ number_format($featered_product->converted_price)   }}</span>
+                                <span class="product-price  ml-1">
+                                    |
+                                    @if( $featered_product->default_percentage_off )
+                                        {{ $featered_product->default_percentage_off }}% OFF
+                                    @endif
+                                    <span class="text-danger">
+                                    {{ $featered_product->currency }}{{ number_format($featered_product->default_discounted_price)  }}
+                                    </span>
+                                </span>
+                            @else
+                                <span class="product-price">{{ $featered_product->currency }}{{ number_format($featered_product->converted_price) }}</span>
+                            @endif
+                        </div><!-- End .price-box -->
+                    </div><!-- End .product-details -->
+                </div>
+
+
+                @endforeach
+            
+            </div><!-- End .products-slider -->
+        </div><!-- End .products-section -->
+
+    </div><!-- End .container -->
+    @endif
+
+
 <section class="section-6    appear-animate">
     <div class="container">
         <div class="row">
