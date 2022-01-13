@@ -240,7 +240,7 @@
                           
                                     <p  class="form-field-wrapper   col-sm-12">
                                         <form method="POST"  id="checkout-form-2" class="form-group" action="/checkout/confirm">
-                                            <div v-if=" $root.settings.shipping_is_free == 0 && delivery_option =='shipping' " class="shipping  select-custom">
+                                            <div v-if=" $root.settings.shipping_is_free == 0 && delivery_option =='shipping' " class="shipping cart-select-custom  select-custom">
                                                 <label for="shipping_country">SELECT SHIPPING &nbsp;<abbr class="required text-danger" title="required">*</abbr></label>
                                                 <select @change="addShippingPrice"  name="shipping_id" id="shipping_price" class="form-control  input--lg" autocomplete="shipping" tabindex="-1" aria-hidden="true">
                                                     <option value="" selected="selected">Choose a shipping</option> 

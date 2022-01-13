@@ -96,6 +96,7 @@
               :product="product"
               :color="color"
               :qty="qty"
+              :quantity="quantity"
             />
 
             <gift-card-form v-if="product.is_gift_card" :product="product" />
@@ -108,7 +109,7 @@
                 <div
                   v-if="quantity >= 1"
                   id="quantity_1234"
-                  class="cart-select-custom"
+                  class="select-custom"
                 >
                   <select
                     id="add-to-cart-quantity"
