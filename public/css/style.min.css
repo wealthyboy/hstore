@@ -568,9 +568,9 @@
   opacity: 0.5;
   cursor: default;
 }
-.owl-theme .owl-nav.disabled + .owl-dots {
+/* .owl-theme .owl-nav.disabled + .owl-dots {
   margin-top: 2.5rem;
-}
+} */
 .owl-theme .owl-dots {
   line-height: 1;
   text-align: center;
