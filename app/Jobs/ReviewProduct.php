@@ -12,14 +12,17 @@ class ReviewProduct implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $user;
+
+
+    public $carts;
+
+  
+    public function __construct($order, $user)
     {
-        //
+        $this->order = $order;
+
+        $this->user = $user;
     }
 
     /**
@@ -29,6 +32,10 @@ class ReviewProduct implements ShouldQueue
      */
     public function handle()
     {
-        //
+        \Mail::to($this->user->email)
+        ->send(new  App\Mail\ReviewMail($this->order, $this->user);
+    );
+        
+        
     }
 }

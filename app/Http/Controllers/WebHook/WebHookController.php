@@ -127,7 +127,7 @@ class WebHookController extends Controller
                 }
             }
 
-            ReviewProduct::dispatch($order)->delay(now()->addDays(10));
+            ReviewProduct::dispatch($order, $user)->delay(now()->addDays(10));
 
         } catch (\Throwable $th) {
             Log::info("Custom error :".$th);
