@@ -51,9 +51,9 @@
 
 
 @if ( $products->count() )
-    <div class="container-fluid mt-1 ">
+    <div class="container-fluid mt-3 ">
         <div class="products-section pt-0">
-            <div class=" text-center fa-2x">Best of sale: shop our editor's picks</div>
+            <div class=" text-center fa-2x mb-3">Best of sale: shop our editor's picks</div>
             <div class="products-slider owl-carousel owl-theme ">
                 @foreach( $products as $featered_product)
                 <div class="product-default inner-quickview inner-icon">
