@@ -43,10 +43,10 @@ class ProductsController extends Controller
         $category_attributes = $category->attribute_parents()->has('children')->get();
         $products = ProductVariation::whereNotNull('name')
             ->where('allow',true)->paginate(4);
-        
-
+    
         $products = ProductVariation::whereNotNull('name')
             ->where('allow',true)
+            ->where('quantity','>', 0)
             ->whereHas('categories',function(Builder  $builder) use ($category){
             $builder->where('categories.name',$category->name);
         })->filter($request,$this->getFilters($category_attributes))->latest()->paginate($this->settings->products_items_per_page);
