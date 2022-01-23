@@ -111,7 +111,7 @@
 			</div><!-- End .header-middle -->
 
 			<div class="header-bottom sticky-header d-none d-lg-block">
-				<div class="container">
+				<div class="container-fluid ">
 					<nav class="main-nav d-flex w-lg-max   justify-content-center">
 						<ul class="menu">
 							

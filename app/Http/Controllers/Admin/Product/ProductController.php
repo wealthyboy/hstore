@@ -134,8 +134,6 @@ class ProductController extends Controller
         $cA = [];
         $product_variation_id = [];
         $meta_fields = null;
-
-
         $sale_price = $request->has('sale_price') ? $request->sale_price : null;
         $product->product_name = $request->product_name;
         $product->price        = $request->price;
@@ -150,8 +148,7 @@ class ProductController extends Controller
         $product->meta_title = $request->meta_title;
         $product->description  = $request->description;
         $product->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
-        $product->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
-
+        $product->sale_price_starts  = Helper::getFormatedDate($request->sale_price_starts);
         $product->allow       = $request->allow ? $request->allow : 0;
         $product->brand_id    = $request->brand_id;
         $product->total = 2;

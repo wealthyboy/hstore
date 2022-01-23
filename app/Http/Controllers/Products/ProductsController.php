@@ -90,7 +90,6 @@ class ProductsController extends Controller
         $products = ProductVariation::whereNotNull('name')
             ->where('allow',true)
             ->where('quantity','>=', 1)
-
             ->filter($request,$this->filters($category_attributes))
             ->latest()
             ->paginate($this->settings->products_items_per_page);        
