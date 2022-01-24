@@ -132,13 +132,14 @@
           }
 
           html += '<div class="ratings-container">';
-          html += '<div class="product-ratings">';
-          html +=
-            '<span class="ratings" style="width:' +
-            data[i].average_rating +
-            '%"></span>';
-          html += "</div>";
-          html += "<span>(" + data[i].average_rating_count + " Reviews)</span>";
+          if (data[i].average_rating_count > 1) {
+            html += '<div class="product-ratings">';
+            html +=
+              '<span class="ratings" style="width:' +
+              data[i].average_rating +
+              '%"></span>';
+            html += "</div>";
+          }
 
           html += "</div>";
           html += "</div>";
