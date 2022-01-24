@@ -136,13 +136,22 @@
               "</div>";
           }
 
-          html += '<div class="d-lg-flex d-xl-flex color--primary">';
+          html += '<div class="d-flex color--primary justify-content-between">';
+          html += '<div class="cl">';
+          html += '<div class="text-left mr-5">';
+          html += '<a href="' + data[i].link + '">' + data[i].name + "</a>";
+          html += "</div>";
+          html += '<div class="ratings-container">';
+          html += '<div class="product-ratings">';
           html +=
-            '<div class="text-left  mr-5"><a href="' +
-            data[i].link +
-            '">' +
-            name +
-            "</a></div>";
+            '<span class="ratings" style="width:' +
+            data[i].average_rating +
+            '%"></span>';
+          html += "</div>";
+          html += "<span>(" + data[i].average_rating_count + " Reviews)</span>";
+
+          html += "</div></div>";
+
           html += '<div class="text-right">';
           if (data[i].default_discounted_price) {
             html +=

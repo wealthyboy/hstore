@@ -13,7 +13,9 @@
                 <img src="{{ $product->image_to_show_m }}" alt="{{ $product->product_name }}" />
             </a>
             <div class="btn-icon-group"></div>
-            <!-- <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn-quickvie" title="Quick View">Quick View</a>  -->
+            <!-- 
+                <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn-quickvie" title="Quick View">Quick View</a>  
+            -->
         </figure>
         
         <div class="product-details">
@@ -34,10 +36,27 @@
                         {{ $product->brand_name }}
                     </div>
                 @endif
-                <div class=" d-lg-flex d-xl-flex color--primary">
-                    <div class="text-left  mr-5">
-                        <a href="{{ $product->link }}">{{ $product->name }}</a>
-                    </div> 
+                <div class=" d-flex color--primary justify-content-between">
+                    <div class="cl">
+                        <div class="text-left mr-5">
+                            <a href="{{ $product->link }}">{{ $product->name }}</a>
+                        </div>
+                        <div class="ratings-container">
+                            <div class="product-ratings">
+                                @if($product->average_rating)
+                                   <span class="ratings" style="width:{{ $product->average_rating }}%"></span> 
+                                   <!-- End .ratings -->
+                                @endif
+                                
+                            </div>
+                            <span>
+                                    ({{ $product->average_rating_count }} Reviews)
+                                </span>
+                            <!-- End .product-ratings -->
+                        </div>
+                    </div>
+                    
+                    
                     @if (!$product->is_gift_card )
                     <div class="text-right">
                         @if( $product->default_discounted_price)

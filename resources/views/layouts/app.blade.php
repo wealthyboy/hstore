@@ -111,7 +111,7 @@
 			</div><!-- End .header-middle -->
 
 			<div class="header-bottom sticky-header d-none d-lg-block">
-				<div class="container-fluid ">
+				<div style="padding-left: 50px;" class="container-fluid ">
 					<nav class="main-nav d-flex w-lg-max   justify-content-center">
 						<ul class="menu">
 							
@@ -175,50 +175,46 @@
 			<div class="footer-middle">
 				<div class="container-fluid">
 					<div class="row">
-							
-							<div class="col-sm-6 col-xl-6">
-								<div class="widget widget-newsletter">
-									<h4 class="widget-title">Subscribe to our newsletter.</h4>
-									<p>Get all the latest information on events, sales and offers. Sign up for newsletter today.</p>
-									<news-letter />
-
-								</div>
-								<p>
-									<div class="contact-widget follow">
-										<div class="social-icons">
-											<a href="https://facebook.com/hautesignatures.ng/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-											<a href="https://instagram.com/hautesignatures.ng?igshid=zqjic4sfh041" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-											<a href="https://wa.me/2348092907541" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
-										</div><!-- End .social-icons -->
-									</div>
-								</p>
+						<div class="col-sm-6 col-xl-6">
+							<div class="widget widget-newsletter">
+								<h4 class="widget-title">Subscribe to our newsletter.</h4>
+								<p>Get all the latest information on events, sales and offers. Sign up for newsletter today.</p>
+								<news-letter />
 							</div>
-
-							<div class="col-lg-6 col-md-6">
-							   <div class="row ">
-									@foreach($footer_info as $info)
-										<div class="col-sm-4 col-6 col-lg-4">
-											<div class="widget">
-												<h2 class="widget-title">{{ title_case($info->title) }}</h2>
-												@if($info->children->count())
-												<ul class="">
-														@foreach($info->children as $info)
-															<li>
-																<a href="{{ $info->link }}">
-																	{{ $info->title }}
-																</a>
-															</li>
-														@endforeach
-													</ul>
-												@endif
-												
-											</div><!-- End .widget -->
-										</div><!-- End .col-sm-6 -->
-									@endforeach
+							<p>
+								<div class="contact-widget follow">
+									<div class="social-icons">
+										<a href="https://facebook.com/hautesignatures.ng/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+										<a href="https://instagram.com/hautesignatures.ng?igshid=zqjic4sfh041" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+										<a href="https://wa.me/2348092907541" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+									</div><!-- End .social-icons -->
 								</div>
-							</div>
+							</p>
+						</div>
 
-							
+						<div class="col-lg-6 col-md-6">
+							<div class="row ">
+								@foreach($footer_info as $info)
+									<div class="col-sm-4 col-6 col-lg-4">
+										<div class="widget">
+											<h2 class="widget-title">{{ title_case($info->title) }}</h2>
+											@if($info->children->count())
+											<ul class="">
+													@foreach($info->children as $info)
+														<li>
+															<a href="{{ $info->link }}">
+																{{ $info->title }}
+															</a>
+														</li>
+													@endforeach
+												</ul>
+											@endif
+											
+										</div><!-- End .widget -->
+									</div><!-- End .col-sm-6 -->
+								@endforeach
+							</div>
+						</div>	
 					</div><!-- End .row -->
 				</div><!-- End .container -->
 			</div><!-- End .footer-middle -->
