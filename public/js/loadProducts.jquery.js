@@ -111,9 +111,10 @@
           html += "</figure>";
           html += '<div class="product-details">';
           html += '<div class="">';
+          html += '<div  class="justify-content-between d-flex mb-1">';
+
           if (data[i].product.colors.length) {
             html += '<div  class="justify-content-start d-flex mb-1">';
-
             for (c in data[i].product.colors) {
               if (data[i].product.colors[c].image) {
                 html +=
@@ -129,18 +130,7 @@
             }
             html += "</div>";
           }
-          if (data[i].brand_name) {
-            html +=
-              '<div  class="product-brand bold">' +
-              data[i].brand_name +
-              "</div>";
-          }
 
-          html += '<div class="d-flex color--primary justify-content-between">';
-          html += '<div class="cl">';
-          html += '<div class="text-left mr-5">';
-          html += '<a href="' + data[i].link + '">' + data[i].name + "</a>";
-          html += "</div>";
           html += '<div class="ratings-container">';
           html += '<div class="product-ratings">';
           html +=
@@ -150,7 +140,25 @@
           html += "</div>";
           html += "<span>(" + data[i].average_rating_count + " Reviews)</span>";
 
-          html += "</div></div>";
+          html += "</div>";
+          html += "</div>";
+          if (data[i].brand_name) {
+            html +=
+              '<div  class="product-brand bold">' +
+              data[i].brand_name +
+              "</div>";
+          }
+
+          html += '<div class="d-flex color--primary justify-content-between">';
+          html += '<div class="cl">';
+          html +=
+            '<div class="text-left mr-5"><a href="' +
+            data[i].link +
+            '">' +
+            data[i].name +
+            "</a></div>";
+
+          html += "</div>";
 
           html += '<div class="text-right">';
           if (data[i].default_discounted_price) {

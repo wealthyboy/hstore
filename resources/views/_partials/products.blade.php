@@ -20,40 +20,37 @@
         
         <div class="product-details">
             <div class="">
-                @if(optional($product->product)->colours->count())
-                    <div  class="justify-content-start d-flex mb-1">
-                        @foreach($product->product->colours as $color)
-                            @if( $color->image)
-                                <div style="border:{{ optional($product->active_color)->color_code == $color->color_code ? '1.5px' : '1px' }} solid #CCC; height: 12px; width: 12px; border-radius: 50%; background-size: cover;  background-image: url({{ $color->image }})" class="mr-1"></div>
-                            @else
-                                <div style="border:{{ optional($product->active_color)->color_code == $color->color_code ? '1.5px' : '1px' }} solid #CCC; height: 12px; width: 12px; border-radius: 50%; background-color: {{  $color->color_code }}" class="mr-1"></div>
-                            @endif 
-                        @endforeach
+                    <div  class="justify-content-between d-flex mb-1">
+                        @if(optional($product->product)->colours->count())
+                        <div class="justify-content-start d-flex mb-1">
+                            @foreach($product->product->colours as $color)
+                                @if( $color->image)
+                                    <div style="border:{{ optional($product->active_color)->color_code == $color->color_code ? '1.5px' : '1px' }} solid #CCC; height: 12px; width: 12px; border-radius: 50%; background-size: cover;  background-image: url({{ $color->image }})" class="mr-1"></div>
+                                @else
+                                    <div style="border:{{ optional($product->active_color)->color_code == $color->color_code ? '1.5px' : '1px' }} solid #CCC; height: 12px; width: 12px; border-radius: 50%; background-color: {{  $color->color_code }}" class="mr-1"></div>
+                                @endif 
+                            @endforeach
+                        </div>
+                        @endif
+
+
+                        <div class="ratings-container">
+                            @if($product->average_rating_count > 1)
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:{{ $product->average_rating }}%"></span> 
+                                    <!-- End .ratings -->
+                                </div>
+                            @endif
+                            <!-- End .product-ratings -->
+                        </div>
                     </div>
-                @endif
-                @if($product->brand_name)
-                    <div  class="product-brand bold">
-                        {{ $product->brand_name }}
-                    </div>
-                @endif
+               
                 <div class=" d-flex color--primary justify-content-between">
                     <div class="cl">
                         <div class="text-left mr-5">
                             <a href="{{ $product->link }}">{{ $product->name }}</a>
                         </div>
-                        <div class="ratings-container">
-                            <div class="product-ratings">
-                                @if($product->average_rating)
-                                   <span class="ratings" style="width:{{ $product->average_rating }}%"></span> 
-                                   <!-- End .ratings -->
-                                @endif
-                                
-                            </div>
-                            <span>
-                                    ({{ $product->average_rating_count }} Reviews)
-                                </span>
-                            <!-- End .product-ratings -->
-                        </div>
+                        
                     </div>
                     
                     
