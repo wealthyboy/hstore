@@ -27,7 +27,7 @@ class ReviewsController extends Controller
 	
 	public function  index()  
 	{  
-	    $startDate = Carbon::createFromFormat('d/m/Y', '15/12/2021');
+	    $startDate = Carbon::createFromFormat('d/m/Y', '1/12/2021');
         $endDate   = Carbon::createFromFormat('d/m/Y', '15/12/2021');
   
 		$orders = Order::has('ordered_products')
@@ -35,14 +35,14 @@ class ReviewsController extends Controller
 		->get();
 
 	   foreach ($orders as $key => $order) {
-		try {
-			$when = now()->addMinutes(5); 
-			\Mail::to($order->user->email)
-				->send(new ReviewMail($order));
-		} catch (\Throwable $th) {
-			dd($th);
-			\Log::info("Mail error :".$th);
-		}
+			try {
+				$when = now()->addMinutes(5); 
+				\Mail::to($order->user->email)
+					->send(new ReviewMail($orders, $order->user));
+			} catch (\Throwable $th) {
+				dd($th);
+				\Log::info("Mail error :".$th);
+			}
 	   }
 
 
