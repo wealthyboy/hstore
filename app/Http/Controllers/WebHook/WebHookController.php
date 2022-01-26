@@ -136,7 +136,7 @@ class WebHookController extends Controller
 
         return http_response_code(200);
         
-        
+
     }
 
     public function gitHub()
