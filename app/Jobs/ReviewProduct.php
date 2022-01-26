@@ -36,3 +36,4 @@ class ReviewProduct implements ShouldQueue
         ->send(new  App\Mail\ReviewMail($this->order, $this->user)); 
     }
 }
+

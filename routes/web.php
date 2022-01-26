@@ -117,7 +117,6 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
 
 
-
 Route::group(['middleware' => 'currencyByIp'], function(){
 
     Route::get('/', 'HomeController@index');
