@@ -27,22 +27,22 @@ class ReviewsController extends Controller
 	
 	public function  index()  
 	{  
-	    $startDate = Carbon::createFromFormat('d/m/Y', '1/1/2022');
-        $endDate   = Carbon::createFromFormat('d/m/Y', '15/1/2022');
-		$orders = Order::has('ordered_products')
-		->whereBetween('created_at',[$startDate, $endDate])
-		->get();
+	    // $startDate = Carbon::createFromFormat('d/m/Y', '1/1/2022');
+        // $endDate   = Carbon::createFromFormat('d/m/Y', '15/1/2022');
+		// $orders    = Order::has('ordered_products')
+		// ->whereBetween('created_at',[$startDate, $endDate])
+		// ->get();
 
-	    foreach ($orders as $key => $order) {
-			try {
-				$when = now()->addMinutes(5); 
-				\Mail::to($order->user->email)
-					->send(new ReviewMail($order));
-			} catch (\Throwable $th) {
-				dd($th);
-				\Log::info("Mail error :".$th);
-			}
-	    }
+	    // foreach ($orders as $key => $order) {
+		// 	try {
+		// 		$when = now()->addMinutes(5); 
+		// 		\Mail::to($order->user->email)
+		// 			->send(new ReviewMail($order));
+		// 	} catch (\Throwable $th) {
+		// 		dd($th);
+		// 		\Log::info("Mail error :".$th);
+		// 	}
+	    // }
 
 
 
