@@ -29,7 +29,6 @@ class ReviewsController extends Controller
 	{  
 	    $startDate = Carbon::createFromFormat('d/m/Y', '1/1/2022');
         $endDate   = Carbon::createFromFormat('d/m/Y', '15/1/2022');
-  
 		$orders = Order::has('ordered_products')
 		->whereBetween('created_at',[$startDate, $endDate])
 		->get();
