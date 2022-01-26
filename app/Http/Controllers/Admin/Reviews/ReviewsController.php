@@ -27,14 +27,14 @@ class ReviewsController extends Controller
 	
 	public function  index()  
 	{  
-	    $startDate = Carbon::createFromFormat('d/m/Y', '1/12/2021');
-        $endDate   = Carbon::createFromFormat('d/m/Y', '15/12/2021');
+	    $startDate = Carbon::createFromFormat('d/m/Y', '16/12/2021');
+        $endDate   = Carbon::createFromFormat('d/m/Y', '31/12/2021');
   
 		$orders = Order::has('ordered_products')
 		->whereBetween('created_at',[$startDate, $endDate])
 		->get();
 
-	   foreach ($orders as $key => $order) {
+	    foreach ($orders as $key => $order) {
 			try {
 				$when = now()->addMinutes(5); 
 				\Mail::to($order->user->email)
@@ -43,7 +43,7 @@ class ReviewsController extends Controller
 				dd($th);
 				\Log::info("Mail error :".$th);
 			}
-	   }
+	    }
 
 
 
