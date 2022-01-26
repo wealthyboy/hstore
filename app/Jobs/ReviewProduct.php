@@ -33,7 +33,7 @@ class ReviewProduct implements ShouldQueue
     public function handle()
     {
         \Mail::to($this->user->email)
-        ->send(new  App\Mail\ReviewMail($this->order, $this->user)); 
+        ->send(new  App\Mail\ReviewMail($this->order)); 
     }
 }
 

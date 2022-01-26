@@ -38,7 +38,7 @@ class ReviewsController extends Controller
 			try {
 				$when = now()->addMinutes(5); 
 				\Mail::to($order->user->email)
-					->send(new ReviewMail($orders, $order->user));
+					->send(new ReviewMail($order));
 			} catch (\Throwable $th) {
 				dd($th);
 				\Log::info("Mail error :".$th);
