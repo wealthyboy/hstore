@@ -57,21 +57,29 @@ class WebHookController extends Controller
                 return  http_response_code(200);
             }
 
-            $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
-            $shipping_id = isset($input['shipping_id']) ? $input['shipping_id'] : null;
+            $currency       =  Currency::where('iso_code3',$request->data['currency'])->first();
+            $shipping_id    = isset($input['shipping_id']) ? $input['shipping_id'] : null;
             $order->user_id = $user->id;
-            $order->address_id     =  optional($user->active_address)->id;
-            $order->coupon         =  $input['coupon'];
-            $order->status         = 'Processing';
-            $order->shipping_id    =  $shipping_id;
-            $order->shipping_price =  optional(Shipping::find($shipping_id))->converted_price;
-            $order->currency       =  optional($currency)->symbol ?? '₦';
-            $order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
+            $order->address_id         =  optional($user->active_address)->id;
+            $order->coupon             =  $input['coupon'];
+            $order->status             = 'Processing';
+            $order->shipping_id        =  $shipping_id;
+            $order->shipping_price     =  optional(Shipping::find($shipping_id))->converted_price;
+            $order->currency           =  optional($currency)->symbol ?? '₦';
+            $order->invoice            =  "INV-".date('Y')."-".rand(10000,39999);
             $order->payment_type       =  $request->data['authorization']['channel'];
             $order->delivery_option    =  $input['delivery_option'];
-            $order->delivery_note      =    $input['delivery_note'];
-            $order->total              =     $input['total'];
-            $order->ip                 =     $request->data['ip_address'];
+            $order->delivery_note      =  $input['delivery_note'];
+            $order->total              =  $input['total'];
+            $order->ip                 =  $request->data['ip_address'];
+            $order->first_name         =  optional($user->active_address)->first_name;
+            $order->last_name          =  optional($user->active_address)->last_name;
+            $order->address            =  optional($user->active_address)->address;
+            $order->address_2          =  optional($user->active_address)->address_2;
+            $order->email              =  optional($user->active_address)->email;
+            $order->phone_number       =  optional($user->active_address)->phone_number;
+            $order->city               =  optional($user->active_address)->city;
+            $order->state              =  optional($user->active_address)->state;
             $order->save();
 
             foreach ( $carts   as $cart){

@@ -81,11 +81,21 @@ class CheckoutController extends Controller
 		$order->shipping_price  =  optional(Shipping::find($request->shipping_id))->converted_price;
 		$order->currency        =  Helper::getCurrency();
 		$order->invoice         =  "INV-".date('Y')."-".rand(10000,39999);
-		$order->payment_type    = $request->payment_method;
-		$order->order_type      = $request->admin;
-		$order->total           = $request->total;
+		$order->payment_type    =  $request->payment_method;
+		$order->order_type      =  $request->admin;
+		$order->total           =  $request->total;
 		$order->delivery_option =  $request->delivery_option;
 		$order->delivery_note   =  $request->delivery_note;
+		$order->first_name      =  optional($user->active_address)->first_name;
+        $order->last_name       =  optional($user->active_address)->last_name;
+        $order->address         =  optional($user->active_address)->address;
+        $order->address_2       =  optional($user->active_address)->address_2;
+        $order->email           =  optional($user->active_address)->email;
+        $order->phone_number    =  optional($user->active_address)->phone_number;
+        $order->city            =  optional($user->active_address)->city;
+        $order->state           =  optional($user->active_address)->state;
+        $address->save();
+        
 		$order->ip              = $request->ip();
 		$order->user_agent      = $request->server('HTTP_USER_AGENT');
 		$order->save(); 

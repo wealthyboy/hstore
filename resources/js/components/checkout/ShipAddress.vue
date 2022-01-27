@@ -32,6 +32,8 @@
                             </span>
                         </p>
 
+                        
+
                         <p class="form-group reduce-gutters col-lg-6">
                             <label for="email">Email</label>
                             <input    id="email" 
@@ -207,6 +209,8 @@ export default {
       form: {
         first_name: "",
         last_name: "",
+        customer_first_name: "",
+        customer_last_name: "",
         address: "",
         address_2: "",
         city: "",
@@ -317,7 +321,10 @@ export default {
       let address = this.addresses[index];
       this.form.first_name = address.first_name;
       this.form.last_name = address.last_name;
+      this.form.customer_first_name = address.customer_first_name;
+      this.form.customer_last_name = address.customer_last_name;
       this.form.email = address.email;
+      
       this.form.phone_number = address.phone_number;
       this.form.address = address.address;
       this.form.city = address.city;
