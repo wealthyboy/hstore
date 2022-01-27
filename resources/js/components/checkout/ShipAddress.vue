@@ -321,8 +321,6 @@ export default {
       let address = this.addresses[index];
       this.form.first_name = address.first_name;
       this.form.last_name = address.last_name;
-      this.form.customer_first_name = address.customer_first_name;
-      this.form.customer_last_name = address.customer_last_name;
       this.form.email = address.email;
       
       this.form.phone_number = address.phone_number;

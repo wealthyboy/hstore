@@ -79,7 +79,9 @@ class WebHookController extends Controller
             $order->email              =  optional($user->active_address)->email;
             $order->phone_number       =  optional($user->active_address)->phone_number;
             $order->city               =  optional($user->active_address)->city;
-            $order->state              =  optional($user->active_address)->state;
+            $order->state           =  optional(optional($user->active_address)->address_state)->name;
+            $order->country         =  optional(optional($user->active_address)->address_country)->name;
+    
             $order->save();
 
             foreach ( $carts   as $cart){
