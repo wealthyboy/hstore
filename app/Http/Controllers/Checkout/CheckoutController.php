@@ -115,6 +115,8 @@ class CheckoutController extends Controller
 			$product_variation->quantity =  $qty < 1 ? 0 : $qty;
 			$product_variation->save();
 
+			
+
 			if($cart->is_gift_card){
 				try {
 					$when = now()->addMinutes(5); 
@@ -138,7 +140,7 @@ class CheckoutController extends Controller
 		
 		try {
 			$when = now()->addMinutes(5); 
-			\Mail::to($user->email)
+			\Mail::to(optional($user->active_address)->email)
 			->bcc($admin_emails[0])
 				->send(new OrderReceipt($order,$this->settings,$symbol,$sub_total));
 			} catch (\Throwable $th) {
