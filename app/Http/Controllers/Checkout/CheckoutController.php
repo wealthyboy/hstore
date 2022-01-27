@@ -94,7 +94,6 @@ class CheckoutController extends Controller
         $order->phone_number    =  optional($user->active_address)->phone_number;
         $order->city            =  optional($user->active_address)->city;
         $order->state           =  optional($user->active_address)->state;
-        $address->save();
         
 		$order->ip              = $request->ip();
 		$order->user_agent      = $request->server('HTTP_USER_AGENT');
