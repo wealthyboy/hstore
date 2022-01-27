@@ -34,7 +34,7 @@ class AlterOrdersTableAddCustomerFirstName extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('first_name','last_name','address','city','state','email','phone_number');
+            $table->dropColumn('first_name','last_name','address','city','state','email','phone_number','country');
         });
     }
 }
