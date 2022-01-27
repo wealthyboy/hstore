@@ -150,10 +150,11 @@
               "</div>";
           }
 
-          html += '<div class="d-flex color--primary justify-content-between">';
+          html +=
+            '<div class="d-sm-flex color--primary justify-content-between">';
           html += '<div class="cl">';
           html +=
-            '<div class="text-left mr-5"><a href="' +
+            '<div class="text-left mr-md-5"><a href="' +
             data[i].link +
             '">' +
             data[i].name +
@@ -161,7 +162,7 @@
 
           html += "</div>";
 
-          html += '<div class="text-right">';
+          html += '<div class="text-lg-right">';
           if (data[i].default_discounted_price) {
             html +=
               '<span class="old-price bold text-danger"> ' +

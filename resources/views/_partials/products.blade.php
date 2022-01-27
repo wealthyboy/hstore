@@ -45,9 +45,9 @@
                         </div>
                     </div>
                
-                <div class=" d-flex color--primary justify-content-between">
+                <div class=" d-sm-flex color--primary justify-content-between">
                     <div class="cl">
-                        <div class="text-left mr-5">
+                        <div class="text-left mr-md-5">
                             <a href="{{ $product->link }}">{{ $product->name }}</a>
                         </div>
                         
@@ -55,7 +55,7 @@
                     
                     
                     @if (!$product->is_gift_card )
-                    <div class="text-right">
+                    <div class="text-lg-right">
                         @if( $product->default_discounted_price)
                             <span class="old-price bold">{{ $product->currency }}{{ number_format($product->converted_price)   }}</span>
                             <span class="product-price bold text-danger">{{ $product->currency }}{{ number_format($product->default_discounted_price) }}</span>
