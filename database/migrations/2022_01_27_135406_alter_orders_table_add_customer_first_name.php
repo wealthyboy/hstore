@@ -18,8 +18,9 @@ class AlterOrdersTableAddCustomerFirstName extends Migration
             $table->string('last_name')->nullable();
             $table->string('address')->nullable();
             $table->string('address2')->nullable();
-            $table->string('address2')->nullable();
-            $table->string('address2')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
         });
