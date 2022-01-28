@@ -54,7 +54,7 @@
                         @if (null !== $order->shipping)
                            <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ $order->first_name }} {{ $order->last_name }}  <br />{{ $order->address }}<br /> {{ $order->city }} &nbsp;<br /> {{ $order->state }},{{ $order->country }}&nbsp;</td>
                         @else
-                        <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ $order->first_name }} {{  $order->last_name }} <br />{{ $order->user)->phone_number }}<br /> {{ $order->user->email }} &nbsp;<br /> &nbsp;
+                        <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ $order->first_name }} {{  $order->last_name }} <br />{{ $order->user->phone_number }}<br /> {{ $order->user->email }} &nbsp;<br /> &nbsp;
                         
                         <strong>
                               @if(str_contains($order->delivery_option,  "SURULERE" ))
