@@ -154,6 +154,7 @@
                      </tr>
                   </thead>
                   <tbody>
+                     {{ $order->addres}}
                      <tr>
                      <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> 
                         {{ optional(optional($order)->addres)->first_name }} {{ optional(optional($order)->addres)->last_name }}  <br />
