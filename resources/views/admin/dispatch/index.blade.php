@@ -43,11 +43,11 @@ body{
             @if($order != '')
               
               <div class="content" >
-                <strong>Name: </strong>   <span class="tx">&nbsp{{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }} </span><br/>
-                <strong>Phone: </strong> <span class="tx"> &nbsp{{ optional(optional($order)->address)->phone_number  }} </span><br/>
+                <strong>Name: </strong>   <span class="tx">&nbsp{{ $order->first_name }} {{ $order->last_name }} </span><br/>
+                <strong>Phone: </strong> <span class="tx"> &nbsp{{ $order->phone_number  }} </span><br/>
 
                 @if ( $order->delivery_option == 'shipping')
-                  <strong>Address:  </strong><span class="tx"> &nbsp{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;&nbsp;</span><br/>
+                  <strong>Address:  </strong><span class="tx"> &nbsp{{ $order->address }}<br /> {{ $order->city }} &nbsp;&nbsp;</span><br/>
                   @else
                   <strong>
                     Delivery Option: 
@@ -62,7 +62,7 @@ body{
                     @endif
                   <br/>
                 @endif
-                <strong>State:  </strong><span class="tx">{{ optional(optional($order->address)->address_state)->name }}&nbsp;</span><br/>
+                <strong>State:  </strong><span class="tx">{{ $order->state }}&nbsp;</span><br/>
                 <strong>Date: </strong> <span class="tx">&nbsp{{  $order->created_at->format('d/m/y') }}</span>
               </div>
                 
