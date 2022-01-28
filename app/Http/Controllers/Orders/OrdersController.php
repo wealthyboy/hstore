@@ -29,7 +29,7 @@ class OrdersController extends Controller{
 	public function index ( ) { 
 	    $id  =  \Auth::user()->id;
 		$settings   =  $this->settings;
-		$orders     =  User::find($id)->orders()->orderBy('id','DESC')->paginate(50);
+		$orders     =  User::find($id)->orders()->orderBy('id','DESC')->get();
 		$page_title = 'Order Information';
 		$currency =  Helper::getCurrency();
         return view('account.orders.index',compact('currency','page_title','orders'));
