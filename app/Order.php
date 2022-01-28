@@ -26,6 +26,11 @@ class Order extends Model
 		return $this->belongsTo('App\Address');	
 	}
 
+
+	public function addres(){
+		return $this->belongsTo('App\Address');	
+	}
+
 	public function shipping(){
 		return $this->belongsTo('App\Shipping');	
 	}
