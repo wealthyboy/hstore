@@ -30,7 +30,7 @@ class OrdersController extends Controller{
 
     public function index ( ) { 
 	
-		$orders = Order::has('ordered_products')->orderBy('created_at','desc')->paginate(50);
+		$orders = Order::has('ordered_products')->orderBy('created_at','desc')->paginate(250);
         return view('admin.orders.index',compact('orders'));
     }
     
