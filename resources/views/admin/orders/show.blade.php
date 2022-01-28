@@ -158,7 +158,6 @@
                      <tr>
                      <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> 
                         {{ optional(optional($order)->addres)->first_name }} {{ optional(optional($order)->addres)->last_name }}  <br />
-                        
                         {{ optional(optional($order)->addres)->phone_number }} &nbsp;&nbsp; <br />
                         {{ optional(optional($order)->addres)->email }}  <br />
                         {{ optional($order->addres)->address }}<br /> {{ optional($order->addres)->city }} &nbsp;
