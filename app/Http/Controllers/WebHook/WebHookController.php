@@ -74,7 +74,6 @@ class WebHookController extends Controller
             $order->ip                 =  $request->data['ip_address'];
             $order->first_name         =  optional($user->active_address)->first_name;
             $order->last_name          =  optional($user->active_address)->last_name;
-            $order->address2            =  optional($user->active_address)->address;
             $order->address            =  optional($user->active_address)->address;
             $order->email              =  optional($user->active_address)->email;
             $order->phone_number       =  optional($user->active_address)->phone_number;

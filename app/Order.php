@@ -28,7 +28,7 @@ class Order extends Model
 
 
 	public function addres(){
-		return $this->belongsTo('App\Address');	
+		return $this->belongsTo('App\Address','address_id');	
 	}
 
 	public function shipping(){
