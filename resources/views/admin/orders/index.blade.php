@@ -69,9 +69,10 @@
                      </tbody>
                   </table>
                   </form>
-
+                   
                   <div class="pull-right">
-                  </div>
+                   {{ $orders->links() }}
+                </div>
 
             </div>
          </div>
