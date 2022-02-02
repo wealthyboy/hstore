@@ -663,7 +663,7 @@
 
                                     <tr>
                                                                                  			
-                                       <td class="moptd" data-link-style="text-decoration:none; color:#333;" data-link-color="MailingOptionsLink" data-color="MailingOptionsTXT" style="color: #333; font-family: sans-serif; font-size: 12px; text-align: center; line-height: 170%;"><a href="{{ Config('app.url') }}/pages/shipping-delivery">Delivery & Returns Policy</a></td>
+                                       <td class="moptd" data-link-style="text-decoration:none; color:#333;" data-link-color="MailingOptionsLink" data-color="MailingOptionsTXT" style="color: #333; font-family: sans-serif; font-size: 12px; text-align: center; line-height: 170%;"><a href="{{ Config('app.url') }}/pages/delivery-and-returns">Delivery & Returns Policy</a></td>
                                     </tr>
                                    
                                     <tr>
