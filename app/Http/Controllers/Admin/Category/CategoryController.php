@@ -33,6 +33,7 @@ class CategoryController extends Controller
     public function index()
     {    
 
+        $r = RelatedProduct::truncate();
 
 
         $categories = Category::parents()->get();
