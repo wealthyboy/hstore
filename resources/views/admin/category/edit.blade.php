@@ -156,6 +156,17 @@
                                 </div>
                             </div>
 
+
+                            <div class="col-md-12">
+                                <legend></legend>
+                                <div class="togglebutton">
+                                    <label>
+                                        <input name="is_active"  value="1" type="checkbox"  {{ $cat->is_active ? 'checked' : ''}}>
+                                        Enable/Disable
+                                    </label>
+                                </div>
+                            </div>
+
                             <div class="form-footer text-right">
                                 <button type="submit" class="btn btn-rose btn-round  btn-fill">Submit</button>
                             </div>

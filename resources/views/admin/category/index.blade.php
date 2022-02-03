@@ -138,6 +138,17 @@
 
                         </div>
 
+                        <div class="col-md-12">
+                           <legend>  
+                           </legend>
+                           <div class="togglebutton">
+                              <label>
+                                <input name="is_active"  value="1" type="checkbox"  checked>
+                                  Enable/Disable
+                              </label>
+                           </div>
+                        </div>
+
 
                         
                         <div class="form-footer text-right">
@@ -175,7 +186,9 @@
                                     <input type="checkbox" value="{{ $category->id }}" name="selected[]" >
                                     {{ $category->name }}  
                                     <a href="{{ route('category.edit',['category'=>$category->id]) }}">
-                                    <i class="fa fa-pencil"></i> Edit</a> 
+                                    <i class="fa fa-pencil"></i> Edit</a>
+                                    <a href="/products/{{ $category->slug }}">
+                                    <i class="fa fa-pencil"></i> Link</a> 
                                 </label>
                             </div>   
                             @include('includes.children',['obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category'])

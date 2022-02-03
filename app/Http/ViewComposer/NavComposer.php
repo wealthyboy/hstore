@@ -25,7 +25,7 @@ class   NavComposer {
    
     public function compose (View $view) 
 	{ 
-		$global_categories = Category::parents('sort_order', 'asc')->get();
+		$global_categories = Category::parents('sort_order', 'asc')->where('is_active',true)->get();
 		$footer_info = Information::where('blog',false)->parents()->get(); 
 		$global_promo = Promo::first(); 
 		$system_settings = SystemSetting::first();

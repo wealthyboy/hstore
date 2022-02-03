@@ -90,8 +90,8 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->image_custom_link = $request->image_custom_link;
         $category->link = $request->link;
-
         $category->banner_image = $request->banner_image;
+        $category->is_active = $request->is_active;
         $category->image = $request->image;
         $category->meta_description = $request->meta_description;
         $category->keywords = $request->keywords;
@@ -190,6 +190,7 @@ class CategoryController extends Controller
         $category->sort_order=$request->sort_order;
         $category->banner_image = $request->banner_image;
         $category->link = $request->link;
+        $category->is_active = $request->is_active;
         $category->parent_id     = $request->parent_id;
         $category->description=$request->description;
         $category->image_custom_link = $request->image_custom_link;
