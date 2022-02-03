@@ -21,7 +21,6 @@ class CategoryController extends Controller
 	
 	public function  index(Request $request,Category $category)  {
 	  
-        \App\RelatedProduct::truncate();
         $settings =  $this->settings;
         $page_title = implode(" " ,explode('-',$category->slug));
         if($request->has('sort_by')){
