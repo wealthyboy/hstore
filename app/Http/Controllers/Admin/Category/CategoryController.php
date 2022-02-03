@@ -11,6 +11,7 @@ use App\Http\Helper;
 use App\User;
 use Illuminate\Validation\Rule;
 use App\Attribute;
+use App\RelatedProduct;
 
 
 
@@ -30,7 +31,11 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {    
+
+        $r = RelatedProduct::truncate();
+
+
         $categories = Category::parents()->get();
         $product_attributes = Attribute::parents()->get();        
         return view('admin.category.index',compact('product_attributes','categories'));

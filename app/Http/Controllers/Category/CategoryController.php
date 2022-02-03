@@ -8,6 +8,7 @@ use App\SystemSetting;
 use App\Category;
 use App\Collection;
 use App\Product;
+use App\RelatedProduct;
 
 
 class CategoryController extends Controller
@@ -21,6 +22,7 @@ class CategoryController extends Controller
 	
 	public function  index(Request $request,Category $category)  {
 	  
+        
         $settings =  $this->settings;
         $page_title = implode(" " ,explode('-',$category->slug));
         if($request->has('sort_by')){
