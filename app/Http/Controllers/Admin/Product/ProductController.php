@@ -91,7 +91,8 @@ class ProductController extends Controller
             $file  = basename($value);
             $path  = public_path('images/products/'.$file);
                 if (file_exists($path)){
-                unlink(    public_path('images/products/m/'.$file) );
+                    echo $path;
+               // unlink(    public_path('images/products/m/'.$file) );
                 
                     // $img  = \Image::make($path)->fit(400, 500)->save(
                     //     public_path('images/products/m/'.$file)
