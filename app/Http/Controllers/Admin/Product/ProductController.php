@@ -88,22 +88,27 @@ class ProductController extends Controller
                     ];
         foreach ($products as $key => $value) {
 
+            
             $file = basename($value);
             $path =  public_path('images/products/'.$file);
-
-            if ($file){
+            if (file_exists($path)){
                 
-                $img  = \Image::make($path)->fit(400, 500)->save(
-                    public_path('images/products/m/'.$file)
-                );
-                
+                    $img  = \Image::make($path)->fit(400, 500)->save(
+                        public_path('images/products/m/'.$file)
+                    );
+                    
+                      
             }
+
+
+
+            
             
             
         }
                     
                     
-
+        dd(true);
         
         return view('admin.products.index',compact('products'));
     }
