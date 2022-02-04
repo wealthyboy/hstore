@@ -72,7 +72,7 @@ class ProductController extends Controller
 
         }
         
-        //dd(true);
+        dd(true);
 
 
         $products = ProductVariation::with('categories')
