@@ -32,10 +32,7 @@ class CategoryController extends Controller
      */
     public function index()
     {    
-
-        dd(RelatedProduct::all());
-
-
+        
         $categories = Category::parents()->get();
         $product_attributes = Attribute::parents()->get();        
         return view('admin.category.index',compact('product_attributes','categories'));
