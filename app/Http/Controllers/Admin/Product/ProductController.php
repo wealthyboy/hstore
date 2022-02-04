@@ -39,8 +39,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Mail\OutOfStockMail;
-use Illuminate\Filesystem\Filesystem;
-
 
 
 
@@ -59,48 +57,12 @@ class ProductController extends Controller
      *
      * return \Illuminate\Http\Response
      */
-    public function index(Request $request )
+    public function index()
     {   
-        if($request->clean){
-            $file = new Filesystem;
-            $file->cleanDirectory(
-                public_path('images/products/m')
-            );
-            // $file->cleanDirectory(
-            //     public_path('images/products/tn')
-            // );
+        $products = Product::with('categories')
+                            ->orderBy('created_at','desc')->paginate(30);
 
-        }
         
-
-        $products = ProductVariation::with('categories')
-                            ->orderBy('created_at','desc')->paginate(200);
-        foreach ($products as $key => $value) {
-
-            $file = basename($value->image);
-            $path =  public_path('images/products/'.$file);
-
-            if ($file){
-                
-                $img  = \Image::make($path)->fit(400, 500)->save(
-                    public_path('images/products/m/'.$file)
-                );
-                // $canvas = \Image::canvas(106, 145);
-                // $image  = \Image::make($path)->resize(77, 105, function($constraint)
-                // {
-                //     $constraint->aspectRatio();
-                // });
-                // $canvas->insert($image, 'center');
-                // $canvas->save(
-                //     public_path('images/products/tn/'.$file)
-                // );
-            }
-            
-            
-        }
-
-        dd(true);
-
         return view('admin.products.index',compact('products'));
     }
 
