@@ -89,7 +89,7 @@ class ProductController extends Controller
         foreach ($products as $key => $value) {
 
             $file  = basename($value);
-            $path  = public_path('images/products/'.$file);
+            $path  = public_path('images/products/m/'.$file);
                 if (file_exists($path)){
                     echo $path ."<br/>";
                // unlink(    public_path('images/products/m/'.$file) );
