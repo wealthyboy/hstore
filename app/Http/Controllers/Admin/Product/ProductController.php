@@ -59,33 +59,24 @@ class ProductController extends Controller
      *
      * return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request )
     {   
-        
-        // $file = new Filesystem;
-        // $file->cleanDirectory(
-        //     public_path('images/products/m')
-        // );
-        // $file->cleanDirectory(
-        //     public_path('images/products/tn')
-        // );
+        if($request->clean){
+            $file = new Filesystem;
+            $file->cleanDirectory(
+                public_path('images/products/m')
+            );
+            // $file->cleanDirectory(
+            //     public_path('images/products/tn')
+            // );
 
+        }
+        
         //dd(true);
 
 
         $products = ProductVariation::with('categories')
-                            ->orderBy('created_at','desc')->count();
-
-        dd($products);
-        // $file = new Filesystem;
-        // $file->cleanDirectory(
-        //     public_path('images/products/m')
-        // );
-
-
-
-
-
+                            ->orderBy('created_at','desc')->paginate(200);
         foreach ($products as $key => $value) {
 
             $file = basename($value->image);
@@ -96,15 +87,15 @@ class ProductController extends Controller
                 $img  = \Image::make($path)->fit(400, 500)->save(
                     public_path('images/products/m/'.$file)
                 );
-                $canvas = \Image::canvas(106, 145);
-                $image  = \Image::make($path)->resize(77, 105, function($constraint)
-                {
-                    $constraint->aspectRatio();
-                });
-                $canvas->insert($image, 'center');
-                $canvas->save(
-                    public_path('images/products/tn/'.$file)
-                );
+                // $canvas = \Image::canvas(106, 145);
+                // $image  = \Image::make($path)->resize(77, 105, function($constraint)
+                // {
+                //     $constraint->aspectRatio();
+                // });
+                // $canvas->insert($image, 'center');
+                // $canvas->save(
+                //     public_path('images/products/tn/'.$file)
+                // );
             }
             
             

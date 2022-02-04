@@ -156,7 +156,7 @@ class ImagesController extends Controller
             $canvas->save(
                 public_path('images/'.$request->folder.'/tn/'.$file)
             );
-           return $path = asset('images/'. $request->folder .'/'.$file);
+            return $path = asset('images/'. $request->folder .'/'.$file);
         }
 
     }
