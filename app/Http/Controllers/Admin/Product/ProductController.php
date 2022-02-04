@@ -59,8 +59,50 @@ class ProductController extends Controller
      */
     public function index()
     {   
-        $products = Product::with('categories')
-                            ->orderBy('created_at','desc')->paginate(30);
+        // $products = Product::with('categories')
+        //                     ->orderBy('created_at','desc')->paginate(30);
+        // // if($request->clean){
+        //     $file = new Filesystem;
+        //     $file->cleanDirectory(
+        //         public_path('images/products/m')
+        //     );
+        //     // $file->cleanDirectory(
+        //     //     public_path('images/products/tn')
+        //     // );
+
+        // }
+        
+       // dd(true);
+
+
+        $products = [
+                      'https://hautesignatures.com/images/products/ZPDq0wkjv8PdBuFjoVXqt4ieD51nPIRyCFbHz6dN.jpg', 
+                      'https://hautesignatures.com/images/products/8ZRmkK8wnlphhHMEBqoY5PiaDAQaer8yrhfxbIUY.jpg',
+                      'https://hautesignatures.com/images/products/oeiWKhbhuYuZX3uuRVI6PtVx2a1ONr6G98bhKnzD.jpg',
+                      'https://hautesignatures.com/images/products/oeiWKhbhuYuZX3uuRVI6PtVx2a1ONr6G98bhKnzD.jpg',
+                      'https://hautesignatures.com/images/products/2tTgibhKcllXRi28rpEHzKWtN2anoASrkqTpZ4su.jpg',
+                      'https://hautesignatures.com/images/products/CTf4B2IsV3bdDgaOGPFkO03NQlYvkt80yahQGpCn.jpg',
+                      'https://hautesignatures.com/images/products/bfoMQ77ztvc2mJMwY88BpY6nueVDdmIOrmHQGDsT.jpg',
+                      'https://hautesignatures.com/images/products/C4GC20huMz9ltvo06LvS2hYHkx9EJ4oAGHvNLFkl.jpg',
+                      'https://hautesignatures.com/images/products/06cqcXqGjfiBPIeZi47XdAXcrko2nQEkmaU7Rwv5.jpg'
+                    ];
+        foreach ($products as $key => $value) {
+
+            $file = basename($value);
+            $path =  public_path('images/products/'.$file);
+
+            if ($file){
+                
+                $img  = \Image::make($path)->fit(400, 500)->save(
+                    public_path('images/products/m/'.$file)
+                );
+                
+            }
+            
+            
+        }
+                    
+                    
 
         
         return view('admin.products.index',compact('products'));
