@@ -72,8 +72,6 @@ class ProductController extends Controller
 
         }
         
-        dd(true);
-
 
         $products = ProductVariation::with('categories')
                             ->orderBy('created_at','desc')->paginate(200);
