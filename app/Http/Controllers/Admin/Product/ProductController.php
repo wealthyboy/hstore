@@ -61,8 +61,6 @@ class ProductController extends Controller
     {   
         $products = Product::with('categories')
                             ->orderBy('created_at','desc')->paginate(30);
-
-        
         return view('admin.products.index',compact('products'));
     }
 
@@ -82,7 +80,8 @@ class ProductController extends Controller
     }
     
 
-    public function loadAttr(Request $request){
+    public function loadAttr(Request $request)
+    {
         $attribute_id = array_filter($request->attribute_ids);
         if (empty($attribute_id)){
             return response()->json([
