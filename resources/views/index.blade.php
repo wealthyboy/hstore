@@ -23,7 +23,7 @@
     @if ( optional($products)->count() )
 
     <div class="products-section pt-0">
-        <h1 title="fashion  top picks" class="text-center text-sm-15  eee mb-3 mt-3 ">Top Picks for You</h1>
+        <h1 title="fashion  top picks" class="text-center text-sm-25  eee mb-3 mt-3 ">Top Picks for You</h1>
 
 
         <div class="products-slider owl-carousel owl-theme dots-top">
