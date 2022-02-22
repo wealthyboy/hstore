@@ -25,10 +25,13 @@
     <div class="products-section pt-0">
         <h1 title="fashion blog" class="text-center mb-3">Top Picks for You</h1>
 
-        @if (optional($related_product->variant)->converted_price > 1)
 
         <div class="products-slider owl-carousel owl-theme dots-top">
             @foreach( $products as $related_product)
+            @if (optional($related_product->variant)->converted_price < 1)
+               @continue
+            @endif
+
             <div class="product-default inner-quickview inner-icon">
                 <figure>
                     <a href="{{ optional($related_product->variant)->link }}">
@@ -63,7 +66,6 @@
 
            
         </div><!-- End .products-slider -->
-        @endif
 
     </div><!-- End .products-section -->
 
