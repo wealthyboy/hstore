@@ -56,12 +56,15 @@
                 </div><!-- End .product-details -->
             </div>
 
-            @endif
 
 
             @endforeach
+
+
            
         </div><!-- End .products-slider -->
+        @endif
+
     </div><!-- End .products-section -->
 
     @endif
