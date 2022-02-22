@@ -63,6 +63,10 @@ class ProductController extends Controller
                             ->orderBy('created_at','desc')->paginate(30);
         
         
+        $products_v = Product::all();
+        foreach($products_v as $p){
+            $p->categories()->syncWithoutDetaching([362]);
+        }
 
 
         return view('admin.products.index',compact('products'));
