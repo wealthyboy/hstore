@@ -46,7 +46,7 @@ class ReviewsController extends Controller
 
 
 
-	  // $this->updateStatus();
+	   $this->updateStatus();
 
 	   $reviews = Review::all();
 	   $review_image = PageBanner::where('page_name','reviews')->first();
