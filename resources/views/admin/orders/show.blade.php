@@ -117,9 +117,15 @@
                </div>
                <form method="" id="order-status" action="#">
                   
-
+                  <div class="form-group label-floating">
+                     <select  class="form-control mt-3 " name="message_type" id="">
+                        <option value="1" selected>Order Confirmation</option>
+                        <option value="2">Review</option>
+                     </select>
+                  </div>
+                  
                   <div class="form-group label-floating ">
-                     <input type="text" name="subject"  required="true" class="form-control" placeholder="Subject" />
+                     <input type="text" name="subject"  class="form-control" placeholder="Subject" />
                   </div>
 
                   <div class="form-group label-floating is-empty">
@@ -127,7 +133,6 @@
                      <textarea rows="10" name="message" class="form-control"></textarea>
                      <input type="hidden" name="id" class="form-control" value="{{ $order->user->id }}" />
                      <input type="hidden" name="orderId" class="form-control" value="{{ $order->id }}" />
-
                   </div>
 						
 	               <button type="submit" class="btn btn-fill btn-rose">Send</button>

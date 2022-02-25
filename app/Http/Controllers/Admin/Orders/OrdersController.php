@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Helper;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\OrderStatusNotification;
+use App\Mail\ReviewMail;
+
 
 
 
@@ -23,7 +25,6 @@ class OrdersController extends Controller{
   
     public function __construct()
     {
-
        $this->middleware('admin'); 
 	   $this->settings =  \DB::table('system_settings')->first();
     }
@@ -75,9 +76,20 @@ class OrdersController extends Controller{
 	
 	
 	public function updateOrderStatus(Request $request){
-		$user = User::find($request->id);
-		Notification::route('mail', $user->email)
+		if ($request->message_type == 1) {
+            $user = User::find($request->id);
+	    	Notification::route('mail', $user->email)
             ->notify(new OrderStatusNotification($user, $request));
+		} else {
+            try{
+				$order  = Order::find($request->orderId);
+				$when   = now()->addMinutes(5); 
+				\Mail::to($order->user->email)->send(new ReviewMail($order));
+			} catch (\Throwable $th) {
+				dd($th);
+				\Log::info("Mail error :".$th);
+			}
+		}
 	}
 
 

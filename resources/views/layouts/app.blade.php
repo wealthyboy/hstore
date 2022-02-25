@@ -169,10 +169,8 @@
 		</header><!-- End .header -->
         <main class="main main-page">
           @yield('content')
-        </main> 
-
+        </main>
 		
-
 		<footer class="footer">
 			<div class="footer-middle">
 				<div class="container-fluid">
