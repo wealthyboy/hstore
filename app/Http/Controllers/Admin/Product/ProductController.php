@@ -323,7 +323,7 @@ class ProductController extends Controller
 
                     $product_variation->price = null !== $request->variation_price[$key] ?$request->variation_price[$key] : $request->price;
                     $product_variation->sale_price =  null !== $request->variation_sale_price[$key] ?$request->variation_sale_price[$key] : $request->sale_price;
-                    $product_variation->image = $request->variation_image[$key];
+                    $product_variation->image = isset($request->variation_image[$key]) ? $request->variation_image[$key] : null;
                     $product_variation->width = $request->variation_width[$key];
                     $product_variation->sale_price_expires = Helper::getFormatedDate($request->variation_sale_price_expires[$key]);
                     $product_variation->sale_price_starts = Helper::getFormatedDate($request->variation_sale_price_starts[$key]);

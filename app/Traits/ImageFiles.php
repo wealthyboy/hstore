@@ -33,7 +33,7 @@ trait ImageFiles
         $image =  optional($this->variant)->image_m ??  optional(optional($this->variant)->img)->image_m;
         return $this->product_type  == 'variable'
                             ? $image  
-                            : $this->image_m;
+                            : $this->image_m ?? optional($this->variant)->image_m;
     }
 
 

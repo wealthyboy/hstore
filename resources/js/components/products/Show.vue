@@ -294,7 +294,6 @@ export default {
   mounted() {
     this.productReviews();
     this.product_variation = this.product;
-    console.log(this.product);
     this.image = this.product.image_to_show;
     this.image_tn = this.product.image_to_show_tn;
     this.images = this.product.images;
@@ -394,11 +393,14 @@ export default {
         this.product_variation_id = vTs.id;
         this.canNotAddToCart = false;
         this.cText = this.quantity >= 1 ? "Add To Cart" : "Item is sold out";
+        console.log(vTs);
 
         if (key == "Colors") {
-          this.image = vTs.image;
-          this.image_m = vTs.image_m;
-          this.images = vTs.images;
+          if (vTs.image) {
+            this.image = vTs.image;
+            this.image_m = vTs.image_m;
+            this.images = vTs.images;
+          }
         }
       } catch (error) {
         console.log(error);
