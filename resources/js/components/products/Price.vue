@@ -59,5 +59,11 @@ export default {
     "percentage_off",
     "price",
   ],
+
+  mounted() {
+    console.log(this.product);
+  },
+
+  methods: {},
 };
 </script>

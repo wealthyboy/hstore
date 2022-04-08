@@ -132,7 +132,7 @@
           }
 
           html += '<div class="ratings-container">';
-          if (data[i].average_rating_count > 1) {
+          if (data[i].average_rating_count >= 1) {
             html += '<div class="product-ratings">';
             html +=
               '<span class="ratings" style="width:' +
