@@ -54,13 +54,14 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
     <meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-204322224-1"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JVYYVR9G8L"></script>
+<script>
+  	window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-	gtag('config', 'UA-204322224-1');
+     gtag('config', 'G-JVYYVR9G8L');
 
 	(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -75,6 +76,9 @@
 		token: '{!! csrf_token() !!}'
 	}
 	</script>
+
+
+
 </head>
 <body class="">
 
