@@ -18,6 +18,7 @@
 </div>
 
 
+
 <div class="container-fluid">
     
     @if ( optional($products)->count() )

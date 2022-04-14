@@ -55,7 +55,7 @@ body{
                     @if(str_contains($order->delivery_option,  "SURULERE" ))
                         Pick up at surulere.
                     
-                    @elseif (str_contains($order->delivery_option,  "Magodo" ))
+                    @elseif (str_contains($order->delivery_option,  "MAGODO" ))
                          Pick up at magodo.
                     @else
                         Stock pile.
