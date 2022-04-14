@@ -24,7 +24,11 @@
                      <thead>
                         <tr>
                            <th>
-                             Order Id
+                              <div class="checkbox">
+                                 <label>
+                                 <input onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox" name="optionsCheckboxes" >
+                                 </label>
+                              </div>
                            </th>
                            <th>Invoice</th>
                            <th>Customer</th>
@@ -38,8 +42,11 @@
                        @foreach ($orders as $order )
                             <tr>
                             <td>
-                               {{ $order->id }}
-
+                              <div class="checkbox">
+                                 <label>
+                                    <input type="checkbox" value="{{ $order->id }}" name="selected[]" >
+                                 </label>
+                              </div>
                            </td>
                            <td class="text-left">{{ $order->invoice }}</td>
                            <td>{{ $order->user->fullname() }}</td>
