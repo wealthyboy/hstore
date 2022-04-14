@@ -30,6 +30,8 @@
                                  </label>
                               </div>
                            </th>
+                           <th>Order </th>
+
                            <th>Invoice</th>
                            <th>Customer</th>
                            <th>Type</th>
@@ -48,6 +50,8 @@
                                  </label>
                               </div>
                            </td>
+                           <td class="">{{ $order->id }}</td>
+
                            <td class="text-left">{{ $order->invoice }}</td>
                            <td>{{ $order->user->fullname() }}</td>
                            <td>{{ $order->order_type }}</td>
