@@ -191,20 +191,20 @@
                                 
                                 <template v-if="!meta.cart_is_only_gift_card">
 
-                                <div class="col-12  text-info bold">
+                                <div class="col-12 text-info bold">
                                   <div
                                     v-if="meta.sub_total >= 30000"
                                     class="alert alert-info alert-dismissible fade show"
                                     role="alert"
                                   >
                                     <strong
-                                      ><a
+                                      >
+                                      <a
                                         data-toggle="modal"
                                         data-target="#out-of-stock-modal"
                                         class=""
                                         href="#"
-                                        > STANDARD DELIVERY IS FREE ON ALL ORDERS ABOVE 30k</a
-                                      ></strong
+                                        > STANDARD DELIVERY IS FREE ON ALL ORDERS ABOVE 30k </a></strong
                                     >
                                     <button
                                       type="button"
@@ -245,7 +245,7 @@
                                                 <select @change="addShippingPrice"  name="shipping_id" id="shipping_price" class="form-control  input--lg" autocomplete="shipping" tabindex="-1" aria-hidden="true">
                                                     <option value="" selected="selected">Choose a shipping</option> 
                                                     <optgroup   v-for="(map, key) in  default_shipping"  v-if="key" :key="key" :label="key">
-                                                        <option v-if="meta.sub_total >= 30000" :data-id="key.includes(standard_shipping) ? null : shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="key.includes(standard_shipping) ? 0 :shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ key.includes(standard_shipping) ? 0 :shipping.converted_price  }}</option>
+                                                        <option v-if="meta.sub_total >= 30000 " :data-id="key.includes(standard_shipping) ? null : shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="key.includes(standard_shipping) ? 0 :shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ key.includes(standard_shipping) ? 0 :shipping.converted_price  }}</option>
                                                         <option v-if="meta.sub_total < 30000" :data-id="shipping.id"  :key="shipping.id" v-for="shipping in map"  :value="shipping.converted_price">{{ shipping.name }}  &nbsp;&nbsp;&nbsp;{{ meta.currency }}{{ shipping.converted_price  }}</option>
                                                     </optgroup>
                                                 </select>
@@ -270,11 +270,11 @@
                                         <span    class="bold fa-2x ">Total</span> 
                                         <template v-if="voucher.length">
                                             <span class="price-amount amount bold float-right">
-                                                <span  class="currencySymbol fa-2x text-danger ml-4"><del>{{ meta.currency }}{{  meta.sub_total | priceFormat }}</del></span>
+                                                <span  class="currencySymbol fa-2x text-danger ml-4"><del>{{ meta.currency }}{{  meta.total | priceFormat }}</del></span>
                                             </span>
                                             <span class="price-amount amount bold float-right ml-4">
                                                 <span style="" class="currencySymbol fa-2x">{{ meta.currency }}{{ amount ||  meta.sub_total | priceFormat }}</span>
-                                                <p class="retail-title fa-1x">{{ voucher[0].percent }}</p>
+                                                <p class="retail-title fa-1x">{{ voucher[0].percent }} </p>
                                             </span>
                                         </template>
                                         <template v-else>
@@ -386,7 +386,7 @@
                             <p class="border-top border-bottom pb-3 pt-3">
                             <span class="bold">Shipping</span> 
                                 <span class="bold float-right">
-                                    <span v-if="shipping_price" class="currencySymbol">{{  meta.currency }}{{ shipping_price }}</span>
+                                    <span  v-if="shipping_price" class="currencySymbol">{{  meta.currency }}{{ shipping_price }}</span>
                                     <small v-else> {{ shippingIsFree }}</small>
                                 </span>
                             </p>
@@ -687,6 +687,7 @@ export default {
         user: this.meta.user,
         shipping_id: this.shipping_id,
         isAdmin: this.meta.isAdmin,
+        total: this.meta.total
       };
       Window.CartMeta = obj;
       this.updateCartTotal(obj);
@@ -729,6 +730,8 @@ export default {
           } else {
             this.amount = parseInt(response.data.sub_total);
           }
+
+          this.meta.sub_total = this.amount
         })
         .catch((error) => {
           this.submiting = false;

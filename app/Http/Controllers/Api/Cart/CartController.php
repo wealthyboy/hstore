@@ -172,6 +172,7 @@ class CartController  extends Controller {
         return  CartIndexResource::collection($carts)->additional([
 			'meta' => [
 				'sub_total'=>$sub_total,
+				'total'=>$sub_total,
 				'currency' => Helper::rate()->symbol ?? optional(optional($this->settings)->currency)->symbol,
 				'currency_code' => Helper::rate()->iso_code3 ?? optional(optional($this->settings)->currency)->iso_code3,
 				'user' => $request->user(),
