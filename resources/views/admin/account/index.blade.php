@@ -7,33 +7,37 @@
          <h3>Search</h3>
       </div>
       <form action="" method="get" >
-      <div class="row">
-         <div class="col-md-4">
-            <div class="form-group">
-               <label class="label-control">From Date</label>
-               <input required type="text" name="from_date" class="form-control datepicker" value=""/>
+         <div class="row">
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label class="label-control">From Date</label>
+                  <input required type="text" name="from_date" class="form-control datepicker" value=""/>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label class="label-control">To Date</label>
+                  <input type="text" name="to_date" required class="form-control datepicker" value=""/>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <button type="submit" class="btn mt-2 btn-primary btn-round mb-2">Submit</button>
             </div>
          </div>
-         <div class="col-md-4">
-            <div class="form-group">
-               <label class="label-control">To Date</label>
-               <input type="text" name="to_date" required class="form-control datepicker" value=""/>
-            </div>
-         </div>
-         <div class="col-md-4">
-            <button type="submit" class="btn mt-2 btn-primary btn-round mb-2">Submit</button>
-         </div>
-      </div>
-
       </form>
-
-
-
    </div>
 </div>
 </div>
 <div class="row">
-   <div class="col-lg-6 col-md-6 col-sm-6">
+   <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card card-stats">
+         <div class="card-content">
+            <p class="category">Today's Sales Total (Without shipping)</p>
+            <h3 class="card-title">{{ $currency }}{{ number_format($todays_sales_w_s->items_total) ?? 0}}</h3>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-4 col-md-6 col-sm-6">
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Today's Sales Total</p>
@@ -41,7 +45,7 @@
          </div>
       </div>
    </div>
-   <div class="col-lg-6 col-md-6 col-sm-6">
+   <div class="col-lg-4 col-md-6 col-sm-6">
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Items Sold Today</p>

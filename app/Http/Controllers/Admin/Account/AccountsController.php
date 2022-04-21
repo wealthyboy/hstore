@@ -70,13 +70,17 @@ class AccountsController extends Controller
         // //     return Carbon::parse($date->created_at)->format('m'); // grouping by months
         // // });
 
-        $todays_orders = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))
+        $todays_orders   = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))
                                  ->whereDate('created_at', Carbon::today())->get();
-        $todays_sales = Order::select(\DB::raw('SUM(total) as items_total'))
-                               ->whereDate('created_at', Carbon::today())->get();
-        $currency = $this->settings->default_currency->symbol;
-        $todays_sales = null !== $todays_sales ? $todays_sales[0] : null;
-        $todays_orders = null !== $todays_orders ? $todays_orders[0] : null;
+        $todays_sales    = Order::select(\DB::raw('SUM(total) as items_total'))
+                              ->whereDate('created_at', Carbon::today())->get();
+        $todays_sales_w_s    = Order::select(\DB::raw('SUM(total - shipping_price) as items_total'))
+                              ->whereDate('created_at', Carbon::today())->get();
+        $currency        = $this->settings->default_currency->symbol;
+        $todays_sales    = null !== $todays_sales ? $todays_sales[0] : null;
+        $todays_sales_w_s    = null !== $todays_sales_w_s ? $todays_sales_w_s[0] : null;
+
+        $todays_orders   = null !== $todays_orders ? $todays_orders[0] : null;
 
         $all_sales_value = Order::select(\DB::raw('SUM(total) as items_total'))->get();
         $all_sales_value = null !== $all_sales_value ? $all_sales_value[0] : null;
@@ -124,7 +128,8 @@ class AccountsController extends Controller
             'total_value',
             'all_sales_value',
             'all_sales',
-            'remaining_products'
+            'remaining_products',
+            'todays_sales_w_s'
         ));
 
 
