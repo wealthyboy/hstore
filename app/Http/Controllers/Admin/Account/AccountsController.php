@@ -98,11 +98,11 @@ class AccountsController extends Controller
     
         $total_value = array_sum($total_value);
 
-        $remaining_products =  ProductVariation::where('quantity',  200000000)->pluck('id')->toArray();
+        $remaining_products =  ProductVariation::where('id',  2608)->toArray();
         foreach ($remaining_products as $key => $value) {
             # code...
         }
-        dd( $remaining_products);
+        dd( $remaining_products->load('product'));
 
 
         return view('admin.account.index',compact(
