@@ -93,7 +93,7 @@ class AccountsController extends Controller
         //products quantities left
         $products = Product::get();
 
-        dd($todays_orders);
+        dd($todays_sales_s);
         $remaining_products = [];
 
         $total_value = [];
