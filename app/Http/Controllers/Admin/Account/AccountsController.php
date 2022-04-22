@@ -80,7 +80,7 @@ class AccountsController extends Controller
                          ->whereDate('created_at', Carbon::today())->get();
         $currency          = $this->settings->default_currency->symbol;
         $todays_sales      = null !== $todays_sales ? $todays_sales[0] : null;
-       // $todays_sales_s  = null !== $todays_sales_s ? $todays_sales_s[0] : null;
+        $todays_sales_s  = null !== $todays_sales_s ? $todays_sales_s[0] : null;
 
         $todays_orders   = null !== $todays_orders ? $todays_orders[0] : null;
 
@@ -89,11 +89,10 @@ class AccountsController extends Controller
         $all_sales = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))->get();
         $all_sales = null !== $all_sales ? $all_sales[0] : null;
 
-       // $tows = $todays_sales->items_total - $todays_sales_s->price;
+        $tows = $todays_sales->items_total - $todays_sales_s->price;
         //products quantities left
         $products = Product::get();
 
-        dd($todays_sales_s);
         $remaining_products = [];
 
         $total_value = [];
