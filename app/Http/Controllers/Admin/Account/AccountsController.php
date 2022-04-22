@@ -98,7 +98,7 @@ class AccountsController extends Controller
     
         $total_value = array_sum($total_value);
 
-        $remaining_products =  ProductVariation::where('id',  2608)->toArray();
+        $remaining_products =  ProductVariation::where('id',  2608)->get();
         foreach ($remaining_products as $key => $value) {
             # code...
         }
