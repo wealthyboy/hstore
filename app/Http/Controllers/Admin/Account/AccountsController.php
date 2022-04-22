@@ -90,9 +90,6 @@ class AccountsController extends Controller
         $all_sales = null !== $all_sales ? $all_sales[0] : null;
 
         $tows = $todays_sales->items_total - $todays_sales_s->price;
-
-        dd($tows);
-
         //products quantities left
         $products = Product::get();
 
@@ -134,7 +131,8 @@ class AccountsController extends Controller
             'all_sales_value',
             'all_sales',
             'remaining_products',
-            'todays_sales_w_s'
+            'todays_sales_w_s',
+            'tows'
         ));
 
 

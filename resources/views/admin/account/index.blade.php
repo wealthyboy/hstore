@@ -33,7 +33,7 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Today's Sales Total (Without shipping)</p>
-            <h3 class="card-title">{{ $currency }}{{ number_format($todays_sales_w_s->items_total) ?? 0}}</h3>
+            <h3 class="card-title">{{ $currency }}{{ number_format($tows) ?? 0}}</h3>
          </div>
       </div>
    </div>
