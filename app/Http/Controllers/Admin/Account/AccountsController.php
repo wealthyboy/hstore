@@ -70,15 +70,17 @@ class AccountsController extends Controller
         // //     return Carbon::parse($date->created_at)->format('m'); // grouping by months
         // // });
 
-        $todays_orders   = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))
+        $todays_orders     = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))
                                  ->whereDate('created_at', Carbon::today())->get();
-        $todays_sales    = Order::select(\DB::raw('SUM(total) as items_total'))
+        $todays_sales      = Order::select(\DB::raw('SUM(total) as items_total'))
                               ->whereDate('created_at', Carbon::today())->get();
-        $todays_sales_w_s    = Order::select(\DB::raw('SUM(total - shipping_price) as items_total'))
-                              ->whereDate('created_at', Carbon::today())->get();
-        $currency        = $this->settings->default_currency->symbol;
-        $todays_sales    = null !== $todays_sales ? $todays_sales[0] : null;
-        $todays_sales_w_s    = null !== $todays_sales_w_s ? $todays_sales_w_s[0] : null;
+        // $todays_sales_w_s  = Order::select(\DB::raw('SUM(shipping_price) as items_total'))
+        //                  ->whereDate('created_at', Carbon::today())->get();
+        $todays_sales_s    = Order::select(\DB::raw('SUM(shipping_price) as price'))
+                         ->whereDate('created_at', Carbon::today())->get();
+        $currency          = $this->settings->default_currency->symbol;
+        $todays_sales      = null !== $todays_sales ? $todays_sales[0] : null;
+        $todays_sales_s  = null !== $todays_sales_s ? $todays_sales_s[0] : null;
 
         $todays_orders   = null !== $todays_orders ? $todays_orders[0] : null;
 
@@ -87,8 +89,11 @@ class AccountsController extends Controller
         $all_sales = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))->get();
         $all_sales = null !== $all_sales ? $all_sales[0] : null;
 
+        $tows = $todays_sales->items_total - $todays_sales_s->price;
+
+        dd($tows);
+
         //products quantities left
-    
         $products = Product::get();
 
         $remaining_products = [];
