@@ -91,14 +91,17 @@ class AccountsController extends Controller
 
         $tows = $todays_sales->items_total - $todays_sales_s->price;
         //products quantities left
-        $products = Product::get();
+        $products = Product::take(5)->get();
 
 
         $total_value = [];
     
         $total_value = array_sum($total_value);
 
-        $remaining_products =  ProductVariation::select(\DB::raw('SUM(quantity) as qty'))->where('quantity', '>=', 1)->get();
+        $remaining_products =  ProductVariation::where('quantity', '>=', 1)->pluck('quantity')->toArray();
+        foreach ($remaining_products as $key => $value) {
+            # code...
+        }
         dd( $remaining_products);
 
 
