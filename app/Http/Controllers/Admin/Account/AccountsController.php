@@ -131,7 +131,6 @@ class AccountsController extends Controller
             'all_sales_value',
             'all_sales',
             'remaining_products',
-            'todays_sales_w_s',
             'tows'
         ));
 
