@@ -93,35 +93,14 @@ class AccountsController extends Controller
         //products quantities left
         $products = Product::get();
 
-        $remaining_products = [];
 
         $total_value = [];
-        foreach ($products as $key => $product) {
-            if ($product->has_variants) {
-
-                //Counts the remaining products
-                array_push($remaining_products, $product->variants()->select(\DB::raw('SUM(quantity) as quantity'))
-                ->where('quantity','>', 0)
-                ->Where('quantity','!=', null)
-                ->pluck('quantity')->first());
-                array_push($total_value, $product->variants()->select(\DB::raw('SUM(quantity * price) as total'))->pluck('total')->first());
-            }  else {
-                //
-                //Counts the remaining products
-                array_push($remaining_products, 
-                           $product->default_variation()
-                           ->select(\DB::raw('SUM(quantity) as quantity')
-                        )
-                ->where('quantity','>', 0)
-                ->Where('quantity','!=', null)
-                ->pluck('quantity')->first());
-                array_push($total_value, $product->default_variation()->select(\DB::raw('SUM(quantity * price) as total'))->pluck('total')->first());
-            } 
-        }
-
+    
         $total_value = array_sum($total_value);
 
-        $remaining_products = array_sum($remaining_products);
+        $remaining_products =  ProductVariation::select(\DB::raw('SUM(quantity) as qty'))->where('quantity', '>=', 1)->get();
+        dd( $remaining_products);
+
 
         return view('admin.account.index',compact(
             'todays_orders',
@@ -133,10 +112,6 @@ class AccountsController extends Controller
             'remaining_products',
             'tows'
         ));
-
-
-
-       
     
     }
 

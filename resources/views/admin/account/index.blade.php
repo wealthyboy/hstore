@@ -6,7 +6,7 @@
       <div class="title">
          <h3>Search</h3>
       </div>
-      <form action="" method="get" >
+      <!-- <form action="" method="get" >
          <div class="row">
             <div class="col-md-4">
                <div class="form-group">
@@ -24,7 +24,7 @@
                <button type="submit" class="btn mt-2 btn-primary btn-round mb-2">Submit</button>
             </div>
          </div>
-      </form>
+      </form> -->
    </div>
 </div>
 </div>
