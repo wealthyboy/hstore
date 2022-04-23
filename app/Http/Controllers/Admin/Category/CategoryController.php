@@ -200,9 +200,12 @@ class CategoryController extends Controller
         $category->slug=$slug;
         $category->save();
 
+        Activity::truncate();
+
     
         //Log Activity
         (new Activity)->Log("Updated  Category {$request->name} ");
+
         return redirect()->action('Admin\Category\CategoryController@index');
     }
 
