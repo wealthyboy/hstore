@@ -198,11 +198,7 @@ class CategoryController extends Controller
         $category->keywords = $request->keywords;
         $category->title = $request->title;
         $category->slug=$slug;
-        $category->save();
-
-        Activity::truncate();
-
-    
+        $category->save();    
         //Log Activity
         (new Activity)->Log("Updated  Category {$request->name} ");
 
