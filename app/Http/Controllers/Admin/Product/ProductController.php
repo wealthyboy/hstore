@@ -930,7 +930,18 @@ class ProductController extends Controller
 
         $product->attributes()->sync($product_attributes); 
 
-        (new Activity)->Log("Edited a product {$request->product_name}");
+        $data = null;
+
+        foreach( $product->product_variations as $product_variation ) {
+           $data = '<p>';
+           $data .= 'Name: '. $product_variation->name . ' Qty: '. $product_variation->quantity . 'Price '. $$product_variation->price . ' Sale Price: ' . $product_variation->sale_price . '<br/>';
+           $data .= '</p>';
+        }
+
+        
+
+
+        (new Activity)->Log("Edited a product  {$data}");
 
       
          //Delete any pending image

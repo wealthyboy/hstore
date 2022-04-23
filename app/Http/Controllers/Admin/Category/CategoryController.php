@@ -160,6 +160,7 @@ class CategoryController extends Controller
         //
 
         $category = Category::find($id);
+        
         if( $request->filled('parent_id') ) {
             $categoryId = Category::find($request->parent_id);
             $this->validate($request,[
