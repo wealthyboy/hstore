@@ -84,7 +84,7 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category"> Remaining Products</p>
-            <h3 class="card-title">{{ $remaining_products }}</h3>
+            <h3 class="card-title">{{ number_format($remaining_products) }}</h3>
          </div>
       </div>
    </div>

@@ -98,7 +98,6 @@ class AccountsController extends Controller
         $total_value = array_sum($total_value);
 
         $remaining_products =  ProductVariation::sum('quantity');
-        dd( $remaining_products);
 
 
         return view('admin.account.index',compact(
