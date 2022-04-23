@@ -95,6 +95,12 @@
                     <p> Account </p>
                 </a>
             </li>
+            <li class="{{ $helper->active_link(['account']) }} ">
+                <a href="{{ route('admin_account') }}">
+                <i class="material-icons">grid_on</i>
+                    <p> Account </p>
+                </a>
+            </li>
             <li class="{{ $helper->active_link(['products','category','discounts','attributes','vouchers']) }} ">
                 <a data-toggle="collapse" href="dashboard.html#products">
                    <i class="fa fa-product-hunt" aria-hidden="true"></i>   
