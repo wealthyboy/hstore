@@ -91,18 +91,14 @@ class AccountsController extends Controller
 
         $tows = $todays_sales->items_total - $todays_sales_s->price;
         //products quantities left
-        $products = Product::take(5)->get();
 
 
         $total_value = [];
     
         $total_value = array_sum($total_value);
 
-        $remaining_products =  ProductVariation::where('id',  2608)->get();
-        foreach ($remaining_products as $key => $value) {
-            # code...
-        }
-        dd( $remaining_products->load('product'));
+        $remaining_products =  ProductVariation::sum('quantity');
+        dd( $remaining_products);
 
 
         return view('admin.account.index',compact(
