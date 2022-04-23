@@ -373,10 +373,44 @@ class ProductController extends Controller
                 );
             }
         }
+
+        $data =null;;
+
+        foreach( $product->product_variations as $product_variation ) {
+            $data = '<p>';
+            $data .= 'Name: '. $product_variation->name  .' <br/>';
+            $data .= 'Qty: '. $product_variation->quantity . '<br/>';
+            $data .= 'Price: '. $product_variation->price . '<br/>';
+            $data .= 'Sale Price: '. $product_variation->sale_price . '<br/>';
+ 
+            $data .= '</p>';
+         }
+ 
+         
+        $data =  $this->acMessage($product);
+
+        (new Activity)->Log("Created a  newproduct  {$data}");
         
-        (new Activity)->Log("Created a new product {$request->product_name}");
         return \Redirect::to('/admin/products');
     }
+
+
+    public function acMessage($product){
+        $data =null;;
+
+        foreach( $product->product_variations as $product_variation ) {
+            $data = '<p>';
+            $data .= 'Name: '. $product_variation->name  .' <br/>';
+            $data .= 'Qty: '. $product_variation->quantity . '<br/>';
+            $data .= 'Price: '. $product_variation->price . '<br/>';
+            $data .= 'Sale Price: '. $product_variation->sale_price . '<br/>';
+ 
+            $data .= '</p>';
+         }
+
+         return $data;
+    }
+
 
 
     public function buildAttributes(Request $request,$edit = null,$new = null){
@@ -930,16 +964,7 @@ class ProductController extends Controller
 
         $product->attributes()->sync($product_attributes); 
 
-        $data = null;
-
-        foreach( $product->product_variations as $product_variation ) {
-           $data = '<p>';
-           $data .= 'Name: '. $product_variation->name . ' Qty: '. $product_variation->quantity . 'Price '. $$product_variation->price . ' Sale Price: ' . $product_variation->sale_price . '<br/>';
-           $data .= '</p>';
-        }
-
-        
-
+        $data =  $this->acMessage($product);
 
         (new Activity)->Log("Edited a product  {$data}");
 

@@ -46,7 +46,7 @@
                                 @foreach($activities as $activity)  
                                     <tr>
                                         <td class="text-left">{{ optional($activity->user)->name }}</td>
-                                        <td class="">{{ optional($activity->user)->name }} <?php echo  html_entity_decode($$activity->action) ?></td>
+                                        <td class="">{{ optional($activity->user)->name }} <?php echo  html_entity_decode($activity->action) ?></td>
                                         <td>{{  $activity->created_at }}</td>
                                     </tr>
                                 @endforeach  
