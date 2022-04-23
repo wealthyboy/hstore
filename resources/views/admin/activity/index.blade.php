@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
+
 
 <div class="row">
         <div class="col-md-12">
@@ -23,44 +24,32 @@
                         <!--        Here you can write extra buttons/actions for the toolbar              -->
                     </div>
                     <div class="material-datatables">
-                    <form action="{{ route('delete_products') }}" method="post" enctype="multipart/form-data" id="form-products">
+                    <form action="#" method="post" enctype="multipart/form-data" id="form-products">
                         {{csrf_field()}}
                 
                         <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                             <thead>
-
                                 <tr>
-                                  
-                
                                     <th class="text-left">Name</th>
                                     <th class="">Activity</th>
                                     <th>Date</th>
-
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                               
                                     <th class="text-left">Name</th>
                                     <th class="">Activity</th>
                                     <th>Date</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                            @foreach($activities as $activity)  
-                                <tr>
-                                
-                                    
-
-                                    <td class="text-left">{{ $activity->user->name }}</td>
-                                    <td class="">{{ $activity->user->name .' '.$activity->action }}</td>
-                                    <td>{{  $activity->created_at }}</td>
-
-
-
-                                </tr>
-
-                               @endforeach  
+                                @foreach($activities as $activity)  
+                                    <tr>
+                                        <td class="text-left">{{ optional($activity->user)->name }}</td>
+                                        <td class="">{{ optional($activity->user)->name .' '.$activity->action }}</td>
+                                        <td>{{  $activity->created_at }}</td>
+                                    </tr>
+                                @endforeach  
                             </tbody>
                         </table>
                         </form>

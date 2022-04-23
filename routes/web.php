@@ -8,6 +8,8 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
     Route::get('/maintainance/mode', 'Live\LiveController@index')->name('maintainance');
     Route::get('live', 'Live\LiveController@activate');
+    Route::get('activities','Admin\Activity\ActivityController@index');
+
 
     Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);
 

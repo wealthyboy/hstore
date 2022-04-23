@@ -90,9 +90,9 @@
 
             </li>
             <li class="{{ $helper->active_link(['account']) }} ">
-                <a href="{{ route('admin_account') }}">
+                <a href="/admin/activities">
                 <i class="material-icons">grid_on</i>
-                    <p> Account </p>
+                    <p> Activity </p>
                 </a>
             </li>
             <li class="{{ $helper->active_link(['account']) }} ">
