@@ -87,7 +87,6 @@ class CategoryController extends Controller
         }
 
         $slug = $this->makeSlug($request->parent_id,$request->name);
-       
         $category = new Category;
         $category->name = $request->name;
         $category->image_custom_link = $request->image_custom_link;
@@ -104,9 +103,6 @@ class CategoryController extends Controller
         $category->description=$request->description;
         $category->parent_id  = $request->parent_id;
         $category->save();
-       
-
-
         (new Activity)->Log("Created a new category called {$request->name}");
         return redirect()->back();
     }

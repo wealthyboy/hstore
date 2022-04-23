@@ -839,19 +839,19 @@ class ProductController extends Controller
                 
                 $variation_images = !empty($request->variation_images[$key]) ? $request->variation_images[$key] : [];
                 
-                $product_variation->price = null !== $request->variation_price[$key] ?$request->variation_price[$key] : $request->price;
-                $product_variation->sale_price =  null !== $request->variation_sale_price[$key] ?$request->variation_sale_price[$key] : $sale_price;
-                $product_variation->image = $request->variation_image[$key];
-                $product_variation->width = $request->variation_width[$key];
+                $product_variation->price              = null !== $request->variation_price[$key] ?$request->variation_price[$key] : $request->price;
+                $product_variation->sale_price         =  null !== $request->variation_sale_price[$key] ?$request->variation_sale_price[$key] : $sale_price;
+                $product_variation->image              = $request->variation_image[$key];
+                $product_variation->width              = $request->variation_width[$key];
                 $product_variation->sale_price_expires = Helper::getFormatedDate($request->variation_sale_price_expires[$key]);
-                $product_variation->sale_price_starts = Helper::getFormatedDate($request->variation_sale_price_starts[$key]);
+                $product_variation->sale_price_starts  = Helper::getFormatedDate($request->variation_sale_price_starts[$key]);
 
-                $product_variation->length = $request->variation_length[$key];
-                $product_variation->weight = $request->variation_weight[$key];
-                $product_variation->quantity  = $request->variation_quantity[$key];
-                $product_variation->product_id = $product->id;
-                $product_variation->name = $request->variation_name[$key];
-                $product_variation->slug = str_slug($request->variation_name[$key]);
+                $product_variation->length      = $request->variation_length[$key];
+                $product_variation->weight      = $request->variation_weight[$key];
+                $product_variation->quantity    = $request->variation_quantity[$key];
+                $product_variation->product_id  = $product->id;
+                $product_variation->name        = $request->variation_name[$key];
+                $product_variation->slug        = str_slug($request->variation_name[$key]);
                 $product_variation->allow       = $request->allow ? $request->allow : 0;
 
                 $product_variation->save();
@@ -929,6 +929,9 @@ class ProductController extends Controller
         }
 
         $product->attributes()->sync($product_attributes); 
+
+        (new Activity)->Log("Edited a product {$request->product_name}");
+
       
          //Delete any pending image
         Image::where('image','No Image')->delete();
