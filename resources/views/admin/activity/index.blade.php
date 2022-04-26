@@ -46,7 +46,20 @@
                                 @foreach($activities as $activity)  
                                     <tr>
                                         <td class="text-left">{{ optional($activity->user)->name }}</td>
-                                        <td class="">{{ optional($activity->user)->name }} <?php echo  html_entity_decode($activity->action) ?></td>
+                                         <td class="">
+                                            {{ optional($activity->user)->name }} 
+                                            <?php echo  html_entity_decode($activity->action) ?>  <br/>
+                                            <?php $jsons =  json_decode($activity->json,true );  ?>
+                                            
+                                            @foreach($jsons as $json)
+                                                Name:  {{ $json['name']}} <br/> 
+                                                Price:  {{ $json['price']}} <br/>
+                                                Qty:  {{ $json['quantity']}} <br/>
+                                                Sale Price:  {{ $json['sale_price']}} <br/>
+                                            <hr />
+                                            @endforeach
+                                        
+                                        </td>
                                         <td>{{  $activity->created_at }}</td>
                                     </tr>
                                 @endforeach  

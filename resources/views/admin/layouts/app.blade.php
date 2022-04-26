@@ -89,7 +89,7 @@
                 </a>
 
             </li>
-            <li class="{{ $helper->active_link(['account']) }} ">
+            <li class="{{ $helper->active_link(['activities']) }} ">
                 <a href="/admin/activities">
                 <i class="material-icons">grid_on</i>
                     <p> Activity </p>

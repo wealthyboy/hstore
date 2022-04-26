@@ -11,10 +11,11 @@ class Activity extends Model
     //
     use softDeletes;
 
-    public  function  Log($action){
+    public  function  Log( $action, $json = null ){
        $this->user_id = \Auth::user()->id;
        $this->email = \Auth::user()->email;
        $this->username = \Auth::user()->name;
+       $this->json = $json;
        $this->action = $action;
        $this->save();
     }

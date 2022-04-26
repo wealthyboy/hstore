@@ -387,9 +387,9 @@ class ProductController extends Controller
          }
  
          
-        $data =  $this->acMessage($product);
+         $data = json_encode($product->product_variations->toArray());
 
-        (new Activity)->Log("Created a  newproduct  {$data}");
+         (new Activity)->Log("Edited a product ", "{$data}");
         
         return \Redirect::to('/admin/products');
     }
@@ -399,7 +399,7 @@ class ProductController extends Controller
         $data =null;;
 
         foreach( $product->product_variations as $product_variation ) {
-            $data = '<p>';
+            $data  = '<p>';
             $data .= 'Name: '. $product_variation->name  .' <br/>';
             $data .= 'Qty: '. $product_variation->quantity . '<br/>';
             $data .= 'Price: '. $product_variation->price . '<br/>';
@@ -964,12 +964,12 @@ class ProductController extends Controller
 
         $product->attributes()->sync($product_attributes); 
 
-        $data =  $this->acMessage($product);
+        $data = json_encode($product->product_variations->toArray());
 
-        (new Activity)->Log("Edited a product  {$data}");
+        (new Activity)->Log("Edited a product ", "{$data}");
 
       
-         //Delete any pending image
+        //Delete any pending image
         Image::where('image','No Image')->delete();
         return \Redirect::to('/admin/products');
     }
