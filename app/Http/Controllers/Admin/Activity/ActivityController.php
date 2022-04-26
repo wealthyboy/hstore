@@ -21,7 +21,6 @@ class ActivityController extends Controller
     }
 
 	public function index(){
-		Activity::truncate();
 		$activities = Activity::orderBy('created_at','DESC')->get();
 	    return view('admin.activity.index',compact('activities'));
     }
