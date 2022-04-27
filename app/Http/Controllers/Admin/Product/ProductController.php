@@ -311,9 +311,9 @@ class ProductController extends Controller
                             }
                         }
                     }
+
                     //$category->attributes()->syncWithoutDetaching($cA);
 
-                
                     $product_variation = new  ProductVariation();
                     // $images  = $request->images;
                     // $image1  = array_shift($images);

@@ -70,32 +70,35 @@ class AccountsController extends Controller
         // //     return Carbon::parse($date->created_at)->format('m'); // grouping by months
         // // });
 
-        $todays_orders     = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))
+        $todays_orders       = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))
                                  ->whereDate('created_at', Carbon::today())->get();
-        $todays_sales      = Order::select(\DB::raw('SUM(total) as items_total'))
+        $todays_sales        = Order::select(\DB::raw('SUM(total) as items_total'))
                               ->whereDate('created_at', Carbon::today())->get();
         // $todays_sales_w_s  = Order::select(\DB::raw('SUM(shipping_price) as items_total'))
         //                  ->whereDate('created_at', Carbon::today())->get();
-        $todays_sales_s    = Order::select(\DB::raw('SUM(shipping_price) as price'))
+        $todays_sales_s      = Order::select(\DB::raw('SUM(shipping_price) as price'))
                          ->whereDate('created_at', Carbon::today())->get();
-        $currency          = $this->settings->default_currency->symbol;
-        $todays_sales      = null !== $todays_sales ? $todays_sales[0] : null;
-        $todays_sales_s  = null !== $todays_sales_s ? $todays_sales_s[0] : null;
-
-        $todays_orders   = null !== $todays_orders ? $todays_orders[0] : null;
-
+        $currency            = $this->settings->default_currency->symbol;
+        $todays_sales        = null !== $todays_sales ? $todays_sales[0] : null;
+        $todays_sales_s      = null !== $todays_sales_s ? $todays_sales_s[0] : null;
+        $todays_orders       = null !== $todays_orders ? $todays_orders[0] : null;
         $all_sales_value = Order::select(\DB::raw('SUM(total) as items_total'))->get();
         $all_sales_value = null !== $all_sales_value ? $all_sales_value[0] : null;
         $all_sales = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))->get();
         $all_sales = null !== $all_sales ? $all_sales[0] : null;
+        $amount = ProductVariation::select(\DB::raw('sum(price * quantity) as total'))->get();
+        
+
+        
+        $total_value = null !== $amount ? $amount[0] : null;
+
+
 
         $tows = $todays_sales->items_total - $todays_sales_s->price;
         //products quantities left
 
 
-        $total_value = [];
     
-        $total_value = array_sum($total_value);
 
         $remaining_products =  ProductVariation::sum('quantity');
 

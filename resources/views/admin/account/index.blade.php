@@ -59,7 +59,7 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">All Products Value</p>
-            <h3 class="card-title">{{ $currency }}{{ number_format($total_value) ?? 0 }}</h3>
+            <h3 class="card-title">{{ $currency }}{{ number_format($total_value->total) ?? 0 }}</h3>
          </div>
       </div>
    </div>
