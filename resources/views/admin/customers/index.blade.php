@@ -36,19 +36,12 @@
                             <thead>
 
                                 <tr>
-                                  <th>
-                                  <div class="checkbox">
-                                            <label>
-                                                <input onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox" name="optionsCheckboxes" >
-                                            </label>
-                                        </div>
-                                   
-                                  </th>
+                                  
 
                                     <th>Full name</th>
 
                                     <th>Email</th>
-                                    <th>Phone</th>
+                                    <th class="text-center">Phone</th>
                                     <th>Total orders</th>
 
                                     <th class="disabled-sorting text-right">Date</th>
@@ -59,17 +52,11 @@
                             @foreach($users as $user)
 
                                 <tr>
-                                   <td>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="{{ $user->id }}" name="selected[]" >
-                                            </label>
-                                        </div>
-                                    </td>
+                                   
                                     <td><a href="{{ route('customers.show',['customer' =>  $user->id] ) }}">{{ $user->fullname() }}</a></td>
                                     <td class="text-left">{{ $user->email }}</td>
-                                    <td class="text-right">{{ $user->phone_number }}</td>
-                                    <td> 
+                                    <td class="text-center">{{ $user->phone_number }}</td>
+                                    <td class="text-center"> 
                                           
                                          <span class="badge">{{ $user->orders->count() }}</span>
                                     </td>
