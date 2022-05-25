@@ -98,7 +98,7 @@
                                     </label>
                                 </div>
                             </td>
-                                <td class="text-left">{{ $order->product_variation->product->product_name }}
+                                <td class="text-left">{{ optional(optional($order->product_variation)->product)->product_name }}
 
                                 @if (null !== $order->product_variation)
                                     @foreach( $order->product_variation->product_variation_values  as $v)
@@ -110,7 +110,7 @@
                                     
                                 </td>
                                 <td>{{ $user->fullname() }}</td>
-                                <td>{{ $system_settings->default_currency->symbol }}{{$order->product_variation->product->display_price() }}</td>
+                                <td>{{ $system_settings->default_currency->symbol }}{{optional(optional($order->product_variation)->product)->display_price() }}</td>
                                 <td>{{ $order->quantity }}</td>
                                 <td>{{ $order->total }}</td>
                                 <td class="td-actions text-center"></td>
