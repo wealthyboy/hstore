@@ -49,7 +49,7 @@
 
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Address</th>
+                                    <th>Total orders</th>
 
                                     <th class="disabled-sorting text-right">Date</th>
                                 </tr>
@@ -69,10 +69,9 @@
                                     <td><a href="{{ route('customers.show',['customer' =>  $user->id] ) }}">{{ $user->fullname() }}</a></td>
                                     <td class="text-left">{{ $user->email }}</td>
                                     <td class="text-right">{{ $user->phone_number }}</td>
-                                    <td> {{ optional(optional($user)->addresses->first())->first_name }} </br> {{ optional(optional($user)->addresses->first())->last_name }}  </br> {{ optional(optional($user)->addresses->first())->city }} </br> {{ optional(optional($user)->addresses->first())->city }}
-                                    </br> {{ optional(optional($user)->addresses->first())->address }} 
-                                    </br> {{ null !== optional($user->addresses->first())->address_state ? optional($user->addresses->first())->address_state->name : '' }} 
-
+                                    <td> 
+                                          
+                                         <span class="badge">{{ $user->orders->count() }}</span>
                                     </td>
                                     <td class="text-right">
                                        {{ $user->created_at }}
