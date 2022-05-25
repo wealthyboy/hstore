@@ -16,7 +16,7 @@
          <div class="card card-stats">
             <div class="card-content">
                <p class="category">Order Total</p>
-               <h3 class="card-title">{{ $currency=null }}{{ optional($user->orders)->sum('total') }}</h3>
+               <h3 class="card-title">₦{{ number_format(optional($user->orders)->sum('total')) }}</h3>
             </div>
          </div>
       </div>
@@ -24,7 +24,7 @@
          <div class="card card-stats">
             <div class="card-content">
                <p class="category">All Orders</p>
-               <h3 class="card-title">{{ $currency=null }}{{ optional($user->orders)->count() }}</h3>
+               <h3 class="card-title">₦{{ optional($user->orders)->count() }}</h3>
             </div>
          </div>
       </div>
@@ -150,29 +150,62 @@
                <!--  Here you can write extra buttons/actions for the toolbar-->
             </div>
             <div class="material-datatables">
-               <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                  <thead>
-                     <tr>
-                        <th>
-                           <div class="checkbox">
-                              <label>
-                              <input onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox" name="optionsCheckboxes" >
-                              </label>
-                           </div>
-                        </th>
-                        <th>Customer</th>
-                        <th>Item Name</th>
-                        <th>Price</th>
-                        <th>Qty</th>
-                        <th>Sku</th>
-                        <th>Total</th>
-                        <th class="disabled-sorting text-right">Date</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     
-                  </tbody>
-               </table>
+            <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                     <thead>
+                        <tr>
+                           <th>
+                              <div class="checkbox">
+                                 <label>
+                                 <input onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox" name="optionsCheckboxes" >
+                                 </label>
+                              </div>
+                           </th>
+                           <th>Order </th>
+
+                           <th>Invoice</th>
+                           <th>Customer</th>
+                           <th>Type</th>
+                           <th>Date Added</th>
+                           <th>Total</th>
+                           <th class="text-right">Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                       @foreach ($user->orders as $order )
+                            <tr>
+                            <td>
+                              <div class="checkbox">
+                                 <label>
+                                    <input type="checkbox" value="{{ $order->id }}" name="selected[]" >
+                                 </label>
+                              </div>
+                           </td>
+                           <td class="">{{ $order->id }}</td>
+
+                           <td class="text-left">{{ $order->invoice }}</td>
+                           <td>{{ $order->user->fullname() }}</td>
+                           <td>{{ $order->order_type }}</td>
+                           <td>{{ $order->created_at }}</td>
+                           <td class="text-left">{{ $order->currency  ?? '₦'}}{{ $order->get_total() }}</td>
+                           <td class="td-actions text-center">
+                             <span> <a href="{{ route('order.dispatch.note',['id'=>$order->id]) }}" rel="tooltip"   target="_blank" class="btn btn-success btn-simple " data-original-title="" title="Dispatch Note">
+                                 <i class="material-icons">dispatch</i>
+                              </a></span>
+                              <span><a href="{{ route('order.invoice',['id'=>$order->id]) }}" rel="tooltip"   target="_blank" class="btn btn-success btn-simple" data-original-title="" title="Print Invoice">
+                                 <i class="material-icons">print</i>
+                              </a></span>
+                              <span><a href="{{ route('admin.orders.show',['order'=>$order->id]) }}" rel="tooltip" class="btn btn-success btn-simple" data-original-title="" title="View">
+                                 <i class="fa fa-eye"></i>
+                              </a></span>
+                           </td>
+                        @endforeach   
+                        
+                     </tbody>
+                  </table>
+                  </form>
+                   
+                  <div class="pull-right">
+                </div>
             </div>
          </div>
          <!-- end content-->
