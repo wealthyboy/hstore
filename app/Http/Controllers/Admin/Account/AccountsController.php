@@ -87,21 +87,12 @@ class AccountsController extends Controller
         $all_sales = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))->get();
         $all_sales = null !== $all_sales ? $all_sales[0] : null;
         $amount = ProductVariation::select(\DB::raw('sum(price * quantity) as total'))->get();
-        
-
-        
+    
         $total_value = null !== $amount ? $amount[0] : null;
-
-
 
         $tows = $todays_sales->items_total - $todays_sales_s->price;
         //products quantities left
-
-
-    
-
         $remaining_products =  ProductVariation::sum('quantity');
-
 
         return view('admin.account.index',compact(
             'todays_orders',

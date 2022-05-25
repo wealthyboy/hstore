@@ -16,7 +16,7 @@
          <div class="card card-stats">
             <div class="card-content">
                <p class="category">Order Total</p>
-               <h3 class="card-title">{{ $currency=null }}{{ 0 }}</h3>
+               <h3 class="card-title">{{ $currency=null }}{{ optional($user->orders)->sum('price') }}</h3>
             </div>
          </div>
       </div>
@@ -24,7 +24,7 @@
          <div class="card card-stats">
             <div class="card-content">
                <p class="category">All Orders</p>
-               <h3 class="card-title">{{ $currency=null }}{{ 0 }}</h3>
+               <h3 class="card-title">{{ $currency=null }}{{ optional($user->orders)->count() }}</h3>
             </div>
          </div>
       </div>
