@@ -9,6 +9,8 @@ use App\Activity;
 
 
 use App\Http\Controllers\Controller;
+use App\User;
+
 
 
 class ActivityController extends Controller
@@ -21,6 +23,7 @@ class ActivityController extends Controller
     }
 
 	public function index(){
+		User::canTakeAction(1);
 		$activities = Activity::orderBy('created_at','DESC')->get();
 	    return view('admin.activity.index',compact('activities'));
     }

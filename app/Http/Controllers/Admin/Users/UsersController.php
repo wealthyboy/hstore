@@ -53,7 +53,7 @@ class UsersController extends Controller
 
     
 	public function create(Request $request){
-		//User::canTakeAction(2);
+		User::canTakeAction(1);
 		$states = State::all();
 		$permissions =Permission::get(); 
 		return view('admin.auth.register',compact('permissions','states')); 	
