@@ -26,12 +26,16 @@ class UsersController extends Controller
     }
 	/* display all users in the database */
 	public function index(Request $request){
+		User::canTakeAction(1);
+
 	    $users = User::admin()->get();	 	  
 	    return view('admin.users.index', compact('users'));  
     }
 	
 	/* display all users in the database */
 	public function edit(Request $request,$id){
+		User::canTakeAction(1);
+
 		$user = User::find($id);
 		$states = State::all();
 		$permissions =\DB::table('permissions')->get();
