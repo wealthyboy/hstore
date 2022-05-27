@@ -90,6 +90,8 @@ class AccountController extends Controller
 		public function updatePassword(Request $request){
 			//
 			if($request->isMethod('post')){
+
+				
 				$validator = Validator::make($request->all(), [
 					'old_password' => 'required|string|max:255',
 					'password' => 'bail|required|string|min:6',

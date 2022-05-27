@@ -104,6 +104,14 @@ class AccountsController extends Controller
         ->with('product_variation')
         ->first();
 
+
+        $product_variation_month = OrderedProduct::select('product_variation_id')
+        ->groupBy('product_variation_id')
+        ->orderByRaw('COUNT(*) DESC')
+        ->whereMonth('created_at', date('m'))        
+        ->with('product_variation')
+        ->first();
+
         return view('admin.account.index',compact(
             'todays_orders',
             'todays_sales',
@@ -113,7 +121,8 @@ class AccountsController extends Controller
             'all_sales',
             'remaining_products',
             'tows',
-            'product_variation'
+            'product_variation',
+            'product_variation_month'
         ));
     
     }
