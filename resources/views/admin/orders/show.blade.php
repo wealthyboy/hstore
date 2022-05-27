@@ -67,8 +67,6 @@
             </div>
          </div>
       </div>
-   </div>
-   <div class="col-md-4">
       <div class="card">
          <div class="card-content">
             <div class="panel panel-default">
@@ -108,6 +106,9 @@
             </div>
          </div>
       </div>
+   </div>
+   <div class="col-md-4">
+      
 
       <div class="card">
          <div class="card-content">
@@ -125,12 +126,26 @@
                   </div>
                   
                   <div class="form-group label-floating ">
-                     <input type="text" name="subject"  class="form-control" placeholder="Subject" />
+                     <input type="text" name="subject" value="Review your purchase"  class="form-control" placeholder="Subject" />
                   </div>
 
                   <div class="form-group label-floating is-empty">
                      <label class="control-label">Message</label>
-                     <textarea rows="10" name="message" class="form-control"></textarea>
+                     <textarea rows="10" id="message" name="message" class="form-control">
+                     <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">We want to thank you for shopping with us. </p>
+                        <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
+                           We are committed to delivering the highest quality product and services to our customers.
+                        </p>
+                           <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;"> 
+                           In today's digital world, online reviews are very important to companies like ours.
+                           </p>
+                           <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;"> 
+                              Will you take a moment of your time to jot down some feedback on our website about the product you purchased?
+                           </p>
+                           <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;"> 
+                              It's a quick and easy way for you to make a difference.
+                           </p>
+                     </textarea>
                      <input type="hidden" name="id" class="form-control" value="{{ $order->user->id }}" />
                      <input type="hidden" name="orderId" class="form-control" value="{{ $order->id }}" />
                   </div>
@@ -261,7 +276,16 @@
 </div>
 <!-- end row -->
 @endsection
+@section('page-scripts')
+   <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+@stop
 @section('inline-scripts')
+
+$(document).ready(function() {
+   CKEDITOR.replace('message',{
+      height: '200px'
+   })       
+});
 
 $(".update_status").on('change',function(e){
       let self = $(this)
@@ -297,4 +321,5 @@ $("#order-status").on('submit',function(e){
 
 
 @stop
+
 

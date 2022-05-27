@@ -13,16 +13,20 @@ class ReviewMail extends Mailable
 
     public $order;
 
+    public $request;
 
-    public function __construct($order)
+
+    public function __construct($request, $order)
     {
         $this->order = $order;
+
+        $this->request = $request;
     }
 
     
     public function build()
     {   
-        return $this->subject('Review your purchase')->view('emails.review.index');
+        return $this->subject($this->request->subject)->view('emails.review.index');
     }
 
 }

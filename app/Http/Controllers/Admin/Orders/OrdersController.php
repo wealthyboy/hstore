@@ -83,8 +83,8 @@ class OrdersController extends Controller{
 		} else {
             try{
 				$order  = Order::find($request->orderId);
-				$when   = now()->addMinutes(5); 
-				\Mail::to($order->user->email)->send(new ReviewMail($order));
+				$when   = now()->addMinutes(5);
+				\Mail::to($order->user->email)->send(new ReviewMail($request, $order));
 			} catch (\Throwable $th) {
 				dd($th);
 				\Log::info("Mail error :".$th);
