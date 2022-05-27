@@ -93,7 +93,7 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Best selling product this week</p>
-            <h3 class="card-title">{{  $product_variation->product_variation->name  }}</h3>
+            <h3 class="card-title">{{  optional($product_variation->product_variation)->name  }}</h3>
          </div>
       </div>
    </div>

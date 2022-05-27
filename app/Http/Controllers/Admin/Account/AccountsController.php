@@ -101,6 +101,7 @@ class AccountsController extends Controller
         ->groupBy('product_variation_id')
         ->orderByRaw('COUNT(*) DESC')
         ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+        ->with('product_variation')
         ->first();
 
         return view('admin.account.index',compact(
