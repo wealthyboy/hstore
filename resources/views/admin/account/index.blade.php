@@ -88,6 +88,15 @@
          </div>
       </div>
    </div>
+
+   <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card card-stats">
+         <div class="card-content">
+            <p class="category">Best selling product this week</p>
+            <h3 class="card-title">{{  $product_variation->product_variation->name  }}</h3>
+         </div>
+      </div>
+   </div>
  
 </div>
 <div class="row">

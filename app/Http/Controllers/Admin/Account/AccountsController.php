@@ -36,6 +36,9 @@ class AccountsController extends Controller
         //
         User::canTakeAction(1);
 
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+        Carbon::setWeekEndsAt(Carbon::SUNDAY);
+
         // if($request->has('from_date')){
         //     $graph_orders = OrderedProduct::select('id', 'created_at')
         //     ->get()
@@ -94,6 +97,12 @@ class AccountsController extends Controller
         //products quantities left
         $remaining_products =  ProductVariation::sum('quantity');
 
+        $product_variation= OrderedProduct::select('product_variation_id')
+        ->groupBy('product_variation_id')
+        ->orderByRaw('COUNT(*) DESC')
+        ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+        ->first();
+
         return view('admin.account.index',compact(
             'todays_orders',
             'todays_sales',
@@ -102,7 +111,8 @@ class AccountsController extends Controller
             'all_sales_value',
             'all_sales',
             'remaining_products',
-            'tows'
+            'tows',
+            'product_variation'
         ));
     
     }
