@@ -91,7 +91,11 @@ class AccountController extends Controller
 			//
 			if($request->isMethod('post')){
 
-				
+				if ($request->user()->isAdmin()) {
+					return redirect()->back()->with('status', 'You are an admin. You cannot change your password here.');
+				}
+
+
 				$validator = Validator::make($request->all(), [
 					'old_password' => 'required|string|max:255',
 					'password' => 'bail|required|string|min:6',

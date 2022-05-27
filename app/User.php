@@ -130,7 +130,7 @@ class User extends Authenticatable
 
 	public static function IsSuperUser(){
 		$model = \Auth::user();
-		return $model->users_permission->permission->name == 'Super User' ? true : false;
+		return $model->users_permission->permission->name == 'Owner' ? true : false;
 	}
 
 	public function activity(){
