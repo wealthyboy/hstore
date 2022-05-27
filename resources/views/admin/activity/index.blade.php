@@ -47,7 +47,7 @@
                                     <tr>
                                         <td class="text-left">{{ optional($activity->user)->name }}</td>
                                          <td class="">
-                                             <div  style="height: 150px; overflow-y: scroll;">
+                                             <div  style="height: {{ $activity->json ? 150px: null }}; overflow-y: scroll;">
                                                 
                                                 {{ optional($activity->user)->name }} 
                                                 <?php echo  html_entity_decode($activity->action) ?>  <br/>
