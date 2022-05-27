@@ -47,19 +47,24 @@
                                     <tr>
                                         <td class="text-left">{{ optional($activity->user)->name }}</td>
                                          <td class="">
-                                            {{ optional($activity->user)->name }} 
-                                            <?php echo  html_entity_decode($activity->action) ?>  <br/>
-                                            @if ($activity->json)
-                                                <?php $jsons =  json_decode($activity->json,true );  ?>
+                                             <div  style="height: 150px; overflow-y: scroll;">
                                                 
-                                                @foreach($jsons as $json)
-                                                    Name:  {{ $json['name']}} <br/> 
-                                                    Price:  {{ $json['price']}} <br/>
-                                                    Qty:  {{ $json['quantity']}} <br/>
-                                                    Sale Price:  {{ $json['sale_price']}} <br/>
-                                                <hr />
-                                                @endforeach
-                                            @endif
+                                                {{ optional($activity->user)->name }} 
+                                                <?php echo  html_entity_decode($activity->action) ?>  <br/>
+                                                @if ($activity->json)
+                                                    <?php $jsons =  json_decode($activity->json,true );  ?>
+                                                    
+                                                    @foreach($jsons as $json)
+                                                        Name:  {{ $json['name']}} <br/> 
+                                                        Price:  {{ $json['price']}} <br/>
+                                                        Qty:  {{ $json['quantity']}} <br/>
+                                                        Sale Price:  {{ $json['sale_price']}} <br/>
+                                                    <hr />
+                                                    @endforeach
+                                                @endif
+                                            
+                                            </div>
+                                            
                                         
                                         </td>
                                         <td>{{  $activity->created_at }}</td>
