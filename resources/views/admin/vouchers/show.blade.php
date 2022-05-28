@@ -13,7 +13,7 @@
          <div class="card-content">
             <div class="col-md-12">
                <div class="text-left">
-                  <h4 class="card-title">Sales for {{ $voucher->name }}</h4>
+                  <h4 class="card-title">Sales for {{ $voucher->code }}</h4>
                </div>
                <div class="text-right">
                </div>

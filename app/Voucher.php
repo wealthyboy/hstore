@@ -45,7 +45,7 @@ class Voucher extends Model
     }
 
     public function orders(){
-		return $this->hasMany(Order::class, 'coupon', 'name');
+		return $this->hasMany(Order::class, 'coupon', 'code');
     }
 
 
