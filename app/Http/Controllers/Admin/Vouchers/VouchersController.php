@@ -76,7 +76,7 @@ class VouchersController  extends Controller
     public function show($id)
     {
         $voucher = Voucher::findOrFail($id);
-		$orders  = Order::where('coupon', $voucher->name)->paginate(50);
+		$orders  = Order::where('coupon', $voucher->code)->paginate(50);
         return view('admin.vouchers.show',compact('orders','voucher'));
     }
 
