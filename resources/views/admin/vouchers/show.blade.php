@@ -77,6 +77,7 @@
                   </form>
                    
                   <div class="pull-right">
+                   {{ $orders->links() }}
                 </div>
             </div>
          </div>
