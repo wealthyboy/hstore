@@ -44,6 +44,10 @@ class Voucher extends Model
         );
     }
 
+    public function orders(){
+		return $this->hasMany(Order::class, 'coupon', 'name');
+    }
+
 
     public function is_coupon_expired(){
         if(!$this->expires->isFuture()){

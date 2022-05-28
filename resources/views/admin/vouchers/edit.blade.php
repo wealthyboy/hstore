@@ -80,7 +80,17 @@
                             </div>
                         </div>
 
+                        
+
                         <div class="clearfix"></div>
+                        <div class="col-lg-6 col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+									<i class="fa fa-dollar"></i>
+								</span>
+                                <input class="form-control" placeholder="Full name" value="{{ $voucher->full_name }}" name="full_name" id="full_name" type="text">
+                            </div>
+                        </div>
 
                         <input value="search" name="search" type="hidden">
                         <div class="form-group text-right">

@@ -9,6 +9,7 @@ use App\Voucher;
 use Carbon\Carbon;
 use App\Category;
 use App\User;
+use App\Order;
 use App\Ambassador;
 use App\Http\Helper;
 
@@ -29,8 +30,7 @@ class VouchersController  extends Controller
 	
 
 	public function index() {
-		$vouchers = Voucher::all();
-		//$categories = Category::all();
+		$vouchers = Voucher::latest()->get();
 		return view('admin.vouchers.index',compact('vouchers'));
 	}
 
@@ -54,6 +54,8 @@ class VouchersController  extends Controller
 		$voucher->user_id  = \Auth::user()->id;
 		$voucher->amount   = $request->discount;
 		$voucher->type   = $request->type;
+		$voucher->full_name   = $request->full_name;
+
 
 		$voucher->expires  = Helper::getFormatedDate($request->expiry);
 		$voucher->from_value = $request->has('from_value') ? $request->from_value : null;
@@ -65,15 +67,24 @@ class VouchersController  extends Controller
 	}
 
 
-
+	/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $voucher = Voucher::findOrFail($id);
+		$orders  = Order::where('coupon', $voucher->name)->get();
+        return view('admin.vouchers.show',compact('orders','voucher'));
+    }
 
 
 	public function create(Request $request) {		
 		return view('admin.vouchers.create');
 	}
 		
- 
-
 
 	public function store(Request $request) {
 
@@ -91,6 +102,8 @@ class VouchersController  extends Controller
 		$coupon->amount   = $request->discount;
 		$coupon->type     = $request->type;
 		$coupon->expires  = Helper::getFormatedDate($request->expiry);
+		$coupon->full_name   = $request->full_name;
+
 		$coupon->from_value = $request->has('from_value') ? $request->from_value : null;
 		//$coupon->category_id = $request->has('category') ? $request->category : null;
 		$coupon->status =$request->status;

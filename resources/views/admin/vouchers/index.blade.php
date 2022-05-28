@@ -41,7 +41,7 @@
                            <td class="text-left"> Code</td>
                            <td class="text-left"> Amount Percent</td>
                            <td class="text-left"> Rule From Amount</td>
-                           <td class="text-left"> Status</td>
+                           <td class="text-left"> Sales</td>
                            <td class="text-left"> Valid</td>
                            <td class="text-left"> Type</td> 
                            <td class="text-left"> Expires</td>
@@ -59,10 +59,11 @@
                                     </label>
                                  </div>
                               </td>
-                              <td class="text-left">{{ $voucher->code }}</</td>
+                              <td class="text-left"><a href="{{ route('vouchers.show',['voucher' =>  $voucher->id] ) }}">{{ $voucher->code }}</a></td>
                               <td class="text-left">%{{ $voucher->amount  }}</td>
                               <td class="text-left">{{ $voucher->from_value }}</td>
-                              <td style=" {{ $voucher->status == 1  ? 'background:green;' : ' background:red;' }} color: #fff; text-transform:uppercase;">{{ $voucher->status == 1 ? 'Approved': 'Not Approved' }}        
+                              <td style=""> 
+                                 <span class="badge">{{ $voucher->orders->count() }}</span>       
                               </td>
                               <td style="{{ $voucher->valid == 0  ? 'background:red;' : ' background:green;' }} color: #fff; text-transform:uppercase;">{{ $voucher->valid == 0 ? 'USED': 'YES' }}        
                               </td>

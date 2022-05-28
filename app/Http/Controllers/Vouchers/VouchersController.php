@@ -29,7 +29,7 @@ class VouchersController  extends Controller
 
 
 	public function index() {
-		$vouchers = Voucher::all();
+		$vouchers = Voucher::latest()->get();
 		$categories = Category::all();
 		return view('admin.vouchers.index',compact('categories','vouchers'));
 	}
@@ -51,9 +51,11 @@ class VouchersController  extends Controller
 
 			]);
 			$voucher->code     = $request->code;
-			$voucher->user_id  = \Auth::user()->id;
-			$voucher->amount   = $request->discount;
-			$voucher->type   = $request->type;
+			$voucher->user_id    = \Auth::user()->id;
+			$voucher->amount     = $request->discount;
+			$voucher->type     = $request->type;
+			$voucher->full_name   = $request->full_name;
+
 
 			$voucher->expires  = $this->getExpiryDate($request->expiry);
 			$voucher->from_value = $request->has('from_value') ? $request->from_value : null;
@@ -99,12 +101,13 @@ class VouchersController  extends Controller
 				'discount'  => 'required',
 			]);
 
-		
+		     dd($request->all());
 			$coupon->code     =  $request->code; 
 			$coupon->user_id  = \Auth::user()->id;
 			$coupon->amount   = $request->discount;
 			$coupon->type   = $request->type;
 			$coupon->expires  = $this->getExpiryDate($request->expiry);
+			$coupon->full_name   = $request->full_name;
 			$coupon->from_value = $request->has('from_value') ? $request->from_value : null;
 			//$coupon->category_id = $request->has('category') ? $request->category : null;
 			$coupon->status =$request->status != 1 ? 0 :$request->status;
