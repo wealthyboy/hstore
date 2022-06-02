@@ -119,23 +119,24 @@
                <form method="" id="order-status" action="#">
                   
                   <div class="form-group label-floating">
-                     <select  class="form-control mt-3 " name="message_type" id="">
+                     <select  class="form-control mt-3 " name="message_type" id="message_type">
                         <option value="1" selected>Order Confirmation</option>
                         <option value="2">Review</option>
                      </select>
                   </div>
                   
                   <div class="form-group label-floating ">
-                     <input type="text" name="subject" value="Review your purchase"  class="form-control" placeholder="Subject" />
+                     <input type="text" name="subject" value=""  class="form-control" placeholder="Subject" />
                   </div>
 
                   <div class="form-group label-floating is-empty">
-                     <label class="control-label">Message</label>
-                     <textarea rows="10" id="message" name="message" class="form-control">
-                     <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">We want to thank you for shopping with us. </p>
-                        <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
-                           We are committed to delivering the highest quality product and services to our customers.
-                        </p>
+                     <label class="control-label mb-5">Message</label>
+                     <div class=" message-review hide">
+                        <textarea rows="10" id="message" name="message" class="form-control">
+                           <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">We want to thank you for shopping with us. </p>
+                           <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
+                              We are committed to delivering the highest quality product and services to our customers.
+                           </p>
                            <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;"> 
                            In today's digital world, online reviews are very important to companies like ours.
                            </p>
@@ -145,7 +146,10 @@
                            <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; box-sizing: border-box; color: #3d4852; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;"> 
                               It's a quick and easy way for you to make a difference.
                            </p>
-                     </textarea>
+                        </textarea>
+                     </div>
+                    
+                     <textarea rows="10" id="message" name="message" class="form-control   message-order"></textarea>
                      <input type="hidden" name="id" class="form-control" value="{{ $order->user->id }}" />
                      <input type="hidden" name="orderId" class="form-control" value="{{ $order->id }}" />
                   </div>
@@ -223,7 +227,10 @@
                         </td>
                         <td class="td-name">
                            <a href="">{{  optional($order_product->product_variation)->name  ??  optional($order_product->product_variation)->product->product_name }}</a>
-                           <br><small></small>
+                           <br>
+                           <small>
+
+                           </small>
                         </td>
                         <td>
                            @if (null !== $order_product->product_variation)
@@ -236,7 +243,7 @@
                         </td>
                       
                         <td class="td-number text-right">
-                           {{  $order->currency }}{{  $order_product->order_price   }}
+                           {{ $order->currency }} {{  $order_product->order_price   }}
                         </td>
                         <td class="td-number">
                            {{ $order_product->quantity }}
@@ -300,6 +307,24 @@ $(".update_status").on('change',function(e){
       }).done(function(response){
          console.log(response)
       })
+})
+
+
+$("#message_type").on('change',function(e){
+      let self = $(this)
+
+      let message_review = $(".message-review");
+      let message_order = $(".message-order");
+
+    if (message_order.hasClass("hide")) {
+        message_order.removeClass("hide");
+        message_review.addClass("hide");
+    } else {
+        message_review.removeClass("hide");
+        message_order.addClass("hide");
+    }
+
+      console.log(self)
 })
 
 
