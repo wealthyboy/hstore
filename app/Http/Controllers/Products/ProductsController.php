@@ -97,6 +97,11 @@ class ProductsController extends Controller
         $all = true;
 
 
+        if ($request->debug) {
+          dd($products);
+        }
+
+
         if($request->ajax())
         { 
         return response()->json([

@@ -123,7 +123,7 @@ trait FormatPrice
     public function getConvertedPriceAttribute(){
      return  $this->ConvertCurrencyRate($this->price);   
     }
-    
+
     public function ConvertCurrencyRate($price){
       
       $rate = Helper::rate();
