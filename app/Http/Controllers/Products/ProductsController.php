@@ -53,6 +53,10 @@ class ProductsController extends Controller
         $products->appends(request()->all());
         $products->load('product');
         $all = false;
+
+        if ($request->debug) {
+            dd($products);
+          }
         if($request->ajax())
         { 
         return response()->json([
