@@ -53,7 +53,7 @@ class WebHookController extends Controller
             }
 
 
-            if ($carts->count() < 1 ){
+            if (null == $carts){
                 return  http_response_code(200);
             }
 
@@ -62,7 +62,7 @@ class WebHookController extends Controller
             $order->user_id = $user->id;
             $order->address_id         =  optional($user->active_address)->id;
             $order->coupon             =  $input['coupon'];
-            $order->status             = 'Processing';
+            $order->status             =  'Processing';
             $order->shipping_id        =  $shipping_id;
             $order->shipping_price     =  optional(Shipping::find($shipping_id))->converted_price;
             $order->currency           =  optional($currency)->symbol ?? '₦';
@@ -78,8 +78,8 @@ class WebHookController extends Controller
             $order->email              =  optional($user->active_address)->email;
             $order->phone_number       =  optional($user->active_address)->phone_number;
             $order->city               =  optional($user->active_address)->city;
-            $order->state           =  optional(optional($user->active_address)->address_state)->name;
-            $order->country         =  optional(optional($user->active_address)->address_country)->name;
+            $order->state              =  optional(optional($user->active_address)->address_state)->name;
+            $order->country            =  optional(optional($user->active_address)->address_country)->name;
     
             $order->save();
 
