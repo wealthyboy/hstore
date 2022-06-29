@@ -12,7 +12,7 @@
             <div class="card">
             <div class="text-right">
 
-                <a href="/admin/export" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                <a href="/admin/export" rel="tooltip" title="Export" class="btn btn-danger btn-simple btn-xs">
                     Export
                 </a>
            
