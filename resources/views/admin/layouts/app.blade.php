@@ -55,9 +55,7 @@
 
     <div class="sidebar-wrapper">
         <div class="user">
-            <div class="photo">
-                <img src="/store/img/default_img.png" />
-            </div>
+           
             <div class="info">
                 <a data-toggle="collapse" href="#" class="collapsed">
                     <span>
