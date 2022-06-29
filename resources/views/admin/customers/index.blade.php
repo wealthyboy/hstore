@@ -11,6 +11,10 @@
         <div class="col-md-12">
             <div class="card">
             <div class="text-right">
+
+                <a href="/admin/export" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                    Export
+                </a>
            
                 <a href="javascript:void(0)" onclick="confirm('Are you sure?') ? $('#form-customers').submit() : false;" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                     <i class="material-icons">close</i>

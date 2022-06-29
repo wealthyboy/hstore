@@ -10,6 +10,9 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::get('live', 'Live\LiveController@activate');
     Route::get('activities','Admin\Activity\ActivityController@index');
 
+    Route::get('export','Admin\Excel\ExcelController@export');
+
+
 
     Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);
 

@@ -23,6 +23,7 @@
     "laravel/socialite": "^4.3",
     "laravel/telescope": "^3.5",
     "laravel/tinker": "^2.0",
+    "maatwebsite/excel": "^3.1",
     "mailchimp/mailchimp": "^2.0",
     "mailgun/mailgun-php": "^3.0",
     "milon/barcode": "^6.0",
