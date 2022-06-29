@@ -4,7 +4,7 @@ namespace App\Exports;
 use App\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class InvoicesExport implements FromCollection
+class CustomerExport implements FromCollection
 {
     public function collection()
     {
