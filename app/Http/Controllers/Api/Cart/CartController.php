@@ -84,6 +84,8 @@ class CartController  extends Controller {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart',$value);
 			$cookie = cookie('cart',session()->get('cart'), 60*60*7);
+			$expires = time() + 60 * 60 * 2; // two hours
+
 			
 			if($product_variation->is_gift_card)
 			{

@@ -31,7 +31,7 @@ class HomeController extends Controller
         $products = Product::where('featured',1)->orderBy('created_at','DESC')->take(8)->get();
         $reviews  = Review::where('is_verified', 1)->inRandomOrder()->orderBy('created_at','DESC')->take(20)->get();
         $posts  =   Information::orderBy('created_at','DESC')->where(['blog'=>true,'is_active' => true])->take(6)->get();
-        $c = Cookie::queue(Cookie::make('nw', 'nwt',  strtotime( '+12 hours' ))); 
+        $c = Cookie::make('nw', 'nwt',  strtotime( '+12 hours' ));
 
         if ($request->debug){
           dd($c);
