@@ -18,6 +18,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
     Route::resource('orders','Admin\Orders\OrdersController',['names' => 'admin.orders']);
     Route::get('orders/invoice/{id}','Admin\Orders\OrdersController@invoice')->name('order.invoice');
+    
     Route::post('update/ordered_product/status','Admin\Orders\OrdersController@updateStatus');
     Route::post('orders/status','Admin\Orders\OrdersController@updateOrderStatus');
 

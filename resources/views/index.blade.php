@@ -209,6 +209,7 @@
         <p>Join the geng!</p>
         
         <sign-up />
+        <div></div>
         <div class="newsletter-subscribe">
             <div class="checkbox">
                 <label>

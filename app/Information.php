@@ -22,8 +22,6 @@ class Information extends Model
     public $appends = [
         'link',		
         'image_m',
-
-
     ];
 	
 	protected $table = 'information';
