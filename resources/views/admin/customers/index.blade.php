@@ -11,8 +11,8 @@
         <div class="col-md-12">
             <div class="card">
             <div class="text-right">
-                <a href="#" rel="tooltip" title="Export" class="btn btn-info btn-simple btn-xs">
-                    Last download time {{ optional($d)->d_t }}
+                <a href="#" rel="tooltip"  class="btn btn-info btn-simple btn-xs">
+                    Last download time {{ optional($d)->d_t || '------'}}
                 </a>
                 <a href="/admin/export" rel="tooltip" title="Export" class="btn btn-danger btn-simple btn-xs">
                     Export
