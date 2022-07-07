@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Customers;
 
+use App\DownloadTime;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
@@ -20,9 +21,10 @@ class CustomersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $d = DownloadTime::first();
         $users = (new User())->customers()->latest()->get();
-        return   view('admin.customers.index', compact('users'));  
+        return   view('admin.customers.index', compact('users','d'));  
     }
 
     /**
