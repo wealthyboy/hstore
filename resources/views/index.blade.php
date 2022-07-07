@@ -207,9 +207,9 @@
         <p title="Subscribe to the hautesignatures newsletter to receive timely updates" class="mb-2">Subscribe to the hautesignatures newsletter to receive timely updates.
             You don’t want to miss out with new trends in fashion. Join Now and receive updates to glam up!</p> 
         <p>Join the geng!</p>
-        
+        <div>
         <sign-up />
-        <div></div>
+        </div>
         <div class="newsletter-subscribe">
             <div class="checkbox">
                 <label>
