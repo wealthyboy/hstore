@@ -30,7 +30,7 @@ class PageBannerController extends Controller
     {   
 
         $this->validate($request,[
-            'image' => 'required'
+           // 'image' => 'required'
         ]);
 
         $pb = PageBanner::where('page_name',$request->page_name)->first();

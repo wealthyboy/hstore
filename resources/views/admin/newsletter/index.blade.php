@@ -46,7 +46,7 @@
                                 Body
                            </label>
                            
-                           <textarea class="form-control"  name="" id="" cols="30" rows="50">{{ optional($newsletter_image)->description }}</textarea>
+                           <textarea class="form-control"  name="" id="" cols="30" rows="20">{{ optional($newsletter_image)->description }}</textarea>
                         </div>
                     
                     </div>    
