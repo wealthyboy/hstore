@@ -20,7 +20,7 @@ class ExcelController extends Controller
     public function export()
     {   
         $d = DownloadTime::first();
-        
+
         if ($d !== null) {
            $d->d_t = Carbon::now(); 
            $d->save();
@@ -30,7 +30,7 @@ class ExcelController extends Controller
             $d->save();
         }
 
-        return Excel::download(new CustomerExport, 'customers.xlsx');
+        return Excel::download(new CustomerExport, 'customers.csv');
     }
 
    
