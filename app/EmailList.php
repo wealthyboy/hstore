@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmailList extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','use_users'];
 
     public function news_letters(){
         return $this->hasMany('App\Newsletter');

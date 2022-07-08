@@ -21,16 +21,16 @@
                             />
                     </div>  
                     <div class="col-md-12">
-                           <legend>  
-                              Use users
-                           </legend>
-                           <div class="togglebutton">
-                              <label>
-                                 <input name="use_users"  value="1" type="checkbox" >
-                                 Users
-                              </label>
-                           </div>
-                        </div> 
+                        <legend>  
+                            Use users
+                        </legend>
+                        <div class="togglebutton">
+                            <label>
+                                <input name="use_users"  value="1" type="checkbox" >
+                                Users
+                            </label>
+                        </div>
+                    </div> 
                     <div class="form-footer text-right">
                         <button type="submit" class="btn btn-rose btn-round  btn-fill">Submit</button>
                     </div>
