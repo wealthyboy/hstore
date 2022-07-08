@@ -58,13 +58,7 @@ class ProductsController extends Controller
             foreach( $request->colors as $c){
                $colors[] = ucwords(str_replace("_"," ",$c));
             }
-
           // $products->whereIn('attribute_name',['Black']);
-           $products = $products->map(function ($attribute_name) {
-              return strtoupper($attribute_name);
-            })->reject(function ($name) {
-                return empty($attribute_name);
-            });
         }
 
         
