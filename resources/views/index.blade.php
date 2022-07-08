@@ -75,9 +75,9 @@
                         <a href="{{ optional($related_product)->link }}">{{ optional($related_product)->product_name }}</a>
                     </h3>
                     <div class="price-box">
-                        @if (optional($related_product)->sale_price ) 
+                        @if (optional($related_product)->salePrice() ) 
                             <span class="old-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->price)  }}</span>
-                            <span class="product-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->sale_price)  }}</span>
+                            <span class="product-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->salePrice())  }}</span>
                         @else
                            <span title="{{ optional($related_product->variant)->default_discounted_price }} pppp" class="product-price  pppp">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->converted_price)  }}</span>
                         @endif
