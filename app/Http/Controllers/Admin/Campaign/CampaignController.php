@@ -10,6 +10,7 @@ use App\Template;
 use App\Mail\NewsLetterEmail;
 //use Mailgun\Mailgun;
 use App\EmailStat;
+use App\User;
 use Carbon\Carbon;
 
 
@@ -140,7 +141,14 @@ class CampaignController extends Controller
             $stat = new EmailStat();
             $stat->sent = $email_list->count();
             $stat->save();
-            foreach ($email_list->news_letters as $news_letter) {
+
+            if ($email_list->use_users) {
+                $users = User::all();
+            } else {
+                $users = $email_list->news_letters;
+            }
+            
+            foreach ($users as $news_letter) {
                 \Mail::to($news_letter->email)
 			   ->send(new NewsLetterEmail($template,$request->subject));
             }
