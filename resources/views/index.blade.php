@@ -29,9 +29,7 @@
 
         <div class="products-slider owl-carousel owl-theme dots-top">
             @foreach( $products as $related_product)
-            @if (optional($related_product->variant)->converted_price < 1)
-               @continue
-            @endif
+           
 
             <div class="product-default inner-quickview inner-icon">
                 <figure>
