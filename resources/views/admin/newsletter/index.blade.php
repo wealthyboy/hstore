@@ -31,27 +31,22 @@
                         </div>
                         <div class="form-group label-floating">
                            <label class="control-label">
-                                X-pos
+                                Title
                                 <small>*</small>
                            </label>
                            <input class="form-control"
                                 name="x_pos"
                                 type="text"
                                 required="true"
-                                value="{{ optional($newsletter_image)->x_pos }}"
+                                value="{{ optional($newsletter_image)->title }}"
                            />
                         </div>
                         <div class="form-group label-floating">
                            <label class="control-label">
-                                Y-pos
-                                <small>*</small>
+                                Body
                            </label>
-                           <input class="form-control"
-                                name="y_pos"
-                                type="text"
-                                required="true"
-                                value="{{ optional($newsletter_image)->y_pos }}"
-                           />
+                           
+                           <textarea class="form-control"  name="" id="" cols="30" rows="50">{{ optional($newsletter_image)->description }}</textarea>
                         </div>
                     
                     </div>    

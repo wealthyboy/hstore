@@ -213,7 +213,7 @@
         <div class="newsletter-subscribe">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="1">
+                    <input type="checkbox" id="pop-show" value="1">
                     Don't show this popup again
                 </label>
             </div>

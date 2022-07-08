@@ -37,8 +37,8 @@ class PageBannerController extends Controller
         if (null !== $pb){
            $pb->image = $request->image;
            $pb->page_name = $request->page_name;
-           $pb->x_pos = $request->x_pos;
-           $pb->y_pos = $request->y_pos;
+           $pb->title = $request->title;
+           $pb->description = $request->description;
            $pb->save();
            return back();
         }
@@ -46,8 +46,8 @@ class PageBannerController extends Controller
         $page_banner = new PageBanner;
         $page_banner->image = $request->image;
         $page_banner->page_name = $request->page_name;
-        $page_banner->x_pos = $request->x_pos;
-        $page_banner->y_pos = $request->y_pos;
+        $page_banner->title = $request->title;
+        $page_banner->description = $request->description;
         $page_banner->save();
         return back();
     }  
