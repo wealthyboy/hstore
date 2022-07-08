@@ -115,6 +115,7 @@ class ProductsController extends Controller
         { 
         return response()->json([
             'products' => $products->toArray(),
+            'd' => true,
             'category_attributes' => $category_attributes->count()
         ]); 
         }
