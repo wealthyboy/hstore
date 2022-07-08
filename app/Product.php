@@ -132,12 +132,14 @@ class Product extends Model
 		 
 	public function link()
 	{
-		// $link  = '/product/';
-		// $link .=  optional(optional($this->category)->category)->slug ? 
-		//           optional(optional($this->category)->category)->slug .'/' :
-		//           null .'/';
-		// $link .= $this->slug;
-		// return $link;
+		$slug = $this->categories->count() ? $this->categories->first()->slug : null;
+        $pv_slug =  $this->slug;
+		$link  = '/product/';
+		$link .=  optional(optional($this->category)->category)->slug ? 
+		          optional(optional($this->category)->category)->slug .'/' :
+		          $slug .'/';
+		$link .= $pv_slug;
+		return $link;
 	}
 
 
