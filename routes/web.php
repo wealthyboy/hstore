@@ -94,7 +94,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::resource('users',  'Admin\Users\UsersController',['names'=>'admin.users']);
     Route::resource('customers', 'Admin\Customers\CustomersController',['name'=>'customers']);
     Route::resource('newsletter',              'Admin\NewsLetter\NewsLetterController',['name'=>'newsletter']);
-    Route::resource('lists',              'Admin\EmailLists\EmailListsController',['name'=>'lists']);
+    Route::resource('lists',                'Admin\EmailLists\EmailListsController',['name'=>'lists']);
     Route::get('lists/emails/create/{id}',      'Admin\NewsLetter\NewsLetterController@create');
     Route::post('lists/emails/create/{id}',      'Admin\NewsLetter\NewsLetterController@store');
     Route::resource('campaigns',              'Admin\Campaign\CampaignController',['name'=>'campaigns']);
