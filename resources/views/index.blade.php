@@ -19,7 +19,7 @@
 
 
 
-<div class="container-fluid">
+<div id="{{ optional($products)->count() }}" class="container-fluid">
     
     @if ( optional($products)->count() )
 
