@@ -58,7 +58,7 @@ class ProductsController extends Controller
             foreach( $request->colors as $c){
                $colors[] = ucwords(str_replace("_"," ",$c));
             }
-          // $products->whereIn('attribute_name',['Black']);
+            $products->whereNotIn('id',[7004]);
         }
 
         
