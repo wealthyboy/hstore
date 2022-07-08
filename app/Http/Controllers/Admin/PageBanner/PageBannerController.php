@@ -40,7 +40,6 @@ class PageBannerController extends Controller
            $pb->title = $request->title;
            $pb->description = $request->description;
            $pb->save();
-           dd($page_banner);
 
            return back();
         }

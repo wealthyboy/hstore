@@ -203,10 +203,8 @@
 <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url({{ $news_letter_image->image }})">
     <div class="newsletter-popup-content">
         <img src="{{ $system_settings->logo_path() }}"  class="logo-newsletter" alt="{{ Config('app.name') }} Logo">
-        <h2>Join The Fashionista Stylish Geng!</h2>
-        <p title="Subscribe to the hautesignatures newsletter to receive timely updates" class="mb-2">Subscribe to the hautesignatures newsletter to receive timely updates.
-            You don’t want to miss out with new trends in fashion. Join Now and receive updates to glam up!</p> 
-        <p>Join the geng!</p>
+        <h2>{{ $news_letter_image->title }}</h2>
+        <?php echo  html_entity_decode($news_letter_image->description);?>
         <div>
         <sign-up />
         </div>
