@@ -35,7 +35,7 @@
                                 <small>*</small>
                            </label>
                            <input class="form-control"
-                                name="x_pos"
+                                name="title"
                                 type="text"
                                 required="true"
                                 value="{{ optional($newsletter_image)->title }}"
@@ -46,7 +46,7 @@
                                 Body
                            </label>
                            
-                           <textarea class="form-control"  name="" id="" cols="30" rows="20">{{ optional($newsletter_image)->description }}</textarea>
+                           <textarea class="form-control"  name="description" id="" cols="30" rows="20">{{ optional($newsletter_image)->description }}</textarea>
                         </div>
                     
                     </div>    
