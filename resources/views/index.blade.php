@@ -29,10 +29,7 @@
 
         <div class="products-slider owl-carousel owl-theme dots-top">
             @foreach( $products as $related_product)
-            @if (optional($related_product->variant)->converted_price < 1)
-               @continue
-            @endif
-
+            @if (optional($related_product)->has_variant)
             <div class="product-default inner-quickview inner-icon">
                 <figure>
                     <a href="{{ optional($related_product->variant)->link }}">
@@ -59,6 +56,37 @@
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
             </div>
+            @else
+
+            <div class="product-default inner-quickview inner-icon">
+                <figure>
+                    <a href="{{ optional($related_product)->link }}">
+                        <img  src="{{ optional($related_product)->image_to_show_m }}">
+                    </a>
+                    @if ( optional($related_product)->default_discounted_price > 1)
+                    <div class="label-group">
+                        <span class="product-label label-sale">-{{ optional($related_product)->default_percentage_off }}%</span>
+                    </div>
+                    @endif
+                    
+                </figure>
+                <div class="product-details">
+                    <h3 class="product-title">
+                        <a href="{{ optional($related_product)->link }}">{{ optional($related_product)->name }}</a>
+                    </h3>
+                    <div class="price-box">
+                        @if (optional($related_product)->default_discounted_price ) 
+                            <span class="old-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->converted_price)  }}</span>
+                            <span class="product-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->default_discounted_price)  }}</span>
+                        @else
+                           <span title="{{ optional($related_product->variant)->default_discounted_price }} pppp" class="product-price  pppp">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->converted_price)  }}</span>
+                        @endif
+                    </div><!-- End .price-box -->
+                </div><!-- End .product-details -->
+            </div>
+            @endif
+
+           
 
 
 
