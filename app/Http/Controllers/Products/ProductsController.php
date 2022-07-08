@@ -104,7 +104,7 @@ class ProductsController extends Controller
             foreach( $request->colors as $c){
                $colors[] = ucwords(str_replace("_"," ",$c));
             }
-            $products->whereIn('attribute_name',$colors);
+            $products->whereNotIn('attribute_name',$colors);
         }
         if ($request->debug) {
           dd($products);
