@@ -34,7 +34,7 @@ class HomeController extends Controller
         $c = Cookie::make('nw', 'nwt',  strtotime( '+20 seconds' ));
 
         if ($request->debug){
-          dd($c);
+          dd($products);
         }
             
         if ( empty($site_status->make_live) ) {
