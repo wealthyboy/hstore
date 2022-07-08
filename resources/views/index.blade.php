@@ -29,7 +29,7 @@
 
         <div class="products-slider owl-carousel owl-theme dots-top">
             @foreach( $products as $related_product)
-            @if (optional($related_product)->has_variant)
+            @if (optional($related_product)->has_variants)
             <div class="product-default inner-quickview inner-icon">
                 <figure>
                     <a href="{{ optional($related_product->variant)->link }}">
