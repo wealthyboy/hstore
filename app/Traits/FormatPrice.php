@@ -31,8 +31,8 @@ trait FormatPrice
           ? $this->ConvertCurrencyRate($this->variant->sale_price)
           : null;
       } else {
-          return null !== optional($this->default_variation)->sale_price  &&  optional(optional($this->default_variation)->sale_price_expires)->isFuture()  
-          ? $this->ConvertCurrencyRate(optional($this->default_variation)->sale_price)
+          return null !== $this->sale_price  &&  optional($this->sale_price_expires)->isFuture()  
+          ? $this->ConvertCurrencyRate(optional($this)->sale_price)
           : null;
       }
       return null;
