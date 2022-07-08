@@ -53,6 +53,13 @@ class ProductsController extends Controller
         $products->appends(request()->all());
         $products->load('product');
         $all = false;
+        $colors = [];
+        if ($request->colors) {
+            foreach( $request->colors as $c){
+               $colors[] = ucwords(str_replace("_"," ",$c));
+            }
+            $products->whereIn('attribute_name',$colors);
+        }
 
         if ($request->debug) {
             dd($products);
@@ -101,13 +108,7 @@ class ProductsController extends Controller
         $products->appends(request()->all());
         $products->load('product');
         $all = true;
-        $colors = [];
-        if ($request->colors) {
-            foreach( $request->colors as $c){
-               $colors[] = ucwords(str_replace("_"," ",$c));
-            }
-            $products->whereNotIn('attribute_name',$colors);
-        }
+        
         if ($request->debug) {
           dd($products);
         }
