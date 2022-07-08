@@ -55,10 +55,11 @@ class ProductsController extends Controller
         $all = false;
         $colors = [];
         if ($request->colors) {
+            return 'eeee';
             foreach( $request->colors as $c){
                $colors[] = ucwords(str_replace("_"," ",$c));
             }
-           $products->whereIn('attribute_name',['Black']);
+           $products->whereIn('name',['Black']);
         }
 
         if ($request->debug) {
