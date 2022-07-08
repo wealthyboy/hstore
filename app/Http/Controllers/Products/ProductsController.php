@@ -58,6 +58,8 @@ class ProductsController extends Controller
             foreach( $request->colors as $c){
                $colors[] = ucwords(str_replace("_"," ",$c));
             }
+
+            return $colors;
            $products->whereIn('name',['Black']);
         }
 
