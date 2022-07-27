@@ -41,6 +41,7 @@ class EmailListsController extends Controller
         $this->validate($request, [
 			'name' => 'required|unique:email_lists',
 		]);
+        
 		EmailList::Insert($request->except('_token'));
 		return redirect()->route('lists.index'); 
     }
