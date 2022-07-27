@@ -228,24 +228,7 @@
 
 
 
-<div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url({{ $news_letter_image->image }})">
-    <div class="newsletter-popup-content">
-        <img src="{{ $system_settings->logo_path() }}"  class="logo-newsletter" alt="{{ Config('app.name') }} Logo">
-        <h2>{{ $news_letter_image->title }}</h2>
-        <?php echo  html_entity_decode($news_letter_image->description);?>
-        <div>
-        <sign-up />
-        </div>
-        <div class="newsletter-subscribe">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="pop-show" value="1">
-                    Don't show this popup again
-                </label>
-            </div>
-        </div>
-    </div><!-- End .newsletter-popup-content -->
-</div><!-- End .newsletter-popup -->
+
 
 
 
