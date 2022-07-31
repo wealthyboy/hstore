@@ -47,7 +47,7 @@ class CheckoutController extends Controller
 	public function __construct()
 	{
 		$this->middleware('auth');
-		dd("We on a break");
+		//dd("We on a break");
 		$this->settings =  SystemSetting::first();
 	}
 
@@ -62,21 +62,18 @@ class CheckoutController extends Controller
 	}
 
 	
-	public function confirm( Request $request, OrderedProduct $ordered_product,Order $order ) { 
+	public function confirm( Request $request, OrderedProduct $ordered_product,Order $order ) 
+	{ 
 		
 		$rate  = Helper::rate();
 		$user  = \Auth::user();
 		$carts = Cart::all_items_in_cart();
 		$cart  = new Cart();
-
 		$order->user_id = $user->id;
-		$order->address_id      =  $user->active_address->id;
-		$code = trim(session('coupon'));
+		$order->address_id  = $user->active_address->id;
+		$code   = trim(session('coupon'));
 		$coupon =  Voucher::where('code',$code)->first();
-		
-		
 		$order->coupon          = null !== $coupon && $coupon->is_gift_card ? null :  session('coupon');
-
 		$order->status          = 'Processing';
 		$order->shipping_id     =  $request->shipping_id;
 		$order->shipping_price  =  optional(Shipping::find($request->shipping_id))->converted_price;
@@ -95,11 +92,10 @@ class CheckoutController extends Controller
         $order->city            =  optional($user->active_address)->city;
         $order->state           =  optional(optional($user->active_address)->address_state)->name;
 		$order->country         =  optional(optional($user->active_address)->address_country)->name;
-
-        
-		$order->ip              = $request->ip();
-		$order->user_agent      = $request->server('HTTP_USER_AGENT');
+		$order->ip              =  $request->ip();
+		$order->user_agent      =  $request->server('HTTP_USER_AGENT');
 		$order->save(); 
+
 		foreach ( $carts   as $cart){
 			$insert = [
 				'order_id'=>$order->id,
