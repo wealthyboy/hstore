@@ -47,6 +47,7 @@ class CheckoutController extends Controller
 	public function __construct()
 	{
 		$this->middleware('auth');
+		dd("We on a break");
 		$this->settings =  SystemSetting::first();
 	}
 
