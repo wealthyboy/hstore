@@ -95,7 +95,7 @@ h6,
     margin-top: 0;
     font-weight: 700;
     font-family: 'Roboto', sans-serif;
-    color: #e13b3f;
+    color: #000;
 }
 
 .bgimg {
