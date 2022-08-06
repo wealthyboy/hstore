@@ -2817,7 +2817,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     payWithZilla: function payWithZilla() {
       var connect = new _usezilla_zilla_connect__WEBPACK_IMPORTED_MODULE_5___default.a();
       var config = {
-        publicKey: "PK_PROD_9949a7c5fc49cab31e518c0b40701b0af42c154d1b2f860ebdd63bbbb8c56a06",
+        publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
         onSuccess: function onSuccess(data) {
           return console.log(data);
         },
