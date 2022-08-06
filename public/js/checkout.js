@@ -2814,6 +2814,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       console.log(e);
       this.use_gift_card = !this.use_gift_card;
     },
+    payWithZilla: function payWithZilla() {
+      var connect = new _usezilla_zilla_connect__WEBPACK_IMPORTED_MODULE_5___default.a();
+      var config = {
+        publicKey: "PK_PROD_9949a7c5fc49cab31e518c0b40701b0af42c154d1b2f860ebdd63bbbb8c56a06",
+        onSuccess: function onSuccess(data) {
+          return console.log(data);
+        },
+        clientOrderReference: "random string",
+        title: "order title",
+        amount: 20000
+      };
+      connect.openNew(config);
+    },
     payWithPaystack: function payWithPaystack() {
       if (this.meta.cart_is_only_gift_card) {
         this.delivery_option = "Email";
@@ -23150,7 +23163,7 @@ var render = function() {
                                     value: "Place order",
                                     "data-value": "Place Order"
                                   },
-                                  on: { click: _vm.payWithPaystack }
+                                  on: { click: _vm.payWithZilla }
                                 },
                                 [
                                   _vm.checkingout

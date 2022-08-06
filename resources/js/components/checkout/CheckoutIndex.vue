@@ -308,7 +308,7 @@
                             <p class="form-field-wrapper   col-sm-12 mb-3">
 
                                  <template>
-                                    <button @click="payWithPaystack" type="button" :class="{'disabled': payment_is_processing}" class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order" id="p lace_order" value="Place order" data-value="Place Order">
+                                    <button @click="payWithZilla" type="button" :class="{'disabled': payment_is_processing}" class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order" id="p lace_order" value="Place order" data-value="Place Order">
                                         <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
                                          Buy now pay later
                                     </button>
@@ -549,6 +549,18 @@ export default {
     payWithGiftCard: function (e) {
       console.log(e)
       this.use_gift_card = !this.use_gift_card
+    },
+    payWithZilla:  function() {
+      const connect = new Connect();
+      const config = {
+        publicKey: "PK_PROD_9949a7c5fc49cab31e518c0b40701b0af42c154d1b2f860ebdd63bbbb8c56a06",
+        onSuccess: (data) => console.log(data),
+        clientOrderReference: "random string",
+        title: "order title",
+        amount: 20000,
+      };
+
+      connect.openNew(config);
     },
     payWithPaystack: function () {
       if (this.meta.cart_is_only_gift_card){
