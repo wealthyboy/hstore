@@ -23,6 +23,7 @@
         "webpack-bundle-analyzer": "^3.8.0"
     },
     "dependencies": {
+        "@usezilla/zilla-connect": "^1.0.6",
         "bootstrap": "^4.5.0",
         "btecu-eonasdan-bootstrap-datetimepicker": "^4.17.50",
         "jquery": "^3.5.1",

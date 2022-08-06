@@ -411,6 +411,7 @@ import message from "../message/index";
 import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 import ErrorMessage from "../messages/components/Error";
+import Connect from "@usezilla/zilla-connect";
 
 export default {
   components: {
@@ -509,6 +510,8 @@ export default {
      document.getElementById("full-bg").style.display = "none";
       this.pageIsLoading = false;
     });
+
+    console.log(Connect)
   },
   methods: {
     ...mapActions({
