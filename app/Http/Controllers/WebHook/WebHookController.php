@@ -150,7 +150,7 @@ class WebHookController extends Controller
 
     }
 
-    public function zila(Request $request){
+    public function zilla(Request $request){
         Log::info($request->all());
         $data = $request->all();
         Notification::route('mail', 'jacob.atam@gmail.com')
