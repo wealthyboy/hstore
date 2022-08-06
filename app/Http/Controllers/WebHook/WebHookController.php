@@ -19,7 +19,9 @@ use App\Mail\SendGiftCard;
 use App\Jobs\ReviewProduct;
 
 use App\SystemSetting;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\ErrorNotification;
 
 
 class WebHookController extends Controller
@@ -147,6 +149,14 @@ class WebHookController extends Controller
         
 
     }
+
+    public function zila(Request $request){
+        Log::info($request->all());
+        $data = $request->all();
+        Notification::route('mail', 'jacob.atam@gmail.com')
+                        ->notify(new ErrorNotification($data));
+    }
+
 
     public function gitHub()
     {

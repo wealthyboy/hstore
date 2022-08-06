@@ -214,7 +214,9 @@ Route::group(['prefix' => '/api','middleware' => 'currencyByIp'], function () {
     Route::get('blog/{blog}',   'Api\Blog\BlogController@show');
 });
 
-Route::post('webhook/payment',     'WebHook\WebHookController@payment');
+Route::post('webhook/payment', 'WebHook\WebHookController@payment');
+Route::post('webhook/zila',  'WebHook\WebHookController@zila');
+
 Route::post('contact/store',        'Contact\ContactController@store');
 
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
