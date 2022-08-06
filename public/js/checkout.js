@@ -2675,6 +2675,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2704,7 +2711,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       paymentIsProcessing: false,
       shipping: false,
       delivery_option: null,
-      order_text: "Place Order",
+      order_text: "Pay Now",
       payment_is_processing: false,
       voucher: [],
       error: null,
@@ -23127,6 +23134,42 @@ var render = function() {
                             staticClass: "form-field-wrapper   col-sm-12 mb-3"
                           },
                           [
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn   bold  btn--primary btn-round btn-lg btn-block",
+                                  class: {
+                                    disabled: _vm.payment_is_processing
+                                  },
+                                  attrs: {
+                                    type: "button",
+                                    name: "checkout_place_order",
+                                    id: "p lace_order",
+                                    value: "Place order",
+                                    "data-value": "Place Order"
+                                  },
+                                  on: { click: _vm.payWithPaystack }
+                                },
+                                [
+                                  _vm.checkingout
+                                    ? _c("span", {
+                                        staticClass:
+                                          "spinner-border spinner-border-sm",
+                                        attrs: {
+                                          role: "status",
+                                          "aria-hidden": "true"
+                                        }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(
+                                    "\n                                     Buy now pay later\n                                "
+                                  )
+                                ]
+                              )
+                            ],
+                            _vm._v(" "),
                             !_vm.meta.isAdmin
                               ? [
                                   _c(
