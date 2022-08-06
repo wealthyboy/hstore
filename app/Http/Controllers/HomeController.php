@@ -38,7 +38,7 @@ class HomeController extends Controller
           dd($products->load('variant'));
         }
             
-        if ( empty($site_status->make_live) && $request->token != 'ekejsslldkep33sl' ) {
+        if ( $request->token == 'ekejsslldkep33sl' ) {
             return view('index',compact('banners','reviews','products','posts'));
         } else {
             //Show site if admin is logged in
