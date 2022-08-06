@@ -2821,7 +2821,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         onSuccess: function onSuccess(data) {
           return console.log(data);
         },
-        clientOrderReference: "random string",
+        clientOrderReference: new Date(),
         title: "order title",
         amount: 20000
       };
