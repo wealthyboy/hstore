@@ -616,7 +616,7 @@ export default {
           }
           
         },
-        clientOrderReference: cartIds.join('|'),
+        clientOrderReference: cartIds.join('|') + ',coupon' + context.coupon_code,
         title: "Buy now pay later",
         amount: context.amount,
       };
