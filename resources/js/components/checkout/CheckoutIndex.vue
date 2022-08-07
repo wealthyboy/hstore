@@ -610,11 +610,12 @@ export default {
         publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
         onSuccess: (data) => console.log(data),
         clientOrderReference: cartIds.join('|'),
-        title: "Reward",
+        title: "Buy now pay later",
         amount: context.amount,
       };
 
       connect.openNew(config);
+
     },
     payWithPaystack: function () {
       if (this.meta.cart_is_only_gift_card){

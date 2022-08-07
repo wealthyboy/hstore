@@ -2875,7 +2875,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return console.log(data);
         },
         clientOrderReference: cartIds.join('|'),
-        title: "Reward",
+        title: "Buy now pay later",
         amount: context.amount
       };
       connect.openNew(config);
