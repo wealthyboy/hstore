@@ -550,7 +550,7 @@ export default {
       console.log(e)
       this.use_gift_card = !this.use_gift_card
     },
-    payWithZilla:  function() {
+   async  payWithZilla() {
       if (this.meta.cart_is_only_gift_card){
         this.delivery_option = "Email"
       }
@@ -620,9 +620,22 @@ export default {
         amount: context.amount,
       };
 
-      connect.openNew(config);
-
+      await axios
+        .post("/cart/meta", {
+          cartId: cartIds.join('|'),
+          coupon: context.coupon_code,
+          shipping_id: context.shipping_id,
+          shipping_id: context.shipping_id,
+          shipping_price: context.shipping_price,
+          delivery_option: context.delivery_option,
+          delivery_note: context.delivery_note 
+        })
+        .then((response) => {
+          connect.openNew(config);
+        })
+        .catch((error) => {});
     },
+     
     payWithPaystack: function () {
       if (this.meta.cart_is_only_gift_card){
         this.delivery_option = "Email"

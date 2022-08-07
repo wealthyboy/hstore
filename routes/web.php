@@ -156,12 +156,14 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('currency/{id}',                   'CurrencySwitcher\\CurrencySwitcherController@index');
 
 
-    Route::post('vouchers-coupon',                'Checkout\CheckoutController@coupon');
-    Route::get('errors',                          'Errors\errorsCtrl@index');
-    Route::get('thankyou',                        'Thankyou\ThankYouCtrl@index');
-    Route::get('register/confirm/{token}',        'Auth\RegisterController@verifyEmail');
-    Route::get('shopping/cart/all',               'Cart\CartController@show')->name('shopping-cart');
-    Route::get('cart',                            'Cart\CartController@index');
+    Route::post('vouchers-coupon', 'Checkout\CheckoutController@coupon');
+    Route::get('errors', 'Errors\errorsCtrl@index');
+    Route::get('thankyou', 'Thankyou\ThankYouCtrl@index');
+    Route::get('register/confirm/{token}', 'Auth\RegisterController@verifyEmail');
+    Route::get('shopping/cart/all', 'Cart\CartController@show')->name('shopping-cart');
+    Route::get('cart', 'Cart\CartController@index');
+    Route::get('cart/meta', 'Cart\CartController@meta');
+
     Route::get('load-cart',                       'Cart\CartController@loadCart');
 
     Route::post('cart',                           'Cart\CartController@store');
