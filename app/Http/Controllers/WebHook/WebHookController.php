@@ -150,7 +150,8 @@ class WebHookController extends Controller
     }
 
     public function zilla(Request $request){
-        Log::info($request->data['clientOrderReference']);
+        $data =  json_encode($request->data);
+        Log::info($data);
         $data = $request->data;
         Notification::route('mail', 'jacob.atam@gmail.com')
                         ->notify(new ErrorNotification($data));
