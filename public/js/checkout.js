@@ -2871,12 +2871,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var connect = new _usezilla_zilla_connect__WEBPACK_IMPORTED_MODULE_5___default.a();
       var obj = {
         coupon: context.coupon_code,
-        shipping_id: context.shipping_id,
-        shipping_price: context.shipping_price,
-        cart: cartIds,
-        total: context.amount,
-        delivery_option: context.delivery_option,
-        delivery_note: context.delivery_note
+        cart: cartIds
       };
       var config = {
         publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
