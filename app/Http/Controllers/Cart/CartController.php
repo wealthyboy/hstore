@@ -16,6 +16,7 @@ class CartController  extends Controller {
 	}
 
 	public function meta(Request $request) {
+
 		$pending_cart = PendingCart::firstOrNew(
 			['user_id' => $request->user_id]
 		);
@@ -27,6 +28,7 @@ class CartController  extends Controller {
 		$pending_cart->uuid = $request->uuid;
 		$pending_cart->save();
 		return $pending_cart;
+		
 	}
 
 
