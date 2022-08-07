@@ -608,9 +608,7 @@ export default {
       const connect = new Connect();
       let obj = {
               coupon: context.coupon_code,
-             
               cart: cartIds,
-              
             }
       const config = {
         publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
