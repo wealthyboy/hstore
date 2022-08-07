@@ -2838,7 +2838,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var context, cartIds, form, connect, config;
+        var context, cartIds, form, connect, uuid;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2934,19 +2934,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 36:
                 connect = new _usezilla_zilla_connect__WEBPACK_IMPORTED_MODULE_6___default.a();
-                config = {
-                  publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
-                  onSuccess: function onSuccess(response) {
-                    if (response.status == "success") {
-                      context.paymentIsProcessing = false;
-                      context.paymentIsComplete = true;
-                      context.order_text = "Place Order";
-                    }
-                  },
-                  clientOrderReference: 'cart=' + cartIds.join('|') + '&coupon=' + context.coupon_code + '&user_id=' + context.meta.user.id + '&shipping_id=' + context.shipping_id + '&delivery_option=' + context.delivery_option + '&delivery_note=' + context.delivery_note,
-                  title: "Buy now pay later",
-                  amount: context.amount
-                };
+                uuid = new Date().getTime();
                 _context.next = 40;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/cart/meta", {
                   cartId: cartIds.join('|'),
@@ -2955,11 +2943,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   shipping_price: context.shipping_price,
                   delivery_option: context.delivery_option,
                   delivery_note: context.delivery_note,
-                  user_id: context.meta.user.id,
-                  uuid: new Date().getTime()
+                  user_id: context.meta.user.id
                 }).then(function (response) {
+                  var config = {
+                    publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
+                    onSuccess: function onSuccess(response) {
+                      if (response.status == "success") {
+                        context.paymentIsProcessing = false;
+                        context.paymentIsComplete = true;
+                        context.order_text = "Place Order";
+                      }
+                    },
+                    clientOrderReference: context.meta.user.id,
+                    title: "Buy now pay later",
+                    amount: context.amount
+                  };
                   connect.openNew(config);
-                })["catch"](function (error) {});
+                })["catch"](function (error) {
+                  context.paymentIsProcessing = false;
+                  context.paymentIsComplete = true;
+                  context.order_text = "Place Order";
+                });
 
               case 40:
               case "end":

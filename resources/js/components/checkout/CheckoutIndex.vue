@@ -606,19 +606,8 @@ export default {
         } 
       }
       const connect = new Connect();
-      const config = {
-        publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
-        onSuccess: function (response) {
-          if (response.status == "success") {
-              context.paymentIsProcessing = false;
-              context.paymentIsComplete =true
-              context.order_text = "Place Order";
-          }
-        },
-        clientOrderReference: 'cart=' +cartIds.join('|') + '&coupon=' + context.coupon_code + '&user_id=' + context.meta.user.id + '&shipping_id=' + context.shipping_id + '&delivery_option=' + context.delivery_option + '&delivery_note=' + context.delivery_note,
-        title: "Buy now pay later",
-        amount: context.amount,
-      };
+      let uuid = new Date().getTime();
+      
 
       await axios
         .post("/cart/meta", {
@@ -629,12 +618,28 @@ export default {
           delivery_option: context.delivery_option,
           delivery_note: context.delivery_note,
           user_id: context.meta.user.id,
-          uuid: new Date().getTime()
         })
         .then((response) => {
+          const config = {
+            publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
+            onSuccess: function (response) {
+              if (response.status == "success") {
+                  context.paymentIsProcessing = false;
+                  context.paymentIsComplete =true
+                  context.order_text = "Place Order";
+              }
+            },
+            clientOrderReference: context.meta.user.id,
+            title: "Buy now pay later",
+            amount: context.amount,
+          };
           connect.openNew(config);
         })
-        .catch((error) => {});
+        .catch((error) => {
+            context.paymentIsProcessing = false;
+            context.paymentIsComplete =true
+            context.order_text = "Place Order";
+        });
     },
      
     payWithPaystack: function () {
