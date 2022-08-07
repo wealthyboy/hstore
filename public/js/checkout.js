@@ -2815,15 +2815,68 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.use_gift_card = !this.use_gift_card;
     },
     payWithZilla: function payWithZilla() {
+      if (this.meta.cart_is_only_gift_card) {
+        this.delivery_option = "Email";
+      }
+
+      if (!this.delivery_option) {
+        this.delivery_error = true;
+        return;
+      }
+
+      if (this.meta.sub_total < 1) {
+        return;
+      }
+
+      var context = this;
+      var cartIds = [];
+      this.carts.forEach(function (cart, key) {
+        cartIds.push(cart.id);
+      });
+
+      if (!this.addresses.length) {
+        this.error = "You need to save your address before placing your order";
+        return false;
+      }
+
+      if (this.delivery_option == "shipping" && this.meta.sub_total < 30000 && this.$root.settings.shipping_is_free == 0 && !this.shipping_price) {
+        this.error = "Please select your shipping method";
+        return false;
+      }
+
+      var form = document.getElementById("checkout-form-2");
+      this.paymentIsProcessing = true;
+      this.order_text = "Please wait. We are almost done......";
+      this.payment_is_processing = true;
+      this.payment_method = "card";
+
+      if (this.gift_card && this.use_gift_card) {
+        if (this.amount == this.gift_card.amount) {
+          this.payment_method = "Gift Card";
+          this.order_text = "Please wait. We are almost done......";
+          this.checkout();
+          return;
+        } else if (this.amount < this.gift_card.amount) {
+          this.payment_method = "Gift Card";
+          this.order_text = "Please wait. We are almost done......";
+          this.checkout();
+          return;
+        } else if (this.amount > this.gift_card.amount) {
+          this.amount = this.amount - this.gift_card.amount;
+          this.payment_method = "Gift Card/Paystack";
+          this.order_text = "Please wait. We are almost done......";
+        }
+      }
+
       var connect = new _usezilla_zilla_connect__WEBPACK_IMPORTED_MODULE_5___default.a();
       var config = {
         publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
         onSuccess: function onSuccess(data) {
           return console.log(data);
         },
-        clientOrderReference: new Date(),
-        title: "order title",
-        amount: 20000
+        clientOrderReference: cartIds.join('|'),
+        title: "Reward",
+        amount: context.amount
       };
       connect.openNew(config);
     },
