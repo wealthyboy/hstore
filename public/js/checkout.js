@@ -2949,11 +2949,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   var config = {
                     publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
                     onSuccess: function onSuccess(response) {
-                      if (response.status == "success") {
-                        context.paymentIsProcessing = false;
-                        context.paymentIsComplete = true;
-                        context.order_text = "Place Order";
-                      }
+                      context.paymentIsProcessing = false;
+                      context.paymentIsComplete = true;
+                      context.order_text = "Place Order";
                     },
                     clientOrderReference: uuid,
                     title: "Buy now pay later",
