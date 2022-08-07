@@ -629,7 +629,7 @@ export default {
                   context.order_text = "Place Order";
               }
             },
-            clientOrderReference: context.meta.user.id,
+            clientOrderReference: uuid,
             title: "Buy now pay later",
             amount: context.amount,
           };
