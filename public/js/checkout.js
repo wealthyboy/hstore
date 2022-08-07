@@ -2878,7 +2878,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             context.order_text = "Place Order";
           }
         },
-        clientOrderReference: 'cart=' + cartIds.join('|') + ',coupon=' + context.coupon_code,
+        clientOrderReference: 'cart=' + cartIds.join('|') + '&coupon=' + context.coupon_code + '&user_id=' + context.meta.user.id + '&shipping_id=' + context.shipping_id + '&delivery_option=' + context.delivery_option + '&delivery_note=' + context.delivery_note,
         title: "Buy now pay later",
         amount: context.amount
       };

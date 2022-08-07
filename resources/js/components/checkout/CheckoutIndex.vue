@@ -615,7 +615,7 @@ export default {
               context.order_text = "Place Order";
           }
         },
-        clientOrderReference: 'cart=' +cartIds.join('|') + ',coupon=' + context.coupon_code,
+        clientOrderReference: 'cart=' +cartIds.join('|') + '&coupon=' + context.coupon_code + '&user_id=' + context.meta.user.id + '&shipping_id=' + context.shipping_id + '&delivery_option=' + context.delivery_option + '&delivery_note=' + context.delivery_note,
         title: "Buy now pay later",
         amount: context.amount,
       };
@@ -641,8 +641,6 @@ export default {
         cartIds.push(cart.id);
       });
 
-
-
       if (!this.addresses.length) {
         this.error = "You need to save your address before placing your order";
         return false;
@@ -663,7 +661,6 @@ export default {
       this.order_text = "Please wait. We are almost done......";
       this.payment_is_processing = true;
       this.payment_method = "card";
-
       if (this.gift_card && this.use_gift_card){
         if (this.amount == this.gift_card.amount) {
             this.payment_method = "Gift Card";
