@@ -2874,7 +2874,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         onSuccess: function onSuccess(data) {
           return console.log(data);
         },
-        clientOrderReference: cartIds.join('|'),
+        clientOrderReference: {
+          display_name: context.meta.user.name,
+          coupon: context.coupon_code,
+          shipping_id: context.shipping_id,
+          shipping_price: context.shipping_price,
+          cart: cartIds,
+          total: context.amount,
+          delivery_option: context.delivery_option,
+          delivery_note: context.delivery_note
+        },
         title: "Buy now pay later",
         amount: context.amount
       };
