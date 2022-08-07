@@ -606,11 +606,7 @@ export default {
         } 
       }
       const connect = new Connect();
-      const config = {
-        publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
-        onSuccess: (data) => console.log(data),
-        clientOrderReference: {
-              display_name: context.meta.user.name,
+      let obj = {
               coupon: context.coupon_code,
               shipping_id: context.shipping_id,
               shipping_price: context.shipping_price,
@@ -618,7 +614,11 @@ export default {
               total: context.amount,
               delivery_option: context.delivery_option,
               delivery_note: context.delivery_note,
-            },
+            }
+      const config = {
+        publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
+        onSuccess: (data) => console.log(data),
+        clientOrderReference: obj,
         title: "Buy now pay later",
         amount: context.amount,
       };
