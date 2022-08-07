@@ -614,9 +614,8 @@ export default {
               context.paymentIsComplete =true
               context.order_text = "Place Order";
           }
-          
         },
-        clientOrderReference: cartIds.join('|') + ',coupon' + context.coupon_code,
+        clientOrderReference: 'cart=' +cartIds.join('|') + ',coupon=' + context.coupon_code,
         title: "Buy now pay later",
         amount: context.amount,
       };
