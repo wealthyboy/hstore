@@ -629,7 +629,7 @@ export default {
           delivery_option: context.delivery_option,
           delivery_note: context.delivery_note,
           user_id: context.meta.user.id,
-          uuid:  new Date().getTime()
+          uuid: new Date().getTime()
         })
         .then((response) => {
           connect.openNew(config);

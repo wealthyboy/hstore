@@ -24,7 +24,6 @@ class CartController  extends Controller {
 		$pending_cart->delivery_note = $request->delivery_note;
 		$pending_cart->delivery_option = $request->delivery_option;
 		$pending_cart->shipping_id = $request->shipping_id;
-		$pending_cart->shipping_price = $request->shipping_price;
 		$pending_cart->uuid = $request->uuid;
 		$pending_cart->save();
 		return $pending_cart;
