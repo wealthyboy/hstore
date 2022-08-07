@@ -162,7 +162,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('register/confirm/{token}', 'Auth\RegisterController@verifyEmail');
     Route::get('shopping/cart/all', 'Cart\CartController@show')->name('shopping-cart');
     Route::get('cart', 'Cart\CartController@index');
-    Route::get('cart/meta', 'Cart\CartController@meta');
+    Route::post('cart/meta', 'Cart\CartController@meta');
 
     Route::get('load-cart',                       'Cart\CartController@loadCart');
 
