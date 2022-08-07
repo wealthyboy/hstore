@@ -608,7 +608,14 @@ export default {
       const connect = new Connect();
       const config = {
         publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
-        onSuccess: (data) => console.log(data),
+        onSuccess: function (response) {
+          if (response.status == "success") {
+              context.paymentIsProcessing = false;
+              context.paymentIsComplete =true
+              context.order_text = "Place Order";
+          }
+          
+        },
         clientOrderReference: 'coupon:' + context.coupon_code|'cart:' + cartIds.join('&'),
         title: "Buy now pay later",
         amount: context.amount,
