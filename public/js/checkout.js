@@ -2869,16 +2869,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       var connect = new _usezilla_zilla_connect__WEBPACK_IMPORTED_MODULE_5___default.a();
-      var obj = {
-        coupon: context.coupon_code,
-        cart: cartIds
-      };
       var config = {
         publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
         onSuccess: function onSuccess(data) {
           return console.log(data);
         },
-        clientOrderReference: obj,
+        clientOrderReference: 'coupon:' + context.coupon_code | 'cart:' + cartIds.join('&'),
         title: "Buy now pay later",
         amount: context.amount
       };
