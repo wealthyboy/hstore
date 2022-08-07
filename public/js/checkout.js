@@ -2878,7 +2878,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             context.order_text = "Place Order";
           }
         },
-        clientOrderReference: 'coupon:' + context.coupon_code | 'cart:' + cartIds.join('&'),
+        clientOrderReference: cartIds.join('|'),
         title: "Buy now pay later",
         amount: context.amount
       };
