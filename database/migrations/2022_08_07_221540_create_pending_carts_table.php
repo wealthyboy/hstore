@@ -21,6 +21,7 @@ class CreatePendingCartsTable extends Migration
             $table->text('delivery_option')->nullable();
             $table->text('delivery_note')->nullable();
             $table->string('total')->nullable();
+            $table->string('uuid')->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });

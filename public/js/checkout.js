@@ -2838,8 +2838,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _axios$post;
-
         var context, cartIds, form, connect, config;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -2950,11 +2948,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   amount: context.amount
                 };
                 _context.next = 40;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/cart/meta", (_axios$post = {
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/cart/meta", {
                   cartId: cartIds.join('|'),
                   coupon: context.coupon_code,
-                  shipping_id: context.shipping_id
-                }, _defineProperty(_axios$post, "shipping_id", context.shipping_id), _defineProperty(_axios$post, "shipping_price", context.shipping_price), _defineProperty(_axios$post, "delivery_option", context.delivery_option), _defineProperty(_axios$post, "delivery_note", context.delivery_note), _axios$post)).then(function (response) {
+                  shipping_id: context.shipping_id,
+                  shipping_price: context.shipping_price,
+                  delivery_option: context.delivery_option,
+                  delivery_note: context.delivery_note,
+                  user_id: context.meta.user.id,
+                  uuid: new Date().getTime()
+                }).then(function (response) {
                   connect.openNew(config);
                 })["catch"](function (error) {});
 

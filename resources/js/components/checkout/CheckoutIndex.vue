@@ -625,10 +625,11 @@ export default {
           cartId: cartIds.join('|'),
           coupon: context.coupon_code,
           shipping_id: context.shipping_id,
-          shipping_id: context.shipping_id,
           shipping_price: context.shipping_price,
           delivery_option: context.delivery_option,
-          delivery_note: context.delivery_note 
+          delivery_note: context.delivery_note,
+          user_id: context.meta.user.id,
+          uuid:  new Date().getTime()
         })
         .then((response) => {
           connect.openNew(config);
