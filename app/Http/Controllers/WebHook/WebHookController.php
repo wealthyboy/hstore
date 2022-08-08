@@ -224,7 +224,7 @@ class WebHookController extends Controller
                 }
 
                 //Delete all the cart
-                $cart->delete();
+               // $cart->delete();
             }
             
             $admin_emails = explode(',',$this->settings->alert_email);
