@@ -618,7 +618,9 @@ export default {
           delivery_option: context.delivery_option,
           delivery_note: context.delivery_note,
           user_id: context.meta.user.id,
-          uuid: uuid
+          uuid: uuid,
+          total: context.amount
+        
         })
         .then((response) => {
           const config = {

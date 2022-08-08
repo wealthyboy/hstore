@@ -160,7 +160,6 @@ class WebHookController extends Controller
             $cartIds = explode('|', $pending_cart->cart_ids);
             $user  = User::findOrFail($pending_cart->user_id);
             $carts = Cart::find($cartIds);
-            $order = new Order;
             Log::info($pending_cart);
 
             foreach ($carts as $cart) {

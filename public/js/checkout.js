@@ -2944,7 +2944,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   delivery_option: context.delivery_option,
                   delivery_note: context.delivery_note,
                   user_id: context.meta.user.id,
-                  uuid: uuid
+                  uuid: uuid,
+                  total: context.amount
                 }).then(function (response) {
                   var config = {
                     publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
