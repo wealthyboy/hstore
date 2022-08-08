@@ -22,7 +22,7 @@ use App\SystemSetting;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
 use App\Notifications\ErrorNotification;
-
+use App\PendingCart;
 
 class WebHookController extends Controller
 {
@@ -150,11 +150,12 @@ class WebHookController extends Controller
     }
 
     public function zilla(Request $request){
-        $data =  json_decode($request->data);
-        Log::info($data->clientOrderReference);
-        $data = $request->data;
+        $data = json_decode($request->data);
+        $uuid = $data->clientOrderReference;
+        $parent_cart = PendingCart::where('uuid',$uuid)->first();
+        Log::info($parent_cart);
         Notification::route('mail', 'jacob.atam@gmail.com')
-                        ->notify(new ErrorNotification($data));
+                        ->notify(new ErrorNotification($parent_cart));
     }
 
 
