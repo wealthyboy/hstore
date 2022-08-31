@@ -175,7 +175,7 @@
                                   <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
                                       <div  class="custom-control  mt-1 mb-1 custom-radio mt-1 mb-1">
                                           <input type="radio" value="Stock Pilling" v-model="delivery_option" class="custom-control-input" id="stock_pilling" name="delivery_option" required>
-                                          <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info"> (Free for the 1st month after with ₦500 applies every week.)</span></label>
+                                          <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info"> (Free for two weeks, after which ₦500 applies every week)</span></label>
                                       </div>
                                   </div>
                                   
