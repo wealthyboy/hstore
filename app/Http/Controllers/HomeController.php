@@ -31,11 +31,9 @@ class HomeController extends Controller
         $reviews = Review::where('is_verified', 1)->inRandomOrder()->orderBy('created_at','DESC')->take(20)->get();
         $posts = Information::orderBy('created_at','DESC')->where(['blog'=>true,'is_active' => true])->take(6)->get();
 
-        if ($request->debug){
-          dd($products->load('variant'));
-        }
+        
             
-        if (!empty($site_status->make_live) && $request->token == 'ekejsslldkep33sl' ) {
+        if (!$site_status->make_live ) {
             return view('index',compact('banners','reviews','products','posts'));
         } else {
             //Show site if admin is logged in

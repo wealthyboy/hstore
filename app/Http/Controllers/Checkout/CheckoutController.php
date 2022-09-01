@@ -49,11 +49,7 @@ class CheckoutController extends Controller
 	{
 		$this->middleware('auth');
 		//dd("We on a break");
-		$site_status =Live::first();
-            
-        if ( !empty($site_status->make_live) ) {
-            return view('underconstruction.index');
-        }
+		
 
 		$this->settings =  SystemSetting::first();
 	}
