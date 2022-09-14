@@ -624,7 +624,7 @@ export default {
         })
         .then((response) => {
           const config = {
-            publicKey: "PK_SANDBOX_bfc789f1410b8dbde550b1f448791a2a2081006fb0fcf3bb71c31bd5b9192ea4",
+            publicKey: "PK_PROD_9949a7c5fc49cab31e518c0b40701b0af42c154d1b2f860ebdd63bbbb8c56a06",
             onSuccess: function (response) {
                 context.paymentIsProcessing = false;
                 context.paymentIsComplete =true
