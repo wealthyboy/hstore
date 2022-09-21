@@ -27,9 +27,21 @@ class HomeController extends Controller
     {    
         $site_status = Live::first();
         $banners = Banner::banners()->get();
-        $products = Product::where('featured',1)->orderBy('updated_at','DESC')->take(8)->get();
+        $products = Product::where('featured',1)->orderBy('updated_at','DESC')->get();
+
+        if (null !== $products){
+            foreach ($products as $key => $product) {
+                # code...
+                $product->update([
+                    'featured' => 0
+                ]);
+            }
+        }
+
         $reviews = Review::where('is_verified', 1)->inRandomOrder()->orderBy('created_at','DESC')->take(20)->get();
         $posts = Information::orderBy('created_at','DESC')->where(['blog'=>true,'is_active' => true])->take(6)->get();
+
+
 
         
             
