@@ -28,8 +28,11 @@ class HomeController extends Controller
         $site_status = Live::first();
         $banners = Banner::banners()->get();
         $products = Product::where('featured',1)->orderBy('updated_at','DESC')->get();
-
+         if ($request->debug) {
+             dd($products);
+         }
         if (null !== $products){
+
             foreach ($products as $key => $product) {
                 # code...
                 $product->update([
