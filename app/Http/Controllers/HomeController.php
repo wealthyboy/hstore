@@ -32,9 +32,9 @@ class HomeController extends Controller
         if (null !== $products){
             foreach ($products as $key => $product) {
                 # code...
-                // $product->update([
-                //     'featured' => 0
-                // ]);
+                $product->update([
+                    'featured' => 0
+                ]);
             }
         }
 

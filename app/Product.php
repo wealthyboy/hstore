@@ -55,7 +55,7 @@ class Product extends Model
 
 	protected $cascadeDeletes = ['meta_fields','attributes','variants','categories'];
 
-	protected $fillable = [];
+	protected $fillable = ['featured'];
 
 	protected $setting;
 
