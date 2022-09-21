@@ -27,7 +27,7 @@ class HomeController extends Controller
     {    
         $site_status = Live::first();
         $banners = Banner::banners()->get();
-        // $products = Product::where('featured',1)->orderBy('updated_at','DESC')->get();
+        $products = Product::where('featured',1)->orderBy('updated_at','DESC')->get();
         //  if ($request->debug) {
         //      dd($products);
         //  }
@@ -49,11 +49,11 @@ class HomeController extends Controller
         
             
         if (!$site_status->make_live ) {
-            return view('index',compact('banners','reviews','posts'));
+            return view('index',compact('banners','reviews','products','posts'));
         } else {
             //Show site if admin is logged in
             if ( auth()->check()  && auth()->user()->isAdmin()){
-                return view('index',compact('banners','reviews','posts'));
+                return view('index',compact('banners','reviews','products','posts'));
             }
             return view('underconstruction.index');
         }
