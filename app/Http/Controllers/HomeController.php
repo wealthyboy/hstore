@@ -49,11 +49,11 @@ class HomeController extends Controller
         
             
         if (!$site_status->make_live ) {
-            return view('index',compact('banners','reviews','products','posts'));
+            return view('index',compact('banners','reviews','posts'));
         } else {
             //Show site if admin is logged in
             if ( auth()->check()  && auth()->user()->isAdmin()){
-                return view('index',compact('banners','reviews','products','posts'));
+                return view('index',compact('banners','reviews','posts'));
             }
             return view('underconstruction.index');
         }
