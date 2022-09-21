@@ -608,7 +608,6 @@ export default {
       const connect = new Connect();
       let uuid = new Date().getTime();
       
-
       await axios
         .post("/cart/meta", {
           cartId: cartIds.join('|'),
@@ -648,7 +647,6 @@ export default {
       if (this.meta.cart_is_only_gift_card){
         this.delivery_option = "Email"
       }
-      console.log(true)
 
       if (!this.delivery_option) {
         this.delivery_error = true;

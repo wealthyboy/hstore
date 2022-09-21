@@ -44,7 +44,7 @@
                 </figure>
                 <div class="product-details">
                     <h3 class="product-title">
-                        <a href="{{ optional($related_product->variant)->link }}">{{ optional($related_product->variant)->name }}</a>
+                        <a href="{{ optional($related_product->variant)->link }}">{{ optional($related_product->variant)->name ||  optional($related_product)->product_name }}</a>
                     </h3>
                     <div class="price-box">
                         @if (optional($related_product->variant)->default_discounted_price ) 
