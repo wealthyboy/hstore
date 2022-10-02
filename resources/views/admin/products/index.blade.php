@@ -125,7 +125,7 @@
                                             <select data-id="{{ $product->id }}" name="product_variation_id" id="product_variation_id" class="form-control product_variation_id" >
                                                 <option value="">Choose Top picks</option>
                                                 @foreach($product->variants as $variant)
-                                                   <option value="{{ $variant->id }}">{{ $variant->name }}</option>
+                                                   <option {{ optional($product->featuredVariant)->id == $variant->id  ? 'selected' : '' }} value="{{ $variant->id }}">{{ $variant->name }}</option>
                                                 @endforeach
                                             </select> 
                                             <input type="hidden" value="{{ $product->id }}" class="product_id" name="product_id">
