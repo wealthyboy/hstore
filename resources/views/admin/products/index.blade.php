@@ -120,7 +120,7 @@
                                         <td>
                                            @if ($product->variants->count())
 
-                                            <select name="product_variation_id" id="product_variation_id" class="form-control" >
+                                            <select name="product_variation_id" id="product_variation_id" class="form-control product_variation_id" >
                                                 <option value="">Choose Top picks</option>
                                                 @foreach($product->variants as $variant)
                                                    <option value="{{ $variant->id }}">{{ $variant->name }}</option>
@@ -156,7 +156,19 @@
 @endsection
 @section('inline-scripts')
 $(document).ready(function() {
-    $.ajax()
+
+    $('.product_variation_id').on('click', function() {
+        let self = $(this)
+        $.ajax({
+           url: '/admin/products/featured',
+           type: "post",
+           url: $(this).attr('href'),
+           data: { product_variation_id: self.val() }
+        }).done(function(response){
+
+        });
+    })
+    
 });
 @stop
 

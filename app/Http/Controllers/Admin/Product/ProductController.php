@@ -79,6 +79,13 @@ class ProductController extends Controller
         $product = ProductVariation::find($id);
         return view('admin.products.invoice',compact('product') );
     }
+
+    public function makeFeatured(Request $request){
+        $product = ProductVariation::find($request->product_variation_id);
+        $product->featured = 1;
+        $product->save();
+        return response()->json(null, 200);
+    }
     
 
     public function loadAttr(Request $request)

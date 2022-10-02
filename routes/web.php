@@ -57,7 +57,10 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::resource('vouchers','Admin\Vouchers\VouchersController',['names'=>'vouchers']);
    
     Route::resource('products','Admin\Product\ProductController',['names' => 'products']);
-    Route::delete('products/destroy/multiple','Admin\Product\ProductController@destroy');
+    Route::delete('products/destroy/multiple','Admin\Product\ProductController@destroy');    
+    Route::post('products/featured','Admin\Product\ProductController@featured');
+
+
 
     Route::get('search-products','Admin\Product\ProductController@search')->name('search_products');
     Route::delete('variation/delete/{id}',  'Admin\Product\ProductController@destroyVariation');
