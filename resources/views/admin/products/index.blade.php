@@ -122,7 +122,7 @@
                                         <td>
                                            @if ($product->variants->count())
 
-                                            <select name="product_variation_id" id="product_variation_id" class="form-control product_variation_id" >
+                                            <select data-id="{{ $product->id }}" name="product_variation_id" id="product_variation_id" class="form-control product_variation_id" >
                                                 <option value="">Choose Top picks</option>
                                                 @foreach($product->variants as $variant)
                                                    <option value="{{ $variant->id }}">{{ $variant->name }}</option>
@@ -165,7 +165,7 @@ $(document).ready(function() {
 
     $('.product_variation_id').on('change', function() {
         let self = $(this)
-        let product_id = self.next(".product_id").val()
+        let product_id = self.data(".id")
         console.log(product_id)
         $.ajax({
            url: '/admin/products/featured',
