@@ -58,7 +58,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
    
     Route::resource('products','Admin\Product\ProductController',['names' => 'products']);
     Route::delete('products/destroy/multiple','Admin\Product\ProductController@destroy');    
-    Route::post('products/featured','Admin\Product\ProductController@featured');
+    Route::post('products/featured','Admin\Product\ProductController@makeFeatured');
 
 
 
