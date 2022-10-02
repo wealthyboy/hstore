@@ -177,7 +177,7 @@ $(document).ready(function() {
     })
 
 
-    $('.product_variation_id').on('change', function() {
+    $('.sort_by').on('change', function() {
         let self = $(this)
         location.href = '/admin/products?' + self.val()
     })
