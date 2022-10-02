@@ -157,7 +157,7 @@
 @section('inline-scripts')
 $(document).ready(function() {
 
-    $('.product_variation_id').on('click', function() {
+    $('.product_variation_id').on('change', function() {
         let self = $(this)
         $.ajax({
            url: '/admin/products/featured',
