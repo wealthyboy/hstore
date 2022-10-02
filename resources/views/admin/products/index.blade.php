@@ -59,11 +59,8 @@
                             <div class="dataTable-dropdown">
                                 <label>
                                     <select class="dataTable-selector form-control">
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="25">25</option>
+                                        <option value="1">Enabled Products</option>
+                                        <option value="0">Disabled Products</option>
                                     </select>
                                     entries per page
                                 </label>
