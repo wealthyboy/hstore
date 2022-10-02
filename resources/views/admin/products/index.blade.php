@@ -159,6 +159,7 @@ $(document).ready(function() {
 
     $('.product_variation_id').on('change', function() {
         let self = $(this)
+        console.log(true)
         $.ajax({
            url: '/admin/products/featured',
            type: "post",
