@@ -163,7 +163,6 @@ $(document).ready(function() {
         $.ajax({
            url: '/admin/products/featured',
            type: "post",
-           url: $(this).attr('href'),
            data: { product_variation_id: self.val() }
         }).done(function(response){
 
