@@ -58,7 +58,7 @@
                         <div class="dataTable-top">
                             <div class="dataTable-dropdown">
                                 <label>
-                                    <select class="dataTable-selector">
+                                    <select class="dataTable-selector form-control">
                                         <option value="5">5</option>
                                         <option value="10">10</option>
                                         <option value="15">15</option>
@@ -68,7 +68,6 @@
                                     entries per page
                                 </label>
                             </div>
-                            <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..." type="text"></div>
                         </div>
                     </div>
                     <div class="material-datatables">
