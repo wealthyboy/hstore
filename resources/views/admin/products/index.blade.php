@@ -110,6 +110,7 @@
                                            @if ($product->variants->count())
 
                                             <select name="" id="" class="form-control" >
+                                                <option value="">Choose Top picks</option>
                                                 @foreach($product->variants as $variant)
                                                    <option value="{{ $variant->id }}">{{ $variant->name }}</option>
                                                 @endforeach
