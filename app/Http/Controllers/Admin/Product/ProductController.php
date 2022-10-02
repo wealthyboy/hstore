@@ -81,13 +81,20 @@ class ProductController extends Controller
     }
 
     public function makeFeatured(Request $request){
+        $product = Product::find($request->product_id);
+        
+        if (null !== $product->variants){
+            foreach($product->variants as $variant){
+                $variant->featured = 0;
+                $variant->save();
+            }
+        }
 
-        return $request->all();
         if ($request->filled('product_variation_id')) {
             $product = ProductVariation::find($request->product_variation_id);
             $product->featured = 1;
             $product->save();
-        }
+        } 
         
         return response()->json(null, 200);
     }
