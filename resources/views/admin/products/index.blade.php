@@ -76,7 +76,9 @@
                                     <th>Name</th>
                                     <th>Status</th>
                                     <th>Price</th>
+                                    @if ($product->variants->count())
                                     <th>Variation</th>
+                                    @endif
 
                                     <th class="disabled-sorting text-right">Actions</th>
                                 </tr>
@@ -106,11 +108,15 @@
                                            {{ $system_settings->default_currency->symbol }}{{ $product->display_price() }}
                                         </span> 
                                     </td>
-                                    <td>
-                                        <select name="" id="" class="form-control" >
-                                            <option value="">test</option>
-                                        </select> 
-                                    </td>
+                                    @if ($product->variants->count())
+                                        <td>
+                                            <select name="" id="" class="form-control" >
+                                                @foreach($product->variants as $variant)
+                                                   <option value="{{ $variant->id }}">{{ $variant->name }}</option>
+                                                @endforeach
+                                            </select> 
+                                        </td>
+                                    @endif
                                     <td class="td-actions ">                     
                                         <a href="{{ route('products.edit',['product'=>$product->id] ) }}" rel="tooltip" title="Edit" class="btn btn-primary btn-simple btn-xs">
                                             <i class="material-icons">edit</i>
