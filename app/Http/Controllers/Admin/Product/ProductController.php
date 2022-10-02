@@ -500,8 +500,7 @@ class ProductController extends Controller
 		}
 		if($request->has('q')){
 			$filtered_array = array_filter($filtered_array);
-			
-
+		
                 $query = Product::whereHas('categories', function( $query ) use ( $filtered_array ){
                     $query->where('categories.name','like','%' .$filtered_array['q'] . '%')
                         ->orWhere('products.product_name', 'like', '%' .$filtered_array['q'] . '%')
