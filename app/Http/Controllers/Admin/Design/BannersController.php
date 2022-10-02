@@ -54,15 +54,13 @@ class BannersController extends Controller
             'sort_order' => 'required',
             'image'=>'required',
         ]);
+
         $banner->title = $request->title;
-        $banner->link  = $request->link;
-        $banner->col   = $request->col_width;
-        $banner->image   = $request->image;
-        $banner->device   = $request->device;
-
+        $banner->link = $request->link;
+        $banner->col = $request->col_width;
+        $banner->image = $request->image;
+        $banner->device = $request->device;
         $banner->img_alt = $request->img_alt;
-
-        
         $banner->sort_order = $request->sort_order;
         $banner->save();
         return redirect()->route('banners.index');
@@ -113,11 +111,10 @@ class BannersController extends Controller
         $banner->title = $request->title;
         $banner->link = $request->link;
         $banner->sort_order = $request->sort_order;
-        $banner->col   = $request->col_width;
-        $banner->image   = $request->image;
+        $banner->col = $request->col_width;
+        $banner->image = $request->image;
         $banner->img_alt = $request->img_alt;
-        $banner->device   = $request->device;
-
+        $banner->device = $request->device;
         $banner->save();
         // $flash = app( 'App\Http\flash' );
         // $flash->success( "Success", "Details Updated" );

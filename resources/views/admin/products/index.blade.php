@@ -76,6 +76,8 @@
                                     <th>Name</th>
                                     <th>Status</th>
                                     <th>Price</th>
+                                    <th>Variation</th>
+
                                     <th class="disabled-sorting text-right">Actions</th>
                                 </tr>
                             </thead>
@@ -103,6 +105,11 @@
                                         <span class="amount">
                                            {{ $system_settings->default_currency->symbol }}{{ $product->display_price() }}
                                         </span> 
+                                    </td>
+                                    <td>
+                                        <select name="" id="" class="form-control" >
+                                            <option value="">test</option>
+                                        </select> 
                                     </td>
                                     <td class="td-actions ">                     
                                         <a href="{{ route('products.edit',['product'=>$product->id] ) }}" rel="tooltip" title="Edit" class="btn btn-primary btn-simple btn-xs">
