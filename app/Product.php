@@ -73,6 +73,13 @@ class Product extends Model
 	}
 
 
+	public function featuredVariant()
+    {
+		return  $this->hasOne('App\ProductVariation')
+		           ->where(['default'=>false])->whereNotNull('name');
+	}
+
+
 	public function product_variations()
     {
 		return  $this->hasMany('App\ProductVariation')
