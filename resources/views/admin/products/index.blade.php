@@ -166,6 +166,7 @@ $(document).ready(function() {
     $('.product_variation_id').on('change', function() {
         let self = $(this)
         let product_id = self.next(".product_id").val()
+        console.log(product_id)
         $.ajax({
            url: '/admin/products/featured',
            type: "post",
