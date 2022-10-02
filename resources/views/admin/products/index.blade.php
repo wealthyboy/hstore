@@ -53,8 +53,23 @@
                 <div class="card-content">
                 
                     <h4 class="card-title">Products</h4>
-                    <div class="toolbar">
+                    <div class="toolbar d">
                         <!--        Here you can write extra buttons/actions for the toolbar              -->
+                        <div class="dataTable-top">
+                            <div class="dataTable-dropdown">
+                                <label>
+                                    <select class="dataTable-selector">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                    </select>
+                                    entries per page
+                                </label>
+                            </div>
+                            <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..." type="text"></div>
+                        </div>
                     </div>
                     <div class="material-datatables">
                     <form action="/admin/products/destroy/multiple" method="post" enctype="multipart/form-data" id="form-products">
@@ -109,7 +124,7 @@
                                         <td>
                                            @if ($product->variants->count())
 
-                                            <select name="" id="" class="form-control" >
+                                            <select name="product_variation_id" id="product_variation_id" class="form-control" >
                                                 <option value="">Choose Top picks</option>
                                                 @foreach($product->variants as $variant)
                                                    <option value="{{ $variant->id }}">{{ $variant->name }}</option>
@@ -145,6 +160,7 @@
 @endsection
 @section('inline-scripts')
 $(document).ready(function() {
+    $.ajax()
 });
 @stop
 
