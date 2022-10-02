@@ -67,10 +67,12 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="material-datatables">
                     <form action="/admin/products/destroy/multiple" method="post" enctype="multipart/form-data" id="form-products">
                         @method('DELETE')
                         @csrf
+
                 
                         <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                             <thead>
@@ -126,9 +128,13 @@
                                                    <option value="{{ $variant->id }}">{{ $variant->name }}</option>
                                                 @endforeach
                                             </select> 
+                                            <input type="hidden" value="{{ $product->id }}" class="product_id" name="product_id">
+
                                             @else
                                              -----
                                             @endif
+
+
 
                                         </td>
                                     <td class="td-actions ">                     
@@ -159,11 +165,11 @@ $(document).ready(function() {
 
     $('.product_variation_id').on('change', function() {
         let self = $(this)
-        console.log(true)
+        let product_id = self.next(".product_id").val()
         $.ajax({
            url: '/admin/products/featured',
            type: "post",
-           data: { product_variation_id: self.val() }
+           data: { product_variation_id: self.val(), product_id: product_id  }
         }).done(function(response){
 
         });
