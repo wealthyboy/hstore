@@ -59,6 +59,7 @@
                             <div class="dataTable-dropdown">
                                 <label>
                                     <select class="dataTable-selector form-control">
+                                       <option value="">Sort By</option>
                                         <option value="1">Enabled Products</option>
                                         <option value="0">Disabled Products</option>
                                     </select>
