@@ -25,33 +25,31 @@
 
     <div class="products-section pt-0">
         <h1 title="fashion  top picks" class="text-center text-sm-25  eee mb-3 mt-3 ">Top Picks for You</h1>
-
-
         <div class="products-slider owl-carousel owl-theme dots-top">
             @foreach( $products as $related_product)
             @if (optional($related_product)->product_type == 'variable')
             <div class="product-default inner-quickview inner-icon">
                 <figure>
-                    <a href="{{ optional($related_product->variant)->link }}">
-                        <img  src="{{ optional($related_product->variant)->image_to_show_m }}">
+                    <a href="{{ optional($related_product)->link }}">
+                        <img  src="{{ optional($related_product)->image_to_show_m }}">
                     </a>
-                    @if ( optional($related_product->variant)->default_discounted_price > 1)
+                    @if ( optional($related_product)->default_discounted_price > 1)
                     <div class="label-group">
-                        <span class="product-label label-sale">-{{ optional($related_product->variant)->default_percentage_off }}%</span>
+                        <span class="product-label label-sale">-{{ optional($related_product)->default_percentage_off }}%</span>
                     </div>
                     @endif
                     
                 </figure>
                 <div class="product-details">
                     <h3 class="product-title">
-                        <a href="{{ optional($related_product->variant)->link }}">{{ optional($related_product->variant)->name  }}</a>
+                        <a href="{{ optional($related_product)->link }}">{{ optional($related_product)->name  }}</a>
                     </h3>
                     <div class="price-box">
-                        @if (optional($related_product->variant)->default_discounted_price ) 
-                            <span class="old-price">{{ optional($related_product->variant)->currency }}{{ number_format(optional($related_product->variant)->converted_price)  }}</span>
-                            <span class="product-price">{{ optional($related_product->variant)->currency }}{{ number_format(optional($related_product->variant)->default_discounted_price)  }}</span>
+                        @if (optional($related_product)->default_discounted_price ) 
+                            <span class="old-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->converted_price)  }}</span>
+                            <span class="product-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->default_discounted_price)  }}</span>
                         @else
-                           <span title="{{ optional($related_product->variant)->default_discounted_price }} pppp" class="product-price  pppp">{{ optional($related_product->variant)->currency }}{{ number_format(optional($related_product->variant)->converted_price)  }}</span>
+                           <span title="{{ optional($related_product)->default_discounted_price }} pppp" class="product-price  pppp">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->converted_price)  }}</span>
                         @endif
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
@@ -72,14 +70,14 @@
                 </figure>
                 <div class="product-details">
                     <h3 class="product-title">
-                        <a href="{{ optional($related_product)->link }}">{{ optional($related_product)->product_name }}</a>
+                        <a href="{{ optional($related_product)->link }}">{{ optional($related_product)->name }}</a>
                     </h3>
                     <div class="price-box">
                         @if (optional($related_product)->salePrice() ) 
                             <span class="old-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->price)  }}</span>
                             <span class="product-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->salePrice())  }}</span>
                         @else
-                           <span title="{{ optional($related_product->variant)->default_discounted_price }} pppp" class="product-price  pppp">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->converted_price)  }}</span>
+                           <span title="{{ optional($related_product)->default_discounted_price }} pppp" class="product-price  pppp">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->converted_price)  }}</span>
                         @endif
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->
