@@ -59,13 +59,13 @@ class ProductController extends Controller
      */
     public function index()
     {   
-        $products = Product::with('categories');
+        $query = Product::with('categories');
 
         if(request()->filled('allow')) {
-            $products->where('allow', request()->allow);
+            $query->where('allow', request()->allow);
         }
 
-        $products->orderBy('created_at','desc')->paginate(30);
+        $products = $query->orderBy('created_at','desc')->paginate(30);
         $products->appends(request()->all());
         return view('admin.products.index',compact('products'));
     }
