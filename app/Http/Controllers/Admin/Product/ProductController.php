@@ -62,7 +62,7 @@ class ProductController extends Controller
         $products = Product::with('categories');
 
         if(request()->filled('allow')) {
-            $products->where('where', request()->allow);
+            $products->where('allow', request()->allow);
         }
 
         $products->orderBy('created_at','desc')->paginate(30);
