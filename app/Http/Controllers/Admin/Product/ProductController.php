@@ -59,9 +59,14 @@ class ProductController extends Controller
      */
     public function index()
     {   
-        $products = Product::with('categories')
-                            ->orderBy('created_at','desc')->paginate(30);
-    
+        $products = Product::with('categories');
+
+        if(request()->filled('allow')) {
+            $products->where('where', request()->allow);
+        }
+
+        $products->orderBy('created_at','desc')->paginate(30);
+        $products->appends(request()->all());
         return view('admin.products.index',compact('products'));
     }
 
