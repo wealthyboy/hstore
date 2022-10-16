@@ -125,16 +125,13 @@ class Product extends Model
         return null !== Favorite::where('product_variation_id',$this->default_variation_id)->first() ? true : false;
 	}
 
-
 	public function stock(){
         return  $this->quantity == 0 ? 'Out of stock' : '₦'.number_format($this->price).' '.$this->quantity .' Left' ;
 	}
 
-
 	public function favorites(){
         return $this->hasOne('App\Favorite');
 	}
-
 		 
 	public function link()
 	{
@@ -148,21 +145,17 @@ class Product extends Model
 		return $link;
 	}
 
-
     public function scopeFilter(Builder $builder,$request){
         return (new ProductFilters($request))->filter($builder);
     }
-
 
 	public function category(){
 		return $this->hasOne(CategoryProduct::class)->where('category_id',optional($this->pivot)->category_id);
 	}
 
-
 	public function attribute(){
 		return $this->hasOne(AttributeProduct::class)->where('parent_id',optional($this->pivot)->parent_id);
 	}
-
 
     public function categories()
     {

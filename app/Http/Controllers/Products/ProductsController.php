@@ -54,20 +54,10 @@ class ProductsController extends Controller
         $products->load('product');
         $all = false;
         $colors = [];
-        if ($request->colors) {
-            foreach( $request->colors as $c){
-               $colors[] = ucwords(str_replace("_"," ",$c));
-            }
-           // $products->map(function (ProductVariation $product_variation) {
-               // return $product_variation->attribute_name  == 'Black';
-           // });
-        }
 
         
 
-        if ($request->debug) {
-            dd($products);
-          }
+       
         if($request->ajax())
         { 
         return response()->json([
