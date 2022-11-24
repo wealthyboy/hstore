@@ -20,22 +20,18 @@ class OrderReceipt extends Mailable
     public $sub_total;
 
 
-    public function __construct($order,$settings,$symbol, $sub_total)
+    public function __construct($order, $settings, $symbol, $sub_total)
     {
+
         $this->order = $order;
-        
         $this->settings = $settings;
-
         $this->currency = $symbol;
-
         $this->sub_total = $sub_total;
-
-
     }
 
-    
+
     public function build()
-    {   
+    {
         return $this->subject('HauteSignatures Confirmation')->view('emails.receipt.index');
     }
 }
